@@ -1,0 +1,423 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Chapter 1: Introduction &mdash; 5G Mobile Networks: A Systems Approach Version 0.1 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/bridge.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/rtd_theme_mods.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Chapter 2: Radio Transmission" href="primer.html" />
+    <link rel="prev" title="Preface" href="preface.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> 5G Mobile Networks: A Systems Approach
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                Version 0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Chapter 1:  Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#standardization-landscape">1.1 Standardization Landscape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#access-networks">1.2 Access Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#edge-cloud">1.3 Edge Cloud</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="primer.html">Chapter 2:  Radio Transmission</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arch.html">Chapter 3:  Basic Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ran.html">Chapter 4:  RAN Internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="disaggregate.html">Chapter 5:  Advanced Capabilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="impl.html">Chapter 6:  Exemplar Implementation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cloud.html">Chapter 7:  Cloudification of Access</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html">About This Book</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">5G Mobile Networks: A Systems Approach</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Chapter 1:  Introduction</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/intro.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="chapter-1-introduction">
+<h1>Chapter 1:  Introduction<a class="headerlink" href="#chapter-1-introduction" title="Permalink to this headline">¶</a></h1>
+<p>Cellular networks, which have a 40-year history that parallels the
+Internet’s, have undergone significant change. The first two generations
+supported voice and then text, with 3G defining the transition to
+broadband access, supporting data rates measured in hundreds of
+kilobits-per-second. Today, the industry is at 4G (supporting data rates
+typically measured in the few megabits-per-second) and starting the
+transition to 5G, with the promise of a tenfold increase in data rates.</p>
+<p>But 5G is about much more than increased bandwidth. In the same way 3G
+defined the transition from voice to broadband, 5G’s promise is mostly
+about the transition from a single access service (broadband
+connectivity) to a richer collection of edge services and devices,
+including support for immersive user interfaces (e.g., AR/VR),
+mission-critical applications (e.g., public safety, autonomous
+vehicles), and the Internet-of-Things (IoT). Because these use cases
+will include everything from home appliances to industrial robots to
+self-driving cars, 5G won’t just support humans accessing the Internet
+from their smartphones, but also swarms of autonomous devices working
+together on their behalf. All of this requires a fundamentally different
+architecture.</p>
+<p>This book describes the 5G cellular network, which because it is on an
+evolutionary path and not a point solution, includes standardized
+specifications, a range of implementation choices, and a long list of
+aspirational goals. Because this leaves so much room for interpretation,
+our approach to describing 5G is grounded in two mutually-supportive
+principles. The first is to apply a <em>systems lens</em>, which is to say, we
+explain the sequence of design decisions that lead to a solution rather
+than fall back on enumerating the overwhelming number of acronyms as a
+<em>fait accompli</em>. The second is to aggressively disaggregate the system.
+Building a disaggregated, virtualized, and software-defined 5G access
+network is the direction the industry is already headed (for good
+technical and business reasons), but breaking the 5G network down into
+its elemental components is also the best way to explain how 5G works.
+It also helps to illustrate how 5G might evolve in the future to provide
+even more value.</p>
+<p>What this all means is that there is no single, comprehensive definition
+of 5G, any more than there is for the Internet. It is a complex and
+evolving system, constrained by a set of standards that purposely give
+all the stakeholders many degrees of freedom. In the chapters that
+follow, it should be clear from the context whether we are talking about
+<em>standards</em> (what everyone must do), <em>trends</em> (where the industry seems
+to be headed), or <em>implementation choices</em> (examples to make the
+discussion more concrete). By adopting a systems perspective throughout,
+our intent is to describe 5G in a way that helps the reader navigate
+this rich and rapidly evolving system.</p>
+<div class="section" id="standardization-landscape">
+<h2>1.1 Standardization Landscape<a class="headerlink" href="#standardization-landscape" title="Permalink to this headline">¶</a></h2>
+<p>As of 3G, the generational designation corresponds to a standard defined
+by the 3GPP (3rd Generation Partnership Project). Even though its name
+has “3G” in it, the 3GPP continues to define the standards for 4G and 5G,
+each of which corresponds to a sequence of releases of the standard.
+Release 15 is considered the demarcation point between 4G and 5G, with
+Release 16 expected by the end of 2019. Complicating the terminology, 4G
+was on a multi-release evolutionary path referred to as <em>Long Term
+Evolution (LTE)</em>. 5G is on a similar evolutionary path, with several
+expected releases over its lifetime.</p>
+<p>While 5G is an ambitious advance beyond 4G, it is also the case that
+understanding 4G is the first step to understanding 5G, as several
+aspects of the latter can be explained as bringing a new
+degree-of-freedom to the former. In the chapters that follow, we often
+introduce some architectural feature of 4G as a way of laying the
+foundation for the corresponding 5G component.</p>
+<p>Like Wi-Fi, cellular networks transmit data at certain bandwidths in the
+radio spectrum. Unlike Wi-Fi, which permits anyone to use a channel at
+either 2.4 or 5 GHz (these are unlicensed bands), governments have
+auctioned off and licensed exclusive use of various frequency bands to
+service providers, who in turn sell mobile access service to their
+subscribers.</p>
+<p>There is also a shared-license band at 3.5-GHz, called <em>Citizens
+Broadband Radio Service (CBRS)</em>, set aside in North America for cellular
+use. Similar spectrum is being set aside in other countries. The CBRS band
+allows three tiers of users to share the spectrum: first right of use
+goes to the original owners of this spectrum, naval radars and satellite
+ground stations; followed by priority users who receive this right over
+10MHz bands for three years via regional auctions; and finally the rest
+of the population, who can access and utilize a portion of this band as
+long as they first check with a central database of registered users.
+CBRS, along with standardization efforts to extend cellular networks to
+operate in the unlicensed bands, open the door for private cellular
+networks similar to Wi-Fi.</p>
+<p>The specific frequency bands that are licensed for cellular networks
+vary around the world, and are complicated by the fact that network
+operators often simultaneously support both old/legacy technologies and
+new/next-generation technologies, each of which occupies a different
+frequency band. The high-level summary is that traditional cellular
+technologies range from 700-MHz to 2400-MHz, with new mid-spectrum
+allocations now happening at 6-GHz, and millimeter-wave (mmWave)
+allocations opening above 24-GHz.</p>
+<p>While the specific frequency band is not directly relevant to
+understanding 5G from an architectural perspective, it does impact the
+physical-layer components, which in turn has indirect ramifications on
+the overall 5G system. We will identify and explain these ramifications
+in later chapters.</p>
+</div>
+<div class="section" id="access-networks">
+<h2>1.2 Access Networks<a class="headerlink" href="#access-networks" title="Permalink to this headline">¶</a></h2>
+<p>The cellular network is part of the access network that implements the
+Internet’s so-called <em>last mile</em>. Other access technologies include
+<em>Passive Optical Networks (PON)</em>, colloquially known as
+Fiber-to-the-Home. These access networks are provided by both big and
+small network operators. Global network operators like AT&amp;T run access
+networks at thousands of aggregation points-of-presence across a
+country like the US, along with a national backbone that interconnects
+those sites. Small regional and municipal network operators might run
+an access network with one or two points-of-presence, and then connect
+to the rest of the Internet through some large operator’s backbone.</p>
+<p>In either case, access networks are physically anchored at thousands of
+aggregation points-of-presence within close proximity to end users,
+each of which serves anywhere from 1,000 to 100,000 subscribers,
+depending on population density. In practice, the physical deployment
+of these ”edge” locations vary from operator to operator, but one
+possible scenario is to anchor both the cellular and wireline access
+networks in Telco <em>Central Offices</em>.</p>
+<p>Historically, the Central Office—officially known as the <em>PSTN
+(Packet-Switched Telephone Network) Central Office</em>—anchored wired
+access (both telephony and broadband), while the cellular network
+evolved independently by deploying a parallel set of <em>Mobile Telephone
+Switching Offices (MTSO)</em>. Each MTSO serves as a <em>mobile aggregation</em>
+point for the set of cell towers in a given geographic area. For our
+purposes, the important idea is that such aggregation points exist, and
+it is reasonable to think of them as defining the edge of the
+operator-managed access network. For simplicity, we sometimes use the
+term “Central Office” as a synonym for both types of edge sites.</p>
+</div>
+<div class="section" id="edge-cloud">
+<h2>1.3 Edge Cloud<a class="headerlink" href="#edge-cloud" title="Permalink to this headline">¶</a></h2>
+<p>Because of their wide distribution and close proximity to end users,
+Central Offices are also an ideal place to host the edge cloud. But this
+begs the question: What exactly is the edge cloud?</p>
+<p>In a nutshell, the cloud began as a collection of warehouse-sized
+datacenters, each of which provided a cost-effective way to power, cool,
+and operate a scalable number of servers. Over time, this shared
+infrastructure lowered the barrier to deploying scalable Internet
+services, but today, there is increasing pressure to offer
+low-latency/high-bandwidth cloud applications that cannot be effectively
+implemented in centralized datacenters. Augmented Reality (AR), Virtual
+Reality (VR), Internet-of-Things (IoT), Autonomous Vehicles are all
+examples of this kind of application. This has resulted in a trend to
+move some functionality out of the datacenter and towards the edge of
+the network, closer to end users.</p>
+<p>Where this edge is <em>physically</em> located depends on who you ask. If you
+ask a network operator that already owns and operates thousands of
+Central Offices, then their Central Offices are an obvious answer.
+Others might claim the edge is located at the 14,000 Starbucks across
+the US, and still others might point to the tens-of-thousands of cell
+towers spread across the globe.</p>
+<p>Our approach is to be location agnostic, but it is worth pointing out
+that the cloud’s migration to the edge coincides with a second trend,
+which is that network operators are re-architecting the access network
+to use the same commodity hardware and best practices in building
+scalable software as the cloud providers. Such a design, which is
+sometimes referred to as <em>CORD (Central Office Re-architected as a
+Datacenter)</em>, supports both the access network and edge services
+co-located on a shared cloud platform. This platform is then replicated
+across hundreds or thousands of sites (including, but not limited to,
+Central Offices). So while we shouldn’t limit ourselves to the Central
+Office as the only answer to the question of where the edge cloud is
+located, it is becoming a viable option.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>To learn about the technical origins of CORD, which was first
+applied to fiber-based access networks (PON), see <a class="reference external" href="https:wiki.opencord.org/download/attachments/1278027/PETERSON_CORD.pdf">Central Office
+Re-architected as a Datacenter, IEEE Communications, October 2016</a>.</p>
+<p class="last">To understand the business case for CORD (and CORD-inspired
+technologies), see the A.D. Little report <a class="reference external" href="https://www.adlittle.com/en/who-dares-wins">Who Dares Win!
+How Access Transformation Can Fast-Track Evolution of
+Operator Production Platforms, September 2019</a>.</p>
+</div>
+<p>When we get into the details of how 5G can be implemented in practice,
+we use CORD as our exemplar. For now, the important thing to understand
+is that 5G is being implemented as software running on commodity
+hardware, rather than embedded in the special-purpose proprietary
+hardware used in past generations. This has a significant impact on how
+we think about 5G (and how we describes 5G), which will increasingly
+become yet another software-based component in the cloud, as opposed to
+an isolated and specialized technology attached to the periphery of the
+cloud.</p>
+<p>Keep in mind that our use of CORD as an exemplar is not to imply that
+the edge cloud is limited to Central Offices. CORD is a good exemplar
+because it is designed to host both edge services and access
+technologies like 5G on a common platform, where the Telco Central
+Office is one possible location to deploy such a platform.</p>
+<p>An important takeaway from this discussion is that to understand how 5G
+is being implemented, it is helpful to have a working understanding of
+how clouds are built. This includes the use of <em>commodity hardware</em>
+(both servers and white-box switches), horizontally scalable
+<em>microservices</em> (also referred to as <em>cloud native</em>), and
+<em>Software-Defined Networks (SDN)</em>. is also helpful to have an
+appreciation for how cloud software is developed, tested, deployed and
+operated, including practices like <em>DevOps</em> and <em>Continuous Integration
+/ Continuous Deployment (CI/CD)</em>.</p>
+<p>One final note about terminology. Anyone that has been paying attention
+to the discussion surrounding 5G will have undoubtedly heard about
+<em>Network Function Virtualization (NFV)</em>, which involves moving
+functionality that was once embedded in hardware appliances into VMs
+running on commodity servers. In our experience, NFV is a stepping
+stone towards the fully disaggregated solution we describe, and so we do
+not dwell on it. You can think of NFV as an alternative to the cloud
+native exemplar presented here.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="primer.html" class="btn btn-neutral float-right" title="Chapter 2: Radio Transmission" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="preface.html" class="btn btn-neutral float-left" title="Preface" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,259 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Preface &mdash; 5G Mobile Networks: A Systems Approach Version 0.1 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/bridge.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/rtd_theme_mods.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Chapter 1: Introduction" href="intro.html" />
+    <link rel="prev" title="5G Mobile Networks: A Systems Approach" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> 5G Mobile Networks: A Systems Approach
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                Version 0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Chapter 1:  Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="primer.html">Chapter 2:  Radio Transmission</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arch.html">Chapter 3:  Basic Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ran.html">Chapter 4:  RAN Internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="disaggregate.html">Chapter 5:  Advanced Capabilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="impl.html">Chapter 6:  Exemplar Implementation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cloud.html">Chapter 7:  Cloudification of Access</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html">About This Book</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">5G Mobile Networks: A Systems Approach</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Preface</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/preface.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="preface">
+<h1>Preface<a class="headerlink" href="#preface" title="Permalink to this headline">¶</a></h1>
+<p>The transition to 5G is happening, and unless you’ve been actively
+trying to ignore it, you’ve likely heard the hype. But if you are like
+99% of the CS-trained, systems-oriented, cloud-savvy, code-writing,
+IETF-participating people in the world, the cellular network is
+largely a mystery. You know it’s an important technology used in the
+last mile to connect people to the Internet, but you’ve otherwise
+abstracted it out of your scope-of-concerns.</p>
+<p>The important thing to understand about 5G is that it implies much more
+than a generational upgrade in bandwidth. It involves transformative
+changes that blur the line between the access network and the cloud. And
+it will encompass enough value that it has the potential to turn the
+“Access-as-frontent-to-Internet” perspective on its head. We will just as
+likely be talking about “Internet-as-backend-to-Access” ten years from
+now.</p>
+<p>This book is written for someone that has a working understanding of the
+Internet and Cloud, but has had limited success penetrating the myriad
+of acronyms that dominate cellular networking. In fairness, the Internet
+has its share acronyms, but it also comes with a sufficient set of
+abstractions to help manage the complexity. It’s hard to say the same
+for the cellular network, where pulling on one thread seemingly unravels
+the entire space. It has also been the case that the cellular network
+had been largely hidden inside proprietary devices, which has made it
+impossible to figure it out for yourself.</p>
+<p>This book is the result of a cellular networking expert teaching a
+systems person about 5G as we’ve collaborated on an open source 5G
+implementation. The material has been used to train other software
+developers, and we are hopeful it will be useful to anyone that wants a
+deeper understanding of 5G and the opportunity for innovation it
+provides. Readers that want hands-on experience can also access the open
+source software introduced in the book.</p>
+<p>This book will likely be a work-in-progress for the foreseeable future.
+It’s not intended to be encyclopedic—favoring perspective and end-to-end
+completeness over every last bit of detail—but we do plan to flesh out
+the content over time. Your suggestions (and contributions) to this end
+are welcome.</p>
+<div class="line-block">
+<div class="line">Larry Peterson and Oguz Sunay</div>
+<div class="line">Open Networking Foundation</div>
+<div class="line">August 2019</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="intro.html" class="btn btn-neutral float-right" title="Chapter 1: Introduction" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="5G Mobile Networks: A Systems Approach" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

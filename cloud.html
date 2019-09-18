@@ -1,0 +1,264 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Chapter 7: Cloudification of Access &mdash; 5G Mobile Networks: A Systems Approach Version 0.1 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/bridge.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/rtd_theme_mods.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="About This Book" href="README.html" />
+    <link rel="prev" title="Chapter 6: Exemplar Implementation" href="impl.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> 5G Mobile Networks: A Systems Approach
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                Version 0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Chapter 1:  Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="primer.html">Chapter 2:  Radio Transmission</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arch.html">Chapter 3:  Basic Architecture</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ran.html">Chapter 4:  RAN Internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="disaggregate.html">Chapter 5:  Advanced Capabilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="impl.html">Chapter 6:  Exemplar Implementation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Chapter 7:  Cloudification of Access</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html">About This Book</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">5G Mobile Networks: A Systems Approach</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Chapter 7:  Cloudification of Access</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/cloud.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="chapter-7-cloudification-of-access">
+<h1>Chapter 7:  Cloudification of Access<a class="headerlink" href="#chapter-7-cloudification-of-access" title="Permalink to this headline">¶</a></h1>
+<p>The previous chapters went step-by-step, first breaking 5G down into its
+elemental components and then showing how those components could be put
+back together using best practices in cloud design to build a fully
+functional, 3GPP-compliant 5G cellular network. In doing so, it is easy
+to lose sight of the big picture, which is that the cellular network is
+undergoing a dramatic transformation. That’s the whole point of 5G. We
+conclude by making some observations about this big picture.</p>
+<p>To understand the impact, it is helpful to first understand what’s
+important about the cloud. The cloud has fundamentally changed the way
+we compute, and more importantly, the pace of innovation. It has done
+this through a combination of:</p>
+<ul class="simple">
+<li><strong>Disaggregation:</strong> Breaking vertically integrated systems into
+independent components with open interfaces.</li>
+<li><strong>Virtualization:</strong> Being able to run multiple independent copies of
+those components on a common hardware platform.</li>
+<li><strong>Commoditization:</strong> Being able to elastically scale those virtual
+components across commodity hardware bricks as workload dictates.</li>
+</ul>
+<p>There is an opportunity for the same to happen with the access network,
+or from another perspective, for the cloud to essentially expand so far
+as to subsume the access network.</p>
+<div class="figure align-center" id="id1">
+<span id="fig-cloud"></span><a class="reference internal image-reference" href="_images/Slide32.png"><img alt="_images/Slide32.png" src="_images/Slide32.png" style="width: 700px;" /></a>
+<p class="caption"><span class="caption-text">Figure 7.1: A multi-tenant / multi-cloud—including virtualized RAN
+resources alongside conventional compute, storage, and network
+resources—hosting both Telco and Over-the-Top (OTT) services and
+applications.</span></p>
+</div>
+<p><a class="reference internal" href="#fig-cloud"><span class="std std-ref">Figure 7.1</span></a> gives a high-level overview of how the
+transformation might play out, with the global cloud spanning edge
+clouds, private Telco clouds, and the familiar public clouds. Each
+individual cloud site is potentially owned by a different organization
+(this includes the cell towers, as well), and as a consequence, each
+site will likely be multi-tenant in that it is able to host (and
+isolate) applications on behalf of many other people and organizations.
+Those applications, in turn, will include a combination of the RAN and
+Core services (as described throughout this book), Over-the-Top (OTT)
+applications commonly found today in public clouds (but now also
+distributed across edge clouds), and new Telco-managed applications
+(also distributed across centralized and edge locations).</p>
+<p>Eventually, we can expect common APIs to emerge, lowering the barrier
+for anyone (not just today’s network operators or cloud providers) to
+deploy applications across multiple sites by acquiring the storage,
+compute, networking, and connectivity resources they need.</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="README.html" class="btn btn-neutral float-right" title="About This Book" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="impl.html" class="btn btn-neutral float-left" title="Chapter 6: Exemplar Implementation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,425 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Chapter 4: RAN Internals &mdash; 5G Mobile Networks: A Systems Approach Version 0.1 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="_static/bridge.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/rtd_theme_mods.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Chapter 5: Advanced Capabilities" href="disaggregate.html" />
+    <link rel="prev" title="Chapter 3: Basic Architecture" href="arch.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> 5G Mobile Networks: A Systems Approach
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                Version 0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Chapter 1:  Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="primer.html">Chapter 2:  Radio Transmission</a></li>
+<li class="toctree-l1"><a class="reference internal" href="arch.html">Chapter 3:  Basic Architecture</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Chapter 4:  RAN Internals</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#packet-processing-pipeline">4.1 Packet Processing Pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#split-ran">4.2 Split RAN</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#software-defined-ran">4.3 Software-Defined RAN</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="disaggregate.html">Chapter 5:  Advanced Capabilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="impl.html">Chapter 6:  Exemplar Implementation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cloud.html">Chapter 7:  Cloudification of Access</a></li>
+<li class="toctree-l1"><a class="reference internal" href="README.html">About This Book</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">5G Mobile Networks: A Systems Approach</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Chapter 4:  RAN Internals</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/ran.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="chapter-4-ran-internals">
+<h1>Chapter 4:  RAN Internals<a class="headerlink" href="#chapter-4-ran-internals" title="Permalink to this headline">¶</a></h1>
+<p>The description of the RAN in the previous chapter focused on
+functionality, but was mostly silent about the RAN’s internals
+structure. We now focus in on some of the internal details, and in doing
+so, explain how the RAN is being transformed in 5G. This involves first
+describing the stages in the packet processing pipeline, and then
+showing how these stages can be distributed and implemented.</p>
+<div class="section" id="packet-processing-pipeline">
+<h2>4.1 Packet Processing Pipeline<a class="headerlink" href="#packet-processing-pipeline" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="#fig-pipeline"><span class="std std-ref">Figure 4.1</span></a> shows the packet processing stages
+implemented by the base station. These stages are specified by the 3GPP
+standard. Note that the figure depicts the base station as a pipeline
+(running left-to-right) but it is equally valid to view it as a protocol
+stack (as is typically done in official 3GPP documents). Also note that
+(for now) we are agnostic as to how these stages are implemented, but
+since we are ultimately heading towards a cloud-based implementation,
+you can think of each as corresponding to a microservice (if that is
+helpful).</p>
+<div class="figure align-center" id="id1">
+<span id="fig-pipeline"></span><a class="reference internal image-reference" href="_images/Slide14.png"><img alt="_images/Slide14.png" src="_images/Slide14.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-text">Figure 4.1: RAN processing pipeline, including both user and
+control plane components.</span></p>
+</div>
+<p>The key stages are as follows:</p>
+<ul class="simple">
+<li>RRC (Radio Resource Control) → Responsible for configuring the
+coarse-grain and policy-related aspects of the pipeline. The RRC runs
+in the RAN’s control plane; it does not process packets on the user
+plane.</li>
+<li>PDCP (Packet Data Convergence Protocol) → Responsible for compressing
+and decompressing IP headers, ciphering and integrity protection, and
+making an “early” forwarding decision (i.e., whether to send the
+packet down the pipeline to the UE or forward it to another base
+station).</li>
+<li>RLC (Radio Link Control) → Responsible for segmentation and
+reassembly, including reliably transmitting/receiving segments by
+implementing ARQ.</li>
+<li>MAC (Media Access Control) → Responsible for buffering, multiplexing
+and demultiplexing segments, including all real-time scheduling
+decisions about what segments are transmitted when. Also able to make
+a “late” forwarding decision (i.e., to alternative carrier
+frequencies, including Wi-Fi).</li>
+<li>PHY (Physical Layer) → Responsible for coding and modulation (as
+discussed in an earlier chapter), including FEC.</li>
+</ul>
+<p>The last two stages in <a class="reference internal" href="#fig-pipeline"><span class="std std-ref">Figure 4.1</span></a> (D/A
+conversion and the RF front-end) are beyond the scope of this book.</p>
+<p>While it is simplest to view the stages in <a class="reference internal" href="#fig-pipeline"><span class="std std-ref">Figure 4.1</span></a>
+as a pure left-to-right pipeline, in practice the Scheduler running in the
+MAC stage implements the “main loop” for outbound traffic, reading data
+from the upstream RLC and scheduling transmissions to the downstream
+PHY. In particular, since the Scheduler determines the number of bytes
+to transmit to a given UE during each time period (based on all the
+factors outlined in an earlier chapter), it must request (get) a segment
+of that length from the upstream queue. In practice, the size of the
+segment that can be transmitted on behalf of a single UE during a single
+scheduling interval can range from a few bytes to an entire IP packet.</p>
+</div>
+<div class="section" id="split-ran">
+<h2>4.2 Split RAN<a class="headerlink" href="#split-ran" title="Permalink to this headline">¶</a></h2>
+<p>The next step is understanding how the functionality outlined above is
+partitioned between physical elements, and hence, “split” across
+centralized and distributed locations. Although the 3GPP standard allows
+for multiple split-points, the partition shown in <a class="reference internal" href="#fig-split-ran"><span class="std std-ref">Figure 4.2</span></a>
+is the one being actively pursued by the
+operator-led O-RAN (Open RAN) Alliance. It is the split we adopt
+throughout the rest of this book.</p>
+<div class="figure align-center" id="id2">
+<span id="fig-split-ran"></span><a class="reference internal image-reference" href="_images/Slide15.png"><img alt="_images/Slide15.png" src="_images/Slide15.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-text">Figure 4.2: Split-RAN processing pipeline distributed across a
+Central Unit (CU), Distributed Unit (DU), and Radio Unit (RU).</span></p>
+</div>
+<p>This results in a RAN-wide configuration similar to that shown in
+<a class="reference internal" href="#fig-ran-hierarchy"><span class="std std-ref">Figure 4.3</span></a>, where a single <em>Central Unit (CU)</em>
+running in the cloud serves multiple <em>Distributed Units (DUs)</em>, each of
+which in turn serves multiple <em>Radio Units (RUs)</em>. Critically, the RRC
+(centralized in the CU) is responsible for only near-real time
+configuration and control decision making, while the Scheduler that is
+part of the MAC stage is responsible for all real-time scheduling
+decisions.</p>
+<div class="figure align-center" id="id3">
+<span id="fig-ran-hierarchy"></span><a class="reference internal image-reference" href="_images/Slide16.png"><img alt="_images/Slide16.png" src="_images/Slide16.png" style="width: 400px;" /></a>
+<p class="caption"><span class="caption-text">Figure 4.3: Split-RAN hierarchy, with one CU serving multiple DUs,
+each of which serves multiple RUs.</span></p>
+</div>
+<p>Clearly, a DU needs to be “near” (within 1ms) the RUs it manages since
+the MAC schedules the radio in real-time. One familiar configuration is
+to co-locate a DU and an RU in a cell tower. But when an RU corresponds
+to a small cell, many of which might be spread across a modestly sized
+geographic area (e.g., a mall, campus, or factory), then a single DU
+would likely service multiple RUs. The use of mmWave in 5G is likely to
+make this later configuration all the more common.</p>
+<p>Also note that the split-RAN changes the nature of the Backhaul Network,
+which in 4G connected the base stations (eNBs) back to the Mobile Core.
+With the split-RAN there are multiple connections, which are officially
+labelled as follows:</p>
+<ul class="simple">
+<li>RU-DU connectivity is called the Fronthaul</li>
+<li>DU-CU connectivity is called the Midhaul</li>
+<li>CU-Mobile Core connectivity is called the Backhaul</li>
+</ul>
+<p>As we will see in a later chapter, one possible deployment co-locates
+the CU and Mobile Core in the same cluster, meaning the backhaul is
+implemented in the cluster switching fabric. In such a configuration,
+the midhaul then effectively serves the same purpose as the original
+backhaul, and the fronthaul is constrained by the
+predictable/low-latency requirements of the MAC stage’s real-time
+scheduler.</p>
+</div>
+<div class="section" id="software-defined-ran">
+<h2>4.3 Software-Defined RAN<a class="headerlink" href="#software-defined-ran" title="Permalink to this headline">¶</a></h2>
+<p>Finally, we describe how the RAN is implemented according to SDN
+principles, resulting in an SD-RAN. The key architectural insight is
+shown in <a class="reference internal" href="#fig-rrc-split"><span class="std std-ref">Figure 4.4</span></a>, where the RRC from
+<a class="reference internal" href="#fig-pipeline"><span class="std std-ref">Figure 4.1</span></a> is partitioned into two
+sub-components: the one on
+the left provides a 3GPP-compliant way for the RAN to interface to the
+Mobile Core’s control plane, while the latter opens a new programmatic
+API for exerting software-based control over the pipeline that
+implements the RAN user plane. To be more specific, the left
+sub-component simply forwards control packets between the Mobile Core
+and the PDCP, providing a path over which the Mobile Core can
+communication with the UE for control purposes, whereas the right
+sub-component implements the core of the RCC’s control functionality.</p>
+<div class="figure align-center" id="id4">
+<span id="fig-rrc-split"></span><a class="reference internal image-reference" href="_images/Slide18.png"><img alt="_images/Slide18.png" src="_images/Slide18.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-text">Figure 4.4: RRC disaggregated into a Mobile Core facing control
+plane component and a Near Real-Time Controller.</span></p>
+</div>
+<p>Although not shown in <a class="reference internal" href="#fig-rrc-split"><span class="std std-ref">Figure 4.4</span></a>, keep in mind
+(from <a class="reference internal" href="#fig-split-ran"><span class="std std-ref">Figure 4.2</span></a>) that all constituent parts of
+the RRC, plus the PDCP, form the CU.</p>
+<p>Completing the picture, <a class="reference internal" href="#fig-ran-controller"><span class="std std-ref">Figure 4.5</span></a> shows
+the Near-RT RAN Controller implemented as a traditional SDN Controller
+hosting a set of SDN control apps. The Near Real-Time Controller
+maintains a RAN Network Information Base (R-NIB) that includes
+time-averaged CQI values and other per-session state (e.g., GTP tunnel
+IDs, QCI values for the type of traffic), while the MAC (as part of the
+DU) maintains the instantaneous CQI values required by the real-time
+scheduler. Specifically, the R-NIB includes the following state:</p>
+<ul class="simple">
+<li>NODES: Base Stations and Mobile Devices<ul>
+<li>Base Station Attributes:<ul>
+<li>Identifiers</li>
+<li>Version</li>
+<li>Config Report</li>
+<li>RRM config</li>
+<li>PHY resource usage</li>
+</ul>
+</li>
+<li>Mobile Device Attributes:<ul>
+<li>Identifiers</li>
+<li>Capability</li>
+<li>Measurement Config</li>
+<li>State (Active/Idle)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>LINKS: Physical between two nodes and potential between UEs and all
+neighbor cells<ul>
+<li>Link Attributes:<ul>
+<li>Identifiers</li>
+<li>Link Type</li>
+<li>Config / Bearer Parameters</li>
+<li>QCI Value</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>SLICES: Virtualized RAN construct<ul>
+<li>Slice Attributes:<ul>
+<li>Links</li>
+<li>Bearers / Flows</li>
+<li>Validity Period</li>
+<li>Desired KPIs</li>
+<li>MAC RRM Configuration</li>
+<li>RRM Control Configuration</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<div class="figure align-center" id="id5">
+<span id="fig-ran-controller"></span><a class="reference internal image-reference" href="_images/Slide19.png"><img alt="_images/Slide19.png" src="_images/Slide19.png" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-text">Figure 4.5: Example set of control applications running on top of
+Near Real-Time RAN Controller.</span></p>
+</div>
+<p>The example Control Apps in <a class="reference internal" href="#fig-ran-controller"><span class="std std-ref">Figure 4.5</span></a>
+include a
+range of possibilities, but is not intended to be an exhaustive list.
+The right-most example, RAN Slicing, is the most ambitious in that it
+introduces a new capability: Virtualizing the RAN. It is also an idea
+that has been implemented, which we describe in more detail in the next
+chapter.</p>
+<p>The next three (RF Configuration, Semi-Persistent Scheduling, Cipher Key
+Assignment) are examples of configuration-oriented applications. They
+provide a programmatic way to manage seldom-changing configuration
+state, thereby enabling zero-touch operations. Coming up with meaningful
+policies (perhaps driven by analytics) is likely to be an avenue for
+innovation in the future.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="disaggregate.html" class="btn btn-neutral float-right" title="Chapter 5: Advanced Capabilities" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="arch.html" class="btn btn-neutral float-left" title="Chapter 3: Basic Architecture" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
