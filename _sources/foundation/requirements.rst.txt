@@ -560,9 +560,9 @@ often than not a *burst error* occurs—several consecutive bits are
 corrupted. Bit errors typically occur because outside forces, such as 
 lightning strikes, power surges, and microwave ovens, interfere with the
 transmission of data. The good news is that such bit errors are fairly 
-rare, affecting on average only one out of every :math:`10^6` to 
-:math:`10^7` bits on a typical copper-based cable and one out of every 
-:math:`10^{12}` to :math:`10^{14}` bits on a typical optical fiber. 
+rare, affecting on average only one out of every 10\ :sup:`6` to 
+10\ :sup:`7` bits on a typical copper-based cable and one out of every 
+10\ :sup:`12` to 10\ :sup:`14` bits on a typical optical fiber. 
 As we will see, there are techniques that detect these bit errors with 
 high probability. Once detected, it is sometimes possible to correct for 
 such errors—if we know which bit or bits are corrupted, we can simply 

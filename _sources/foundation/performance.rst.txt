@@ -235,10 +235,11 @@ Note that most of the time we are interested in the RTT scenario, which
 we simply refer to as the delay × bandwidth product, without explicitly
 saying that “delay” is the RTT (i.e., multiply the one-way delay by
 two). Usually, whether the “delay” in delay × bandwidth means one-way
-latency or RTT is made clear by the context. `Table 1 <#delay-bw>`__
+latency or RTT is made clear by the context. :ref:`Table 1<tab-delay-bw>`
 shows some examples of RTT × bandwidth products for some typical network
 links.
 
+.. _tab-delay-bw:
 +---------------------+-----------+------------------+---------+-----------------+
 | Link Type           | Bandwidth | One-Way Distance | RTT     | RTT x Bandwidth |
 +=====================+===========+==================+=========+=================+
@@ -249,7 +250,7 @@ links.
 | Cross-country fiber | 10 Gbps   | 4,000 km         | 40 ms   | 400 Mb          |
 +---------------------+-----------+------------------+---------+-----------------+
 
- Example delay × bandwidth products. 
+  Table 1. Example delay × bandwidth products. 
 
 High-Speed Networks
 -------------------
