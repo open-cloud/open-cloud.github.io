@@ -449,8 +449,11 @@ needs to be transmitted across a 1-Mbps network, while it looks like a
 single packet on a 1-Gbps network. To help drive this point home,
 consider that a 1-MB file is to a 1-Gbps network what a 1-KB <em>packet</em> is
 to a 1-Mbps network.</p>
-<div class="figure align-center" id="fig-bw-lat">
-<a class="reference internal image-reference" href="../_images/f01-19-9780123850591.png"><img alt="../_images/f01-19-9780123850591.png" src="../_images/f01-19-9780123850591.png" style="width: 500px;" /></a>
+<div class="figure align-center" id="id4">
+<span id="fig-bw-lat"></span><a class="reference internal image-reference" href="../_images/f01-19-9780123850591.png"><img alt="../_images/f01-19-9780123850591.png" src="../_images/f01-19-9780123850591.png" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-text">Relationship between bandwidth and latency. A 1-MB
+file would fill the 1-Mbps link 80 times but only fill 1/12th of a
+1-Gbps link.</span></p>
 </div>
 <p>Another way to think about the situation is that more data can be
 transmitted during each RTT on a high-speed network, so much so that a
@@ -551,7 +554,7 @@ single physical link, but it can happen when packets experience
 different queuing delays in a multihop packet-switched network. This
 queuing delay corresponds to the component of latency defined earlier in
 this section, which varies with time.</p>
-<div class="figure align-center" id="id4">
+<div class="figure align-center" id="id5">
 <span id="fig-jitter"></span><a class="reference internal image-reference" href="../_images/f01-20-9780123850591.png"><img alt="../_images/f01-20-9780123850591.png" src="../_images/f01-20-9780123850591.png" style="width: 600px;" /></a>
 <p class="caption"><span class="caption-text">Network-induced jitter.</span></p>
 </div>

@@ -235,7 +235,7 @@ Note that most of the time we are interested in the RTT scenario, which
 we simply refer to as the delay × bandwidth product, without explicitly
 saying that “delay” is the RTT (i.e., multiply the one-way delay by
 two). Usually, whether the “delay” in delay × bandwidth means one-way
-latency or RTT is made clear by the context. :ref:`Table 1<tab-delay-bw>`
+latency or RTT is made clear by the context. :ref:`Table 1 <tab-delay-bw>`
 shows some examples of RTT × bandwidth products for some typical network
 links.
 
@@ -289,7 +289,7 @@ to a 1-Mbps network.
    :width: 500px
    :align: center
    
-    Relationship between bandwidth and latency. A 1-MB
+   Relationship between bandwidth and latency. A 1-MB
    file would fill the 1-Mbps link 80 times but only fill 1/12th of a
    1-Gbps link.
 
