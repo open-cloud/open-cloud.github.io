@@ -1,0 +1,244 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>&lt;no title&gt; &mdash; Computer Networks: A Systems Approach Version 6.1 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/bridge.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/rtd_theme_mods.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Computer Networks: A Systems Approach
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                Version 6.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../foundation.html">Chapter 1: Foundation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../README.html">About This Book</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Computer Networks: A Systems Approach</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>&lt;no title&gt;</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/sidebars/mega.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <!--- [!Note|style:flat|label:How Big is a Mega?|iconVisibility:hidden] ---><blockquote>
+<div><p><strong>How Big is a Mega?</strong></p>
+<p>There are several pitfalls you need to be aware of when working with
+the common units of networking, such as MB and Mbps. The first is
+to distinguish carefully between bits and bytes. Throughout this book,
+we always use a lowercase <em>b</em> for bits and a capital <em>B</em> for bytes.
+The second is to be sure you are using the appropriate definition of
+giga (G), mega (M) and kilo (K). <em>Mega,</em> for example, can mean either
+2$$^{20}$$ or 10$$^6$$. Similarly, <em>kilo</em> can be either 2$$^{10}$$ or
+10$$^3$$ and <em>giga</em> can be either 2$$^{30}$$ or 10$$^9$$.
+What is worse, in networking we typically use both definitions. Here’s
+why.</p>
+<p>Network bandwidth, which is often specified in terms of Mbps, is
+typically governed by the speed of the clock that paces the
+transmission of the bits. A clock that is running at 10&nbsp;MHz is used to
+transmit bits at 10&nbsp;Mbps. Because the <em>mega</em> in MHz means
+10$$^6$$&nbsp;hertz, Mbps is usually also defined as 10$$^6$$ bits per second.
+(Similarly, Gbps is 10$$^9$$ bits per second.) On the other hand, when
+we talk about a message that we want to transmit, we often give its
+size in bytes. Because messages are stored in the computer’s
+memory, and memory is typically measured in powers of two, the <em>K</em> in
+KB is usually taken to mean 2$$^{10}$$. (Similarly, MB usually means
+2$$^{20}$$ and GB usually means 2$$^{30}$$.) When you put the two
+together, it is not uncommon to talk about sending a 32-KB message
+over a 10-Mbps channel, which should be interpreted to mean 32 x
+2$$^{10}$$ x 8 bits are being transmitted at a rate of 10 x 10$$^6$$
+bits per second. This is the interpretation we use throughout the
+book, unless explicitly stated otherwise.</p>
+<p>The good news is that many times we are satisfied with a
+back-of-the-envelope calculation, in which case it is perfectly
+reasonable to make the approximation that 10$$^6$$ is really equal to
+2$$^{20}$$ (making it easy to convert between the two definitions of
+mega). This approximation introduces only a 5% error. We can even make
+the approximation in some cases that a byte has 10 bits, a 20% error
+but good enough for order-of-magnitude estimates.</p>
+<p>While we’re making quick-and-dirty calculations, 100&nbsp;ms is a
+reasonable number to use for a cross-country round-trip time—at
+least when the country in question is the United States—and 1&nbsp;ms is
+a good approximation of an RTT across a local area network. In the
+case of the former, we increase the 48-ms round-trip time implied by
+the speed of light over a fiber to 100&nbsp;ms because there are, as we
+have said, other sources of delay, such as the processing time in the
+switches inside the network. You can also be sure that the path taken
+by the fiber between two points will not be a straight line.</p>
+</div></blockquote>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

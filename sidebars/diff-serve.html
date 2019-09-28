@@ -1,0 +1,239 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>&lt;no title&gt; &mdash; Computer Networks: A Systems Approach Version 6.1 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/bridge.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/rtd_theme_mods.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Computer Networks: A Systems Approach
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                Version 6.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../foundation.html">Chapter 1: Foundation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../README.html">About This Book</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Computer Networks: A Systems Approach</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>&lt;no title&gt;</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/sidebars/diff-serve.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <!--- [!Note|style:flat|label:Quiet Success of DiffServ|iconVisibility:hidden] ---><blockquote>
+<div><p><strong>Quiet Success of DiffServ</strong></p>
+<p>As early as 2003, many people were ready to declare that DiffServ
+was dead. At that year’s ACM SIGCOMM conference, one of the most
+prestigious networking research conferences, a workshop with the
+provocative title “RIPQOS” was held—the official name of the
+workshop was “Revisiting IP QoS” but the implication that QOS might be
+ready to rest in peace was clear in the workshop announcement.
+However, just as Mark Twain quipped that reports of his death were
+greatly exaggerated, it seems that the demise of IP QoS, and DiffServ
+in particular, was also overstated.</p>
+<p>Much of the pessimism about DiffServ arose from the fact that is had
+not been deployed to any significant extent by Internet Service
+Providers. Not only that, but the fact that real-time applications
+such as IP telephony and video streaming appear to be working so well
+over the Internet without any QoS mechanisms in place makes one wonder
+if any QoS will every be needed. In part this is the result of
+aggressive deployment of high bandwidth links and routers by many
+ISPs.</p>
+<p>To see where DiffServ has succeeded, you need to look outside the ISP
+backbones. For example, corporations that have deployed IP telephony
+solutions—and there are over ten million “enterprise class” IP
+phones in use at the time of writing—routinely use “EF” behavior for
+the voice media packets to ensure that they are not delayed when
+sharing links with other traffic. The same holds for many residential
+voice-over-IP solutions: just to get priority on the upstream link out
+of the residence (e.g. the “slow” direction of a DSL link), it is
+common for the voice endpoint to set the DSCP to EF, and for a
+consumer’s router connected to the broadband link to use DiffServ to
+give low latency and jitter to those packets.</p>
+<p>There are other applications beside voice that are benefiting from
+IP-based video in the coming years will provide another driver. In
+general, two factors make DiffServ deployment worthwhile: a high
+demand for QoS assurance from the application, and a lack of assurance
+that the link bandwidth will be sufficient to deliver that QoS to
+<em>all</em> the traffic traversing the link. It is important to realize that
+DiffServ, like any other QoS mechanism, cannot create bandwidth—all
+it can do is ensure that what bandwidth there is gets preferentially
+allocated to the applications that have more demanding QoS needs.</p>
+</div></blockquote>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

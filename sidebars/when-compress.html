@@ -1,0 +1,237 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>&lt;no title&gt; &mdash; Computer Networks: A Systems Approach Version 6.1 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/bridge.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/rtd_theme_mods.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Computer Networks: A Systems Approach
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                Version 6.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../foundation.html">Chapter 1: Foundation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../README.html">About This Book</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Computer Networks: A Systems Approach</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>&lt;no title&gt;</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/sidebars/when-compress.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <!--- [!Note|style:flat|label:When to Compress|iconVisibility:hidden] ---><blockquote>
+<div><p><strong>When to Compress</strong></p>
+<p>It might seem that compressing your data before sending it would
+always be a good idea, since the network would be able to deliver
+compressed data in less time than uncompressed data. This is not
+necessarily the case, however. Compression/decompression algorithms
+often involve time-consuming computations. The question you have to
+ask is whether or not the time it takes to compress/decompress the
+data is worthwhile given such factors as the host’s processor speed
+and the network bandwidth. Specifically, if $$B_c$$ is the average
+bandwidth at which data can be pushed through the compressor and
+decompressor (in series), $$B_n$$ is the network bandwidth (including
+network processing costs) for uncompressed data, $$r$$ is the average
+compression ratio, and if we assume that all the data is compressed
+before any of it is transmitted, then the time taken to send $$x$$&nbsp;bytes
+of uncompressed data is $$x/B_n$$ whereas the time to compress it and
+send the compressed data is $$x/B_c + x/(rB_n)$$ Thus, compression
+is beneficial if $$x/B_c + x/(rB_n) &lt; x/B_n$$ which is equivalent
+to $$B_c r/(r-1) \times B_n$$ For example, for a compression ratio
+of 2, $$B_c$$ would have to be greater than $$2 \times B_n$$ for
+compression to make sense.</p>
+<p>For many compression algorithms, we may not need to compress the
+<em>whole</em> data set before beginning transmission (videoconferencing
+would be impossible if we did) but rather we need to collect some
+amount of data (perhaps a few frames of video) first. The amount of
+data needed to “fill the pipe” in this case would be used as the value
+of $$x$$ in the above equation.</p>
+<p>Of course, when talking about lossy compression algorithms, processing
+resources are not the only factor. Depending on the exact application,
+users are willing to make very different trade-offs between bandwidth
+(or delay) and extent of information loss due to compression. For
+example, a radiologist reading a mammogram is unlikely to tolerate any
+significant loss of image quality and might well tolerate a delay of
+several hours in retrieving an image over a network. By contrast, it
+has become quite clear that many people will tolerate questionable
+audio quality in exchange for free global telephone calls (not to
+mention the ability to talk on the phone while driving).</p>
+</div></blockquote>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

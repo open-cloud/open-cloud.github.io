@@ -1,0 +1,234 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>&lt;no title&gt; &mdash; Computer Networks: A Systems Approach Version 6.1 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/bridge.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/rtd_theme_mods.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Computer Networks: A Systems Approach
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                Version 6.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../foundation.html">Chapter 1: Foundation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../README.html">About This Book</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Computer Networks: A Systems Approach</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>&lt;no title&gt;</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/sidebars/probability.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <!--- [!Note|style:flat|label:Simple Probability Calculations|iconVisibility:hidden] ---><blockquote>
+<div><p><strong>Simple Probability Calculations</strong></p>
+<p>When dealing with network errors and other unlikely (we hope) events,
+we often have use for simple back-of-the-envelope probability
+estimates. A useful approximation here is that if two independent
+events have <em>small</em> probabilities $$p$$ and $$q$$, then the probability of
+either event is $$p+q$$. The exact answer is</p>
+<p>$$1-(1-p)(1-q) = p+q-pq$$</p>
+<p>but for small probabilities like $$p=q=.01$$, our estimate gives us
+$$.02$$, while the exact value is $$.0199$$. Close enough.</p>
+<p>For a simple application of this, suppose that the per-bit error rate
+on a link is 1 in $$10^{7}$$. Now suppose we are interested in
+estimating the probability of at least one bit in a 10,000 bit packet
+being errored. Using the above approximation repeatedly over all the
+bits, we can say that we are interested in the probability of either
+the first bit being errored, or the second bit, or the third, etc.
+Assuming bit errors are all independent (which they aren’t), we can
+therefore estimate that the probability of at least one error in a
+10,000-bit ($$10^4$$ bit) packet is $$10^4 \times 10^{-7} = 10^{-3}$$.
+The exact answer, computed as $$1-P(\mathrm{no\ errors})$$, would be
+$$1-(1-10^{-7})^{10,000} = .00099950$$.</p>
+<p>For a slightly more complex application, we compute the probability of
+exactly two errors in such a packet; this is the probability of an
+error that would sneak past a 1-parity-bit checksum. If we consider
+two particular bits in the packet, say bit $$i$$ and bit $$j$$, the
+probability of those exact bits being errored is
+$$10^{-7} \times 10^{-7}$$. Now the total number of possible bit
+pairs in the packet is</p>
+<p>$$\left( \begin{array}{c} 10^4 \ 2 \end{array} \right) = 10^4 \times
+(10^4 - 1) / 2 \approx 5 \times 10^7$$</p>
+<p>So again using the approximation of repeatedly adding the
+probabilities of many rare events (in this case, of any possible bit
+pair being errored), our total probability of at least two errored
+bits is $$5 \times 10^7 \times 10^{-14} = 5 \times 10^{-7}$$.</p>
+</div></blockquote>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

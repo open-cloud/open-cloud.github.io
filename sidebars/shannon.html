@@ -1,0 +1,247 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>&lt;no title&gt; &mdash; Computer Networks: A Systems Approach Version 6.1 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/bridge.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/rtd_theme_mods.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Computer Networks: A Systems Approach
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                Version 6.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../foundation.html">Chapter 1: Foundation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../README.html">About This Book</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Computer Networks: A Systems Approach</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>&lt;no title&gt;</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/sidebars/shannon.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <!--- [!Note|style:flat|label:Shannon-Hartley Theorem|iconVisibility:hidden] ---><blockquote>
+<div><p><strong>Shannon-Hartley Theorem</strong></p>
+<p>There has been an enormous body of work done in the related areas of
+signal processing and information theory, studying everything from how
+signals degrade over distance to how much data a given signal can
+effectively carry. The most notable piece of work in this area is a
+formula known as the <em>Shannon-Hartley theorem</em>. Simply stated,
+this theorem gives an upper bound to the capacity of a link, in terms
+of bits per second (bps), as a function of the signal-to-noise ratio
+of the link, measured in decibels (dB), and the bandwidth of the
+channel, measured in Hertz (Hz). (As noted previously, “bandwidth” is
+a bit of an overloaded term in communications; here we use it to refer
+to the range of frequencies available for communication.)</p>
+<p>As an example, we can apply the Shannon-Hartley theorem to determine
+the rate at which we can expect to transmit data over a voice-grade
+phone line without suffering from too high an error rate. A standard
+voice-grade phone line typically supports a frequency range of 300 Hz
+to 3300 Hz, a channel bandwidth of 3 kHz.</p>
+<p>The theorem is typically given by the following formula:
+$$C = B \log_2 (1 + S/N)$$ where $$C$$ is the achievable channel
+capacity measured in bits per second, $$B$$ is the bandwidth of the
+channel in Hz (3300 Hz - 300 Hz = 3000 Hz), $$S$$ is the average
+signal power, and $$N$$ is the
+average noise power. The signal-to-noise ratio ($$S/N$$, or SNR) is
+usually expressed in decibels, related as follows:
+$$\mathsf{SNR} = 10 \times \log_{10}(S/N)$$. Thus, a typical
+signal-to-noise ratio of 30&nbsp;dB would imply that $$S/N = 1000$$.
+Thus, we have $$C = 3000 \times \log_2(1001)$$ which equals
+approximately 30 Kbps.</p>
+<p>When dial-up modems were the main way to connect to the Internet in
+the 1990s, 56 kbps was a common advertised capacity for a modem (and
+continues to be about the upper limit for dial-up). However, the
+modems often achieved lower speeds in practice, because they didn’t
+always encounter a signal-to-noise ratio high enough to achieve
+56kbps.</p>
+<p>The Shannon-Hartley theorem is equally applicable to all sorts of
+links ranging from wireless to coaxial cable to optical fiber. It
+should be apparent that there are really only two ways to build a high
+capacity link: start with a high bandwidth channel, or achieve a high
+signal to noise ratio. But even those
+conditions won’t guarantee a high capacity link—it often takes quite
+a bit of ingenuity on the part of people who design channel coding
+schemes to achieve the theoretical limits of a channel. This ingenuity
+is particularly apparent today in wireless links, where there is a
+great incentive to get the most bits per second from a given amount of
+wireless spectrum (the channel bandwidth) and signal power level (and
+hence SNR).</p>
+</div></blockquote>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

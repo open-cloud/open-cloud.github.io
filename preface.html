@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Preface &mdash; 5G Mobile Networks: A Systems Approach Version 0.1 documentation</title>
+  <title>Preface &mdash; Computer Networks: A Systems Approach Version 6.1 documentation</title>
   
 
   
@@ -39,8 +39,8 @@
   <link rel="stylesheet" href="static/css/rtd_theme_mods.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Chapter 1: Introduction" href="intro.html" />
-    <link rel="prev" title="5G Mobile Networks: A Systems Approach" href="index.html" /> 
+    <link rel="next" title="Chapter 1: Foundation" href="foundation.html" />
+    <link rel="prev" title="Computer Networks: A Systems Approach" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -54,7 +54,7 @@
           
 
           
-            <a href="index.html" class="icon icon-home"> 5G Mobile Networks: A Systems Approach
+            <a href="index.html" class="icon icon-home"> Computer Networks: A Systems Approach
           
 
           
@@ -64,7 +64,7 @@
             
             
               <div class="version">
-                Version 0.1
+                Version 6.1
               </div>
             
           
@@ -91,13 +91,7 @@
               <p class="caption"><span class="caption-text">Table of Contents</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Preface</a></li>
-<li class="toctree-l1"><a class="reference internal" href="intro.html">Chapter 1:  Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="primer.html">Chapter 2:  Radio Transmission</a></li>
-<li class="toctree-l1"><a class="reference internal" href="arch.html">Chapter 3:  Basic Architecture</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ran.html">Chapter 4:  RAN Internals</a></li>
-<li class="toctree-l1"><a class="reference internal" href="disaggregate.html">Chapter 5:  Advanced Capabilities</a></li>
-<li class="toctree-l1"><a class="reference internal" href="impl.html">Chapter 6:  Exemplar Implementation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="cloud.html">Chapter 7:  Cloudification of Access</a></li>
+<li class="toctree-l1"><a class="reference internal" href="foundation.html">Chapter 1: Foundation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="README.html">About This Book</a></li>
 </ul>
 
@@ -113,7 +107,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="index.html">5G Mobile Networks: A Systems Approach</a>
+          <a href="index.html">Computer Networks: A Systems Approach</a>
         
       </nav>
 
@@ -165,44 +159,95 @@
             
   <div class="section" id="preface">
 <h1>Preface<a class="headerlink" href="#preface" title="Permalink to this headline">¶</a></h1>
-<p>The transition to 5G is happening, and unless you’ve been actively
-trying to ignore it, you’ve likely heard the hype. But if you are like
-99% of the CS-trained, systems-oriented, cloud-savvy, code-writing,
-IETF-participating people in the world, the cellular network is
-largely a mystery. You know it’s an important technology used in the
-last mile to connect people to the Internet, but you’ve otherwise
-abstracted it out of your scope-of-concerns.</p>
-<p>The important thing to understand about 5G is that it implies much more
-than a generational upgrade in bandwidth. It involves transformative
-changes that blur the line between the access network and the cloud. And
-it will encompass enough value that it has the potential to turn the
-“Access-as-frontent-to-Internet” perspective on its head. We will just as
-likely be talking about “Internet-as-backend-to-Access” ten years from
-now.</p>
-<p>This book is written for someone that has a working understanding of the
-Internet and Cloud, but has had limited success penetrating the myriad
-of acronyms that dominate cellular networking. In fairness, the Internet
-has its share acronyms, but it also comes with a sufficient set of
-abstractions to help manage the complexity. It’s hard to say the same
-for the cellular network, where pulling on one thread seemingly unravels
-the entire space. It has also been the case that the cellular network
-had been largely hidden inside proprietary devices, which has made it
-impossible to figure it out for yourself.</p>
-<p>This book is the result of a cellular networking expert teaching a
-systems person about 5G as we’ve collaborated on an open source 5G
-implementation. The material has been used to train other software
-developers, and we are hopeful it will be useful to anyone that wants a
-deeper understanding of 5G and the opportunity for innovation it
-provides. Readers that want hands-on experience can also access the open
-source software introduced in the book.</p>
-<p>This book will likely be a work-in-progress for the foreseeable future.
-It’s not intended to be encyclopedic—favoring perspective and end-to-end
-completeness over every last bit of detail—but we do plan to flesh out
-the content over time. Your suggestions (and contributions) to this end
-are welcome.</p>
+<p>It has been nearly ten years since the 5th Edition of <em>Computer
+Networks: A Systems Approach</em> was published. Much has changed in that
+time, most notably, the explosion of the cloud and smartphone apps onto
+the scene. In many ways, this is reminiscent of the dramatic affect the
+Web was having on the Internet when we published the 1st Edition of the
+book in 1996.</p>
+<p>The 6th Edition adapts to the times, but keeps the <em>Systems Approach</em> as
+its north star. In broad strokes, we updated this new edition in three
+main ways:</p>
+<ul class="simple">
+<li>We refreshed the examples to reflect the current state of the world.
+This includes deleting anachronisms (e.g., dial-up modem), using
+popular applications (e.g., Netflix, Spotify) to motivate the
+problems being addressed, and updating the numbers to represent the
+state-of-the-art technology (e.g., 10-Gbps Ethernet).</li>
+<li>We emphasize a historical perspective, connecting the dots between
+the original research that led to the development of technologies
+like multicast, real-time video streaming, and quality-of-service,
+and now-familar cloud applications like GoToMeeting, Netflix, and
+Spotify. This is in keeping with our emphasis on the design process
+and not just the end result, which is especially important today
+since so much the Internet is primarily available in proprietary
+commercial services.</li>
+<li>We place the Internet in the broader context of the Cloud, and just
+as importantly, in the context of the commerial forces that are
+shaping the Internet and Cloud. This has minimal impact on the
+technical details presented throughout the book, but it is discussed
+in a new <em>Broader Perspective</em> section at the end of each chapter. We
+hope one side-effect of this discussion is to foster an appreciation
+for the Internet’s continuous evolution, and the opportunity for
+innovation this represents.</li>
+</ul>
+<p>More specifically, the 6th Edition includes the following major changes:</p>
+<ul class="simple">
+<li>New Section 1.6 introduces the recurring <em>Cloudification</em> theme.</li>
+<li>New Section 2.8 describes the <em>Access Network</em>, including Passive
+Optical Networks (PON) and 5G’s Radio Access Networks (RAN).</li>
+<li>Section 3.4 updated to include descriptions of <em>White-Box Switches</em>
+and <em>Software-Defined Networks</em> (SDN).</li>
+<li>New Section 3.5 describes <em>VXLANs</em> and the role of overlays in the
+Cloud.</li>
+<li>New Section 4.5 describes how the <em>Cloud</em> impacts the Internet’s
+structure.</li>
+<li>Section 5.3 expanded to include a description of <em>gRPC</em>.</li>
+<li>Sections 6.3 and 6.4 updated to include descriptions of <em>TCP CUBIC,
+DCTCP,</em> and <em>BBR</em>.</li>
+<li>Section 6.4 expanded to include a description of <em>Active Queue
+Management</em> (AQM).</li>
+<li>Section 7.1 expanded to include a desciption of <em>Protocol Buffers</em>.</li>
+<li>Section 7.2 expanded to include a desciption of <em>HTTP Adaptive
+Streaming</em>.</li>
+<li>New Section 8.1 introduces the duality of <em>Threats</em> and <em>Trust</em>.</li>
+<li>New Section 8.6 describes <em>Decentralized Identity Management</em> and the
+role of <em>Blockchains</em>.</li>
+<li>Section 9.1 updated to include a description of <em>HTTP/2</em>, along with
+a discussion of <em>REST</em>, <em>gRPC</em>, and <em>Cloud Services</em>.</li>
+<li>Section 9.3 expaned to include a description of modern <em>Network
+Management Systems</em> including the use of <em>OpenConfig</em> and <em>gNMI</em>.</li>
+</ul>
+<p>We would like to acknowledge the following people for their help with
+new content:</p>
+<ul class="simple">
+<li>Larry Brakmo: TCP Congestion Control</li>
+<li>Carmelo Cascone: White-Box Switches</li>
+<li>Charles Chan: White-Box Switches</li>
+<li>Jude Nelson: Decentralized Identity</li>
+<li>Oguz Sunay: Cellular Networks</li>
+<li>Thomas Vachuska: Network Management</li>
+</ul>
+<p>And the following individuals (github users) for their various
+contributions:</p>
+<ul class="simple">
+<li>Mohammed Al-Ameen</li>
+<li>Andy Bavier</li>
+<li>Manuel Berfelde</li>
+<li>Chris Goldsworthy</li>
+<li>John Hartman</li>
+<li>Diego López León</li>
+<li>Matteo Scandolo</li>
+<li>Mike Wawrzoniak</li>
+<li>罗泽轩 (spacewander)</li>
+<li>Arnaud (arvdrpoo)</li>
+<li>Desmond (kingdido999)</li>
+<li>Guo (ZJUGuoShuai)</li>
+<li>Hellman (eshellman)</li>
+<li>Xtao (vertextao)</li>
+</ul>
 <div class="line-block">
-<div class="line">Larry Peterson and Oguz Sunay</div>
-<div class="line">Open Networking Foundation</div>
+<div class="line">Larry &amp; Bruce</div>
 <div class="line">August 2019</div>
 </div>
 </div>
@@ -215,10 +260,10 @@ are welcome.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="intro.html" class="btn btn-neutral float-right" title="Chapter 1: Introduction" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="foundation.html" class="btn btn-neutral float-right" title="Chapter 1: Foundation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral float-left" title="5G Mobile Networks: A Systems Approach" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral float-left" title="Computer Networks: A Systems Approach" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

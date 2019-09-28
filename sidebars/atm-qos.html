@@ -1,0 +1,272 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>&lt;no title&gt; &mdash; Computer Networks: A Systems Approach Version 6.1 documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/bridge.ico"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/rtd_theme_mods.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Computer Networks: A Systems Approach
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                Version 6.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Table of Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../preface.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../foundation.html">Chapter 1: Foundation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../README.html">About This Book</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Computer Networks: A Systems Approach</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>&lt;no title&gt;</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/sidebars/atm-qos.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <!--- [!Note|style:flat|label:ATM Quality of Service|iconVisibility:hidden] ---><blockquote>
+<div><p><strong>ATM Quality of Service</strong></p>
+<p>ATM is a much less important technology today than it was 20 years
+ago, but one of its real contributions was in the area of QoS. It’s
+fair to say that ATM’s being designed with fairly rich QoS
+capability was one of the things that spurred interest in QoS for IP.</p>
+<p>In many respects, the QoS capabilities that are provided in ATM
+networks are similar to those provided in an IP network using
+Integrated Services. However, the ATM standards bodies came up with a
+total of five service classes compared to the IETF’s three. The
+five ATM service classes are</p>
+<ul class="simple">
+<li>constant bit rate (CBR)</li>
+<li>variable bit rate—real-time (VBR-rt)</li>
+<li>variable bit rate—non-real-time (VBR-nrt)</li>
+<li>available bit rate (ABR)</li>
+<li>unspecified bit rate (UBR)</li>
+</ul>
+<p>Mostly the ATM and IP service classes are quite similar, but one of
+them, ABR, has no real counterpart in IP. More on ABR in a moment.
+VBR-rt is very much like the guaranteed service class in IP Integrated
+Services. The exact parameters that are used to set up a VBR-rt VC are
+slightly different than those used to make a guaranteed service
+reservation, but the basic idea is the same. The traffic generated by
+the source is characterized by a token bucket, and the maximum total
+delay required through the network is specified. CBR is also similar
+to guaranteed service except that sources of CBR traffic are expected
+to send at a constant rate. Note that this is really a special case of
+VBR, where the source’s peak rate and average rate of transmission are
+equal.</p>
+<p>VBR-nrt bears some similarity to IP’s controlled load service. Again,
+the source traffic is specified by a token bucket, but there is not
+the same hard delay guarantee of VBR-rt or IP’s guaranteed service.
+UBR is ATM’s best-effort service.</p>
+<p>Finally, we come to ABR, which is more than just a service class; it
+also defines a set of congestion-control mechanisms. It is rather
+complex, so we mention only the high points.</p>
+<p>The ABR mechanisms operate over a virtual circuit by exchanging
+special ATM cells called resource management (RM) cells between the
+source and destination of the VC. The goal of sending the RM cells is
+to get information about the state of congestion in the network back
+to the source so that it can send traffic at an appropriate rate. In
+this respect, RM cells are an explicit congestion feedback mechanism.
+This is similar to the DECbit,
+but contrasts with TCP’s use of implicit
+feedback, which depends on packet losses to detect congestion. It is
+also similar to the new “quick-start” mechanism for TCP.</p>
+<p>Initially, the source sends the cell to the destination and includes
+in it the rate at which it would like to send data cells. Switches
+along the path look at the requested rate and decide if sufficient
+resources are available to handle that rate, based on the amount of
+traffic being carried on other circuits. If enough resources are
+available, the RM cell is passed on unmodified; otherwise, the
+requested rate is decreased before the cell is passed along. At the
+destination, the RM cell is turned around and sent back to the source,
+which thereby learns what rate it can send at.</p>
+<p>The intention of ABR is to allow a source to increase or decrease its
+allotted rate as conditions dictate. Hence, RM cells are sent
+periodically and may contain either higher or lower requested rates.
+Also, the rate at which a source is allowed to send decays with time
+if not used. In general, proprietary algorithms in the switches
+determine the rates that are placed in RM cells as they pass through
+the switches; the algorithms draw on a variety of information such as
+the current buffer occupancy and the measured arrival rates on
+currently active VCs. These algorithms, as is normal for
+congestion-control algorithms, seek to maximize throughput and to keep
+delay and loss low.</p>
+<p>Given the relative decline of ATM in real networks today, the
+interesting point of ATM QoS is how many mechanisms are common across
+different technologies. Mechanisms that are found in both ATM and IP
+QoS include admission control, scheduling algorithms, token bucket
+policers, and explicit congestion feedback mechanisms.</p>
+</div></blockquote>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
