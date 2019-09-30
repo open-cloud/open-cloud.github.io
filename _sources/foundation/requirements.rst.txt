@@ -473,7 +473,7 @@ transfer, but it requires similar communication services. For example,
 the *Association for Computing Machinery* (ACM) operates a large digital
 library of computer science literature at
 
-.. code:: c
+.. code-block:: c
 
    http://portal.acm.org/dl.cfm
 

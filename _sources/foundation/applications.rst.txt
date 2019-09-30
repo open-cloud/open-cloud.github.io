@@ -53,7 +53,7 @@ or object to be viewed. This identifier, called a Uniform Resource
 Locator (URL), provides a way of identifying all the possible objects
 that can be viewed from your web browser. For example,
 
-.. code:: html
+.. code-block:: html
 
    http://www.cs.princeton.edu/llp/index.html
 
