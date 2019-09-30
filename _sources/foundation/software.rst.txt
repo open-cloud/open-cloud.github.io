@@ -122,7 +122,7 @@ server says that it is prepared to accept connections, but it does not
 actually establish a connection. The server does this by invoking the
 following three operations:
 
-.. code:: c
+.. code-block:: c
 
    int bind(int socket, struct sockaddr *address, int addr_len)
    int listen(int socket, int backlog)

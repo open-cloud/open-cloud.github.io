@@ -106,6 +106,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="performance.html">1.5 Performance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trend.html">Perspective: Feature Velocity</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../README.html">About This Book</a></li>
@@ -284,9 +285,9 @@ server machine, the application process performs a <em>passive</em> open—the
 server says that it is prepared to accept connections, but it does not
 actually establish a connection. The server does this by invoking the
 following three operations:</p>
-<div class="code c highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span> <span class="n">bind</span><span class="p">(</span><span class="nb">int</span> <span class="n">socket</span><span class="p">,</span> <span class="n">struct</span> <span class="n">sockaddr</span> <span class="o">*</span><span class="n">address</span><span class="p">,</span> <span class="nb">int</span> <span class="n">addr_len</span><span class="p">)</span>
-<span class="nb">int</span> <span class="n">listen</span><span class="p">(</span><span class="nb">int</span> <span class="n">socket</span><span class="p">,</span> <span class="nb">int</span> <span class="n">backlog</span><span class="p">)</span>
-<span class="nb">int</span> <span class="n">accept</span><span class="p">(</span><span class="nb">int</span> <span class="n">socket</span><span class="p">,</span> <span class="n">struct</span> <span class="n">sockaddr</span> <span class="o">*</span><span class="n">address</span><span class="p">,</span> <span class="nb">int</span> <span class="o">*</span><span class="n">addr_len</span><span class="p">)</span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">bind</span><span class="p">(</span><span class="kt">int</span> <span class="n">socket</span><span class="p">,</span> <span class="k">struct</span> <span class="n">sockaddr</span> <span class="o">*</span><span class="n">address</span><span class="p">,</span> <span class="kt">int</span> <span class="n">addr_len</span><span class="p">)</span>
+<span class="kt">int</span> <span class="n">listen</span><span class="p">(</span><span class="kt">int</span> <span class="n">socket</span><span class="p">,</span> <span class="kt">int</span> <span class="n">backlog</span><span class="p">)</span>
+<span class="kt">int</span> <span class="n">accept</span><span class="p">(</span><span class="kt">int</span> <span class="n">socket</span><span class="p">,</span> <span class="k">struct</span> <span class="n">sockaddr</span> <span class="o">*</span><span class="n">address</span><span class="p">,</span> <span class="kt">int</span> <span class="o">*</span><span class="n">addr_len</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">bind</span></code> operation, as its name suggests, binds the newly created
