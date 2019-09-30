@@ -95,7 +95,7 @@ sockets are used with TCP.
 The first step is to create a socket, which is done with the following
 operation:
 
-.. code:: c
+.. code-block:: c
 
    int socket(int domain, int type, int protocol)
 
@@ -153,7 +153,7 @@ On the client machine, the application process performs an *active*
 open; that is, it says who it wants to communicate with by invoking the
 following single operation:
 
-.. code:: c
+.. code-block:: c
 
    int connect(int socket, struct sockaddr *address, int addr_len)
 
@@ -169,7 +169,7 @@ selects an unused one.
 Once a connection is established, the application processes invoke the
 following two operations to send and receive data:
 
-.. code:: c
+.. code-block:: c
 
    int send(int socket, char *message, int msg_len, int flags)
    int recv(int socket, char *buffer, int buf_len, int flags)
@@ -206,7 +206,7 @@ the operation returns, the connection is established and the client
 program enters its main loop, which reads text from standard input and
 sends it over the socket.
 
-.. code:: c
+.. code-block:: c
 
    #include <stdio.h>
    #include <sys/types.h>
@@ -281,7 +281,7 @@ of pending connections to be allowed. Finally, the main loop waits for a
 remote host to try to connect, and when one does, it receives and prints
 out the characters that arrive on the connection.
 
-.. code:: c
+.. code-block:: c
 
    #include <stdio.h>
    #include <sys/types.h>

@@ -261,7 +261,7 @@ To simplify the discussion, we will limit ourselves to showing how
 sockets are used with&nbsp;TCP.</p>
 <p>The first step is to create a socket, which is done with the following
 operation:</p>
-<div class="code c highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span> <span class="n">socket</span><span class="p">(</span><span class="nb">int</span> <span class="n">domain</span><span class="p">,</span> <span class="nb">int</span> <span class="nb">type</span><span class="p">,</span> <span class="nb">int</span> <span class="n">protocol</span><span class="p">)</span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">socket</span><span class="p">(</span><span class="kt">int</span> <span class="n">domain</span><span class="p">,</span> <span class="kt">int</span> <span class="n">type</span><span class="p">,</span> <span class="kt">int</span> <span class="n">protocol</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The reason that this operation takes three arguments is that the socket
@@ -312,7 +312,7 @@ corresponds to the passive open; it is used in future invocations of
 <p>On the client machine, the application process performs an <em>active</em>
 open; that is, it says who it wants to communicate with by invoking the
 following single operation:</p>
-<div class="code c highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span> <span class="n">connect</span><span class="p">(</span><span class="nb">int</span> <span class="n">socket</span><span class="p">,</span> <span class="n">struct</span> <span class="n">sockaddr</span> <span class="o">*</span><span class="n">address</span><span class="p">,</span> <span class="nb">int</span> <span class="n">addr_len</span><span class="p">)</span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">connect</span><span class="p">(</span><span class="kt">int</span> <span class="n">socket</span><span class="p">,</span> <span class="k">struct</span> <span class="n">sockaddr</span> <span class="o">*</span><span class="n">address</span><span class="p">,</span> <span class="kt">int</span> <span class="n">addr_len</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>This operation does not return until TCP has successfully established a
@@ -325,8 +325,8 @@ typically does not care which port it uses for itself; the OS simply
 selects an unused one.</p>
 <p>Once a connection is established, the application processes invoke the
 following two operations to send and receive data:</p>
-<div class="code c highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">int</span> <span class="n">send</span><span class="p">(</span><span class="nb">int</span> <span class="n">socket</span><span class="p">,</span> <span class="n">char</span> <span class="o">*</span><span class="n">message</span><span class="p">,</span> <span class="nb">int</span> <span class="n">msg_len</span><span class="p">,</span> <span class="nb">int</span> <span class="n">flags</span><span class="p">)</span>
-<span class="nb">int</span> <span class="n">recv</span><span class="p">(</span><span class="nb">int</span> <span class="n">socket</span><span class="p">,</span> <span class="n">char</span> <span class="o">*</span><span class="n">buffer</span><span class="p">,</span> <span class="nb">int</span> <span class="n">buf_len</span><span class="p">,</span> <span class="nb">int</span> <span class="n">flags</span><span class="p">)</span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">send</span><span class="p">(</span><span class="kt">int</span> <span class="n">socket</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">message</span><span class="p">,</span> <span class="kt">int</span> <span class="n">msg_len</span><span class="p">,</span> <span class="kt">int</span> <span class="n">flags</span><span class="p">)</span>
+<span class="kt">int</span> <span class="n">recv</span><span class="p">(</span><span class="kt">int</span> <span class="n">socket</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">buffer</span><span class="p">,</span> <span class="kt">int</span> <span class="n">buf_len</span><span class="p">,</span> <span class="kt">int</span> <span class="n">flags</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The first operation sends the given <code class="docutils literal notranslate"><span class="pre">message</span></code> over the specified
@@ -357,65 +357,65 @@ setting up the connection is to call <code class="docutils literal notranslate">
 the operation returns, the connection is established and the client
 program enters its main loop, which reads text from standard input and
 sends it over the socket.</p>
-<div class="code c highlight-default notranslate"><div class="highlight"><pre><span></span>#include &lt;stdio.h&gt;
-#include &lt;sys/types.h&gt;
-#include &lt;sys/socket.h&gt;
-#include &lt;netinet/in.h&gt;
-#include &lt;netdb.h&gt;
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;sys/types.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;sys/socket.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;netinet/in.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;netdb.h&gt;</span><span class="cp"></span>
 
-#define SERVER_PORT 5432
-#define MAX_LINE 256
+<span class="cp">#define SERVER_PORT 5432</span>
+<span class="cp">#define MAX_LINE 256</span>
 
-int
-main(int argc, char * argv[])
-{
-  FILE *fp;
-  struct hostent *hp;
-  struct sockaddr_in sin;
-  char *host;
-  char buf[MAX_LINE];
-  int s;
-  int len;
+<span class="kt">int</span>
+<span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+  <span class="kt">FILE</span> <span class="o">*</span><span class="n">fp</span><span class="p">;</span>
+  <span class="k">struct</span> <span class="n">hostent</span> <span class="o">*</span><span class="n">hp</span><span class="p">;</span>
+  <span class="k">struct</span> <span class="n">sockaddr_in</span> <span class="n">sin</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="o">*</span><span class="n">host</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="n">MAX_LINE</span><span class="p">];</span>
+  <span class="kt">int</span> <span class="n">s</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">len</span><span class="p">;</span>
 
-  if (argc==2) {
-    host = argv[1];
-  }
-  else {
-    fprintf(stderr, &quot;usage: simplex-talk host\n&quot;);
-    exit(1);
-  }
+  <span class="k">if</span> <span class="p">(</span><span class="n">argc</span><span class="o">==</span><span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">host</span> <span class="o">=</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+  <span class="p">}</span>
+  <span class="k">else</span> <span class="p">{</span>
+    <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;usage: simplex-talk host</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">);</span>
+    <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+  <span class="p">}</span>
 
-  /* translate host name into peer&#39;s IP address */
-  hp = gethostbyname(host);
-  if (!hp) {
-    fprintf(stderr, &quot;simplex-talk: unknown host: %s\n&quot;, host);
-    exit(1);
-  }
+  <span class="cm">/* translate host name into peer&#39;s IP address */</span>
+  <span class="n">hp</span> <span class="o">=</span> <span class="n">gethostbyname</span><span class="p">(</span><span class="n">host</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">hp</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">fprintf</span><span class="p">(</span><span class="n">stderr</span><span class="p">,</span> <span class="s">&quot;simplex-talk: unknown host: %s</span><span class="se">\n</span><span class="s">&quot;</span><span class="p">,</span> <span class="n">host</span><span class="p">);</span>
+    <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+  <span class="p">}</span>
 
-  /* build address data structure */
-  bzero((char *)&amp;sin, sizeof(sin));
-  sin.sin_family = AF_INET;
-  bcopy(hp-&gt;h_addr, (char *)&amp;sin.sin_addr, hp-&gt;h_length);
-  sin.sin_port = htons(SERVER_PORT);
+  <span class="cm">/* build address data structure */</span>
+  <span class="n">bzero</span><span class="p">((</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">sin</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">sin</span><span class="p">));</span>
+  <span class="n">sin</span><span class="p">.</span><span class="n">sin_family</span> <span class="o">=</span> <span class="n">AF_INET</span><span class="p">;</span>
+  <span class="n">bcopy</span><span class="p">(</span><span class="n">hp</span><span class="o">-&gt;</span><span class="n">h_addr</span><span class="p">,</span> <span class="p">(</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">sin</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">,</span> <span class="n">hp</span><span class="o">-&gt;</span><span class="n">h_length</span><span class="p">);</span>
+  <span class="n">sin</span><span class="p">.</span><span class="n">sin_port</span> <span class="o">=</span> <span class="n">htons</span><span class="p">(</span><span class="n">SERVER_PORT</span><span class="p">);</span>
 
-  /* active open */
-  if ((s = socket(PF_INET, SOCK_STREAM, 0)) &lt; 0) {
-    perror(&quot;simplex-talk: socket&quot;);
-    exit(1);
-  }
-  if (connect(s, (struct sockaddr *)&amp;sin, sizeof(sin)) &lt; 0)
-  {
-    perror(&quot;simplex-talk: connect&quot;);
-    close(s);
-    exit(1);
-  }
-  /* main loop: get and send lines of text */
-  while (fgets(buf, sizeof(buf), stdin)) {
-    buf[MAX_LINE-1] = &#39;\0&#39;;
-    len = strlen(buf) + 1;
-    send(s, buf, len, 0);
-  }
-}
+  <span class="cm">/* active open */</span>
+  <span class="k">if</span> <span class="p">((</span><span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="p">(</span><span class="n">PF_INET</span><span class="p">,</span> <span class="n">SOCK_STREAM</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">perror</span><span class="p">(</span><span class="s">&quot;simplex-talk: socket&quot;</span><span class="p">);</span>
+    <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">connect</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="p">(</span><span class="k">struct</span> <span class="n">sockaddr</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">sin</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">sin</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="n">perror</span><span class="p">(</span><span class="s">&quot;simplex-talk: connect&quot;</span><span class="p">);</span>
+    <span class="n">close</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+    <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="cm">/* main loop: get and send lines of text */</span>
+  <span class="k">while</span> <span class="p">(</span><span class="n">fgets</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">buf</span><span class="p">),</span> <span class="n">stdin</span><span class="p">))</span> <span class="p">{</span>
+    <span class="n">buf</span><span class="p">[</span><span class="n">MAX_LINE</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="sc">&#39;\0&#39;</span><span class="p">;</span>
+    <span class="n">len</span> <span class="o">=</span> <span class="n">strlen</span><span class="p">(</span><span class="n">buf</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="n">send</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="n">len</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -430,48 +430,48 @@ the socket, binds it to the local address, and sets the maximum number
 of pending connections to be allowed. Finally, the main loop waits for a
 remote host to try to connect, and when one does, it receives and prints
 out the characters that arrive on the connection.</p>
-<div class="code c highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &lt;stdio.h&gt;</span>
-<span class="c1">#include &lt;sys/types.h&gt;</span>
-<span class="c1">#include &lt;sys/socket.h&gt;</span>
-<span class="c1">#include &lt;netinet/in.h&gt;</span>
-<span class="c1">#include &lt;netdb.h&gt;</span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdio.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;sys/types.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;sys/socket.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;netinet/in.h&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;netdb.h&gt;</span><span class="cp"></span>
 
-<span class="c1">#define SERVER_PORT  5432</span>
-<span class="c1">#define MAX_PENDING  5</span>
-<span class="c1">#define MAX_LINE     256</span>
+<span class="cp">#define SERVER_PORT  5432</span>
+<span class="cp">#define MAX_PENDING  5</span>
+<span class="cp">#define MAX_LINE     256</span>
 
-<span class="nb">int</span>
-<span class="n">main</span><span class="p">()</span>
+<span class="kt">int</span>
+<span class="nf">main</span><span class="p">()</span>
 <span class="p">{</span>
-  <span class="n">struct</span> <span class="n">sockaddr_in</span> <span class="n">sin</span><span class="p">;</span>
-  <span class="n">char</span> <span class="n">buf</span><span class="p">[</span><span class="n">MAX_LINE</span><span class="p">];</span>
-  <span class="nb">int</span> <span class="nb">len</span><span class="p">;</span>
-  <span class="nb">int</span> <span class="n">s</span><span class="p">,</span> <span class="n">new_s</span><span class="p">;</span>
+  <span class="k">struct</span> <span class="n">sockaddr_in</span> <span class="n">sin</span><span class="p">;</span>
+  <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="n">MAX_LINE</span><span class="p">];</span>
+  <span class="kt">int</span> <span class="n">len</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">s</span><span class="p">,</span> <span class="n">new_s</span><span class="p">;</span>
 
-  <span class="o">/*</span> <span class="n">build</span> <span class="n">address</span> <span class="n">data</span> <span class="n">structure</span> <span class="o">*/</span>
-  <span class="n">bzero</span><span class="p">((</span><span class="n">char</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">sin</span><span class="p">,</span> <span class="n">sizeof</span><span class="p">(</span><span class="n">sin</span><span class="p">));</span>
-  <span class="n">sin</span><span class="o">.</span><span class="n">sin_family</span> <span class="o">=</span> <span class="n">AF_INET</span><span class="p">;</span>
-  <span class="n">sin</span><span class="o">.</span><span class="n">sin_addr</span><span class="o">.</span><span class="n">s_addr</span> <span class="o">=</span> <span class="n">INADDR_ANY</span><span class="p">;</span>
-  <span class="n">sin</span><span class="o">.</span><span class="n">sin_port</span> <span class="o">=</span> <span class="n">htons</span><span class="p">(</span><span class="n">SERVER_PORT</span><span class="p">);</span>
+  <span class="cm">/* build address data structure */</span>
+  <span class="n">bzero</span><span class="p">((</span><span class="kt">char</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">sin</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">sin</span><span class="p">));</span>
+  <span class="n">sin</span><span class="p">.</span><span class="n">sin_family</span> <span class="o">=</span> <span class="n">AF_INET</span><span class="p">;</span>
+  <span class="n">sin</span><span class="p">.</span><span class="n">sin_addr</span><span class="p">.</span><span class="n">s_addr</span> <span class="o">=</span> <span class="n">INADDR_ANY</span><span class="p">;</span>
+  <span class="n">sin</span><span class="p">.</span><span class="n">sin_port</span> <span class="o">=</span> <span class="n">htons</span><span class="p">(</span><span class="n">SERVER_PORT</span><span class="p">);</span>
 
-  <span class="o">/*</span> <span class="n">setup</span> <span class="n">passive</span> <span class="nb">open</span> <span class="o">*/</span>
+  <span class="cm">/* setup passive open */</span>
   <span class="k">if</span> <span class="p">((</span><span class="n">s</span> <span class="o">=</span> <span class="n">socket</span><span class="p">(</span><span class="n">PF_INET</span><span class="p">,</span> <span class="n">SOCK_STREAM</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">perror</span><span class="p">(</span><span class="s2">&quot;simplex-talk: socket&quot;</span><span class="p">);</span>
+    <span class="n">perror</span><span class="p">(</span><span class="s">&quot;simplex-talk: socket&quot;</span><span class="p">);</span>
     <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
   <span class="p">}</span>
-  <span class="k">if</span> <span class="p">((</span><span class="n">bind</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="p">(</span><span class="n">struct</span> <span class="n">sockaddr</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">sin</span><span class="p">,</span> <span class="n">sizeof</span><span class="p">(</span><span class="n">sin</span><span class="p">)))</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">perror</span><span class="p">(</span><span class="s2">&quot;simplex-talk: bind&quot;</span><span class="p">);</span>
+  <span class="k">if</span> <span class="p">((</span><span class="n">bind</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="p">(</span><span class="k">struct</span> <span class="n">sockaddr</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">sin</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">sin</span><span class="p">)))</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">perror</span><span class="p">(</span><span class="s">&quot;simplex-talk: bind&quot;</span><span class="p">);</span>
     <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
   <span class="p">}</span>
   <span class="n">listen</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">MAX_PENDING</span><span class="p">);</span>
 
- <span class="o">/*</span> <span class="n">wait</span> <span class="k">for</span> <span class="n">connection</span><span class="p">,</span> <span class="n">then</span> <span class="n">receive</span> <span class="ow">and</span> <span class="nb">print</span> <span class="n">text</span> <span class="o">*/</span>
+ <span class="cm">/* wait for connection, then receive and print text */</span>
   <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">((</span><span class="n">new_s</span> <span class="o">=</span> <span class="n">accept</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="p">(</span><span class="n">struct</span> <span class="n">sockaddr</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">sin</span><span class="p">,</span> <span class="o">&amp;</span><span class="nb">len</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
-      <span class="n">perror</span><span class="p">(</span><span class="s2">&quot;simplex-talk: accept&quot;</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">((</span><span class="n">new_s</span> <span class="o">=</span> <span class="n">accept</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="p">(</span><span class="k">struct</span> <span class="n">sockaddr</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">sin</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">len</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">perror</span><span class="p">(</span><span class="s">&quot;simplex-talk: accept&quot;</span><span class="p">);</span>
       <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
     <span class="p">}</span>
-    <span class="k">while</span> <span class="p">(</span><span class="nb">len</span> <span class="o">=</span> <span class="n">recv</span><span class="p">(</span><span class="n">new_s</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="n">sizeof</span><span class="p">(</span><span class="n">buf</span><span class="p">),</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">len</span> <span class="o">=</span> <span class="n">recv</span><span class="p">(</span><span class="n">new_s</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">buf</span><span class="p">),</span> <span class="mi">0</span><span class="p">))</span>
       <span class="n">fputs</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">stdout</span><span class="p">);</span>
     <span class="n">close</span><span class="p">(</span><span class="n">new_s</span><span class="p">);</span>
   <span class="p">}</span>
