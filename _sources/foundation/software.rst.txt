@@ -63,13 +63,11 @@ than their native system. This is what has happened with the *socket
 interface* originally provided by the Berkeley distribution of Unix,
 which is now supported in virtually all popular operating systems, and
 is the foundation of language-specific interfaces, such as the Java or
-Python socket library.
-
-The exact syntax of the socket API varies from OS to OS, and from
-programming language to programming language, but the general approach
-remains remarkably consistent across all platforms. We use Linux and C
-for all code examples in this book, Linux because it is open source and C
-because it remains the language of choice for network internals.
+Python socket library. We use Linux and C for all code examples in
+this book, Linux because it is open source and C because it remains
+the language of choice for network internals. (C also has the
+advantage of exposing all the low-level details, which is helpful in
+understanding the underlying ideas.)
 
 Before describing the socket interface, it is important to keep two
 concerns separate in your mind. Each protocol provides a certain set of
@@ -182,17 +180,17 @@ Example Application
 
 We now show the implementation of a simple client/server program that
 uses the socket interface to send messages over a TCP connection. The
-program also uses other Unix networking utilities, which we introduce as
+program also uses other Linux networking utilities, which we introduce as
 we go. Our application allows a user on one machine to type in and send
 text to a user on another machine. It is a simplified version of the
-Unix ``talk`` program, which is similar to the program at the core of an
-instant messaging application.
+Linux ``talk`` program, which is similar to the program at the core of
+instant messaging applications.
 
 Client
 ~~~~~~
 
 We start with the client side, which takes the name of the remote
-machine as an argument. It calls the Unix utility to translate this name
+machine as an argument. It calls the Linux utility to translate this name
 into the remote host’s IP address. The next step is to construct the
 address data structure (``sin``) expected by the socket interface.
 Notice that this data structure specifies that we’ll be using the socket
@@ -296,7 +294,7 @@ out the characters that arrive on the connection.
    {
      struct sockaddr_in sin;
      char buf[MAX_LINE];
-     int len;
+     int buf_len, addr_len;
      int s, new_s;
 
      /* build address data structure */
@@ -318,11 +316,11 @@ out the characters that arrive on the connection.
      
     /* wait for connection, then receive and print text */
      while(1) {
-       if ((new_s = accept(s, (struct sockaddr *)&sin, &len)) < 0) {
+       if ((new_s = accept(s, (struct sockaddr *)&sin, &addr_len)) < 0) {
          perror("simplex-talk: accept");
          exit(1);
        }
-       while (len = recv(new_s, buf, sizeof(buf), 0))
+       while (buf_len = recv(new_s, buf, sizeof(buf), 0))
          fputs(buf, stdout);
        close(new_s);
      }

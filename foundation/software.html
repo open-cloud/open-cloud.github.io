@@ -234,12 +234,11 @@ than their native system. This is what has happened with the <em>socket
 interface</em> originally provided by the Berkeley distribution of Unix,
 which is now supported in virtually all popular operating systems, and
 is the foundation of language-specific interfaces, such as the Java or
-Python socket library.</p>
-<p>The exact syntax of the socket API varies from OS to OS, and from
-programming language to programming language, but the general approach
-remains remarkably consistent across all platforms. We use Linux and C
-for all code examples in this book, Linux because it is open source and C
-because it remains the language of choice for network internals.</p>
+Python socket library. We use Linux and C for all code examples in
+this book, Linux because it is open source and C because it remains
+the language of choice for network internals. (C also has the
+advantage of exposing all the low-level details, which is helpful in
+understanding the underlying ideas.)</p>
 <p>Before describing the socket interface, it is important to keep two
 concerns separate in your mind. Each protocol provides a certain set of
 <em>services</em>, and the API provides a <em>syntax</em> by which those services can
@@ -336,15 +335,15 @@ set of <code class="docutils literal notranslate"><span class="pre">flags</span>
 <h2>Example Application<a class="headerlink" href="#example-application" title="Permalink to this headline">¶</a></h2>
 <p>We now show the implementation of a simple client/server program that
 uses the socket interface to send messages over a TCP connection. The
-program also uses other Unix networking utilities, which we introduce as
+program also uses other Linux networking utilities, which we introduce as
 we go. Our application allows a user on one machine to type in and send
 text to a user on another machine. It is a simplified version of the
-Unix <code class="docutils literal notranslate"><span class="pre">talk</span></code> program, which is similar to the program at the core of an
-instant messaging application.</p>
+Linux <code class="docutils literal notranslate"><span class="pre">talk</span></code> program, which is similar to the program at the core of
+instant messaging applications.</p>
 <div class="section" id="client">
 <h3>Client<a class="headerlink" href="#client" title="Permalink to this headline">¶</a></h3>
 <p>We start with the client side, which takes the name of the remote
-machine as an argument. It calls the Unix utility to translate this name
+machine as an argument. It calls the Linux utility to translate this name
 into the remote host’s IP address. The next step is to construct the
 address data structure (<code class="docutils literal notranslate"><span class="pre">sin</span></code>) expected by the socket interface.
 Notice that this data structure specifies that we’ll be using the socket
@@ -443,7 +442,7 @@ out the characters that arrive on the connection.</p>
 <span class="p">{</span>
   <span class="k">struct</span> <span class="n">sockaddr_in</span> <span class="n">sin</span><span class="p">;</span>
   <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="n">MAX_LINE</span><span class="p">];</span>
-  <span class="kt">int</span> <span class="n">len</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">buf_len</span><span class="p">,</span> <span class="n">addr_len</span><span class="p">;</span>
   <span class="kt">int</span> <span class="n">s</span><span class="p">,</span> <span class="n">new_s</span><span class="p">;</span>
 
   <span class="cm">/* build address data structure */</span>
@@ -465,11 +464,11 @@ out the characters that arrive on the connection.</p>
 
  <span class="cm">/* wait for connection, then receive and print text */</span>
   <span class="k">while</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">((</span><span class="n">new_s</span> <span class="o">=</span> <span class="n">accept</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="p">(</span><span class="k">struct</span> <span class="n">sockaddr</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">sin</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">len</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">((</span><span class="n">new_s</span> <span class="o">=</span> <span class="n">accept</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="p">(</span><span class="k">struct</span> <span class="n">sockaddr</span> <span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">sin</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">addr_len</span><span class="p">))</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
       <span class="n">perror</span><span class="p">(</span><span class="s">&quot;simplex-talk: accept&quot;</span><span class="p">);</span>
       <span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
     <span class="p">}</span>
-    <span class="k">while</span> <span class="p">(</span><span class="n">len</span> <span class="o">=</span> <span class="n">recv</span><span class="p">(</span><span class="n">new_s</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">buf</span><span class="p">),</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">buf_len</span> <span class="o">=</span> <span class="n">recv</span><span class="p">(</span><span class="n">new_s</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">buf</span><span class="p">),</span> <span class="mi">0</span><span class="p">))</span>
       <span class="n">fputs</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">stdout</span><span class="p">);</span>
     <span class="n">close</span><span class="p">(</span><span class="n">new_s</span><span class="p">);</span>
   <span class="p">}</span>
