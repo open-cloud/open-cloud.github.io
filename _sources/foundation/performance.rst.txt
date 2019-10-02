@@ -240,7 +240,7 @@ shows some examples of RTT × bandwidth products for some typical network
 links.
 
 .. _tab-delay-bw:
-.. table:: 
+.. table::  Example delay × bandwidth products. 
    :widths: auto
 
 +---------------------+-----------+------------------+---------+-----------------+
@@ -252,8 +252,6 @@ links.
 +---------------------+-----------+------------------+---------+-----------------+
 | Cross-country fiber | 10 Gbps   | 4,000 km         | 40 ms   | 400 Mb          |
 +---------------------+-----------+------------------+---------+-----------------+
-
-  Table 1. Example delay × bandwidth products. 
 
 High-Speed Networks
 -------------------

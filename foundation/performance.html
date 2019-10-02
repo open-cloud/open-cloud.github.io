@@ -91,7 +91,7 @@
               <p class="caption"><span class="caption-text">Table of Contents</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../preface.html">Preface</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../foundation.html">Chapter 1: Foundation</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../foundation.html">Chapter 1:  Foundation</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="problem.html">Problem: Building a Network</a></li>
 <li class="toctree-l2"><a class="reference internal" href="applications.html">1.1 Applications</a></li>
 <li class="toctree-l2"><a class="reference internal" href="requirements.html">1.2 Requirements</a></li>
@@ -107,6 +107,7 @@
 <li class="toctree-l2"><a class="reference internal" href="trend.html">Perspective: Feature Velocity</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../direct.html">Chapter 2:  Direct Links</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../README.html">About This Book</a></li>
 </ul>
 
@@ -153,7 +154,7 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="../foundation.html">Chapter 1: Foundation</a> &raquo;</li>
+          <li><a href="../foundation.html">Chapter 1:  Foundation</a> &raquo;</li>
         
       <li>1.5 Performance</li>
     
@@ -239,7 +240,7 @@ implements the channel has to handle, and possibly transform, each bit
 of data.</p>
 <div class="figure align-center" id="id1">
 <span id="fig-bit-width"></span><a class="reference internal image-reference" href="../_images/f01-16-9780123850591.png"><img alt="../_images/f01-16-9780123850591.png" src="../_images/f01-16-9780123850591.png" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-text">Bits transmitted at a particular bandwidth can be
+<p class="caption"><span class="caption-number">Figure 16: </span><span class="caption-text">Bits transmitted at a particular bandwidth can be
 regarded as having some width: (a) bits transmitted at 1 Mbps
 (each bit is 1 microsecond wide); (b) bits transmitted at 2 Mbps
 (each bit is 0.5 microseconds wide).</span></p>
@@ -304,7 +305,7 @@ between a 20.001-second response time and a 20.1-second response time is
 negligible.</p>
 <div class="figure align-center" id="id2">
 <span id="fig-latency"></span><a class="reference internal image-reference" href="../_images/f01-17-9780123850591.png"><img alt="../_images/f01-17-9780123850591.png" src="../_images/f01-17-9780123850591.png" style="width: 600px;" /></a>
-<p class="caption"><span class="caption-text">Perceived latency (response time) versus round-trip
+<p class="caption"><span class="caption-number">Figure 17: </span><span class="caption-text">Perceived latency (response time) versus round-trip
 time for various object sizes and link speeds.</span></p>
 </div>
 <p><a class="reference internal" href="#fig-latency"><span class="std std-ref">Figure 2</span></a> gives you a sense of how latency or bandwidth
@@ -358,7 +359,7 @@ of 45 Mbps is able to hold</p>
 early 1980s could hold.</p>
 <div class="figure align-center" id="id3">
 <span id="fig-pipe"></span><a class="reference internal image-reference" href="../_images/f01-18-9780123850591.png"><img alt="../_images/f01-18-9780123850591.png" src="../_images/f01-18-9780123850591.png" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-text">Network as a pipe.</span></p>
+<p class="caption"><span class="caption-number">Figure 18: </span><span class="caption-text">Network as a pipe.</span></p>
 </div>
 <p>The delay × bandwidth product is important to know when constructing
 high-performance networks because it corresponds to how many bits the
@@ -419,8 +420,6 @@ links.</p>
 </tr>
 </tbody>
 </table>
-<blockquote>
-<div>Table 1. Example delay × bandwidth products.</div></blockquote>
 </div>
 <div class="section" id="high-speed-networks">
 <h2>High-Speed Networks<a class="headerlink" href="#high-speed-networks" title="Permalink to this headline">¶</a></h2>
@@ -451,7 +450,7 @@ consider that a 1-MB file is to a 1-Gbps network what a 1-KB <em>packet</em> is
 to a 1-Mbps network.</p>
 <div class="figure align-center" id="id4">
 <span id="fig-bw-lat"></span><a class="reference internal image-reference" href="../_images/f01-19-9780123850591.png"><img alt="../_images/f01-19-9780123850591.png" src="../_images/f01-19-9780123850591.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-text">Relationship between bandwidth and latency. A 1-MB
+<p class="caption"><span class="caption-number">Figure 19: </span><span class="caption-text">Relationship between bandwidth and latency. A 1-MB
 file would fill the 1-Mbps link 80 times but only fill 1/12th of a
 1-Gbps link.</span></p>
 </div>
@@ -559,7 +558,7 @@ queuing delay corresponds to the component of latency defined earlier in
 this section, which varies with time.</p>
 <div class="figure align-center" id="id5">
 <span id="fig-jitter"></span><a class="reference internal image-reference" href="../_images/f01-20-9780123850591.png"><img alt="../_images/f01-20-9780123850591.png" src="../_images/f01-20-9780123850591.png" style="width: 600px;" /></a>
-<p class="caption"><span class="caption-text">Network-induced jitter.</span></p>
+<p class="caption"><span class="caption-number">Figure 20: </span><span class="caption-text">Network-induced jitter.</span></p>
 </div>
 <p>To understand the relevance of jitter, suppose that the packets being
 transmitted over the network contain video frames, and in order to

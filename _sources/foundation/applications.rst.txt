@@ -92,12 +92,12 @@ messages from sender to receiver, and the receiver displays the video or
 plays the audio pretty much as it arrives.
 
 Note that the difference between streaming applications and the more
-traditional delivery of a page of text or still images is that humans
+traditional delivery of text, graphics, and images is that humans
 consume audio and video streams in a continuous manner, and
 discontinuity—in the form of skipped sounds or stalled video—is not
-acceptable. By contrast, a page of text can be delivered and read in
-bits and pieces. This difference affects how the network supports these
-different classes of applications.
+acceptable. By contrast, a regular (non-streaming) page can be
+delivered and read in bits and pieces. This difference affects how the
+network supports these different classes of applications.
 
 A subtly different application class is *real-time* audio and video.
 These applications have considerably tighter timing constraints than

@@ -63,15 +63,13 @@ than their native system. This is what has happened with the *socket
 interface* originally provided by the Berkeley distribution of Unix,
 which is now supported in virtually all popular operating systems, and
 is the foundation of language-specific interfaces, such as the Java or
-Python socket library. The advantages of industry-wide support for a
-single API are that applications can be easily ported from one OS to
-another and developers can easily write applications for multiple
-operating systems.
+Python socket library.
 
-   Not wanting to pick sides in a Java-v-Python-v-Go debate, and because
-   it remains the language of choice for network internals, all of the
-   code examples given in this book are written in C and directly use
-   OS-level interfaces.
+The exact syntax of the socket API varies from OS to OS, and from
+programming language to programming language, but the general approach
+remains remarkably consistent across all platforms. We use Linux and C
+for all code examples in this book, Linux because it is open source and C
+because it remains the language of choice for network internals.
 
 Before describing the socket interface, it is important to keep two
 concerns separate in your mind. Each protocol provides a certain set of

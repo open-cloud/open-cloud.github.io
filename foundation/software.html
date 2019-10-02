@@ -91,7 +91,7 @@
               <p class="caption"><span class="caption-text">Table of Contents</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../preface.html">Preface</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../foundation.html">Chapter 1: Foundation</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../foundation.html">Chapter 1:  Foundation</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="problem.html">Problem: Building a Network</a></li>
 <li class="toctree-l2"><a class="reference internal" href="applications.html">1.1 Applications</a></li>
 <li class="toctree-l2"><a class="reference internal" href="requirements.html">1.2 Requirements</a></li>
@@ -109,6 +109,7 @@
 <li class="toctree-l2"><a class="reference internal" href="trend.html">Perspective: Feature Velocity</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../direct.html">Chapter 2:  Direct Links</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../README.html">About This Book</a></li>
 </ul>
 
@@ -155,7 +156,7 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="../foundation.html">Chapter 1: Foundation</a> &raquo;</li>
+          <li><a href="../foundation.html">Chapter 1:  Foundation</a> &raquo;</li>
         
       <li>1.4 Software</li>
     
@@ -233,15 +234,12 @@ than their native system. This is what has happened with the <em>socket
 interface</em> originally provided by the Berkeley distribution of Unix,
 which is now supported in virtually all popular operating systems, and
 is the foundation of language-specific interfaces, such as the Java or
-Python socket library. The advantages of industry-wide support for a
-single API are that applications can be easily ported from one OS to
-another and developers can easily write applications for multiple
-operating systems.</p>
-<blockquote>
-<div>Not wanting to pick sides in a Java-v-Python-v-Go debate, and because
-it remains the language of choice for network internals, all of the
-code examples given in this book are written in C and directly use
-OS-level interfaces.</div></blockquote>
+Python socket library.</p>
+<p>The exact syntax of the socket API varies from OS to OS, and from
+programming language to programming language, but the general approach
+remains remarkably consistent across all platforms. We use Linux and C
+for all code examples in this book, Linux because it is open source and C
+because it remains the language of choice for network internals.</p>
 <p>Before describing the socket interface, it is important to keep two
 concerns separate in your mind. Each protocol provides a certain set of
 <em>services</em>, and the API provides a <em>syntax</em> by which those services can

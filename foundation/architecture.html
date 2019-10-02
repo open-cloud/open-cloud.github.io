@@ -91,7 +91,7 @@
               <p class="caption"><span class="caption-text">Table of Contents</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../preface.html">Preface</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="../foundation.html">Chapter 1: Foundation</a><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../foundation.html">Chapter 1:  Foundation</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="problem.html">Problem: Building a Network</a></li>
 <li class="toctree-l2"><a class="reference internal" href="applications.html">1.1 Applications</a></li>
 <li class="toctree-l2"><a class="reference internal" href="requirements.html">1.2 Requirements</a></li>
@@ -108,6 +108,7 @@
 <li class="toctree-l2"><a class="reference internal" href="trend.html">Perspective: Feature Velocity</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../direct.html">Chapter 2:  Direct Links</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../README.html">About This Book</a></li>
 </ul>
 
@@ -154,7 +155,7 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-          <li><a href="../foundation.html">Chapter 1: Foundation</a> &raquo;</li>
+          <li><a href="../foundation.html">Chapter 1:  Foundation</a> &raquo;</li>
         
       <li>1.3 Architecture</li>
     
@@ -211,7 +212,7 @@ for applications that hides the complexity of the network from
 application writers.</p>
 <div class="figure align-center" id="id1">
 <span id="fig-layers1"></span><a class="reference internal image-reference" href="../_images/f01-08-9780123850591.png"><img alt="../_images/f01-08-9780123850591.png" src="../_images/f01-08-9780123850591.png" style="width: 300px;" /></a>
-<p class="caption"><span class="caption-text">Example of a layered network system.</span></p>
+<p class="caption"><span class="caption-number">Figure 8: </span><span class="caption-text">Example of a layered network system.</span></p>
 </div>
 <p>Abstractions naturally lead to layering, especially in network systems.
 The general idea is that you start with the services offered by the
@@ -247,7 +248,7 @@ alternative offerings at some level of a multilevel networking system,
 as illustrated in <a class="reference internal" href="#fig-layers2"><span class="std std-ref">Figure 2</span></a>.</p>
 <div class="figure align-center" id="id2">
 <span id="fig-layers2"></span><a class="reference internal image-reference" href="../_images/f01-09-9780123850591.png"><img alt="../_images/f01-09-9780123850591.png" src="../_images/f01-09-9780123850591.png" style="width: 300px;" /></a>
-<p class="caption"><span class="caption-text">Layered system with alternative abstractions available
+<p class="caption"><span class="caption-number">Figure 9: </span><span class="caption-text">Layered system with alternative abstractions available
 at a given layer.</span></p>
 </div>
 <p>Using this discussion of layering as a foundation, we are now ready to
@@ -285,7 +286,7 @@ service (the peer interface). This situation is illustrated in <a class="referen
 3</span></a>.</p>
 <div class="figure align-center" id="id3">
 <span id="fig-interfaces"></span><a class="reference internal image-reference" href="../_images/f01-10-9780123850591.png"><img alt="../_images/f01-10-9780123850591.png" src="../_images/f01-10-9780123850591.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-text">Service interfaces and peer interfaces.</span></p>
+<p class="caption"><span class="caption-number">Figure 10: </span><span class="caption-text">Service interfaces and peer interfaces.</span></p>
 </div>
 <p>Except at the hardware level, where peers directly communicate with each
 other over a physical medium, peer-to-peer communication is
@@ -304,7 +305,7 @@ Host-to-Host Protocol (HHP) which provides a host-to-host connectivity
 service.</p>
 <div class="figure align-center" id="id4">
 <span id="fig-protgraph"></span><a class="reference internal image-reference" href="../_images/f01-11-9780123850591.png"><img alt="../_images/f01-11-9780123850591.png" src="../_images/f01-11-9780123850591.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-text">Example of a protocol graph.</span></p>
+<p class="caption"><span class="caption-number">Figure 11: </span><span class="caption-text">Example of a protocol graph.</span></p>
 </div>
 <p>In this example, suppose that the file access program on host&nbsp;1 wants to
 send a message to its peer on host&nbsp;2 using the communication service
@@ -366,7 +367,7 @@ application—is called the message’s <em>body</em> or <em>payload</em>. We sa
 application’s data is <em>encapsulated</em> in the new message created by RRP.</p>
 <div class="figure align-center" id="id5">
 <span id="fig-encapsulation"></span><a class="reference internal image-reference" href="../_images/f01-12-9780123850591.png"><img alt="../_images/f01-12-9780123850591.png" src="../_images/f01-12-9780123850591.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-text">High-level messages are encapsulated inside of low-level messages.</span></p>
+<p class="caption"><span class="caption-number">Figure 12: </span><span class="caption-text">High-level messages are encapsulated inside of low-level messages.</span></p>
 </div>
 <p>This process of encapsulation is then repeated at each level of the
 protocol graph; for example, HHP encapsulates RRP’s message by attaching
@@ -438,7 +439,7 @@ protocol graph, <em>per se</em>, but rather a <em>reference model</em> for a pro
 graph. It is often referred to as the 7-layer model.</p>
 <div class="figure align-center" id="id6">
 <span id="fig-osi"></span><a class="reference internal image-reference" href="../_images/f01-13-9780123850591.png"><img alt="../_images/f01-13-9780123850591.png" src="../_images/f01-13-9780123850591.png" style="width: 600px;" /></a>
-<p class="caption"><span class="caption-text">The OSI 7-layer model.</span></p>
+<p class="caption"><span class="caption-number">Figure 13: </span><span class="caption-text">The OSI 7-layer model.</span></p>
 </div>
 <p>Starting at the bottom and working up, the <em>physical</em> layer handles the
 transmission of raw bits over a communications link. The <em>data link</em>
@@ -486,11 +487,11 @@ before the OSI architecture, and the experience gained from building
 them was a major influence on the OSI reference model.</p>
 <div class="figure align-center" id="id7">
 <span id="fig-internet1"></span><a class="reference internal image-reference" href="../_images/f01-14-9780123850591.png"><img alt="../_images/f01-14-9780123850591.png" src="../_images/f01-14-9780123850591.png" style="width: 300px;" /></a>
-<p class="caption"><span class="caption-text">Internet protocol graph.</span></p>
+<p class="caption"><span class="caption-number">Figure 14: </span><span class="caption-text">Internet protocol graph.</span></p>
 </div>
 <div class="figure align-center" id="id8">
 <span id="fig-internet2"></span><a class="reference internal image-reference" href="../_images/f01-15-9780123850591.png"><img alt="../_images/f01-15-9780123850591.png" src="../_images/f01-15-9780123850591.png" style="width: 250px;" /></a>
-<p class="caption"><span class="caption-text">Alternative view of the Internet architecture. The “subnetwork” layer
+<p class="caption"><span class="caption-number">Figure 15: </span><span class="caption-text">Alternative view of the Internet architecture. The “subnetwork” layer
 was historically referred to as the “network” layer and is now often
 referred to as “layer 2.”</span></p>
 </div>
@@ -534,6 +535,24 @@ there is general agreement on how the layers map between architectures.
 The Internet’s application layer is considered to be at layer 7, its
 transport layer is layer 4, the IP (internetworking or just network)
 layer is layer 3, and the link or subnet layer below IP is layer 2.</p>
+<blockquote>
+<div>Although we call it the “Internet architecture” rather than the
+“IETF architecture,” it’s fair to say that the IETF is the primary
+standardization body responsible for its definition, as well as the
+specification of many of its protocols, including TCP, UDP, IP,
+DNS, and BGP. But the Internet architecture also embraces many
+protocols defined by other organizations, including the 802.11
+ethernet and Wi-Fi standards (IEEE), the HTTP/HTML web
+definitions (W3C), the 4G and 5G cellular networks (3GPP0, and the
+H.232 video encoding standards (ITU-T), to name a few. In addition
+to defining architectures and specifying protocols, there are still
+other organizations that support the larger goal of interoperability.
+One example is the   IANA (Internet Assigned Numbers Authority),
+which as its name impies, is responsible for handing out various
+unique identifiers needed to make the protocols work. IANA, in
+turn, is a department within the ICANN (Internt Corporation for
+Assigned Names and Numbers), a non-profit organization that’s
+responsible for the overall stewardship of the Internet.</div></blockquote>
 <p>The Internet architecture has three features that are worth
 highlighting. First, as best illustrated by <a class="reference internal" href="#fig-internet2"><span class="std std-ref">Figure 8</span></a>,
 the Internet architecture does not imply strict layering. The
@@ -555,14 +574,14 @@ Below IP, the architecture allows for arbitrarily many different network
 technologies, ranging from Ethernet to wireless to single point-to-point
 links.</p>
 <p>A final attribute of the Internet architecture (or more accurately, of
-the IETF culture) is that in order for a new protocol to be officially
-included in the architecture, there must be both a protocol
-specification and at least one (and preferably two) representative
-implementations of the specification. The existence of working
-implementations is required for standards to be adopted by the IETF.
-This cultural assumption of the design community helps to ensure that
-the architecture’s protocols can be efficiently implemented. Perhaps the
-value the Internet culture places on working software is best
+the IETF culture) is that in order for a new
+protocol to be officially included in the architecture, there must be
+both a protocol specification and at least one (and preferably two)
+representative implementations of the specification. The existence of
+working implementations is required for standards to be adopted by the
+IETF. This cultural assumption of the design community helps to ensure
+that the architecture’s protocols can be efficiently implemented.
+Perhaps the value the Internet culture places on working software is best
 exemplified by a quote on T-shirts commonly worn at IETF meetings:</p>
 <blockquote>
 <div><em>We reject kings, presidents, and voting. We believe in rough

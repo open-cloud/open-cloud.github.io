@@ -86,7 +86,9 @@ be *multiple-access*). Wireless links, such as those provided by
 cellular networks and Wi-Fi networks, are an important class of
 multiple-access links. It is always the case that multiple-access links
 are limited in size, in terms of both the geographical distance they can
-cover and the number of nodes they can connect.
+cover and the number of nodes they can connect. For this reason, they
+often implement the so-called *last mile*, connecting end users to the
+rest of the network.
 
 .. _fig-direct:
 .. figure:: figures/f01-02-9780123850591.png
@@ -428,6 +430,11 @@ applications, so that a sending application can put data in one end and
 expect that data to be delivered by the network to the application at
 the other end of the pipe.
 
+   Like any abstraction, logical process-to-process channels are
+   implemented on top of a collection of physical host-to-host
+   channels. This is the essense of layering, the cornerstone of
+   network architectures discussed in the next section.
+
 The challenge is to recognize what functionality the channels should
 provide to application programs. For example, does the application
 require a guarantee that messages sent over the channel are delivered,
@@ -473,7 +480,7 @@ transfer, but it requires similar communication services. For example,
 the *Association for Computing Machinery* (ACM) operates a large digital
 library of computer science literature at
 
-.. code-block:: c
+.. code-block:: html
 
    http://portal.acm.org/dl.cfm
 
@@ -616,7 +623,10 @@ too often (as we do here), is that networks need to be managed. Managing
 a network includes upgrading equipment as the network grows to carry
 more traffic or reach more users, troubleshooting the network when
 things go wrong or performance isn’t as desired, and adding new features
-in support of new applications.
+in support of new applications. Network management has historically
+been a human-intensive aspect of networking, and while it is ulikely
+we'll get people entirely out of the loop, it is increasingly being
+addressed by automation and self-healing designs.
 
 This requirement is partly related to the issue of scalability discussed
 above—as the Internet has scaled up to support billions of users and at
@@ -626,10 +636,7 @@ are added have become increasingly problematic. Configuring a single
 router in a network is often a task for a trained expert; configuring
 thousands of routers and figuring out why a network of such a size is
 not behaving as expected can become a task beyond any single human.
-Furthermore, to make the operation of a network scalable and
-cost-effective, network operators typically require many management
-tasks to be automated or at least performed by relatively unskilled
-personnel.
+This is why automation is becoming so important.
 
 One way to make a network easier to manage is to avoid change. Once the
 network is working, simply *do not touch it!* This mindset exposes the
