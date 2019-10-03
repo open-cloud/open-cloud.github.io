@@ -413,21 +413,22 @@ layer is layer 3, and the link or subnet layer below IP is layer 2.
    Although we call it the "Internet architecture" rather than the
    "IETF architecture," it's fair to say that the IETF is the primary
    standardization body responsible for its definition, as well as the
-   specification of many of its protocols, including TCP, UDP, IP,
+   specification of many of its protocols, such as TCP, UDP, IP,
    DNS, and BGP. But the Internet architecture also embraces many
-   protocols defined by other organizations, including the 802.11
-   ethernet and Wi-Fi standards (IEEE), the HTTP/HTML web
-   definitions (W3C), the 4G and 5G cellular networks (3GPP0, and the
-   H.232 video encoding standards (ITU-T), to name a few. In addition
-   to defining architectures and specifying protocols, there are still
-   other organizations that support the larger goal of interoperability.
-   One example is the   IANA (Internet Assigned Numbers Authority),
-   which as its name impies, is responsible for handing out various
-   unique identifiers needed to make the protocols work. IANA, in
-   turn, is a department within the ICANN (Internt Corporation for
-   Assigned Names and Numbers), a non-profit organization that's
-   responsible for the overall stewardship of the Internet.
-
+   protocols defined by other organizations, including IEEE's
+   802.11 ethernet and Wi-Fi standards, W3C's HTTP/HTML web
+   specifications, 3GPP's 4G and 5G cellular networks standards,
+   and ITU-T's H.232 video encoding standards, to name a few. In
+   addition to defining architectures and specifying protocols, there
+   are still other organizations that support the larger goal of
+   interoperability. One example is the IANA (Internet Assigned
+   Numbers Authority), which as its name impies, is responsible for
+   handing out the unique identifiers needed to make the protocols
+   work. IANA, in turn, is a department within the ICANN (Internt
+   Corporation for Assigned Names and Numbers), a non-profit
+   organization that's responsible for the overall stewardship of the
+   Internet.
+   
 The Internet architecture has three features that are worth
 highlighting. First, as best illustrated by :ref:`Figure 8 <fig-internet2>`,
 the Internet architecture does not imply strict layering. The

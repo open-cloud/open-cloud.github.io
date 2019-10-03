@@ -55,15 +55,13 @@ tapping into it. A *transceiver*, a small device directly attached to
 the tap, detected when the line was idle and drove the signal when the
 host was transmitting. It also received incoming signals. The
 transceiver, in turn, connected to an Ethernet adaptor, which was
-plugged into the host. This configuration is shown in `Figure
-1 <#tap>`__.
+plugged into the host. This configuration is shown in :ref:`Figure
+1 <fig-tap>`.
 
-.. figure:: figures/f02-22-9780123850591.png%20width=300px
-   :alt: fig-tap
-
-   fig-tap
-
-::
+.. _fig-tap:
+.. figure:: figures/f02-22-9780123850591.png
+   :width: 300px
+   :align: center
 
    Ethernet transceiver and adaptor.
 
@@ -73,21 +71,19 @@ amplifier forwards analog signals; repeaters do not understand bits or
 frames. No more than four repeaters could be positioned between any pair
 of hosts, meaning that a classical Ethernet had a total reach of only
 2500 m. For example, using just two repeaters between any pair of hosts
-supports a configuration similar to the one illustrated in `Figure
-2 <#net-repeat>`__—that is, a segment running down the spine of a
+supports a configuration similar to the one illustrated in :ref:`Figure
+2 <fig-net-repeat>`—that is, a segment running down the spine of a
 building with a segment on each floor.
 
-.. figure:: figures/f02-23-9780123850591.png%20width=500px
-   :alt: fig-net-repeat
-
-   fig-net-repeat
-
-::
+.. _fig-net-repeat:
+.. figure:: figures/f02-23-9780123850591.png
+   :width: 500px
+   :align: center
 
    Ethernet repeater.
 
 It’s also possible to create a multiway repeater, sometimes called a
-*hub*, as illustrated in `Figure 3 <#hub>`__. Like a repeater, a hub
+*hub*, as illustrated in :ref:`Figure 3 <fig-hub>`. Like a repeater, a hub
 just repeats whatever signals it hears on one port out all its other
 ports. The important thing about hubs is that they can be used to
 connect node to a shared Ethernet without using a tap, meaning the link
@@ -103,13 +99,11 @@ keep it from bouncing back and interfering with trailing signals. The
 original Ethernet specifications used the Manchester encoding scheme
 described in an earlier section, while 4B/5B encoding (or the similar
 8B/10B) scheme is used today on higher speed Ethernets.
-
-.. figure:: figures/f02-24-9780123850591.png%20width=400px
-   :alt: fig-hub
-
-   fig-hub
-
-::
+  
+.. _fig-hub:
+.. figure:: figures/f02-24-9780123850591.png
+   :width: 400px
+   :align: center
 
    Ethernet hub.
 
@@ -136,8 +130,8 @@ describe the Ethernet’s frame format and addresses.
 Frame Format
 ~~~~~~~~~~~~
 
-Each Ethernet frame is defined by the format given in `Figure
-4 <#enet-format>`__. The 64-bit preamble allows the receiver to
+Each Ethernet frame is defined by the format given in :ref:`Figure
+4 <fig-enet-format>`. The 64-bit preamble allows the receiver to
 synchronize with the signal; it is a sequence of alternating 0s and 1s.
 Both the source and destination hosts are identified with a 48-bit
 address. The packet type field serves as the demultiplexing key; it
@@ -171,13 +165,11 @@ Ethernet frame format.
 .. raw:: html
 
    </figure>
-
-.. figure:: figures/f02-25-9780123850591.png%20width=400px
-   :alt: fig-enet-format
-
-   fig-enet-format
-
-::
+ 
+.. _fig-enet-format:
+.. figure:: figures/f02-25-9780123850591.png
+   :width: 400px
+   :align: center
 
    Ethernet frame format.
 
@@ -245,16 +237,14 @@ occupy the line for only a fixed length of time.
 
 When an adaptor has a frame to send and the line is busy, it waits for
 the line to go idle and then transmits immediately. (To be more precise,
-all adaptors wait 9.6 𝜇s after the end of one frame before beginning to
+all adaptors wait 9.6 μs after the end of one frame before beginning to
 transmit the next frame. This is true for both the sender of the first
 frame as well as those nodes listening for the line to become idle.) The
 Ethernet is said to be a *1-persistent* protocol because an adaptor with
 a frame to send transmits with probability 1 whenever a busy line goes
-idle. In general, a *p-persistent* algorithm transmits with probability
-
-.. math:: 0 \le p \le 1
-
-\ after a line becomes idle and defers with probability *q = 1 - p*. The
+idle. In general, a *p-persistent* algorithm transmits with probability 
+:math:`0 \le p \le 1` 
+after a line becomes idle and defers with probability *q = 1 - p*. The
 reasoning behind choosing a *p<1* is that there might be multiple
 adaptors waiting for the busy line to become idle, and we don’t want all
 of them to begin transmitting at the same time. If each adaptor
@@ -308,19 +298,17 @@ the farther apart two nodes are, the longer it takes for a frame sent by
 one to reach the other, and the network is vulnerable to a collision
 during this time.
 
-.. figure:: figures/f02-26-9780123850591.png%20width=350px
-   :alt: fig-worst
-
-   fig-worst
-
-::
+.. _fig-worst:
+.. figure:: figures/f02-26-9780123850591.png
+   :width: 350px
+   :align: center
 
    Worst-case scenario: (a) A sends a frame at time t;
    (b) A's frame arrives at B at time t+d; (c) B begins transmitting
    at time t+d and collides with A's frame; (d) B's runt (32-bit)
    frame arrives at A at time t+2d.
 
-`Figure 5 <#worst>`__ illustrates the worst-case scenario, where hosts A
+:ref:`Figure 5 <fig-worst>` illustrates the worst-case scenario, where hosts A
 and B are at opposite ends of the network. Suppose host A begins
 transmitting a frame at time t, as shown in (a). It takes it one link
 latency (let’s denote the latency as d) for the frame to reach host B.
@@ -337,10 +325,10 @@ collision. In other words, host A must transmit for *2 × d* to be sure
 that it detects all possible collisions. Considering that a maximally
 configured Ethernet is 2500 m long, and that there may be up to four
 repeaters between any two hosts, the round-trip delay has been
-determined to be 51.2 𝜇s, which on a 10-Mbps Ethernet corresponds to
+determined to be 51.2 μs, which on a 10-Mbps Ethernet corresponds to
 512 bits. The other way to look at this situation is that we need to
 limit the Ethernet’s maximum latency to a fairly small value (e.g.,
-51.2 𝜇s) for the access algorithm to work; hence, an Ethernet’s maximum
+51.2 μs) for the access algorithm to work; hence, an Ethernet’s maximum
 length must be something on the order of 2500 m.
 
 Once an adaptor has detected a collision and stopped its transmission,
@@ -349,19 +337,12 @@ transmit but fails, the adaptor doubles the amount of time it waits
 before trying again. This strategy of doubling the delay interval
 between each retransmission attempt is a general technique known as
 *exponential backoff*. More precisely, the adaptor first delays either 0
-or 51.2 𝜇s, selected at random. If this effort fails, it then waits 0,
-51.2, 102.4, or 153.6 𝜇s (selected randomly) before trying again; this
+or 51.2 μs, selected at random. If this effort fails, it then waits 0,
+51.2, 102.4, or 153.6 μs (selected randomly) before trying again; this
 is k × 51.2 for k=0..3. After the third collision, it waits *k × 51.2*
-for
-
-.. math:: k=0.2^3 -1 
-
-, again selected at random. In general, the algorithm randomly selects a
-*k* between 0 and
-
-.. math:: 2^n - 1
-
- and waits k × 51.2 𝜇s, where *n* is the number of collisions
+for :math:`k=0.2^3 -1`, again selected at random. In general, 
+the algorithm randomly selects a *k* between 0 and :math:`2^n - 1` 
+and waits k × 51.2 μs, where *n* is the number of collisions
 experienced so far. The adaptor gives up after a given number of tries
 and reports a transmit error to the host. Adaptors typically retry up to
 16 times, although the backoff algorithm caps *n* in the above formula

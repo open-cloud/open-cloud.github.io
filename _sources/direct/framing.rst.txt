@@ -3,7 +3,7 @@
 
 Now that we have seen how to transmit a sequence of bits over a
 point-to-point link—from adaptor to adaptor—let’s consider the scenario
-in `Figure 1 <#host-link>`__. Recall from Chapter 1 that we are focusing
+in :ref:`Figure 1 <fig-host-link>`. Recall from Chapter 1 that we are focusing
 on packet-switched networks, which means that blocks of data (called
 *frames* at this level), not bit streams, are exchanged between nodes.
 It is the network adaptor that enables the nodes to exchange frames.
@@ -15,12 +15,10 @@ corresponding frame in B’s memory. Recognizing exactly what set of bits
 constitutes a frame—that is, determining where the frame begins and
 ends—is the central challenge faced by the adaptor.
 
-.. figure:: figures/f02-06-9780123850591.png%20width=500px
-   :alt: fig-host-link
-
-   fig-host-link
-
-::
+.. _fig-host-link:
+.. figure:: figures/f02-06-9780123850591.png
+   :width: 500px
+   :align: center
 
    Bits flow between adaptors, frames between hosts.
 
@@ -77,15 +75,13 @@ back-to-back frames to be incorrectly received.
 The Point-to-Point Protocol (PPP), which is commonly used to carry
 Internet Protocol packets over various sorts of point-to-point links,
 uses sentinels and character stuffing. The format for a PPP frame is
-given in `Figure 2 <#ppp>`__.
-
-.. figure:: figures/f02-08-9780123850591.png%20width=500px
-   :alt: fig-ppp
-
-   fig-ppp
-
-::
-
+given in :ref:`Figure 2 <fig-ppp>`.
+ 
+.. _fig-ppp:
+.. figure:: figures/f02-08-9780123850591.png
+   :width: 500px
+   :align: center
+   
    PPP frame format.
 
 This figure is the first of many that you will see in this book that are
@@ -127,7 +123,7 @@ from an executable file. The Synchronous Data Link Control (SDLC)
 protocol developed by IBM is an example of a bit-oriented protocol; SDLC
 was later standardized by the ISO as the High-Level Data Link Control
 (HDLC) protocol. In the following discussion, we use HDLC as an example;
-its frame format is given in `Figure 3 <#hdlc>`__.
+its frame format is given in :ref:`Figure 3 <fig-hdlc>`.
 
 HDLC denotes both the beginning and the end of a frame with the
 distinguished bit sequence ``01111110``. This sequence is also
@@ -138,13 +134,11 @@ might appear anywhere in the body of the frame—in fact, the bits
 ``01111110`` might cross byte boundaries—bit-oriented protocols use the
 analog of the DLE character, a technique known as *bit stuffing*.
 
-.. figure:: figures/f02-10-9780123850591.png%20width=400px
-   :alt: fig-hdlc
-
-   fig-hdlc
-
-::
-
+.. _fig-hdlc:
+.. figure:: figures/f02-10-9780123850591.png
+   :width: 400px
+   :align: center
+   
    HDLC frame format.
 
 Bit stuffing in the HDLC protocol works as follows. On the sending side,
@@ -210,7 +204,7 @@ bit stuffing is used, so that a frame’s length does not depend on the
 data being sent. So the question to ask is “How does the receiver know
 where each frame starts and ends?” We consider this question for the
 lowest-speed SONET link, which is known as STS-1 and runs at 51.84 Mbps.
-An STS-1 frame is shown in `Figure 4 <#sonet-frame>`__. It is arranged
+An STS-1 frame is shown in :ref:`Figure 4 <fig-sonet-frame>`. It is arranged
 as 9 rows of 90 bytes each, and the first 3 bytes of each row are
 overhead, with the rest being available for data that is being
 transmitted over the link. The first 2 bytes of the frame contain a
@@ -224,13 +218,11 @@ long. When the special pattern turns up in the right place enough times,
 the receiver concludes that it is in sync and can then interpret the
 frame correctly.
 
-.. figure:: figures/f02-11-9780123850591.png%20width=500px
-   :alt: fig-sonet-frame
-
-   fig-sonet-frame
-
-::
-
+.. _fig-sonet-frame:
+.. figure:: figures/f02-11-9780123850591.png
+   :width: 500px
+   :align: center
+   
    A SONET STS-1 frame.
 
 One of the things we are not describing due to the complexity of SONET
@@ -261,7 +253,7 @@ possible rates, ranging from 51.84 Mbps (STS-1) to 39,813,120 Mbps
 (STS-768). Note that all of these rates are integer multiples of STS-1.
 The significance for framing is that a single SONET frame can contain
 subframes for multiple lower-rate channels. A second related feature is
-that each frame is 125 𝜇s long. This means that at STS-1 rates, a SONET
+that each frame is 125 μs long. This means that at STS-1 rates, a SONET
 frame is 810 bytes long, while at STS-3 rates, each SONET frame is
 2430 bytes long. Notice the synergy between these two features: 3 × 810
 = 2430, meaning that three STS-1 frames fit exactly in a single STS-3
@@ -282,40 +274,33 @@ byte from the first frame is transmitted, then a byte from the second
 frame is transmitted, and so on. The reason for interleaving the bytes
 from each STS-N frame is to ensure that the bytes in each STS-1 frame
 are evenly paced; that is, bytes show up at the receiver at a smooth
-51 Mbps, rather than all bunched up during one particular
+51 Mbps, rather than all bunched up during one particular :math:`1/N^{th}` 
+of the 125-μs interval.
 
-.. math:: 1/N^{th}
-
-\ of the 125 𝜇s interval.
-
-.. figure:: figures/f02-12-9780123850591.png%20width=350px
-   :alt: fig-sonet1
-
-   fig-sonet1
-
-::
-
+.. _fig-sonet1:
+.. figure:: figures/f02-12-9780123850591.png
+   :width: 350px
+   :align: center
+   
    Three STS-1 frames multiplexed onto one STS-3c
    frame.
-
+   
 Although it is accurate to view an STS-N signal as being used to
 multiplex N STS-1 frames, the payload from these STS-1 frames can be
 linked together to form a larger STS-N payload; such a link is denoted
 STS-Nc (for *concatenated*). One of the fields in the overhead is used
-for this purpose. `Figure 5 <#sonet1>`__ schematically depicts
+for this purpose. :ref:`Figure 5 <fig-sonet1>` schematically depicts
 concatenation in the case of three STS-1 frames being concatenated into
 a single STS-3c frame. The significance of a SONET link being designated
 as STS-3c rather than STS-3 is that, in the former case, the user of the
 link can view it as a single 155.25-Mbps pipe, whereas an STS-3 should
 really be viewed as three 51.84-Mbps links that happen to share a fiber.
 
-.. figure:: figures/f02-13-9780123850591.png%20width=450px
-   :alt: fig-sonet3
-
-   fig-sonet3
-
-::
-
+.. _fig-sonet3:
+.. figure:: figures/f02-13-9780123850591.png
+   :width: 450px
+   :align: center
+   
    SONET frames out of phase.
 
 Finally, the preceding description of SONET is overly simplistic in that
@@ -323,7 +308,7 @@ it assumes that the payload for each frame is completely contained
 within the frame. (Why wouldn’t it be?) In fact, we should view the
 STS-1 frame just described as simply a placeholder for the frame, where
 the actual payload may *float* across frame boundaries. This situation
-is illustrated in `Figure 6 <#sonet3>`__. Here we see both the STS-1
+is illustrated in :ref:`Figure 6 <fig-sonet3>`. Here we see both the STS-1
 payload floating across two STS-1 frames and the payload shifted some
 number of bytes to the right and, therefore, wrapped around. One of the
 fields in the frame overhead points to the beginning of the payload. The

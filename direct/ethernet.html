@@ -232,14 +232,11 @@ tapping into it. A <em>transceiver</em>, a small device directly attached to
 the tap, detected when the line was idle and drove the signal when the
 host was transmitting. It also received incoming signals. The
 transceiver, in turn, connected to an Ethernet adaptor, which was
-plugged into the host. This configuration is shown in <a class="reference external" href="#tap">Figure
-1</a>.</p>
-<div class="figure" id="id1">
-<img alt="fig-tap" src="direct/figures/f02-22-9780123850591.png%20width=300px" />
-<p class="caption"><span class="caption-number">Figure 39: </span><span class="caption-text">fig-tap</span></p>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Ethernet</span> <span class="n">transceiver</span> <span class="ow">and</span> <span class="n">adaptor</span><span class="o">.</span>
-</pre></div>
+plugged into the host. This configuration is shown in <a class="reference internal" href="#fig-tap"><span class="std std-ref">Figure
+1</span></a>.</p>
+<div class="figure align-center" id="id1">
+<span id="fig-tap"></span><a class="reference internal image-reference" href="../_images/f02-22-9780123850591.png"><img alt="../_images/f02-22-9780123850591.png" src="../_images/f02-22-9780123850591.png" style="width: 300px;" /></a>
+<p class="caption"><span class="caption-number">Figure 39: </span><span class="caption-text">Ethernet transceiver and adaptor.</span></p>
 </div>
 <p>Multiple Ethernet segments can be joined together by <em>repeaters</em>. A
 repeater is a device that forwards digital signals, much like an
@@ -247,18 +244,15 @@ amplifier forwards analog signals; repeaters do not understand bits or
 frames. No more than four repeaters could be positioned between any pair
 of hosts, meaning that a classical Ethernet had a total reach of only
 2500&nbsp;m. For example, using just two repeaters between any pair of hosts
-supports a configuration similar to the one illustrated in <a class="reference external" href="#net-repeat">Figure
-2</a>—that is, a segment running down the spine of a
+supports a configuration similar to the one illustrated in <a class="reference internal" href="#fig-net-repeat"><span class="std std-ref">Figure
+2</span></a>—that is, a segment running down the spine of a
 building with a segment on each floor.</p>
-<div class="figure" id="id2">
-<img alt="fig-net-repeat" src="direct/figures/f02-23-9780123850591.png%20width=500px" />
-<p class="caption"><span class="caption-number">Figure 40: </span><span class="caption-text">fig-net-repeat</span></p>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Ethernet</span> <span class="n">repeater</span><span class="o">.</span>
-</pre></div>
+<div class="figure align-center" id="id2">
+<span id="fig-net-repeat"></span><a class="reference internal image-reference" href="../_images/f02-23-9780123850591.png"><img alt="../_images/f02-23-9780123850591.png" src="../_images/f02-23-9780123850591.png" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-number">Figure 40: </span><span class="caption-text">Ethernet repeater.</span></p>
 </div>
 <p>It’s also possible to create a multiway repeater, sometimes called a
-<em>hub</em>, as illustrated in <a class="reference external" href="#hub">Figure 3</a>. Like a repeater, a hub
+<em>hub</em>, as illustrated in <a class="reference internal" href="#fig-hub"><span class="std std-ref">Figure 3</span></a>. Like a repeater, a hub
 just repeats whatever signals it hears on one port out all its other
 ports. The important thing about hubs is that they can be used to
 connect node to a shared Ethernet without using a tap, meaning the link
@@ -273,12 +267,9 @@ keep it from bouncing back and interfering with trailing signals. The
 original Ethernet specifications used the Manchester encoding scheme
 described in an earlier section, while 4B/5B encoding (or the similar
 8B/10B) scheme is used today on higher speed Ethernets.</p>
-<div class="figure" id="id3">
-<img alt="fig-hub" src="direct/figures/f02-24-9780123850591.png%20width=400px" />
-<p class="caption"><span class="caption-number">Figure 41: </span><span class="caption-text">fig-hub</span></p>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Ethernet</span> <span class="n">hub</span><span class="o">.</span>
-</pre></div>
+<div class="figure align-center" id="id3">
+<span id="fig-hub"></span><a class="reference internal image-reference" href="../_images/f02-24-9780123850591.png"><img alt="../_images/f02-24-9780123850591.png" src="../_images/f02-24-9780123850591.png" style="width: 400px;" /></a>
+<p class="caption"><span class="caption-number">Figure 41: </span><span class="caption-text">Ethernet hub.</span></p>
 </div>
 <p>It is important to understand that whether a given Ethernet spans a
 single segment, a linear sequence of segments connected by repeaters, or
@@ -300,8 +291,8 @@ instead focus on the algorithm it implements. First, however, we
 describe the Ethernet’s frame format and addresses.</p>
 <div class="section" id="frame-format">
 <h3>Frame Format<a class="headerlink" href="#frame-format" title="Permalink to this headline">¶</a></h3>
-<p>Each Ethernet frame is defined by the format given in <a class="reference external" href="#enet-format">Figure
-4</a>. The 64-bit preamble allows the receiver to
+<p>Each Ethernet frame is defined by the format given in <a class="reference internal" href="#fig-enet-format"><span class="std std-ref">Figure
+4</span></a>. The 64-bit preamble allows the receiver to
 synchronize with the signal; it is a sequence of alternating 0s and 1s.
 Both the source and destination hosts are identified with a 48-bit
 address. The packet type field serves as the demultiplexing key; it
@@ -318,12 +309,9 @@ the host’s perspective, an Ethernet frame has a 14-byte header: two
 the preamble and CRC before transmitting, and the receiving adaptor
 removes them.</p>
 <figure><figcaption><p>Ethernet frame format.</p>
-</figcaption></figure><div class="figure" id="id4">
-<img alt="fig-enet-format" src="direct/figures/f02-25-9780123850591.png%20width=400px" />
-<p class="caption"><span class="caption-number">Figure 42: </span><span class="caption-text">fig-enet-format</span></p>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Ethernet</span> <span class="n">frame</span> <span class="nb">format</span><span class="o">.</span>
-</pre></div>
+</figcaption></figure><div class="figure align-center" id="id4">
+<span id="fig-enet-format"></span><a class="reference internal image-reference" href="../_images/f02-25-9780123850591.png"><img alt="../_images/f02-25-9780123850591.png" src="../_images/f02-25-9780123850591.png" style="width: 400px;" /></a>
+<p class="caption"><span class="caption-number">Figure 42: </span><span class="caption-text">Ethernet frame format.</span></p>
 </div>
 </div>
 <div class="section" id="addresses">
@@ -380,15 +368,14 @@ The upper bound of 1500&nbsp;bytes in the message means that the adaptor can
 occupy the line for only a fixed length of time.</p>
 <p>When an adaptor has a frame to send and the line is busy, it waits for
 the line to go idle and then transmits immediately. (To be more precise,
-all adaptors wait 9.6 𝜇s after the end of one frame before beginning to
+all adaptors wait 9.6 μs after the end of one frame before beginning to
 transmit the next frame. This is true for both the sender of the first
 frame as well as those nodes listening for the line to become idle.) The
 Ethernet is said to be a <em>1-persistent</em> protocol because an adaptor with
 a frame to send transmits with probability&nbsp;1 whenever a busy line goes
-idle. In general, a <em>p-persistent</em> algorithm transmits with probability</p>
-<div class="math notranslate nohighlight">
-\[0 \le p \le 1\]</div>
-<p>after a line becomes idle and defers with probability <em>q = 1 - p</em>. The
+idle. In general, a <em>p-persistent</em> algorithm transmits with probability
+<span class="math notranslate nohighlight">\(0 \le p \le 1\)</span>
+after a line becomes idle and defers with probability <em>q = 1 - p</em>. The
 reasoning behind choosing a <em>p&lt;1</em> is that there might be multiple
 adaptors waiting for the busy line to become idle, and we don’t want all
 of them to begin transmitting at the same time. If each adaptor
@@ -437,17 +424,14 @@ or 1000&nbsp;km? The answer to both questions has to do with the fact that
 the farther apart two nodes are, the longer it takes for a frame sent by
 one to reach the other, and the network is vulnerable to a collision
 during this time.</p>
-<div class="figure" id="id5">
-<img alt="fig-worst" src="direct/figures/f02-26-9780123850591.png%20width=350px" />
-<p class="caption"><span class="caption-number">Figure 43: </span><span class="caption-text">fig-worst</span></p>
+<div class="figure align-center" id="id5">
+<span id="fig-worst"></span><a class="reference internal image-reference" href="../_images/f02-26-9780123850591.png"><img alt="../_images/f02-26-9780123850591.png" src="../_images/f02-26-9780123850591.png" style="width: 350px;" /></a>
+<p class="caption"><span class="caption-number">Figure 43: </span><span class="caption-text">Worst-case scenario: (a) A sends a frame at time t;
+(b) A’s frame arrives at B at time t+d; (c) B begins transmitting
+at time t+d and collides with A’s frame; (d) B’s runt (32-bit)
+frame arrives at A at time t+2d.</span></p>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Worst</span><span class="o">-</span><span class="n">case</span> <span class="n">scenario</span><span class="p">:</span> <span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="n">A</span> <span class="n">sends</span> <span class="n">a</span> <span class="n">frame</span> <span class="n">at</span> <span class="n">time</span> <span class="n">t</span><span class="p">;</span>
-<span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="n">A</span><span class="s1">&#39;s frame arrives at B at time t+d; (c) B begins transmitting</span>
-<span class="n">at</span> <span class="n">time</span> <span class="n">t</span><span class="o">+</span><span class="n">d</span> <span class="ow">and</span> <span class="n">collides</span> <span class="k">with</span> <span class="n">A</span><span class="s1">&#39;s frame; (d) B&#39;</span><span class="n">s</span> <span class="n">runt</span> <span class="p">(</span><span class="mi">32</span><span class="o">-</span><span class="n">bit</span><span class="p">)</span>
-<span class="n">frame</span> <span class="n">arrives</span> <span class="n">at</span> <span class="n">A</span> <span class="n">at</span> <span class="n">time</span> <span class="n">t</span><span class="o">+</span><span class="mi">2</span><span class="n">d</span><span class="o">.</span>
-</pre></div>
-</div>
-<p><a class="reference external" href="#worst">Figure 5</a> illustrates the worst-case scenario, where hosts&nbsp;A
+<p><a class="reference internal" href="#fig-worst"><span class="std std-ref">Figure 5</span></a> illustrates the worst-case scenario, where hosts&nbsp;A
 and B are at opposite ends of the network. Suppose host&nbsp;A begins
 transmitting a frame at time t, as shown in&nbsp;(a). It takes it one link
 latency (let’s denote the latency as d) for the frame to reach host&nbsp;B.
@@ -464,10 +448,10 @@ collision. In other words, host&nbsp;A must transmit for <em>2 × d</em> to be s
 that it detects all possible collisions. Considering that a maximally
 configured Ethernet is 2500&nbsp;m long, and that there may be up to four
 repeaters between any two hosts, the round-trip delay has been
-determined to be 51.2&nbsp;𝜇s, which on a 10-Mbps Ethernet corresponds to
+determined to be 51.2&nbsp;μs, which on a 10-Mbps Ethernet corresponds to
 512&nbsp;bits. The other way to look at this situation is that we need to
 limit the Ethernet’s maximum latency to a fairly small value (e.g.,
-51.2&nbsp;𝜇s) for the access algorithm to work; hence, an Ethernet’s maximum
+51.2&nbsp;μs) for the access algorithm to work; hence, an Ethernet’s maximum
 length must be something on the order of 2500&nbsp;m.</p>
 <p>Once an adaptor has detected a collision and stopped its transmission,
 it waits a certain amount of time and tries again. Each time it tries to
@@ -475,17 +459,13 @@ transmit but fails, the adaptor doubles the amount of time it waits
 before trying again. This strategy of doubling the delay interval
 between each retransmission attempt is a general technique known as
 <em>exponential backoff</em>. More precisely, the adaptor first delays either 0
-or 51.2&nbsp;𝜇s, selected at random. If this effort fails, it then waits 0,
-51.2, 102.4, or 153.6&nbsp;𝜇s (selected randomly) before trying again; this
+or 51.2&nbsp;μs, selected at random. If this effort fails, it then waits 0,
+51.2, 102.4, or 153.6&nbsp;μs (selected randomly) before trying again; this
 is k × 51.2 for k=0..3. After the third collision, it waits <em>k × 51.2</em>
-for</p>
-<div class="math notranslate nohighlight">
-\[k=0.2^3 -1\]</div>
-<p>, again selected at random. In general, the algorithm randomly selects a
-<em>k</em> between 0 and</p>
-<div class="math notranslate nohighlight">
-\[ \begin{align}\begin{aligned}2^n - 1\\and waits k × 51.2 𝜇s, where *n* is the number of collisions\end{aligned}\end{align} \]</div>
-<p>experienced so far. The adaptor gives up after a given number of tries
+for <span class="math notranslate nohighlight">\(k=0.2^3 -1\)</span>, again selected at random. In general,
+the algorithm randomly selects a <em>k</em> between 0 and <span class="math notranslate nohighlight">\(2^n - 1\)</span>
+and waits k × 51.2 μs, where <em>n</em> is the number of collisions
+experienced so far. The adaptor gives up after a given number of tries
 and reports a transmit error to the host. Adaptors typically retry up to
 16&nbsp;times, although the backoff algorithm caps <em>n</em> in the above formula
 at&nbsp;10.</p>

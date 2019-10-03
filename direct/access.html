@@ -213,10 +213,10 @@ optical variant of repeaters used in the classic Ethernet. Framing then
 happens at the source in the ISP’s premises, in a device called an
 <em>Optical Line Terminal</em> (OLT), and at the end-points in individual
 homes, in a device called an <em>Optical Network Unit</em> (ONU).</p>
-<p><a class="reference external" href="#pon">Figure 1</a> shows an example PON, simplified to depict just one
+<p><a class="reference internal" href="#fig-pon"><span class="std std-ref">Figure 1</span></a> shows an example PON, simplified to depict just one
 ONU and one OLT. In practice, a Central Office would include multiple
 OLTs connecting to thousands of customer homes. For completeness,
-<a class="reference external" href="#pon">Figure 1</a> also includes two other details about how the PON is
+<a class="reference internal" href="#fig-pon"><span class="std std-ref">Figure 1</span></a> also includes two other details about how the PON is
 connected to the ISP’s backbone (and hence, to the rest of the
 Internet). The <em>Agg Switch</em> aggregates traffic from a set of OLTs, and
 the <em>BNG</em> (Broadband Network Gateway) is a piece of Telco equipment
@@ -224,13 +224,10 @@ that, among many other things, meters Internet traffic for the sake of
 billing. As its name implies, the BNG is effectively the gateway between
 the access network (everything to the left of the BNG) and the Internet
 (everything to the right of the BNG).</p>
-<div class="figure" id="id1">
-<img alt="fig-pon" src="direct/figures/access/Slide1.png%20width=600px" />
-<p class="caption"><span class="caption-number">Figure 53: </span><span class="caption-text">fig-pon</span></p>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">An</span> <span class="n">example</span> <span class="n">PON</span> <span class="n">that</span> <span class="n">connects</span> <span class="n">OLTs</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">Central</span> <span class="n">Office</span>
-<span class="n">to</span> <span class="n">ONUs</span> <span class="ow">in</span> <span class="n">homes</span> <span class="ow">and</span> <span class="n">businesses</span><span class="o">.</span>
-</pre></div>
+<div class="figure align-center" id="id1">
+<span id="fig-pon"></span><a class="reference internal image-reference" href="../_images/Slide1.png"><img alt="../_images/Slide1.png" src="../_images/Slide1.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-number">Figure 53: </span><span class="caption-text">An example PON that connects OLTs in the Central Office
+to ONUs in homes and businesses.</span></p>
 </div>
 <p>Because the splitters are passive, PON has to implement some form of
 multi-access protocol. The approach it adopts can be summarized as
@@ -302,7 +299,7 @@ early incarnation of cellular networks (and has since evolved). Given
 that the cellular world continues to evolve at a rapid pace and eNB’s
 are soon to be upgraded to gNB’s, we have decided to use the more
 generic and less cryptic BBU.</div></blockquote>
-<p><a class="reference external" href="#ran">Figure 2</a> depicts one possible configuration of the end-to-end
+<p><a class="reference internal" href="#fig-ran"><span class="std std-ref">Figure 2</span></a> depicts one possible configuration of the end-to-end
 scenario, with a few additional bits of detail. The EPC has multiple
 subcomponents, including an MME (Mobility Management Entity), an HSS
 (Home Subscriber Server), and an S/PGW (Session/Packet Gateway) pair;
@@ -314,16 +311,13 @@ configuration” because the cellular standards allow wide variability in
 how many S/PGWs a given MME is responsible for, making is possible for a
 single MME to manage mobility across a wide geographic area that is
 served by multiple Central Offices. Finally, while not explicitly
-spelled out in <a class="reference external" href="#ran">Figure 2</a>, it is sometimes the case that the
+spelled out in <a class="reference internal" href="#fig-ran"><span class="std std-ref">Figure 2</span></a>, it is sometimes the case that the
 ISP’s PON network is used to connect the remote BBUs back to the Central
 Office.</p>
-<div class="figure" id="id2">
-<img alt="fig-ran" src="direct/figures/access/Slide2.png%20width=600px" />
-<p class="caption"><span class="caption-number">Figure 54: </span><span class="caption-text">fig-ran</span></p>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">A</span> <span class="n">Radio</span> <span class="n">Access</span> <span class="n">Network</span> <span class="p">(</span><span class="n">RAN</span><span class="p">)</span> <span class="n">connecting</span> <span class="n">a</span> <span class="nb">set</span> <span class="n">of</span> <span class="n">cellular</span> <span class="n">devices</span>
-<span class="p">(</span><span class="n">UEs</span><span class="p">)</span> <span class="n">to</span> <span class="n">an</span> <span class="n">Evolved</span> <span class="n">Packet</span> <span class="n">Core</span> <span class="p">(</span><span class="n">EPC</span><span class="p">)</span> <span class="n">hosted</span> <span class="ow">in</span> <span class="n">a</span> <span class="n">Central</span> <span class="n">Office</span><span class="o">.</span>
-</pre></div>
+<div class="figure align-center" id="id2">
+<span id="fig-ran"></span><a class="reference internal image-reference" href="../_images/Slide2.png"><img alt="../_images/Slide2.png" src="../_images/Slide2.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-number">Figure 54: </span><span class="caption-text">A Radio Access Network (RAN) connecting a set of cellular devices
+(UEs) to an Evolved Packet Core (EPC) hosted in a Central Office.</span></p>
 </div>
 <p>The geographic area served by a BBU’s antenna is called a <em>cell</em>. A BBU
 could serve a single cell or use multiple directional antennas to serve
@@ -379,31 +373,28 @@ duration of time. The subbands are narrow (e.g., 15kHz), but the coding
 of user data into OFDMA symbols is designed to minimize the risk of data
 loss due to interference between adjacent bands.</p>
 <p>The use of OFDMA naturally leads to conceptualizing the radio spectrum
-as a two-dimensional resource, as shown in <a class="reference external" href="#ofdma">Figure 3</a>. The
+as a two-dimensional resource, as shown in <a class="reference internal" href="#fig-ofdma"><span class="std std-ref">Figure 3</span></a>. The
 minimal schedulable unit, called a <em>Resource Element (RE)</em>, corresponds
 to a 15kHz-wide band around one subcarrier frequency and the time it
 takes to transmit one OFDMA symbol. The number of bits that can be
 encoded in each symbol depends on the modulation rate, so for example
 using Quadrature Amplitude Modulation (QAM), 16-QAM yields 4 bits per
 symbol and 64-QAM yields 16 bits per symbol.</p>
-<div class="figure" id="id3">
-<img alt="fig-ofdma" src="direct/figures/access/Slide4.png%20width=800px" />
-<p class="caption"><span class="caption-number">Figure 55: </span><span class="caption-text">fig-ofdma</span></p>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">The</span> <span class="n">available</span> <span class="n">radio</span> <span class="n">spectrum</span> <span class="n">abstractly</span> <span class="n">represented</span> <span class="n">by</span>
-<span class="n">a</span> <span class="mi">2</span><span class="o">-</span><span class="n">D</span> <span class="n">grid</span> <span class="n">of</span> <span class="n">schedulable</span> <span class="n">Resource</span> <span class="n">Elements</span><span class="o">.</span>
-</pre></div>
+<div class="figure align-center" id="id3">
+<span id="fig-ofdma"></span><a class="reference internal image-reference" href="../_images/Slide4.png"><img alt="../_images/Slide4.png" src="../_images/Slide4.png" style="width: 800px;" /></a>
+<p class="caption"><span class="caption-number">Figure 55: </span><span class="caption-text">The available radio spectrum abstractly represented by
+a 2-D grid of schedulable Resource Elements.</span></p>
 </div>
 <p>A scheduler makes allocation decisions at the granularity of blocks of
 7x12=84 resource elements, called a <em>Physical Resource Block (PRB)</em>.
-<a class="reference external" href="#ofdma">Figure 3</a> shows two back-to-back PRBs, where UEs are
+<a class="reference internal" href="#fig-ofdma"><span class="std std-ref">Figure 3</span></a> shows two back-to-back PRBs, where UEs are
 depicted by different colored blocks. Of course time continues to flow
 along one axis, and depending on the size of the licensed frequency
 band, there may be many more subcarrier slots (and hence PRBs) available
 along the other axis, so the scheduler is essentially scheduling a
 sequence of PRBs for transmission.</p>
-<p>The 1ms <em>Transmission Time Interval (TTI)</em> shown in <a class="reference external" href="#ofdma">Figure
-3</a> corresponds to the time frame in which the BBU receives
+<p>The 1ms <em>Transmission Time Interval (TTI)</em> shown in <a class="reference internal" href="#fig-ofdma"><span class="std std-ref">Figure
+3</span></a> corresponds to the time frame in which the BBU receives
 feedback from UEs about the quality of the signal they are experiencing.
 This feedback, called a <em>Channel Quality Indicator (CQI)</em>, essentially
 reports the observed signal-to-noise ratio, which impacts the UE’s
@@ -432,10 +423,10 @@ property (shape) of a signal. A sine wave is an example waveform.</div></blockqu
 <ul class="simple">
 <li>For sub-1GHz bands, 5G allows maximum 50MHz bandwidths. In this case,
 there are two waveforms: one with subcarrier spacing of 15kHz and
-another of 30kHz. (We used 15kHz in the example shown in <a class="reference external" href="#ofdma">Figure
-3</a>. The corresponding scheduling intervals are 0.5ms and
-0.25ms, respectively. (We used 0.5ms in the example shown in <a class="reference external" href="#ofdma">Figure
-3</a>.)</li>
+another of 30kHz. (We used 15kHz in the example shown in <a class="reference internal" href="#fig-ofdma"><span class="std std-ref">Figure
+3</span></a>. The corresponding scheduling intervals are 0.5ms and
+0.25ms, respectively. (We used 0.5ms in the example shown in <a class="reference internal" href="#fig-ofdma"><span class="std std-ref">Figure
+3</span></a>.)</li>
 <li>For 1GHz-6GHz bands, maximum bandwidths go up to 100MHz.
 Correspondingly, there are three waveforms with subcarrier spacings
 of 15kHz, 30kHz and 60kHz, corresponding to scheduling intervals of

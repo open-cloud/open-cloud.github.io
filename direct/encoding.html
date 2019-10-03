@@ -183,36 +183,31 @@ signals that the links are able to carry and then to decode the signal
 back into the corresponding binary data at the receiving node. We ignore
 the details of modulation and assume we are working with two discrete
 signals: high and low. In practice, these signals might correspond to
-two different voltages on a copper-based link or two different power
-levels on an optical link.</p>
+two different voltages on a copper-based link, two different power
+levels on an optical link, or two different amplitudes on a radio
+transmission.</p>
 <p>Most of the functions discussed in this chapter are performed by a
 <em>network adaptor</em>—a piece of hardware that connects a node to a link.
 The network adaptor contains a signalling component that actually
 encodes bits into signals at the sending node and decodes signals into
-bits at the receiving node. Thus, as illustrated in <a class="reference external" href="#node-link-1">Figure
-1</a>, signals travel over a link between two signalling
+bits at the receiving node. Thus, as illustrated in <a class="reference internal" href="#fig-node-link-1"><span class="std std-ref">Figure
+1</span></a>, signals travel over a link between two signalling
 components, and bits flow between network adaptors.</p>
-<div class="figure" id="id1">
-<img alt="fig-node-link-1" src="direct/figures/f02-03-9780123850591.png%20width=500px" />
-<p class="caption"><span class="caption-number">Figure 23: </span><span class="caption-text">fig-node-link-1</span></p>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Signals</span> <span class="n">travel</span> <span class="n">between</span> <span class="n">signalling</span> <span class="n">components</span><span class="p">;</span> <span class="n">bits</span>
-<span class="n">flow</span> <span class="n">between</span> <span class="n">adaptors</span><span class="o">.</span>
-</pre></div>
+<div class="figure align-center" id="id1">
+<span id="fig-node-link-1"></span><a class="reference internal image-reference" href="../_images/f02-03-9780123850591.png"><img alt="../_images/f02-03-9780123850591.png" src="../_images/f02-03-9780123850591.png" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-number">Figure 23: </span><span class="caption-text">Signals travel between signalling components; bits
+flow between adaptors.</span></p>
 </div>
 <p>Let’s return to the problem of encoding bits onto signals. The obvious
 thing to do is to map the data value&nbsp;1 onto the high signal and the data
 value&nbsp;0 onto the low signal. This is exactly the mapping used by an
 encoding scheme called, cryptically enough, <em>non-return to zero</em> (NRZ).
-For example, <a class="reference external" href="#nrz">Figure 2</a> schematically depicts the NRZ-encoded
+For example, <a class="reference internal" href="#fig-nrz"><span class="std std-ref">Figure 2</span></a> schematically depicts the NRZ-encoded
 signal (bottom) that corresponds to the transmission of a particular
 sequence of bits (top).</p>
-<div class="figure" id="id2">
-<img alt="fig-nrz" src="direct/figures/f02-04-9780123850591.png%20width=400px" />
-<p class="caption"><span class="caption-number">Figure 24: </span><span class="caption-text">fig-nrz</span></p>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">NRZ</span> <span class="n">encoding</span> <span class="n">of</span> <span class="n">a</span> <span class="n">bit</span> <span class="n">stream</span><span class="o">.</span>
-</pre></div>
+<div class="figure align-center" id="id2">
+<span id="fig-nrz"></span><a class="reference internal image-reference" href="../_images/f02-04-9780123850591.png"><img alt="../_images/f02-04-9780123850591.png" src="../_images/f02-04-9780123850591.png" style="width: 400px;" /></a>
+<p class="caption"><span class="caption-number">Figure 24: </span><span class="caption-text">NRZ encoding of a bit stream.</span></p>
 </div>
 <p>The problem with NRZ is that a sequence of several consecutive 1s means
 that the signal stays high on the link for an extended period of time;
@@ -248,13 +243,13 @@ lots of transitions in the signal, no matter what data is being sent.</p>
 inverted</em> (NRZI), has the sender make a transition from the current
 signal to encode a 1 and stay at the current signal to encode a 0. This
 solves the problem of consecutive 1s, but obviously does nothing for
-consecutive 0s. NRZI is illustrated in <a class="reference external" href="#encode-all">Figure 3</a>. An
+consecutive 0s. NRZI is illustrated in <a class="reference internal" href="#fig-encode-all"><span class="std std-ref">Figure 3</span></a>. An
 alternative, called <em>Manchester encoding</em>, does a more explicit job of
 merging the clock with the signal by transmitting the exclusive OR of
 the NRZ-encoded data and the clock. (Think of the local clock as an
 internal signal that alternates from low to high; a low/high pair is
 considered one clock cycle.) The Manchester encoding is also illustrated
-in <a class="reference external" href="#encode-all">Figure 3</a>. Observe that the Manchester encoding
+in <a class="reference internal" href="#fig-encode-all"><span class="std std-ref">Figure 3</span></a>. Observe that the Manchester encoding
 results in 0 being encoded as a low-to-high transition and 1 being
 encoded as a high-to-low transition. Because both 0s and 1s result in a
 transition to the signal, the clock can be effectively recovered at the
@@ -263,12 +258,9 @@ receiver. (There is also a variant of the Manchester encoding, called
 of the signal equal to the last half of the previous bit’s signal and a
 0 is encoded with the first half of the signal opposite to the last half
 of the previous bit’s signal.)</p>
-<div class="figure" id="id3">
-<img alt="fig-encode-all" src="direct/figures/f02-05-9780123850591.png%20width=400px" />
-<p class="caption"><span class="caption-number">Figure 25: </span><span class="caption-text">fig-encode-all</span></p>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Different</span> <span class="n">encoding</span> <span class="n">strategies</span><span class="o">.</span>
-</pre></div>
+<div class="figure align-center" id="id3">
+<span id="fig-encode-all"></span><a class="reference internal image-reference" href="../_images/f02-05-9780123850591.png"><img alt="../_images/f02-05-9780123850591.png" src="../_images/f02-05-9780123850591.png" style="width: 400px;" /></a>
+<p class="caption"><span class="caption-number">Figure 25: </span><span class="caption-text">Different encoding strategies.</span></p>
 </div>
 <p>The problem with the Manchester encoding scheme is that it doubles the
 rate at which signal transitions are made on the link, which means that
@@ -277,7 +269,7 @@ rate at which the signal changes is called the link’s <em>baud rate</em>. In
 the case of the Manchester encoding, the bit rate is half the baud rate,
 so the encoding is considered only 50% efficient. Keep in mind that if
 the receiver had been able to keep up with the faster baud rate required
-by the Manchester encoding in <a class="reference external" href="#encode-all">Figure 3</a>, then both NRZ
+by the Manchester encoding in <a class="reference internal" href="#fig-encode-all"><span class="std std-ref">Figure 3</span></a>, then both NRZ
 and NRZI could have been able to transmit twice as many bits in the same
 time period.</p>
 <blockquote>
@@ -287,7 +279,14 @@ to utilize (and recognize) four different signals, as opposed to just
 two—e.g., “high” and “low”—then it is possible to encode two bits
 into each clock interval, resulting in a bit rate that is twice the
 baud rate. Similarly, being able to modulate among eight different
-signals means being able to transmit three bits per clock interval.</div></blockquote>
+signals means being able to transmit three bits per clock interval.
+In general, it is important to keep in mind we have over-simplified
+modulation, which is much more sophisticated than transmitting
+“high” and “low” signals. It is not uncommon to vary a combination
+of a signal’s phase and amplitude, making it possible to encode
+16 or even 64 different “symbols” (combination of bits) during each
+time period. <em>QAM (Quadrature Amplitude Modulation)</em> is widely used
+example of such a modulation scheme.</div></blockquote>
 <p>A final encoding that we consider, called <em>4B/5B</em>, attempts to address
 the inefficiency of the Manchester encoding without suffering from the
 problem of having extended durations of high or low signals. The idea of

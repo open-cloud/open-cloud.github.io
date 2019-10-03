@@ -225,20 +225,17 @@ stop-and-wait is straightforward: After transmitting one frame, the
 sender waits for an acknowledgment before transmitting the next frame.
 If the acknowledgment does not arrive after a certain period of time,
 the sender times out and retransmits the original frame.</p>
-<div class="figure" id="id1">
-<img alt="fig-ack-timeout" src="direct/figures/f02-17-9780123850591.png%20width=500px" />
-<p class="caption"><span class="caption-number">Figure 34: </span><span class="caption-text">fig-ack-timeout</span></p>
+<div class="figure align-center" id="id1">
+<span id="fig-ack-timeout"></span><a class="reference internal image-reference" href="../_images/f02-17-9780123850591.png"><img alt="../_images/f02-17-9780123850591.png" src="../_images/f02-17-9780123850591.png" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-number">Figure 34: </span><span class="caption-text">Timeline showing four different scenarios for the
+stop-and-wait algorithm. (a)&nbsp;The ACK is received before the timer
+expires; (b)&nbsp;the original frame is lost; (c)&nbsp;the ACK is lost;
+(d)&nbsp;the timeout fires too soon.</span></p>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Timeline</span> <span class="n">showing</span> <span class="n">four</span> <span class="n">different</span> <span class="n">scenarios</span> <span class="k">for</span> <span class="n">the</span>
-<span class="n">stop</span><span class="o">-</span><span class="ow">and</span><span class="o">-</span><span class="n">wait</span> <span class="n">algorithm</span><span class="o">.</span> <span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="n">The</span> <span class="n">ACK</span> <span class="ow">is</span> <span class="n">received</span> <span class="n">before</span> <span class="n">the</span> <span class="n">timer</span>
-<span class="n">expires</span><span class="p">;</span> <span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="n">the</span> <span class="n">original</span> <span class="n">frame</span> <span class="ow">is</span> <span class="n">lost</span><span class="p">;</span> <span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="n">the</span> <span class="n">ACK</span> <span class="ow">is</span> <span class="n">lost</span><span class="p">;</span>
-<span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="n">the</span> <span class="n">timeout</span> <span class="n">fires</span> <span class="n">too</span> <span class="n">soon</span><span class="o">.</span>
-</pre></div>
-</div>
-<p><a class="reference external" href="#ack-timeout">Figure 1</a> illustrates timelines for four different
+<p><a class="reference internal" href="#fig-ack-timeout"><span class="std std-ref">Figure 1</span></a> illustrates timelines for four different
 scenarios that result from this basic algorithm. The sending side is
 represented on the left, the receiving side is depicted on the right,
-and time flows from top to bottom. <a class="reference external" href="#ack-timeout">Figure 1(a)</a> shows
+and time flows from top to bottom. <a class="reference internal" href="#fig-ack-timeout"><span class="std std-ref">Figure 1(a)</span></a> shows
 the situation in which the ACK is received before the timer expires; (b)
 and (c) show the situation in which the original frame and the ACK,
 respectively, are lost; and (d) shows the situation in which the timeout
@@ -258,7 +255,7 @@ help a protocol designer be prepared for every eventuality.</p>
 <p>There is one important subtlety in the stop-and-wait algorithm. Suppose
 the sender sends a frame and the receiver acknowledges it, but the
 acknowledgment is either lost or delayed in arriving. This situation is
-illustrated in timelines (c) and (d) of <a class="reference external" href="#ack-timeout">Figure 1</a>. In
+illustrated in timelines (c) and (d) of <a class="reference internal" href="#fig-ack-timeout"><span class="std std-ref">Figure 1</span></a>. In
 both cases, the sender times out and retransmits the original frame, but
 the receiver will think that it is the next frame, since it correctly
 received and acknowledged the first frame. This has the potential to
@@ -266,18 +263,15 @@ cause duplicate copies of a frame to be delivered. To address this
 problem, the header for a stop-and-wait protocol usually includes a
 1-bit sequence number—that is, the sequence number can take on the
 values 0 and 1—and the sequence numbers used for each frame alternate,
-as illustrated in <a class="reference external" href="#stop-wait">Figure 2</a>. Thus, when the sender
+as illustrated in <a class="reference internal" href="#fig-stop-wait"><span class="std std-ref">Figure 2</span></a>. Thus, when the sender
 retransmits frame 0, the receiver can determine that it is seeing a
 second copy of frame 0 rather than the first copy of frame 1 and
 therefore can ignore it (the receiver still acknowledges it, in case the
 first ACK was lost).</p>
-<div class="figure" id="id2">
-<img alt="fig-stop-wait" src="direct/figures/f02-18-9780123850591.png%20width=250px" />
-<p class="caption"><span class="caption-number">Figure 35: </span><span class="caption-text">fig-stop-wait</span></p>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Timeline</span> <span class="k">for</span> <span class="n">stop</span><span class="o">-</span><span class="ow">and</span><span class="o">-</span><span class="n">wait</span> <span class="k">with</span> <span class="mi">1</span><span class="o">-</span><span class="n">bit</span> <span class="n">sequence</span>
-<span class="n">number</span><span class="o">.</span>
-</pre></div>
+<div class="figure align-center" id="id2">
+<span id="fig-stop-wait"></span><a class="reference internal image-reference" href="../_images/f02-18-9780123850591.png"><img alt="../_images/f02-18-9780123850591.png" src="../_images/f02-18-9780123850591.png" style="width: 250px;" /></a>
+<p class="caption"><span class="caption-number">Figure 35: </span><span class="caption-text">Timeline for stop-and-wait with 1-bit sequence
+number.</span></p>
 </div>
 <p>The main shortcoming of the stop-and-wait algorithm is that it allows
 the sender to have only one outstanding frame on the link at a time, and
@@ -286,20 +280,19 @@ this may be far below the link’s capacity. Consider, for example, a
 bandwidth product of 67.5&nbsp;Kb, or approximately 8&nbsp;KB. Since the sender
 can send only one frame per RTT, and assuming a frame size of 1&nbsp;KB, this
 implies a maximum sending rate of</p>
-<p>{% center %} Bits-Per-Frame / Time-Per-Frame = 1024 x 8 / 0.045 = 182
-kbps {% endcenter %}</p>
-<p>or about one-eighth of the link’s capacity. To use the link fully, then,
+<p class="centered">
+<strong>Bits-Per-Frame / Time-Per-Frame = 1024 x 8 / 0.045 = 182 kbps</strong></p><p>or about one-eighth of the link’s capacity. To use the link fully, then,
 we’d like the sender to be able to transmit up to eight frames before
 having to wait for an acknowledgment.</p>
-<blockquote>
-<div><p><strong>Key Takeaway</strong></p>
-<p>The significance of the delay × bandwidth product is that it
+<div class="admonition-key-takeaway admonition">
+<p class="first admonition-title">Key Takeaway</p>
+<p class="last">The significance of the delay × bandwidth product is that it
 represents the amount of data that could be in transit. We would like
 to be able to send this much data without waiting for the first
 acknowledgment. The principle at work here is often referred to as
 <em>keeping the pipe full</em>. The algorithms presented in the following
 two subsections do exactly this.</p>
-</div></blockquote>
+</div>
 </div>
 <div class="section" id="sliding-window">
 <h2>Sliding Window<a class="headerlink" href="#sliding-window" title="Permalink to this headline">¶</a></h2>
@@ -308,13 +301,10 @@ product of 8&nbsp;KB and frames are 1&nbsp;KB in size. We would like the sender 
 be ready to transmit the ninth frame at pretty much the same moment that
 the ACK for the first frame arrives. The algorithm that allows us to do
 this is called <em>sliding window</em>, and an illustrative timeline is given
-in <a class="reference external" href="#slide-win">Figure 3</a>.</p>
-<div class="figure" id="id3">
-<img alt="fig-slide-win" src="direct/figures/f02-19-9780123850591.png%20width=250px" />
-<p class="caption"><span class="caption-number">Figure 36: </span><span class="caption-text">fig-slide-win</span></p>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Timeline</span> <span class="k">for</span> <span class="n">the</span> <span class="n">sliding</span> <span class="n">window</span> <span class="n">algorithm</span><span class="o">.</span>
-</pre></div>
+in <a class="reference internal" href="#fig-slide-win"><span class="std std-ref">Figure 3</span></a>.</p>
+<div class="figure align-center" id="id3">
+<span id="fig-slide-win"></span><a class="reference internal image-reference" href="../_images/f02-19-9780123850591.png"><img alt="../_images/f02-19-9780123850591.png" src="../_images/f02-19-9780123850591.png" style="width: 250px;" /></a>
+<p class="caption"><span class="caption-number">Figure 36: </span><span class="caption-text">Timeline for the sliding window algorithm.</span></p>
 </div>
 <div class="section" id="the-sliding-window-algorithm">
 <h3>The Sliding Window Algorithm<a class="headerlink" href="#the-sliding-window-algorithm" title="Permalink to this headline">¶</a></h3>
@@ -329,13 +319,10 @@ of the <em>last acknowledgment received</em>; and <code class="docutils literal 
 number of the <em>last frame sent</em>. The sender also maintains the following
 invariant:</p>
 <p><code class="docutils literal notranslate"><span class="pre">LFS</span> <span class="pre">-</span> <span class="pre">LAR</span> <span class="pre">&lt;=</span> <span class="pre">SWS</span></code></p>
-<p>This situation is illustrated in <a class="reference external" href="#sw-sender">Figure 4</a>.</p>
-<div class="figure" id="id4">
-<img alt="fig-sw-sender" src="direct/figures/f02-20-9780123850591.png%20width=400px" />
-<p class="caption"><span class="caption-number">Figure 37: </span><span class="caption-text">fig-sw-sender</span></p>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Sliding</span> <span class="n">window</span> <span class="n">on</span> <span class="n">sender</span><span class="o">.</span>
-</pre></div>
+<p>This situation is illustrated in <a class="reference internal" href="#fig-sw-sender"><span class="std std-ref">Figure 4</span></a>.</p>
+<div class="figure align-center" id="id4">
+<span id="fig-sw-sender"></span><a class="reference internal image-reference" href="../_images/f02-20-9780123850591.png"><img alt="../_images/f02-20-9780123850591.png" src="../_images/f02-20-9780123850591.png" style="width: 400px;" /></a>
+<p class="caption"><span class="caption-number">Figure 37: </span><span class="caption-text">Sliding window on sender.</span></p>
 </div>
 <p>When an acknowledgment arrives, the sender moves <code class="docutils literal notranslate"><span class="pre">LAR</span></code> to the right,
 thereby allowing the sender to transmit another frame. Also, the sender
@@ -350,13 +337,10 @@ denotes the sequence number of the <em>largest acceptable frame</em>; and
 <code class="docutils literal notranslate"><span class="pre">LFR</span></code> denotes the sequence number of the <em>last frame received</em>. The
 receiver also maintains the following invariant:</p>
 <p><code class="docutils literal notranslate"><span class="pre">LAF</span> <span class="pre">-</span> <span class="pre">LFR</span> <span class="pre">&lt;=</span> <span class="pre">RWS</span></code></p>
-<p>This situation is illustrated in <a class="reference external" href="#sw-rcvr">Figure 5</a>.</p>
-<div class="figure" id="id5">
-<img alt="fig-sw-rcvr" src="direct/figures/f02-21-9780123850591.png%20width=400px" />
-<p class="caption"><span class="caption-number">Figure 38: </span><span class="caption-text">fig-sw-rcvr</span></p>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Sliding</span> <span class="n">window</span> <span class="n">on</span> <span class="n">receiver</span><span class="o">.</span>
-</pre></div>
+<p>This situation is illustrated in <a class="reference internal" href="#fig-sw-rcvr"><span class="std std-ref">Figure 5</span></a>.</p>
+<div class="figure align-center" id="id5">
+<span id="fig-sw-rcvr"></span><a class="reference internal image-reference" href="../_images/f02-21-9780123850591.png"><img alt="../_images/f02-21-9780123850591.png" src="../_images/f02-21-9780123850591.png" style="width: 400px;" /></a>
+<p class="caption"><span class="caption-number">Figure 38: </span><span class="caption-text">Sliding window on receiver.</span></p>
 </div>
 <p>When a frame with sequence number <code class="docutils literal notranslate"><span class="pre">SeqNum</span></code> arrives, the receiver takes
 the following action. If <code class="docutils literal notranslate"><span class="pre">SeqNum</span> <span class="pre">&lt;=</span> <span class="pre">LFR</span></code> or <code class="docutils literal notranslate"><span class="pre">SeqNum</span> <span class="pre">&gt;</span> <span class="pre">LAF</span></code>, then the
@@ -726,9 +710,9 @@ receiver is capable of receiving corresponds to how much free buffer
 space it has. As in the case of ordered delivery, we need to make sure
 that flow control is necessary at the link level before incorporating it
 into the sliding window protocol.</p>
-<blockquote>
-<div><p><strong>Key Takeaway</strong></p>
-<p>One important concept to take away from this discussion is the system
+<div class="admonition-key-takeaway admonition">
+<p class="first admonition-title">Key Takeaway</p>
+<p class="last">One important concept to take away from this discussion is the system
 design principle we call <em>separation of concerns</em>. That is, you must
 be careful to distinguish between different functions that are
 sometimes rolled together in one mechanism, and you must make sure
@@ -737,7 +721,7 @@ effective way. In this particular case, reliable delivery, ordered
 delivery, and flow control are sometimes combined in a single sliding
 window protocol, and we should ask ourselves if this is the right
 thing to do at the link level.</p>
-</div></blockquote>
+</div>
 </div>
 </div>
 <div class="section" id="concurrent-logical-channels">

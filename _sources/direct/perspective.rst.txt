@@ -21,16 +21,14 @@ strategies used on these seemingly disparate types of links so that they
 can all be made reliable and useful to higher layers in the protocol
 stack. This chapter examines those strategies.
 
-.. figure:: figures/f02-01-9780123850591.png%20width=650px
-   :alt: fig-isp-access
+.. _fig-isp-access:
+.. figure:: figures/f02-01-9780123850591.png
+   :width: 650px
+   :align: center
+   
+   An end-user's view of the Internet.
 
-   fig-isp-access
-
-::
-
-   An end-user's view of the  Internet.
-
-`Figure 1 <#isp-access>`__ illustrates various types of links that might
+:ref:`Figure 1 <fig-isp-access>` illustrates various types of links that might
 be found in today’s Internet. On the left, we see a variety of end-user
 devices ranging from smartphones to tablets to full-fledged computers
 connected by various means to an ISP. While those links might use
@@ -65,10 +63,10 @@ understand how to send complete packets over just about any sort of
 link, no matter what physical medium is involved.
 
 One way to characterize links, then, is by the medium they
-use—typically, copper wire in some form, such as twisted pair (phone)
-and coaxial (cable); optical fiber, which is used for both
-fiber-to-the-home and many long-distance links in the Internet’s
-backbone; or air/free space for wireless links.
+use—typically, copper wire in some form, such as twisted pair (some
+Ethernets and landline phones) and coaxial (cable); optical fiber,
+which is used for both fiber-to-the-home and many long-distance links
+in the Internet’s backbone; or air/free space for wireless links.
 
 Another important link characteristic is the *frequency*, measured in
 hertz, with which the electromagnetic waves oscillate. The distance
@@ -81,7 +79,7 @@ voice-grade telephone line, which carries continuous electromagnetic
 signals ranging between 300 Hz and 3300 Hz; a 300-Hz wave traveling
 through copper would have a wavelength of
 
-{% center %} SpeedOfLightInCopper / Frequency {% endcenter %}
+.. centered:: SpeedOfLightInCopper / Frequency
 
 .. math::
 
@@ -95,17 +93,15 @@ through copper would have a wavelength of
 
 Generally, electromagnetic waves span a much wider range of frequencies,
 ranging from radio waves, to infrared light, to visible light, to x-rays
-and gamma rays. `Figure 2 <#spectrum>`__ depicts the electromagnetic
+and gamma rays. :ref:`Figure 2 <fig-spectrum>` depicts the electromagnetic
 spectrum and shows which media are commonly used to carry which
 frequency bands.
-
-.. figure:: figures/f02-02-9780123850591.png%20width=600px
-   :alt: fig-spectrum
-
-   fig-spectrum
-
-::
-
+ 
+.. _fig-spectrum:
+.. figure:: figures/f02-02-9780123850591.png
+   :width: 600px
+   :align: center
+   
    Electromagnetic spectrum.
 
 So far we understand a link to be a physical medium carrying signals in
@@ -133,7 +129,7 @@ types are found. Most consumers interact with the Internet either
 through wireless networks (which they encounter in coffee shops,
 airports, universities, etc.) or through so-called *last-mile* links (or
 alternatively, *access networks*) provided by an ISP, as illustrated in
-`Figure 1 <#isp-access>`__. These link types are summarized in :ref:`Table
+:ref:`Figure 1 <fig-isp-access>`. These link types are summarized in :ref:`Table
 1 <tab-home>`. They typically are chosen because they are cost-effective
 ways of reaching millions of consumers. DSL (Digital Subscriber Line),
 for example, is an older technology that was deployed over the existing
@@ -146,7 +142,8 @@ over recently deployed fiber.
 .. _tab-home:
 .. table::  Common services available for the last-mile connection to your home. 
    :widths: auto
-
+   :align: center
+	   
 +-----------------+----------------+
 | Service         | Bandwidth      |
 +=================+================+

@@ -192,14 +192,11 @@ of copper wire or cable to connect. Fortunately, there are many common
 strategies used on these seemingly disparate types of links so that they
 can all be made reliable and useful to higher layers in the protocol
 stack. This chapter examines those strategies.</p>
-<div class="figure" id="id1">
-<img alt="fig-isp-access" src="direct/figures/f02-01-9780123850591.png%20width=650px" />
-<p class="caption"><span class="caption-number">Figure 21: </span><span class="caption-text">fig-isp-access</span></p>
+<div class="figure align-center" id="id1">
+<span id="fig-isp-access"></span><a class="reference internal image-reference" href="../_images/f02-01-9780123850591.png"><img alt="../_images/f02-01-9780123850591.png" src="../_images/f02-01-9780123850591.png" style="width: 650px;" /></a>
+<p class="caption"><span class="caption-number">Figure 21: </span><span class="caption-text">An end-user’s view of the Internet.</span></p>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">An</span> <span class="n">end</span><span class="o">-</span><span class="n">user</span><span class="s1">&#39;s view of the  Internet.</span>
-</pre></div>
-</div>
-<p><a class="reference external" href="#isp-access">Figure 1</a> illustrates various types of links that might
+<p><a class="reference internal" href="#fig-isp-access"><span class="std std-ref">Figure 1</span></a> illustrates various types of links that might
 be found in today’s Internet. On the left, we see a variety of end-user
 devices ranging from smartphones to tablets to full-fledged computers
 connected by various means to an ISP. While those links might use
@@ -231,10 +228,10 @@ other issues mentioned above. By the end of this chapter, we’ll
 understand how to send complete packets over just about any sort of
 link, no matter what physical medium is involved.</p>
 <p>One way to characterize links, then, is by the medium they
-use—typically, copper wire in some form, such as twisted pair (phone)
-and coaxial (cable); optical fiber, which is used for both
-fiber-to-the-home and many long-distance links in the Internet’s
-backbone; or air/free space for wireless links.</p>
+use—typically, copper wire in some form, such as twisted pair (some
+Ethernets and landline phones) and coaxial (cable); optical fiber,
+which is used for both fiber-to-the-home and many long-distance links
+in the Internet’s backbone; or air/free space for wireless links.</p>
 <p>Another important link characteristic is the <em>frequency</em>, measured in
 hertz, with which the electromagnetic waves oscillate. The distance
 between a pair of adjacent maxima or minima of a wave, typically
@@ -245,22 +242,19 @@ equal to its wavelength. We have already seen the example of a
 voice-grade telephone line, which carries continuous electromagnetic
 signals ranging between 300&nbsp;Hz and 3300&nbsp;Hz; a 300-Hz wave traveling
 through copper would have a wavelength of</p>
-<p>{% center %} SpeedOfLightInCopper / Frequency {% endcenter %}</p>
-<div class="math notranslate nohighlight">
+<p class="centered">
+<strong>SpeedOfLightInCopper / Frequency</strong></p><div class="math notranslate nohighlight">
 \[= 2/3 \times 3 \times 10^8 / 300\]</div>
 <div class="math notranslate nohighlight">
 \[= 667 \times 10^3\ meters\]</div>
 <p>Generally, electromagnetic waves span a much wider range of frequencies,
 ranging from radio waves, to infrared light, to visible light, to&nbsp;x-rays
-and gamma rays. <a class="reference external" href="#spectrum">Figure 2</a> depicts the electromagnetic
+and gamma rays. <a class="reference internal" href="#fig-spectrum"><span class="std std-ref">Figure 2</span></a> depicts the electromagnetic
 spectrum and shows which media are commonly used to carry which
 frequency bands.</p>
-<div class="figure" id="id2">
-<img alt="fig-spectrum" src="direct/figures/f02-02-9780123850591.png%20width=600px" />
-<p class="caption"><span class="caption-number">Figure 22: </span><span class="caption-text">fig-spectrum</span></p>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Electromagnetic</span> <span class="n">spectrum</span><span class="o">.</span>
-</pre></div>
+<div class="figure align-center" id="id2">
+<span id="fig-spectrum"></span><a class="reference internal image-reference" href="../_images/f02-02-9780123850591.png"><img alt="../_images/f02-02-9780123850591.png" src="../_images/f02-02-9780123850591.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-number">Figure 22: </span><span class="caption-text">Electromagnetic spectrum.</span></p>
 </div>
 <p>So far we understand a link to be a physical medium carrying signals in
 the form of electromagnetic waves. Such links provide the foundation for
@@ -286,7 +280,7 @@ types are found. Most consumers interact with the Internet either
 through wireless networks (which they encounter in coffee shops,
 airports, universities, etc.) or through so-called <em>last-mile</em> links (or
 alternatively, <em>access networks</em>) provided by an ISP, as illustrated in
-<a class="reference external" href="#isp-access">Figure 1</a>. These link types are summarized in <a class="reference internal" href="#tab-home"><span class="std std-ref">Table
+<a class="reference internal" href="#fig-isp-access"><span class="std std-ref">Figure 1</span></a>. These link types are summarized in <a class="reference internal" href="#tab-home"><span class="std std-ref">Table
 1</span></a>. They typically are chosen because they are cost-effective
 ways of reaching millions of consumers. DSL (Digital Subscriber Line),
 for example, is an older technology that was deployed over the existing

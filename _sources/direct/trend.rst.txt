@@ -29,19 +29,20 @@ services—e.g., Public Safety, Autonomous Vehicles, Automated Factories,
 Internet-of-Things (IoT), Immersive User Interfaces—that benefit from
 low latency connectivity to end users, and more importantly, to the
 increasing number of devices those users surround themselves with. This
-results in a multi-tier cloud similar to the one shown in `Figure
-1 <#cord>`__.
+results in a multi-tier cloud similar to the one shown in :ref:`Figure
+1 <fig-cord>`.
 
-.. figure:: figures/access/Slide3.png%20width=600px
-   :alt: fig-cord
+.. _fig-cord:
+.. figure:: figures/access/Slide3.png
+   :width: 600px
+   :align: center
+   
+  Emerging multi-tier cloud includes datacenter-based public clouds,
+  IXP-hosted distributed clouds, and access-based edge clouds, such as
+  CORD. While there are on the order of 150 IXP-hosted clouds worldwide,
+  we can expect there to be thousands or even tens of thousands of edge
+  clouds.
 
-   fig-cord
-
-Emerging multi-tier cloud includes datacenter-based public clouds,
-IXP-hosted distributed clouds, and access-based edge clouds, such as
-CORD. While there are on the order of 150 IXP-hosted clouds worldwide,
-we can expect there to be thousands or even tens of thousands of edge
-clouds.
 
 This is all part of the growing trend to move functionality out of the
 datacenter and closer to the network edge, a trend that puts cloud
