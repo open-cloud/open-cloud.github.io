@@ -561,7 +561,7 @@ protocols.
 
 The basic Bluetooth network configuration, called a *piconet*, consists
 of a master device and up to seven slave devices, as shown in
-:ref:`Figure 9 fig-wirelessBluetoothPiconet>`. Any communication is 
+:ref:`Figure 9 <fig-wirelessBluetoothPiconet>`. Any communication is 
 between the master and a slave; the slaves do not communicate directly
 with each other. Because slaves have a simpler role, their Bluetooth
 hardware and software can be simpler and cheaper.

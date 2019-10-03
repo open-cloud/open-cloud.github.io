@@ -269,24 +269,23 @@ rate at which the signal changes is called the link’s <em>baud rate</em>. In
 the case of the Manchester encoding, the bit rate is half the baud rate,
 so the encoding is considered only 50% efficient. Keep in mind that if
 the receiver had been able to keep up with the faster baud rate required
-by the Manchester encoding in <a class="reference internal" href="#fig-encode-all"><span class="std std-ref">Figure 3</span></a>, then both NRZ
-and NRZI could have been able to transmit twice as many bits in the same
-time period.</p>
-<blockquote>
-<div>The bit rate isn’t necessarily less than or equal to the baud rate,
-as the Manchester encoding suggests. If the modulation scheme is able
-to utilize (and recognize) four different signals, as opposed to just
-two—e.g., “high” and “low”—then it is possible to encode two bits
-into each clock interval, resulting in a bit rate that is twice the
-baud rate. Similarly, being able to modulate among eight different
-signals means being able to transmit three bits per clock interval.
-In general, it is important to keep in mind we have over-simplified
+by the Manchester encoding in <a class="reference internal" href="#fig-encode-all"><span class="std std-ref">Figure 3</span></a>, then
+both NRZ and NRZI could have been able to transmit twice as many bits
+in the same time period.</p>
+<p>Note that bit rate isn’t necessarily less than or equal to the baud
+rate, as the Manchester encoding suggests. If the modulation scheme is
+able to utilize (and recognize) four different signals, as opposed to
+just two (e.g., “high” and “low”), then it is possible to encode two bits
+into each clock interval, resulting in a bit rate that is twice the baud
+rate. Similarly, being able to modulate among eight different signals
+means being able to transmit three bits per clock interval. In
+general, it is important to keep in mind we have over-simplified
 modulation, which is much more sophisticated than transmitting
 “high” and “low” signals. It is not uncommon to vary a combination
 of a signal’s phase and amplitude, making it possible to encode
-16 or even 64 different “symbols” (combination of bits) during each
-time period. <em>QAM (Quadrature Amplitude Modulation)</em> is widely used
-example of such a modulation scheme.</div></blockquote>
+16 or even 64 different patterns (often dalled <em>symbols</em>) during each
+clock interval. <em>QAM (Quadrature Amplitude Modulation)</em> is widely used
+example of such a modulation scheme.</p>
 <p>A final encoding that we consider, called <em>4B/5B</em>, attempts to address
 the inefficiency of the Manchester encoding without suffering from the
 problem of having extended durations of high or low signals. The idea of
@@ -361,6 +360,8 @@ consecutive 1s. Note that the 4B/5B encoding results in 80% efficiency.</p>
 </tr>
 </tbody>
 </table>
+<blockquote>
+<div>4B/5B encoding.</div></blockquote>
 <p><a class="reference internal" href="#tab-4b5b"><span class="std std-ref">Table 1</span></a> gives the 5-bit codes that correspond to each of the
 16 possible 4-bit data symbols. Notice that since 5&nbsp;bits are enough to
 encode 32 different codes, and we are using only 16 of these for data,

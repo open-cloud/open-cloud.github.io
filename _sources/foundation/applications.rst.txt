@@ -1,5 +1,5 @@
 1.1 Applications
-============
+================
 
 Most people know the Internet through its applications: the World Wide
 Web, email, social media, streaming music or movies, videoconferencing,
@@ -121,7 +121,7 @@ still deemed satisfactory. Also, interactive applications usually entail
 audio and/or video flows in both directions, while a streaming
 application is most likely sending video or audio in only one direction.
 
-.. _fig-vic
+.. _fig-vic:
 .. figure:: figures/f01-01-9780123850591.png
    :width: 600px
    :align: center

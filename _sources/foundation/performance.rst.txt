@@ -22,7 +22,7 @@ network might have a bandwidth of 10 million bits/second (Mbps), meaning
 that it is able to deliver 10 million bits every second. It is sometimes
 useful to think of bandwidth in terms of how long it takes to transmit
 each bit of data. On a 10-Mbps network, for example, it takes 0.1
-microsecond (𝜇s) to transmit each bit.
+microsecond (μs) to transmit each bit.
 
 Bandwidth and throughput are subtly different terms. First of all,
 bandwidth is literally a measure of the width of a frequency band. For
@@ -60,8 +60,8 @@ channel. At the physical level, bandwidth is constantly improving, with
 no end in sight. Intuitively, if you think of a second of time as a
 distance you could measure with a ruler and bandwidth as how many bits
 fit in that distance, then you can think of each bit as a pulse of some
-width. For example, each bit on a 1-Mbps link is 1 𝜇s wide, while each
-bit on a 2-Mbps link is 0.5 𝜇s wide, as illustrated in :ref:`Figure
+width. For example, each bit on a 1-Mbps link is 1 μs wide, while each
+bit on a 2-Mbps link is 0.5 μs wide, as illustrated in :ref:`Figure
 1 <fig-bit-width>`. The more sophisticated the transmitting and receiving
 technology, the narrower each bit can become and, thus, the higher the
 bandwidth. For logical process-to-process channels, bandwidth is also
@@ -131,7 +131,7 @@ with a 100-ms RTT than it will on an across-the-room channel with a
 1-ms RTT. Whether the channel is 1 Mbps or 100 Mbps is relatively
 insignificant, however, since the former implies that the time to
 transmit a byte (``Transimt``) is 8 𝜇s and the latter implies
-``Transmit`` = 0.08 𝜇s.
+``Transmit`` = 0.08 μs.
 
 In contrast, consider a digital library program that is being asked to
 fetch a 25-megabyte (MB) image—the more bandwidth that is available, the
@@ -246,7 +246,7 @@ links.
 +---------------------+-----------+------------------+---------+-----------------+
 | Link Type           | Bandwidth | One-Way Distance | RTT     | RTT x Bandwidth |
 +=====================+===========+==================+=========+=================+
-| Wireless LAN        | 54 Mbps   | 50 m             | 0.33 𝜇s | 18 bits         |
+| Wireless LAN        | 54 Mbps   | 50 m             | 0.33 μs | 18 bits         |
 +---------------------+-----------+------------------+---------+-----------------+
 | Satellite           | 1 Gbps    | 35,000 km        | 230 ms  | 230 Mb          |
 +---------------------+-----------+------------------+---------+-----------------+
