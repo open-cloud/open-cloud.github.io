@@ -37,11 +37,11 @@ results in a multi-tier cloud similar to the one shown in :ref:`Figure
    :width: 600px
    :align: center
    
-  Emerging multi-tier cloud includes datacenter-based public clouds,
-  IXP-hosted distributed clouds, and access-based edge clouds, such as
-  CORD. While there are on the order of 150 IXP-hosted clouds
-  worldwide, we can expect there to be thousands or even tens of
-  thousands of edge clouds.
+   Emerging multi-tier cloud includes datacenter-based public clouds,
+   IXP-hosted distributed clouds, and access-based edge clouds, such as
+   CORD. While there are on the order of 150 IXP-hosted clouds
+   worldwide, we can expect there to be thousands or even tens of
+   thousands of edge clouds.
   
 This is all part of the growing trend to move functionality out of the
 datacenter and closer to the network edge, a trend that puts cloud
