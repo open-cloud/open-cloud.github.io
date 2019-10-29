@@ -130,7 +130,7 @@ application will perform much differently on a transcontinental channel
 with a 100-ms RTT than it will on an across-the-room channel with a
 1-ms RTT. Whether the channel is 1 Mbps or 100 Mbps is relatively
 insignificant, however, since the former implies that the time to
-transmit a byte (``Transimt``) is 8 𝜇s and the latter implies
+transmit a byte (``Transimt``) is 8 μs and the latter implies
 ``Transmit`` = 0.08 μs.
 
 In contrast, consider a digital library program that is being asked to
@@ -241,17 +241,18 @@ links.
 
 .. _tab-delay-bw:
 .. table::  Example delay × bandwidth products. 
+   :align: center
    :widths: auto
 
-+---------------------+-----------+------------------+---------+-----------------+
-| Link Type           | Bandwidth | One-Way Distance | RTT     | RTT x Bandwidth |
-+=====================+===========+==================+=========+=================+
-| Wireless LAN        | 54 Mbps   | 50 m             | 0.33 μs | 18 bits         |
-+---------------------+-----------+------------------+---------+-----------------+
-| Satellite           | 1 Gbps    | 35,000 km        | 230 ms  | 230 Mb          |
-+---------------------+-----------+------------------+---------+-----------------+
-| Cross-country fiber | 10 Gbps   | 4,000 km         | 40 ms   | 400 Mb          |
-+---------------------+-----------+------------------+---------+-----------------+
+   +---------------------+-----------+------------------+---------+-----------------+
+   | Link Type           | Bandwidth | One-Way Distance | RTT     | RTT x Bandwidth |
+   +=====================+===========+==================+=========+=================+
+   | Wireless LAN        | 54 Mbps   | 50 m             | 0.33 μs | 18 bits         |
+   +---------------------+-----------+------------------+---------+-----------------+
+   | Satellite           | 1 Gbps    | 35,000 km        | 230 ms  | 230 Mb          |
+   +---------------------+-----------+------------------+---------+-----------------+
+   | Cross-country fiber | 10 Gbps   | 4,000 km         | 40 ms   | 400 Mb          |
+   +---------------------+-----------+------------------+---------+-----------------+
 
 High-Speed Networks
 -------------------

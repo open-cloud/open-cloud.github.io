@@ -108,6 +108,10 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../direct.html">Chapter 2:  Direct Links</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../internetworking.html">Chapter 3:  Internetworking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scaling.html">Chapter 4:  Advanced Internetworking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../e2e.html">Chapter 5:  End-to-End Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../congestion.html">Chapter 6:  Congestion Control</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../README.html">About This Book</a></li>
 </ul>
 
@@ -291,7 +295,7 @@ application will perform much differently on a transcontinental channel
 with a 100-ms&nbsp;RTT than it will on an across-the-room channel with a
 1-ms&nbsp;RTT. Whether the channel is 1&nbsp;Mbps or 100&nbsp;Mbps is relatively
 insignificant, however, since the former implies that the time to
-transmit a byte (<code class="docutils literal notranslate"><span class="pre">Transimt</span></code>) is 8 𝜇s and the latter implies
+transmit a byte (<code class="docutils literal notranslate"><span class="pre">Transimt</span></code>) is 8 μs and the latter implies
 <code class="docutils literal notranslate"><span class="pre">Transmit</span></code> = 0.08 μs.</p>
 <p>In contrast, consider a digital library program that is being asked to
 fetch a 25-megabyte (MB) image—the more bandwidth that is available, the
@@ -383,14 +387,8 @@ two). Usually, whether the “delay” in delay × bandwidth means one-way
 latency or RTT is made clear by the context. <a class="reference internal" href="#tab-delay-bw"><span class="std std-ref">Table 1</span></a>
 shows some examples of RTT × bandwidth products for some typical network
 links.</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="28%" />
-<col width="14%" />
-<col width="24%" />
-<col width="12%" />
-<col width="22%" />
-</colgroup>
+<span id="tab-delay-bw"></span><table border="1" class="colwidths-auto docutils align-center" id="id4">
+<caption><span class="caption-number">Table 1: </span><span class="caption-text">Example delay × bandwidth products.</span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Link Type</th>
 <th class="head">Bandwidth</th>
@@ -448,7 +446,7 @@ needs to be transmitted across a 1-Mbps network, while it looks like a
 single packet on a 1-Gbps network. To help drive this point home,
 consider that a 1-MB file is to a 1-Gbps network what a 1-KB <em>packet</em> is
 to a 1-Mbps network.</p>
-<div class="figure align-center" id="id4">
+<div class="figure align-center" id="id5">
 <span id="fig-bw-lat"></span><a class="reference internal image-reference" href="../_images/f01-19-9780123850591.png"><img alt="../_images/f01-19-9780123850591.png" src="../_images/f01-19-9780123850591.png" style="width: 500px;" /></a>
 <p class="caption"><span class="caption-number">Figure 19: </span><span class="caption-text">Relationship between bandwidth and latency. A 1-MB
 file would fill the 1-Mbps link 80 times but only fill 1/12th of a
@@ -556,7 +554,7 @@ single physical link, but it can happen when packets experience
 different queuing delays in a multihop packet-switched network. This
 queuing delay corresponds to the component of latency defined earlier in
 this section, which varies with time.</p>
-<div class="figure align-center" id="id5">
+<div class="figure align-center" id="id6">
 <span id="fig-jitter"></span><a class="reference internal image-reference" href="../_images/f01-20-9780123850591.png"><img alt="../_images/f01-20-9780123850591.png" src="../_images/f01-20-9780123850591.png" style="width: 600px;" /></a>
 <p class="caption"><span class="caption-number">Figure 20: </span><span class="caption-text">Network-induced jitter.</span></p>
 </div>

@@ -115,6 +115,10 @@
 <li class="toctree-l2"><a class="reference internal" href="trend.html">Perspective: Race to the Edge</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../internetworking.html">Chapter 3:  Internetworking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scaling.html">Chapter 4:  Advanced Internetworking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../e2e.html">Chapter 5:  End-to-End Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../congestion.html">Chapter 6:  Congestion Control</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../README.html">About This Book</a></li>
 </ul>
 
@@ -207,10 +211,10 @@ shared medium fairly and efficiently (in Aloha, the medium was the
 atmosphere, while in the Ethernet the medium was originally a coax
 cable). The core idea in both Aloha and the Ethernet is an algorithm
 that controls when each node can transmit.</p>
-<p>Interestingly, modern Ethernet links are now largely point to point;
+<p>Modern Ethernet links are now largely point to point;
 that is, they connect one host to an Ethernet <em>switch</em>, or they
 interconnect switches. As a consequence, the “multiple access” algorithm
-is not used much in today’s wired Ethernets, but it is now used in
+is not used much in today’s wired Ethernets, but a variant is now used in
 wireless networks, such as 802.11 networks (also known as Wi-Fi). Due to
 the enormous influence of Ethernet, we chose to describe its classic
 algorithm here, and then explain how it has been adapted to Wi-Fi in the
@@ -238,27 +242,21 @@ plugged into the host. This configuration is shown in <a class="reference intern
 <span id="fig-tap"></span><a class="reference internal image-reference" href="../_images/f02-22-9780123850591.png"><img alt="../_images/f02-22-9780123850591.png" src="../_images/f02-22-9780123850591.png" style="width: 300px;" /></a>
 <p class="caption"><span class="caption-number">Figure 39: </span><span class="caption-text">Ethernet transceiver and adaptor.</span></p>
 </div>
-<p>Multiple Ethernet segments can be joined together by <em>repeaters</em>. A
+<p>Multiple Ethernet segments can be joined together by <em>repeaters</em> (or a
+multi-port variant of a repeater, called a <em>hub</em>). A
 repeater is a device that forwards digital signals, much like an
 amplifier forwards analog signals; repeaters do not understand bits or
 frames. No more than four repeaters could be positioned between any pair
 of hosts, meaning that a classical Ethernet had a total reach of only
 2500&nbsp;m. For example, using just two repeaters between any pair of hosts
-supports a configuration similar to the one illustrated in <a class="reference internal" href="#fig-net-repeat"><span class="std std-ref">Figure
-2</span></a>—that is, a segment running down the spine of a
-building with a segment on each floor.</p>
+supports a configuration similar to the one illustrated in
+<a class="reference internal" href="#fig-net-repeat"><span class="std std-ref">Figure 2</span></a>; that is, a segment running down the
+spine of a building with a segment on each floor.</p>
 <div class="figure align-center" id="id2">
 <span id="fig-net-repeat"></span><a class="reference internal image-reference" href="../_images/f02-23-9780123850591.png"><img alt="../_images/f02-23-9780123850591.png" src="../_images/f02-23-9780123850591.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-number">Figure 40: </span><span class="caption-text">Ethernet repeater.</span></p>
+<p class="caption"><span class="caption-number">Figure 40: </span><span class="caption-text">Ethernet repeater, interconnecting segments to form a larger
+collision domain.</span></p>
 </div>
-<p>It’s also possible to create a multiway repeater, sometimes called a
-<em>hub</em>, as illustrated in <a class="reference internal" href="#fig-hub"><span class="std std-ref">Figure 3</span></a>. Like a repeater, a hub
-just repeats whatever signals it hears on one port out all its other
-ports. The important thing about hubs is that they can be used to
-connect node to a shared Ethernet without using a tap, meaning the link
-can be implemented in fiber or twisted pair copper, and not a coax
-cable. This is necessary to achieve the higher Ethernet performance
-levels.</p>
 <p>Any signal placed on the Ethernet by a host is broadcast over the entire
 network; that is, the signal is propagated in both directions, and
 repeaters and hubs forward the signal on all outgoing segments.
@@ -267,13 +265,9 @@ keep it from bouncing back and interfering with trailing signals. The
 original Ethernet specifications used the Manchester encoding scheme
 described in an earlier section, while 4B/5B encoding (or the similar
 8B/10B) scheme is used today on higher speed Ethernets.</p>
-<div class="figure align-center" id="id3">
-<span id="fig-hub"></span><a class="reference internal image-reference" href="../_images/f02-24-9780123850591.png"><img alt="../_images/f02-24-9780123850591.png" src="../_images/f02-24-9780123850591.png" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-number">Figure 41: </span><span class="caption-text">Ethernet hub.</span></p>
-</div>
 <p>It is important to understand that whether a given Ethernet spans a
 single segment, a linear sequence of segments connected by repeaters, or
-multiple segments connected in a star configuration by a hub, data
+multiple segments connected in a star configuration, data
 transmitted by any one host on that Ethernet reaches all the other
 hosts. This is the good news. The bad news is that all these hosts are
 competing for access to the same link, and, as a consequence, they are
@@ -292,7 +286,7 @@ describe the Ethernet’s frame format and addresses.</p>
 <div class="section" id="frame-format">
 <h3>Frame Format<a class="headerlink" href="#frame-format" title="Permalink to this headline">¶</a></h3>
 <p>Each Ethernet frame is defined by the format given in <a class="reference internal" href="#fig-enet-format"><span class="std std-ref">Figure
-4</span></a>. The 64-bit preamble allows the receiver to
+3</span></a>. The 64-bit preamble allows the receiver to
 synchronize with the signal; it is a sequence of alternating 0s and 1s.
 Both the source and destination hosts are identified with a 48-bit
 address. The packet type field serves as the demultiplexing key; it
@@ -308,10 +302,9 @@ the host’s perspective, an Ethernet frame has a 14-byte header: two
 6-byte addresses and a 2-byte type field. The sending adaptor attaches
 the preamble and CRC before transmitting, and the receiving adaptor
 removes them.</p>
-<figure><figcaption><p>Ethernet frame format.</p>
-</figcaption></figure><div class="figure align-center" id="id4">
+<div class="figure align-center" id="id3">
 <span id="fig-enet-format"></span><a class="reference internal image-reference" href="../_images/f02-25-9780123850591.png"><img alt="../_images/f02-25-9780123850591.png" src="../_images/f02-25-9780123850591.png" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-number">Figure 42: </span><span class="caption-text">Ethernet frame format.</span></p>
+<p class="caption"><span class="caption-number">Figure 41: </span><span class="caption-text">Ethernet frame format.</span></p>
 </div>
 </div>
 <div class="section" id="addresses">
@@ -325,7 +318,7 @@ numbers separated by colons. Each number corresponds to 1 byte of the
 each of the 4-bit nibbles in the byte; leading 0s are dropped. For
 example, <code class="docutils literal notranslate"><span class="pre">8:0:2b:e4:b1:2</span></code> is the human-readable representation of
 Ethernet address</p>
-<div class="code c highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">00001000</span>  <span class="mi">00000000</span>  <span class="mi">00101011</span>  <span class="mi">11100100</span>  <span class="mi">10110001</span>  <span class="mi">00000010</span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="mo">00001000</span>  <span class="mo">00000000</span>  <span class="mo">00101011</span>  <span class="mi">11100100</span>  <span class="mi">10110001</span>  <span class="mo">00000010</span>
 </pre></div>
 </div>
 <p>To ensure that every adaptor gets a unique address, each manufacturer of
@@ -368,14 +361,14 @@ The upper bound of 1500&nbsp;bytes in the message means that the adaptor can
 occupy the line for only a fixed length of time.</p>
 <p>When an adaptor has a frame to send and the line is busy, it waits for
 the line to go idle and then transmits immediately. (To be more precise,
-all adaptors wait 9.6 μs after the end of one frame before beginning to
+all adaptors wait 9.6&nbsp;μs after the end of one frame before beginning to
 transmit the next frame. This is true for both the sender of the first
 frame as well as those nodes listening for the line to become idle.) The
 Ethernet is said to be a <em>1-persistent</em> protocol because an adaptor with
 a frame to send transmits with probability&nbsp;1 whenever a busy line goes
-idle. In general, a <em>p-persistent</em> algorithm transmits with probability
-<span class="math notranslate nohighlight">\(0 \le p \le 1\)</span>
-after a line becomes idle and defers with probability <em>q = 1 - p</em>. The
+idle. In general, a <em>p-persistent</em> algorithm transmits with
+probability <span class="math notranslate nohighlight">\(0 \le p \le 1\)</span> after a line becomes idle and defers
+with probability <em>q = 1 - p</em>. The
 reasoning behind choosing a <em>p&lt;1</em> is that there might be multiple
 adaptors waiting for the busy line to become idle, and we don’t want all
 of them to begin transmitting at the same time. If each adaptor
@@ -424,14 +417,14 @@ or 1000&nbsp;km? The answer to both questions has to do with the fact that
 the farther apart two nodes are, the longer it takes for a frame sent by
 one to reach the other, and the network is vulnerable to a collision
 during this time.</p>
-<div class="figure align-center" id="id5">
+<div class="figure align-center" id="id4">
 <span id="fig-worst"></span><a class="reference internal image-reference" href="../_images/f02-26-9780123850591.png"><img alt="../_images/f02-26-9780123850591.png" src="../_images/f02-26-9780123850591.png" style="width: 350px;" /></a>
-<p class="caption"><span class="caption-number">Figure 43: </span><span class="caption-text">Worst-case scenario: (a) A sends a frame at time t;
+<p class="caption"><span class="caption-number">Figure 42: </span><span class="caption-text">Worst-case scenario: (a) A sends a frame at time t;
 (b) A’s frame arrives at B at time t+d; (c) B begins transmitting
 at time t+d and collides with A’s frame; (d) B’s runt (32-bit)
-frame arrives at A at time t+2d.</span></p>
+frame arrives at A at time t+2×d.</span></p>
 </div>
-<p><a class="reference internal" href="#fig-worst"><span class="std std-ref">Figure 5</span></a> illustrates the worst-case scenario, where hosts&nbsp;A
+<p><a class="reference internal" href="#fig-worst"><span class="std std-ref">Figure 4</span></a> illustrates the worst-case scenario, where hosts&nbsp;A
 and B are at opposite ends of the network. Suppose host&nbsp;A begins
 transmitting a frame at time t, as shown in&nbsp;(a). It takes it one link
 latency (let’s denote the latency as d) for the frame to reach host&nbsp;B.
@@ -442,9 +435,9 @@ will immediately collide with A’s frame, and this collision will be
 detected by host&nbsp;B&nbsp;(c). Host&nbsp;B will send the 32-bit jamming sequence, as
 described above. (B’s frame will be a runt.) Unfortunately, host&nbsp;A will
 not know that the collision occurred until B’s frame reaches it, which
-will happen one link latency later, at time <em>t+2 × d</em>, as shown in&nbsp;(d).
+will happen one link latency later, at time <em>t+2×d</em>, as shown in&nbsp;(d).
 Host&nbsp;A must continue to transmit until this time in order to detect the
-collision. In other words, host&nbsp;A must transmit for <em>2 × d</em> to be sure
+collision. In other words, host&nbsp;A must transmit for <em>2×d</em> to be sure
 that it detects all possible collisions. Considering that a maximally
 configured Ethernet is 2500&nbsp;m long, and that there may be up to four
 repeaters between any two hosts, the round-trip delay has been
@@ -491,10 +484,11 @@ host. Ethernet became deeply entrenched for these reasons, and any
 switch-based approach that aspired to displace it required additional
 investment in infrastructure (the switches), on top of the cost of each
 adaptor. The switch-based variant of Ethernet did eventually succeed in
-replacing multi-access Ethernet, but this is in part because it could be
-deployed incrementally—with some hosts connected by point-to-point links
-to switches while others remained tapped into coax—all the while
-retaining the simplicity of network administration.</p>
+replacing multi-access Ethernet, but this is primarily because it
+could be <em>deployed incrementally</em>—with some hosts connected by
+point-to-point links to switches while others remained tapped into
+coax and connected to repeaters or hubs—all the while retaining the
+simplicity of network administration.</p>
 </div>
 </div>
 

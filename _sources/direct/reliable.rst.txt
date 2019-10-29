@@ -328,7 +328,7 @@ is very simple: It contains a sequence number (``SeqNum``) and an
 acknowledgment number (``AckNum``). It also contains a ``Flags`` field
 that indicates whether the frame is an ACK or carries data.
 
-.. code:: c
+.. code-block:: c
 
    typedef u_char SwpSeqno;
 
@@ -361,7 +361,7 @@ received out of order (``recvQ``). Finally, although not shown, the
 sender and receiver sliding window sizes are defined by constants
 ``SWS`` and ``RWS``, respectively.
 
-.. code:: c
+.. code-block:: c
 
    typedef struct {
        /* sender side state: */
@@ -410,7 +410,7 @@ should the count go to 0. Each time an ACK is received, the
 ``semSignal`` operation invoked in ``deliverSWP`` (see below) increments
 this count, thus unblocking any waiting sender.
 
-.. code:: c
+.. code-block:: c
 
    static int 
    sendSWP(SwpState *state, Msg *frame) 
@@ -479,7 +479,7 @@ sends a cumulative ACK back to the sender, but does so by looping over
 the receive queue (it does not use the ``SeqNumToAck`` variable used in
 the prose description given earlier in this section).
 
-.. code:: c
+.. code-block:: c
 
    static int 
    deliverSWP(SwpState state, Msg *frame) 
@@ -543,7 +543,7 @@ Finally,\ ``swpInWindow`` is a simple subroutine that checks to see if a
 given sequence number falls between some minimum and maximum sequence
 number.
 
-.. code:: c
+.. code-block:: c
 
    static bool 
    swpInWindow(SwpSeqno seqno, SwpSeqno min, SwpSeqno max) 

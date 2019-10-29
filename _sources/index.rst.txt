@@ -12,4 +12,8 @@ Computer Networks: A Systems Approach
    preface.rst
    foundation.rst
    direct.rst
+   internetworking.rst
+   scaling.rst   
+   e2e.rst
+   congestion.rst
    README.rst

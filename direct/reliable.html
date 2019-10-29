@@ -116,6 +116,10 @@
 <li class="toctree-l2"><a class="reference internal" href="trend.html">Perspective: Race to the Edge</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../internetworking.html">Chapter 3:  Internetworking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scaling.html">Chapter 4:  Advanced Internetworking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../e2e.html">Chapter 5:  End-to-End Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../congestion.html">Chapter 6:  Congestion Control</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../README.html">About This Book</a></li>
 </ul>
 
@@ -462,12 +466,12 @@ as the link-level protocol (LLP).</p>
 is very simple: It contains a sequence number (<code class="docutils literal notranslate"><span class="pre">SeqNum</span></code>) and an
 acknowledgment number (<code class="docutils literal notranslate"><span class="pre">AckNum</span></code>). It also contains a <code class="docutils literal notranslate"><span class="pre">Flags</span></code> field
 that indicates whether the frame is an ACK or carries data.</p>
-<div class="code c highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">typedef</span> <span class="n">u_char</span> <span class="n">SwpSeqno</span><span class="p">;</span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="n">u_char</span> <span class="n">SwpSeqno</span><span class="p">;</span>
 
-<span class="n">typedef</span> <span class="n">struct</span> <span class="p">{</span>
-    <span class="n">SwpSeqno</span>   <span class="n">SeqNum</span><span class="p">;</span>   <span class="o">/*</span> <span class="n">sequence</span> <span class="n">number</span> <span class="n">of</span> <span class="n">this</span> <span class="n">frame</span> <span class="o">*/</span>
-    <span class="n">SwpSeqno</span>   <span class="n">AckNum</span><span class="p">;</span>   <span class="o">/*</span> <span class="n">ack</span> <span class="n">of</span> <span class="n">received</span> <span class="n">frame</span> <span class="o">*/</span>
-    <span class="n">u_char</span>     <span class="n">Flags</span><span class="p">;</span>           <span class="o">/*</span> <span class="n">up</span> <span class="n">to</span> <span class="mi">8</span> <span class="n">bits</span> <span class="n">worth</span> <span class="n">of</span> <span class="n">flags</span> <span class="o">*/</span>
+<span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="n">SwpSeqno</span>   <span class="n">SeqNum</span><span class="p">;</span>   <span class="cm">/* sequence number of this frame */</span>
+    <span class="n">SwpSeqno</span>   <span class="n">AckNum</span><span class="p">;</span>   <span class="cm">/* ack of received frame */</span>
+    <span class="n">u_char</span>     <span class="n">Flags</span><span class="p">;</span>           <span class="cm">/* up to 8 bits worth of flags */</span>
 <span class="p">}</span> <span class="n">SwpHdr</span><span class="p">;</span>
 </pre></div>
 </div>
@@ -492,24 +496,24 @@ this section. There is also a queue that holds frames that have been
 received out of order (<code class="docutils literal notranslate"><span class="pre">recvQ</span></code>). Finally, although not shown, the
 sender and receiver sliding window sizes are defined by constants
 <code class="docutils literal notranslate"><span class="pre">SWS</span></code> and <code class="docutils literal notranslate"><span class="pre">RWS</span></code>, respectively.</p>
-<div class="code c highlight-default notranslate"><div class="highlight"><pre><span></span>typedef struct {
-    /* sender side state: */
-    SwpSeqno    LAR;        /* seqno of last ACK received */
-    SwpSeqno    LFS;        /* last frame sent */
-    Semaphore   sendWindowNotFull;
-    SwpHdr      hdr;        /* pre-initialized header */
-    struct sendQ_slot {
-        Event   timeout;    /* event associated with send-timeout */
-        Msg     msg;
-    }   sendQ[SWS];
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span>
+    <span class="cm">/* sender side state: */</span>
+    <span class="n">SwpSeqno</span>    <span class="n">LAR</span><span class="p">;</span>        <span class="cm">/* seqno of last ACK received */</span>
+    <span class="n">SwpSeqno</span>    <span class="n">LFS</span><span class="p">;</span>        <span class="cm">/* last frame sent */</span>
+    <span class="n">Semaphore</span>   <span class="n">sendWindowNotFull</span><span class="p">;</span>
+    <span class="n">SwpHdr</span>      <span class="n">hdr</span><span class="p">;</span>        <span class="cm">/* pre-initialized header */</span>
+    <span class="k">struct</span> <span class="n">sendQ_slot</span> <span class="p">{</span>
+        <span class="n">Event</span>   <span class="n">timeout</span><span class="p">;</span>    <span class="cm">/* event associated with send-timeout */</span>
+        <span class="n">Msg</span>     <span class="n">msg</span><span class="p">;</span>
+    <span class="p">}</span>   <span class="n">sendQ</span><span class="p">[</span><span class="n">SWS</span><span class="p">];</span>
 
-    /* receiver side state: */
-    SwpSeqno    NFE;       /* seqno of next frame expected */
-    struct recvQ_slot {
-        int     received;  /* is msg valid? */
-        Msg     msg;
-    }   recvQ[RWS];
-} SwpState;
+    <span class="cm">/* receiver side state: */</span>
+    <span class="n">SwpSeqno</span>    <span class="n">NFE</span><span class="p">;</span>       <span class="cm">/* seqno of next frame expected */</span>
+    <span class="k">struct</span> <span class="n">recvQ_slot</span> <span class="p">{</span>
+        <span class="kt">int</span>     <span class="n">received</span><span class="p">;</span>  <span class="cm">/* is msg valid? */</span>
+        <span class="n">Msg</span>     <span class="n">msg</span><span class="p">;</span>
+    <span class="p">}</span>   <span class="n">recvQ</span><span class="p">[</span><span class="n">RWS</span><span class="p">];</span>
+<span class="p">}</span> <span class="n">SwpState</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>The sending side of SWP is implemented by procedure <code class="docutils literal notranslate"><span class="pre">sendSWP</span></code>. This
@@ -537,16 +541,16 @@ the <code class="docutils literal notranslate"><span class="pre">semWait</span><
 should the count go to 0. Each time an ACK is received, the
 <code class="docutils literal notranslate"><span class="pre">semSignal</span></code> operation invoked in <code class="docutils literal notranslate"><span class="pre">deliverSWP</span></code> (see below) increments
 this count, thus unblocking any waiting sender.</p>
-<div class="code c highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">static</span> <span class="nb">int</span>
-<span class="n">sendSWP</span><span class="p">(</span><span class="n">SwpState</span> <span class="o">*</span><span class="n">state</span><span class="p">,</span> <span class="n">Msg</span> <span class="o">*</span><span class="n">frame</span><span class="p">)</span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">static</span> <span class="kt">int</span>
+<span class="nf">sendSWP</span><span class="p">(</span><span class="n">SwpState</span> <span class="o">*</span><span class="n">state</span><span class="p">,</span> <span class="n">Msg</span> <span class="o">*</span><span class="n">frame</span><span class="p">)</span>
 <span class="p">{</span>
-    <span class="n">struct</span> <span class="n">sendQ_slot</span> <span class="o">*</span><span class="n">slot</span><span class="p">;</span>
+    <span class="k">struct</span> <span class="n">sendQ_slot</span> <span class="o">*</span><span class="n">slot</span><span class="p">;</span>
     <span class="n">hbuf</span><span class="p">[</span><span class="n">HLEN</span><span class="p">];</span>
 
-    <span class="o">/*</span> <span class="n">wait</span> <span class="k">for</span> <span class="n">send</span> <span class="n">window</span> <span class="n">to</span> <span class="nb">open</span> <span class="o">*/</span>
+    <span class="cm">/* wait for send window to open */</span>
     <span class="n">semWait</span><span class="p">(</span><span class="o">&amp;</span><span class="n">state</span><span class="o">-&gt;</span><span class="n">sendWindowNotFull</span><span class="p">);</span>
-    <span class="n">state</span><span class="o">-&gt;</span><span class="n">hdr</span><span class="o">.</span><span class="n">SeqNum</span> <span class="o">=</span> <span class="o">++</span><span class="n">state</span><span class="o">-&gt;</span><span class="n">LFS</span><span class="p">;</span>
-    <span class="n">slot</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">state</span><span class="o">-&gt;</span><span class="n">sendQ</span><span class="p">[</span><span class="n">state</span><span class="o">-&gt;</span><span class="n">hdr</span><span class="o">.</span><span class="n">SeqNum</span> <span class="o">%</span> <span class="n">SWS</span><span class="p">];</span>
+    <span class="n">state</span><span class="o">-&gt;</span><span class="n">hdr</span><span class="p">.</span><span class="n">SeqNum</span> <span class="o">=</span> <span class="o">++</span><span class="n">state</span><span class="o">-&gt;</span><span class="n">LFS</span><span class="p">;</span>
+    <span class="n">slot</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">state</span><span class="o">-&gt;</span><span class="n">sendQ</span><span class="p">[</span><span class="n">state</span><span class="o">-&gt;</span><span class="n">hdr</span><span class="p">.</span><span class="n">SeqNum</span> <span class="o">%</span> <span class="n">SWS</span><span class="p">];</span>
     <span class="n">store_swp_hdr</span><span class="p">(</span><span class="n">state</span><span class="o">-&gt;</span><span class="n">hdr</span><span class="p">,</span> <span class="n">hbuf</span><span class="p">);</span>
     <span class="n">msgAddHdr</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">hbuf</span><span class="p">,</span> <span class="n">HLEN</span><span class="p">);</span>
     <span class="n">msgSaveCopy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">slot</span><span class="o">-&gt;</span><span class="n">msg</span><span class="p">,</span> <span class="n">frame</span><span class="p">);</span>
@@ -601,75 +605,75 @@ higher-level protocol by invoking the <code class="docutils literal notranslate"
 sends a cumulative ACK back to the sender, but does so by looping over
 the receive queue (it does not use the <code class="docutils literal notranslate"><span class="pre">SeqNumToAck</span></code> variable used in
 the prose description given earlier in this section).</p>
-<div class="code c highlight-default notranslate"><div class="highlight"><pre><span></span>static int
-deliverSWP(SwpState state, Msg *frame)
-{
-    SwpHdr   hdr;
-    char     *hbuf;
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">static</span> <span class="kt">int</span>
+<span class="nf">deliverSWP</span><span class="p">(</span><span class="n">SwpState</span> <span class="n">state</span><span class="p">,</span> <span class="n">Msg</span> <span class="o">*</span><span class="n">frame</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">SwpHdr</span>   <span class="n">hdr</span><span class="p">;</span>
+    <span class="kt">char</span>     <span class="o">*</span><span class="n">hbuf</span><span class="p">;</span>
 
-    hbuf = msgStripHdr(frame, HLEN);
-    load_swp_hdr(&amp;hdr, hbuf)
-    if (hdr-&gt;Flags &amp; FLAG_ACK_VALID)
-    {
-        /* received an acknowledgment—do SENDER side */
-        if (swpInWindow(hdr.AckNum, state-&gt;LAR + 1, state-&gt;LFS))
-        {
-            do
-            {
-                struct sendQ_slot *slot;
+    <span class="n">hbuf</span> <span class="o">=</span> <span class="n">msgStripHdr</span><span class="p">(</span><span class="n">frame</span><span class="p">,</span> <span class="n">HLEN</span><span class="p">);</span>
+    <span class="n">load_swp_hdr</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hdr</span><span class="p">,</span> <span class="n">hbuf</span><span class="p">)</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">hdr</span><span class="o">-&gt;</span><span class="n">Flags</span> <span class="o">&amp;</span> <span class="n">FLAG_ACK_VALID</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="cm">/* received an acknowledgment—do SENDER side */</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">swpInWindow</span><span class="p">(</span><span class="n">hdr</span><span class="p">.</span><span class="n">AckNum</span><span class="p">,</span> <span class="n">state</span><span class="o">-&gt;</span><span class="n">LAR</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">state</span><span class="o">-&gt;</span><span class="n">LFS</span><span class="p">))</span>
+        <span class="p">{</span>
+            <span class="k">do</span>
+            <span class="p">{</span>
+                <span class="k">struct</span> <span class="n">sendQ_slot</span> <span class="o">*</span><span class="n">slot</span><span class="p">;</span>
 
-                slot = &amp;state-&gt;sendQ[++state-&gt;LAR % SWS];
-                evCancel(slot-&gt;timeout);
-                msgDestroy(&amp;slot-&gt;msg);
-                semSignal(&amp;state-&gt;sendWindowNotFull);
-            } while (state-&gt;LAR != hdr.AckNum);
-        }
-    }
+                <span class="n">slot</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">state</span><span class="o">-&gt;</span><span class="n">sendQ</span><span class="p">[</span><span class="o">++</span><span class="n">state</span><span class="o">-&gt;</span><span class="n">LAR</span> <span class="o">%</span> <span class="n">SWS</span><span class="p">];</span>
+                <span class="n">evCancel</span><span class="p">(</span><span class="n">slot</span><span class="o">-&gt;</span><span class="n">timeout</span><span class="p">);</span>
+                <span class="n">msgDestroy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">slot</span><span class="o">-&gt;</span><span class="n">msg</span><span class="p">);</span>
+                <span class="n">semSignal</span><span class="p">(</span><span class="o">&amp;</span><span class="n">state</span><span class="o">-&gt;</span><span class="n">sendWindowNotFull</span><span class="p">);</span>
+            <span class="p">}</span> <span class="k">while</span> <span class="p">(</span><span class="n">state</span><span class="o">-&gt;</span><span class="n">LAR</span> <span class="o">!=</span> <span class="n">hdr</span><span class="p">.</span><span class="n">AckNum</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
 
-    if (hdr.Flags &amp; FLAG_HAS_DATA)
-    {
-        struct recvQ_slot *slot;
+    <span class="k">if</span> <span class="p">(</span><span class="n">hdr</span><span class="p">.</span><span class="n">Flags</span> <span class="o">&amp;</span> <span class="n">FLAG_HAS_DATA</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">struct</span> <span class="n">recvQ_slot</span> <span class="o">*</span><span class="n">slot</span><span class="p">;</span>
 
-        /* received data packet—do RECEIVER side */
-        slot = &amp;state-&gt;recvQ[hdr.SeqNum % RWS];
-        if (!swpInWindow(hdr.SeqNum, state-&gt;NFE, state-&gt;NFE + RWS - 1))
-        {
-            /* drop the message */
-            return SUCCESS;
-        }
-        msgSaveCopy(&amp;slot-&gt;msg, frame);
-        slot-&gt;received = TRUE;
-        if (hdr.SeqNum == state-&gt;NFE)
-        {
-            Msg m;
+        <span class="cm">/* received data packet—do RECEIVER side */</span>
+        <span class="n">slot</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">state</span><span class="o">-&gt;</span><span class="n">recvQ</span><span class="p">[</span><span class="n">hdr</span><span class="p">.</span><span class="n">SeqNum</span> <span class="o">%</span> <span class="n">RWS</span><span class="p">];</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">swpInWindow</span><span class="p">(</span><span class="n">hdr</span><span class="p">.</span><span class="n">SeqNum</span><span class="p">,</span> <span class="n">state</span><span class="o">-&gt;</span><span class="n">NFE</span><span class="p">,</span> <span class="n">state</span><span class="o">-&gt;</span><span class="n">NFE</span> <span class="o">+</span> <span class="n">RWS</span> <span class="o">-</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="p">{</span>
+            <span class="cm">/* drop the message */</span>
+            <span class="k">return</span> <span class="n">SUCCESS</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">msgSaveCopy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">slot</span><span class="o">-&gt;</span><span class="n">msg</span><span class="p">,</span> <span class="n">frame</span><span class="p">);</span>
+        <span class="n">slot</span><span class="o">-&gt;</span><span class="n">received</span> <span class="o">=</span> <span class="n">TRUE</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">hdr</span><span class="p">.</span><span class="n">SeqNum</span> <span class="o">==</span> <span class="n">state</span><span class="o">-&gt;</span><span class="n">NFE</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">Msg</span> <span class="n">m</span><span class="p">;</span>
 
-            while (slot-&gt;received)
-            {
-                deliver(HLP, &amp;slot-&gt;msg);
-                msgDestroy(&amp;slot-&gt;msg);
-                slot-&gt;received = FALSE;
-                slot = &amp;state-&gt;recvQ[++state-&gt;NFE % RWS];
-            }
-            /* send ACK: */
-            prepare_ack(&amp;m, state-&gt;NFE - 1);
-            send(LINK, &amp;m);
-            msgDestroy(&amp;m);
-        }
-    }
-    return SUCCESS;
-}
+            <span class="k">while</span> <span class="p">(</span><span class="n">slot</span><span class="o">-&gt;</span><span class="n">received</span><span class="p">)</span>
+            <span class="p">{</span>
+                <span class="n">deliver</span><span class="p">(</span><span class="n">HLP</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">slot</span><span class="o">-&gt;</span><span class="n">msg</span><span class="p">);</span>
+                <span class="n">msgDestroy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">slot</span><span class="o">-&gt;</span><span class="n">msg</span><span class="p">);</span>
+                <span class="n">slot</span><span class="o">-&gt;</span><span class="n">received</span> <span class="o">=</span> <span class="n">FALSE</span><span class="p">;</span>
+                <span class="n">slot</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">state</span><span class="o">-&gt;</span><span class="n">recvQ</span><span class="p">[</span><span class="o">++</span><span class="n">state</span><span class="o">-&gt;</span><span class="n">NFE</span> <span class="o">%</span> <span class="n">RWS</span><span class="p">];</span>
+            <span class="p">}</span>
+            <span class="cm">/* send ACK: */</span>
+            <span class="n">prepare_ack</span><span class="p">(</span><span class="o">&amp;</span><span class="n">m</span><span class="p">,</span> <span class="n">state</span><span class="o">-&gt;</span><span class="n">NFE</span> <span class="o">-</span> <span class="mi">1</span><span class="p">);</span>
+            <span class="n">send</span><span class="p">(</span><span class="n">LINK</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">m</span><span class="p">);</span>
+            <span class="n">msgDestroy</span><span class="p">(</span><span class="o">&amp;</span><span class="n">m</span><span class="p">);</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">SUCCESS</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>Finally,<code class="docutils literal notranslate"><span class="pre">swpInWindow</span></code> is a simple subroutine that checks to see if a
 given sequence number falls between some minimum and maximum sequence
 number.</p>
-<div class="code c highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">static</span> <span class="nb">bool</span>
-<span class="n">swpInWindow</span><span class="p">(</span><span class="n">SwpSeqno</span> <span class="n">seqno</span><span class="p">,</span> <span class="n">SwpSeqno</span> <span class="nb">min</span><span class="p">,</span> <span class="n">SwpSeqno</span> <span class="nb">max</span><span class="p">)</span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">static</span> <span class="kt">bool</span>
+<span class="nf">swpInWindow</span><span class="p">(</span><span class="n">SwpSeqno</span> <span class="n">seqno</span><span class="p">,</span> <span class="n">SwpSeqno</span> <span class="n">min</span><span class="p">,</span> <span class="n">SwpSeqno</span> <span class="n">max</span><span class="p">)</span>
 <span class="p">{</span>
     <span class="n">SwpSeqno</span> <span class="n">pos</span><span class="p">,</span> <span class="n">maxpos</span><span class="p">;</span>
 
-    <span class="n">pos</span>    <span class="o">=</span> <span class="n">seqno</span> <span class="o">-</span> <span class="nb">min</span><span class="p">;</span>       <span class="o">/*</span> <span class="n">pos</span> <span class="o">*</span><span class="n">should</span><span class="o">*</span> <span class="n">be</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">[</span><span class="mf">0.</span><span class="o">.</span><span class="n">MAX</span><span class="p">)</span> <span class="o">*/</span>
-    <span class="n">maxpos</span> <span class="o">=</span> <span class="nb">max</span> <span class="o">-</span> <span class="nb">min</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>     <span class="o">/*</span> <span class="n">maxpos</span> <span class="ow">is</span> <span class="ow">in</span> <span class="nb">range</span> <span class="p">[</span><span class="mf">0.</span><span class="o">.</span><span class="n">MAX</span><span class="p">]</span> <span class="o">*/</span>
+    <span class="n">pos</span>    <span class="o">=</span> <span class="n">seqno</span> <span class="o">-</span> <span class="n">min</span><span class="p">;</span>       <span class="cm">/* pos *should* be in range [0..MAX) */</span>
+    <span class="n">maxpos</span> <span class="o">=</span> <span class="n">max</span> <span class="o">-</span> <span class="n">min</span> <span class="o">+</span> <span class="mi">1</span><span class="p">;</span>     <span class="cm">/* maxpos is in range [0..MAX] */</span>
     <span class="k">return</span> <span class="n">pos</span> <span class="o">&lt;</span> <span class="n">maxpos</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>

@@ -121,7 +121,7 @@ Internet’s checksum algorithm. The ``count`` argument gives the length
 of ``buf`` measured in 16-bit units. The routine assumes that ``buf``
 has already been padded with 0s to a 16-bit boundary.
 
-.. code:: c
+.. code-block:: c
 
    u_short 
    cksum(u_short *buf, int count) 

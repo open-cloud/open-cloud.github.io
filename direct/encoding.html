@@ -105,6 +105,10 @@
 <li class="toctree-l2"><a class="reference internal" href="trend.html">Perspective: Race to the Edge</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../internetworking.html">Chapter 3:  Internetworking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scaling.html">Chapter 4:  Advanced Internetworking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../e2e.html">Chapter 5:  End-to-End Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../congestion.html">Chapter 6:  Congestion Control</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../README.html">About This Book</a></li>
 </ul>
 
@@ -299,11 +303,8 @@ three consecutive 0s being transmitted. The resulting 5-bit codes are
 then transmitted using the NRZI encoding, which explains why the code is
 only concerned about consecutive 0s—NRZI already solves the problem of
 consecutive 1s. Note that the 4B/5B encoding results in 80% efficiency.</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="61%" />
-<col width="39%" />
-</colgroup>
+<span id="tab-4b5b"></span><table border="1" class="colwidths-auto docutils align-center" id="id4">
+<caption><span class="caption-number">Table 3: </span><span class="caption-text">4B/5B encoding.</span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">4-bit Data Symbol</th>
 <th class="head">5-bit Code</th>
@@ -360,8 +361,6 @@ consecutive 1s. Note that the 4B/5B encoding results in 80% efficiency.</p>
 </tr>
 </tbody>
 </table>
-<blockquote>
-<div>4B/5B encoding.</div></blockquote>
 <p><a class="reference internal" href="#tab-4b5b"><span class="std std-ref">Table 1</span></a> gives the 5-bit codes that correspond to each of the
 16 possible 4-bit data symbols. Notice that since 5&nbsp;bits are enough to
 encode 32 different codes, and we are using only 16 of these for data,

@@ -5,7 +5,7 @@ As we start to explore how softwarization is transforming the network,
 we should recognize that it is the access network that connects homes,
 businesses, and mobile users to the Internet that is undergoing the most
 radical change. The fiber-to-the-home and cellular networks described in
-`Section 2.8 <access.md>`__ are currently constructed from complex
+`Section 2.8 <access.html>`__ are currently constructed from complex
 hardware appliances (e.g., OLTs, BNGs, BBUs, EPCs). Not only have these
 devices historically been closed and proprietary, but the vendors that
 sell them have typically bundled a broad and diverse collection of

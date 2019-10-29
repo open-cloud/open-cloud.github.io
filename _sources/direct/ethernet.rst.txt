@@ -27,10 +27,10 @@ atmosphere, while in the Ethernet the medium was originally a coax
 cable). The core idea in both Aloha and the Ethernet is an algorithm
 that controls when each node can transmit.
 
-Interestingly, modern Ethernet links are now largely point to point;
+Modern Ethernet links are now largely point to point;
 that is, they connect one host to an Ethernet *switch*, or they
 interconnect switches. As a consequence, the “multiple access” algorithm
-is not used much in today’s wired Ethernets, but it is now used in
+is not used much in today’s wired Ethernets, but a variant is now used in
 wireless networks, such as 802.11 networks (also known as Wi-Fi). Due to
 the enormous influence of Ethernet, we chose to describe its classic
 algorithm here, and then explain how it has been adapted to Wi-Fi in the
@@ -65,31 +65,24 @@ plugged into the host. This configuration is shown in :ref:`Figure
 
    Ethernet transceiver and adaptor.
 
-Multiple Ethernet segments can be joined together by *repeaters*. A
+Multiple Ethernet segments can be joined together by *repeaters* (or a
+multi-port variant of a repeater, called a *hub*). A
 repeater is a device that forwards digital signals, much like an
 amplifier forwards analog signals; repeaters do not understand bits or
 frames. No more than four repeaters could be positioned between any pair
 of hosts, meaning that a classical Ethernet had a total reach of only
 2500 m. For example, using just two repeaters between any pair of hosts
-supports a configuration similar to the one illustrated in :ref:`Figure
-2 <fig-net-repeat>`—that is, a segment running down the spine of a
-building with a segment on each floor.
+supports a configuration similar to the one illustrated in
+:ref:`Figure 2 <fig-net-repeat>`; that is, a segment running down the
+spine of a building with a segment on each floor.
 
 .. _fig-net-repeat:
 .. figure:: figures/f02-23-9780123850591.png
    :width: 500px
    :align: center
 
-   Ethernet repeater.
-
-It’s also possible to create a multiway repeater, sometimes called a
-*hub*, as illustrated in :ref:`Figure 3 <fig-hub>`. Like a repeater, a hub
-just repeats whatever signals it hears on one port out all its other
-ports. The important thing about hubs is that they can be used to
-connect node to a shared Ethernet without using a tap, meaning the link
-can be implemented in fiber or twisted pair copper, and not a coax
-cable. This is necessary to achieve the higher Ethernet performance
-levels.
+   Ethernet repeater, interconnecting segments to form a larger
+   collision domain.
 
 Any signal placed on the Ethernet by a host is broadcast over the entire
 network; that is, the signal is propagated in both directions, and
@@ -100,16 +93,9 @@ original Ethernet specifications used the Manchester encoding scheme
 described in an earlier section, while 4B/5B encoding (or the similar
 8B/10B) scheme is used today on higher speed Ethernets.
   
-.. _fig-hub:
-.. figure:: figures/f02-24-9780123850591.png
-   :width: 400px
-   :align: center
-
-   Ethernet hub.
-
 It is important to understand that whether a given Ethernet spans a
 single segment, a linear sequence of segments connected by repeaters, or
-multiple segments connected in a star configuration by a hub, data
+multiple segments connected in a star configuration, data
 transmitted by any one host on that Ethernet reaches all the other
 hosts. This is the good news. The bad news is that all these hosts are
 competing for access to the same link, and, as a consequence, they are
@@ -131,7 +117,7 @@ Frame Format
 ~~~~~~~~~~~~
 
 Each Ethernet frame is defined by the format given in :ref:`Figure
-4 <fig-enet-format>`. The 64-bit preamble allows the receiver to
+3 <fig-enet-format>`. The 64-bit preamble allows the receiver to
 synchronize with the signal; it is a sequence of alternating 0s and 1s.
 Both the source and destination hosts are identified with a 48-bit
 address. The packet type field serves as the demultiplexing key; it
@@ -148,24 +134,6 @@ the host’s perspective, an Ethernet frame has a 14-byte header: two
 the preamble and CRC before transmitting, and the receiving adaptor
 removes them.
 
-.. raw:: html
-
-   <figure>
-
-.. raw:: html
-
-   <figcaption>
-
-Ethernet frame format.
-
-.. raw:: html
-
-   </figcaption>
-
-.. raw:: html
-
-   </figure>
- 
 .. _fig-enet-format:
 .. figure:: figures/f02-25-9780123850591.png
    :width: 400px
@@ -186,7 +154,7 @@ each of the 4-bit nibbles in the byte; leading 0s are dropped. For
 example, ``8:0:2b:e4:b1:2`` is the human-readable representation of
 Ethernet address
 
-.. code:: c
+.. code-block:: c
 
    00001000  00000000  00101011  11100100  10110001  00000010
 
@@ -237,14 +205,14 @@ occupy the line for only a fixed length of time.
 
 When an adaptor has a frame to send and the line is busy, it waits for
 the line to go idle and then transmits immediately. (To be more precise,
-all adaptors wait 9.6 μs after the end of one frame before beginning to
+all adaptors wait 9.6 μs after the end of one frame before beginning to
 transmit the next frame. This is true for both the sender of the first
 frame as well as those nodes listening for the line to become idle.) The
 Ethernet is said to be a *1-persistent* protocol because an adaptor with
 a frame to send transmits with probability 1 whenever a busy line goes
-idle. In general, a *p-persistent* algorithm transmits with probability 
-:math:`0 \le p \le 1` 
-after a line becomes idle and defers with probability *q = 1 - p*. The
+idle. In general, a *p-persistent* algorithm transmits with
+probability :math:`0 \le p \le 1` after a line becomes idle and defers
+with probability *q = 1 - p*. The
 reasoning behind choosing a *p<1* is that there might be multiple
 adaptors waiting for the busy line to become idle, and we don’t want all
 of them to begin transmitting at the same time. If each adaptor
@@ -306,9 +274,9 @@ during this time.
    Worst-case scenario: (a) A sends a frame at time t;
    (b) A's frame arrives at B at time t+d; (c) B begins transmitting
    at time t+d and collides with A's frame; (d) B's runt (32-bit)
-   frame arrives at A at time t+2d.
+   frame arrives at A at time t+2×d.
 
-:ref:`Figure 5 <fig-worst>` illustrates the worst-case scenario, where hosts A
+:ref:`Figure 4 <fig-worst>` illustrates the worst-case scenario, where hosts A
 and B are at opposite ends of the network. Suppose host A begins
 transmitting a frame at time t, as shown in (a). It takes it one link
 latency (let’s denote the latency as d) for the frame to reach host B.
@@ -319,9 +287,9 @@ will immediately collide with A’s frame, and this collision will be
 detected by host B (c). Host B will send the 32-bit jamming sequence, as
 described above. (B’s frame will be a runt.) Unfortunately, host A will
 not know that the collision occurred until B’s frame reaches it, which
-will happen one link latency later, at time *t+2 × d*, as shown in (d).
+will happen one link latency later, at time *t+2×d*, as shown in (d).
 Host A must continue to transmit until this time in order to detect the
-collision. In other words, host A must transmit for *2 × d* to be sure
+collision. In other words, host A must transmit for *2×d* to be sure
 that it detects all possible collisions. Considering that a maximally
 configured Ethernet is 2500 m long, and that there may be up to four
 repeaters between any two hosts, the round-trip delay has been
@@ -370,7 +338,9 @@ host. Ethernet became deeply entrenched for these reasons, and any
 switch-based approach that aspired to displace it required additional
 investment in infrastructure (the switches), on top of the cost of each
 adaptor. The switch-based variant of Ethernet did eventually succeed in
-replacing multi-access Ethernet, but this is in part because it could be
-deployed incrementally—with some hosts connected by point-to-point links
-to switches while others remained tapped into coax—all the while
-retaining the simplicity of network administration.
+replacing multi-access Ethernet, but this is primarily because it
+could be *deployed incrementally*—with some hosts connected by
+point-to-point links to switches while others remained tapped into
+coax and connected to repeaters or hubs—all the while retaining the
+simplicity of network administration.
+

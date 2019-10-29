@@ -105,6 +105,10 @@
 <li class="toctree-l2"><a class="reference internal" href="trend.html">Perspective: Race to the Edge</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../internetworking.html">Chapter 3:  Internetworking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scaling.html">Chapter 4:  Advanced Internetworking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../e2e.html">Chapter 5:  End-to-End Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../congestion.html">Chapter 6:  Congestion Control</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../README.html">About This Book</a></li>
 </ul>
 
@@ -256,6 +260,17 @@ frequency bands.</p>
 <span id="fig-spectrum"></span><a class="reference internal image-reference" href="../_images/f02-02-9780123850591.png"><img alt="../_images/f02-02-9780123850591.png" src="../_images/f02-02-9780123850591.png" style="width: 600px;" /></a>
 <p class="caption"><span class="caption-number">Figure 22: </span><span class="caption-text">Electromagnetic spectrum.</span></p>
 </div>
+<p>What <a class="reference internal" href="#fig-spectrum"><span class="std std-ref">Figure 2</span></a> doesn’t show is where the cellular
+network fits in. This is a bit complicated because the specific
+frequency bands that are licensed for cellular networks vary around
+the world, and even further complicated by the fact that network
+operators often simultaneously support both old/legacy technologies
+and new/next-generation technologies, each of which occupies a
+different frequency band. The high-level summary is that traditional
+cellular technologies range from 700-MHz to 2400-MHz, with new
+mid-spectrum allocations now happening at 6-GHz, and millimeter-wave
+(mmWave) allocations opening above 24-GHz. This mmWave band is likely
+to become an important part of the 5G mobile network.</p>
 <p>So far we understand a link to be a physical medium carrying signals in
 the form of electromagnetic waves. Such links provide the foundation for
 transmitting all sorts of information, including the kind of data we are
@@ -289,11 +304,8 @@ services; G.Fast is a copper-based technology typically used within
 multi-dwelling apartment buildings, and PON (Passive Optical Network) is
 a newer technology that is commonly used to connect homes and businesses
 over recently deployed fiber.</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="52%" />
-<col width="48%" />
-</colgroup>
+<span id="tab-home"></span><table border="1" class="colwidths-auto docutils align-center" id="id3">
+<caption><span class="caption-number">Table 2: </span><span class="caption-text">Common services available for the last-mile connection to your home.</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Service</th>
 <th class="head">Bandwidth</th>

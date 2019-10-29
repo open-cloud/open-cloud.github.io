@@ -93,7 +93,7 @@ operation:
 
 .. code-block:: c
 
-   int socket(int domain, int type, int protocol)
+   int socket(int domain, int type, int protocol);
 
 The reason that this operation takes three arguments is that the socket
 interface was designed to be general enough to support any underlying
@@ -120,9 +120,9 @@ following three operations:
 
 .. code-block:: c
 
-   int bind(int socket, struct sockaddr *address, int addr_len)
-   int listen(int socket, int backlog)
-   int accept(int socket, struct sockaddr *address, int *addr_len)
+   int bind(int socket, struct sockaddr *address, int addr_len);
+   int listen(int socket, int backlog);
+   int accept(int socket, struct sockaddr *address, int *addr_len);
 
 The ``bind`` operation, as its name suggests, binds the newly created
 ``socket`` to the specified ``address``. This is the network address of
@@ -151,7 +151,7 @@ following single operation:
 
 .. code-block:: c
 
-   int connect(int socket, struct sockaddr *address, int addr_len)
+   int connect(int socket, struct sockaddr *address, int addr_len);
 
 This operation does not return until TCP has successfully established a
 connection, at which time the application is free to begin sending data.
@@ -167,8 +167,8 @@ following two operations to send and receive data:
 
 .. code-block:: c
 
-   int send(int socket, char *message, int msg_len, int flags)
-   int recv(int socket, char *buffer, int buf_len, int flags)
+   int send(int socket, char *message, int msg_len, int flags);
+   int recv(int socket, char *buffer, int buf_len, int flags);
 
 The first operation sends the given ``message`` over the specified
 ``socket``, while the second operation receives a message from the

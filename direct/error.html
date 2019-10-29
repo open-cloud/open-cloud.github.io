@@ -109,6 +109,10 @@
 <li class="toctree-l2"><a class="reference internal" href="trend.html">Perspective: Race to the Edge</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../internetworking.html">Chapter 3:  Internetworking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scaling.html">Chapter 4:  Advanced Internetworking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../e2e.html">Chapter 5:  End-to-End Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../congestion.html">Chapter 6:  Congestion Control</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../README.html">About This Book</a></li>
 </ul>
 
@@ -284,22 +288,22 @@ bits in 1000), as we would expect.</p>
 Internet’s checksum algorithm. The <code class="docutils literal notranslate"><span class="pre">count</span></code> argument gives the length
 of <code class="docutils literal notranslate"><span class="pre">buf</span></code> measured in 16-bit units. The routine assumes that <code class="docutils literal notranslate"><span class="pre">buf</span></code>
 has already been padded with 0s to a 16-bit boundary.</p>
-<div class="code c highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">u_short</span>
-<span class="n">cksum</span><span class="p">(</span><span class="n">u_short</span> <span class="o">*</span><span class="n">buf</span><span class="p">,</span> <span class="nb">int</span> <span class="n">count</span><span class="p">)</span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">u_short</span>
+<span class="nf">cksum</span><span class="p">(</span><span class="n">u_short</span> <span class="o">*</span><span class="n">buf</span><span class="p">,</span> <span class="kt">int</span> <span class="n">count</span><span class="p">)</span>
 <span class="p">{</span>
-    <span class="n">register</span> <span class="n">u_long</span> <span class="nb">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">register</span> <span class="n">u_long</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
     <span class="k">while</span> <span class="p">(</span><span class="n">count</span><span class="o">--</span><span class="p">)</span>
     <span class="p">{</span>
-        <span class="nb">sum</span> <span class="o">+=</span> <span class="o">*</span><span class="n">buf</span><span class="o">++</span><span class="p">;</span>
-        <span class="k">if</span> <span class="p">(</span><span class="nb">sum</span> <span class="o">&amp;</span> <span class="mh">0xFFFF0000</span><span class="p">)</span>
+        <span class="n">sum</span> <span class="o">+=</span> <span class="o">*</span><span class="n">buf</span><span class="o">++</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">sum</span> <span class="o">&amp;</span> <span class="mh">0xFFFF0000</span><span class="p">)</span>
         <span class="p">{</span>
-            <span class="o">/*</span> <span class="n">carry</span> <span class="n">occurred</span><span class="p">,</span> <span class="n">so</span> <span class="n">wrap</span> <span class="n">around</span> <span class="o">*/</span>
-            <span class="nb">sum</span> <span class="o">&amp;=</span> <span class="mh">0xFFFF</span><span class="p">;</span>
-            <span class="nb">sum</span><span class="o">++</span><span class="p">;</span>
+            <span class="cm">/* carry occurred, so wrap around */</span>
+            <span class="n">sum</span> <span class="o">&amp;=</span> <span class="mh">0xFFFF</span><span class="p">;</span>
+            <span class="n">sum</span><span class="o">++</span><span class="p">;</span>
         <span class="p">}</span>
     <span class="p">}</span>
-    <span class="k">return</span> <span class="o">~</span><span class="p">(</span><span class="nb">sum</span> <span class="o">&amp;</span> <span class="mh">0xFFFF</span><span class="p">);</span>
+    <span class="k">return</span> <span class="o">~</span><span class="p">(</span><span class="n">sum</span> <span class="o">&amp;</span> <span class="mh">0xFFFF</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
 </div>

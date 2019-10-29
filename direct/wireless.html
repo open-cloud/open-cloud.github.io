@@ -117,6 +117,10 @@
 <li class="toctree-l2"><a class="reference internal" href="trend.html">Perspective: Race to the Edge</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../internetworking.html">Chapter 3:  Internetworking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scaling.html">Chapter 4:  Advanced Internetworking</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../e2e.html">Chapter 5:  End-to-End Protocols</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../congestion.html">Chapter 6:  Congestion Control</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../README.html">About This Book</a></li>
 </ul>
 
@@ -214,15 +218,10 @@ differences include which part of the electromagnetic spectrum they use
 consume. In this section, we discuss two prominent wireless
 technologies: Wi-Fi (more formally known as 802.11), and Bluetooth. The
 next section discusses cellular networks in the context of ISP access
-services. <cite>Table 1 &lt;tab-wireless-tech&gt;</cite> gives an overview of
+services. <a class="reference internal" href="#tab-wireless-tech"><span class="std std-ref">Table 1</span></a> gives an overview of
 these technologies and how they compare to each other.</p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="19%" />
-<col width="34%" />
-<col width="25%" />
-<col width="21%" />
-</colgroup>
+<span id="tab-wireless-tech"></span><table border="1" class="colwidths-auto docutils align-center" id="id1">
+<caption><span class="caption-number">Table 4: </span><span class="caption-text">Overview of Leading Wireless Technologies.</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">&#160;</th>
 <th class="head">Bluetooth (802.15.1)</th>
@@ -325,9 +324,9 @@ and the receiver. The transmitted values, known as an n-bit <em>chipping
 code</em>, spread the signal across a frequency band that is n times wider
 than the frame would have otherwise required. <a class="reference internal" href="#fig-chipping"><span class="std std-ref">Figure 1</span></a>
 gives an example of a 4-bit chipping sequence.</p>
-<div class="figure align-center" id="id1">
+<div class="figure align-center" id="id2">
 <span id="fig-chipping"></span><a class="reference internal image-reference" href="../_images/f02-27-9780123850591.png"><img alt="../_images/f02-27-9780123850591.png" src="../_images/f02-27-9780123850591.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-number">Figure 44: </span><span class="caption-text">Example&nbsp;4-bit chipping sequence.</span></p>
+<p class="caption"><span class="caption-number">Figure 43: </span><span class="caption-text">Example&nbsp;4-bit chipping sequence.</span></p>
 </div>
 <p>Different parts of the electromagnetic spectrum have different
 properties, making some better suited to communication, and some less
@@ -357,9 +356,9 @@ non-base (client) nodes is routed via the base station. This is in spite
 of the fact that radio waves emitted by one client node may well be
 received by other client nodes—the common base station model does not
 permit direct communication between the client nodes.</p>
-<div class="figure align-center" id="id2">
+<div class="figure align-center" id="id3">
 <span id="fig-wirelessbasestation"></span><a class="reference internal image-reference" href="../_images/f02-28-9780123850591.png"><img alt="../_images/f02-28-9780123850591.png" src="../_images/f02-28-9780123850591.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-number">Figure 45: </span><span class="caption-text">A wireless network using a base station.</span></p>
+<p class="caption"><span class="caption-number">Figure 44: </span><span class="caption-text">A wireless network using a base station.</span></p>
 </div>
 <p>This topology implies three qualitatively different levels of mobility.
 The first level is no mobility, such as when a receiver must be in a
@@ -367,9 +366,9 @@ fixed location to receive a directional transmission from the base
 station. The second level is mobility within the range of a base, as is
 the case with Bluetooth. The third level is mobility between bases, as
 is the case with cell phones and Wi-Fi.</p>
-<div class="figure align-center" id="id3">
+<div class="figure align-center" id="id4">
 <span id="fig-wirelessmesh"></span><a class="reference internal image-reference" href="../_images/f02-29-9780123850591.png"><img alt="../_images/f02-29-9780123850591.png" src="../_images/f02-29-9780123850591.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-number">Figure 46: </span><span class="caption-text">A wireless ad hoc or mesh network.</span></p>
+<p class="caption"><span class="caption-number">Figure 45: </span><span class="caption-text">A wireless ad hoc or mesh network.</span></p>
 </div>
 <p>An alternative topology that is seeing increasing interest is the <em>mesh</em>
 or <em>ad hoc</em> network. In a wireless mesh, nodes are peers; that is, there
@@ -415,11 +414,12 @@ The physical layer standard 802.11b was added subsequently. Using a
 variant of direct sequence, 802.11b provides up to 11&nbsp;Mbps. These three
 standards all operated in the license-exempt 2.4-GHz frequency band of
 the electromagnetic spectrum. Then came 802.11a, which delivers up to
-54&nbsp;Mbps using a variant of FDM called <em>orthogonal frequency division
-multiplexing (OFDM)</em>; 802.11a runs in the license-exempt 5-GHz band. On
-one hand, this band is less used, so there is less interference. On the
-other hand, there is more absorption of the signal and it is limited to
-almost line of sight. 802.11g followed; 802.11g also uses OFDM, delivers
+54&nbsp;Mbps using a variant of frequency division multiplexing called
+<em>orthogonal frequency division multiplexing (OFDM)</em>; 802.11a runs in
+the license-exempt 5-GHz band. On one hand, this band is less used, so
+there is less interference. On the other hand, there is more
+absorption of the signal and it is limited to almost line of
+sight. 802.11g followed; 802.11g also uses OFDM, delivers
 up to 54&nbsp;Mbps, and is backward compatible with 802.11b (and returns to
 the 2.4-GHz band).</p>
 <p>At the time of writing, many user devices (e.g., laptops, notebooks)
@@ -428,7 +428,7 @@ rates of 150 Mbps to 450 Mbps, respectively. This improvement is
 partly due to the use of multiple antennas and allowing greater
 wireless channel bandwidths. The use of multiple antennas is often
 called <em>MIMO</em> for multiple-input, multiple-output. The latest emerging
-standard, 802.11ax promises another substantial improvement in
+standard, 802.11ax, promises another substantial improvement in
 throughput, in part by adopting many of the coding and modulation
 techniques used in the 4G/5G cellular network, which we describe in the
 next section.</p>
@@ -475,9 +475,9 @@ The reason why a node may not receive transmissions from another node is
 because that node may be too far away or blocked by an obstacle. This
 situation is a bit more complex than it first appears, as the following
 discussion will illustrate.</p>
-<div class="figure align-center" id="id4">
+<div class="figure align-center" id="id5">
 <span id="fig-wifihiddennode"></span><a class="reference internal image-reference" href="../_images/f02-30-9780123850591.png"><img alt="../_images/f02-30-9780123850591.png" src="../_images/f02-30-9780123850591.png" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-number">Figure 47: </span><span class="caption-text">The hidden node problem. Although A and C are hidden
+<p class="caption"><span class="caption-number">Figure 46: </span><span class="caption-text">The hidden node problem. Although A and C are hidden
 from each other, their signals can collide at B. (B’s reach is not
 shown.)</span></p>
 </div>
@@ -488,9 +488,9 @@ C are unaware of each other since their signals do not carry that far.
 These two frames collide with each other at B, but unlike an Ethernet,
 neither A nor C is aware of this collision. A and C are said to be
 <em>hidden nodes</em> with respect to each other.</p>
-<div class="figure align-center" id="id5">
+<div class="figure align-center" id="id6">
 <span id="fig-wifiexposednode"></span><a class="reference internal image-reference" href="../_images/f02-31-9780123850591.png"><img alt="../_images/f02-31-9780123850591.png" src="../_images/f02-31-9780123850591.png" style="width: 325px;" /></a>
-<p class="caption"><span class="caption-number">Figure 48: </span><span class="caption-text">The exposed node problem. Although B and C are exposed
+<p class="caption"><span class="caption-number">Figure 47: </span><span class="caption-text">The exposed node problem. Although B and C are exposed
 to each other’s signals, there is no interference if B transmits
 to A while C transmits to D. (A and D’s reaches are not shown.)</span></p>
 </div>
@@ -559,9 +559,9 @@ that connects three access points, each of which services the nodes in
 some region. Each access point operates on some channel in the
 appropriate frequency range, and each AP will typically be on a
 different channel than its neighbors.</p>
-<div class="figure align-center" id="id6">
+<div class="figure align-center" id="id7">
 <span id="fig-wireless2"></span><a class="reference internal image-reference" href="../_images/f02-32-9780123850591.png"><img alt="../_images/f02-32-9780123850591.png" src="../_images/f02-32-9780123850591.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-number">Figure 49: </span><span class="caption-text">Access points connected to a distribution system.</span></p>
+<p class="caption"><span class="caption-number">Figure 48: </span><span class="caption-text">Access points connected to a distribution system.</span></p>
 </div>
 <p>The details of the distribution system are not important to this
 discussion—it could be an Ethernet, for example. The only important
@@ -593,9 +593,9 @@ example, because the signal from its current AP has weakened due to the
 node moving away from it. Whenever a node acquires a new AP, the new AP
 notifies the old AP of the change (this happens in step&nbsp;4) via the
 distribution system.</p>
-<div class="figure align-center" id="id7">
+<div class="figure align-center" id="id8">
 <span id="fig-wireless3"></span><a class="reference internal image-reference" href="../_images/f02-33-9780123850591.png"><img alt="../_images/f02-33-9780123850591.png" src="../_images/f02-33-9780123850591.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-number">Figure 50: </span><span class="caption-text">Node mobility.</span></p>
+<p class="caption"><span class="caption-number">Figure 49: </span><span class="caption-text">Node mobility.</span></p>
 </div>
 <p>Consider the situation shown in <a class="reference internal" href="#fig-wireless3"><span class="std std-ref">Figure 7</span></a>, where node C
 moves from the cell serviced by AP-1 to the cell serviced by AP-2. As it
@@ -621,9 +621,9 @@ shown): a 6-bit <code class="docutils literal notranslate"><span class="pre">Typ
 carries data, is an RTS or CTS frame, or is being used by the scanning
 algorithm, and a pair of 1-bit fields—called <code class="docutils literal notranslate"><span class="pre">ToDS</span></code> and
 <code class="docutils literal notranslate"><span class="pre">FromDS</span></code>—that are described below.</p>
-<div class="figure align-center" id="id8">
+<div class="figure align-center" id="id9">
 <span id="fig-802-11-format"></span><a class="reference internal image-reference" href="../_images/f02-34-9780123850591.png"><img alt="../_images/f02-34-9780123850591.png" src="../_images/f02-34-9780123850591.png" style="width: 550px;" /></a>
-<p class="caption"><span class="caption-number">Figure 51: </span><span class="caption-text">802.11 frame format.</span></p>
+<p class="caption"><span class="caption-number">Figure 50: </span><span class="caption-text">802.11 frame format.</span></p>
 </div>
 <p>The peculiar thing about the 802.11 frame format is that it contains
 four, rather than two, addresses. How these addresses are interpreted
@@ -701,9 +701,9 @@ of a master device and up to seven slave devices, as shown in
 between the master and a slave; the slaves do not communicate directly
 with each other. Because slaves have a simpler role, their Bluetooth
 hardware and software can be simpler and cheaper.</p>
-<div class="figure align-center" id="id9">
+<div class="figure align-center" id="id10">
 <span id="fig-wirelessbluetoothpiconet"></span><a class="reference internal image-reference" href="../_images/f02-35-9780123850591.png"><img alt="../_images/f02-35-9780123850591.png" src="../_images/f02-35-9780123850591.png" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-number">Figure 52: </span><span class="caption-text">A Bluetooth piconet.</span></p>
+<p class="caption"><span class="caption-number">Figure 51: </span><span class="caption-text">A Bluetooth piconet.</span></p>
 </div>
 <p>Since Bluetooth operates in an license-exempt band, it is required to
 use a spread spectrum technique to deal with possible interference in
