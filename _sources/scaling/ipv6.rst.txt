@@ -1,21 +1,19 @@
-4.2 IP Version 6 (IPv6)
+4.2 IP Version 6
 =======================
 
-In many respects, the motivation for a new version of IP is simple: to
-deal with exhaustion of the IP address space. CIDR helped considerably
-to contain the rate at which the Internet address space is being
+The motivation for defining a new version of IP is simple: to deal
+with exhaustion of the IP address space. CIDR helped considerably to
+contain the rate at which the Internet address space was being
 consumed and also helped to control the growth of routing table
-information needed in the Internet’s routers. However, there will come a
-point at which these techniques are no longer adequate. In particular,
-it is virtually impossible to achieve 100% address utilization
-efficiency, so the address space will be exhausted well before the 4
-billionth host is connected to the Internet. Even if we were able to use
-all 4 billion addresses, it’s not too hard to imagine ways that that
-number could be exhausted, now that IP addresses are assigned not just
-to full-blown computers but also to mobile phones, televisions, and
-other household appliances. All of these possibilities argue that a
-bigger address space than that provided by 32 bits will eventually be
-needed.
+information needed in the Internet’s routers. However, these
+techniques are no longer adequate. In particular, it is virtually
+impossible to achieve 100% address utilization efficiency, so the
+address space was consumed well before the 4 billionth host was
+connected to the Internet. Even if we were able to use all 4 billion
+addresses, it is now clear that IP addresses need to be assigned to
+more than traditional computers, including smart phones, televisions,
+household appliances, and drones. With the clarity of 20/20 hindsight,
+a 32-bit address space is quite small.
 
 Historical Perspective
 ----------------------
@@ -29,9 +27,9 @@ for every host and router in the Internet. This is clearly not a trivial
 matter—it is a major change that needs to be thought about very
 carefully.
 
-The effort to define a new version of IP was known as IP Next
+The effort to define a new version of IP was originally known as IP Next
 Generation, or IPng. As the work progressed, an official IP version
-number was assigned, so IPng is now known as IPv6. Note that the version
+number was assigned, so IPng became IPv6. Note that the version
 of IP discussed so far in this chapter is version 4 (IPv4). The apparent
 discontinuity in numbering is the result of version number 5 being used
 for an experimental protocol many years ago.
@@ -63,28 +61,15 @@ of IPv6 as a clean slate facilitated the design of new capabilities for
 IP that were then retrofitted into IPv4.
 
 In addition to the wish list, one absolutely non-negotiable feature for
-IPng was that there must be a transition plan to move from the current
+IPv6 was that there must be a transition plan to move from the current
 version of IP (version 4) to the new version. With the Internet being so
 large and having no centralized control, it would be completely
 impossible to have a “flag day” on which everyone shut down their hosts
-and routers and installed a new version of IP. Thus, we can expect there
-to be a long transition period in which some hosts and routers will run
-IPv4 only, some will run IPv4 and IPv6, and some will run IPv6 only. (So
-far, that transition period has lasted over 20 years!)
-
-The IETF appointed a committee called the IPng Directorate to collect
-all the inputs on IPng requirements and to evaluate proposals for a
-protocol to become IPng. Over the life of this committee there were
-numerous proposals, some of which merged with other proposals, and
-eventually one was chosen by the Directorate to be the basis for IPng.
-That proposal was called *Simple Internet Protocol Plus* (SIPP). SIPP
-originally called for a doubling of the IP address size to 64 bits. When
-the Directorate selected SIPP, they stipulated several changes, one of
-which was another doubling of the address to 128 bits (16 bytes). It was
-around this time that version number 6 was assigned. The rest of this
-section describes some of the main features of IPv6. At the time of this
-writing, most of the key specifications for IPv6 are Proposed or Draft
-Standards in the IETF.
+and routers and installed a new version of IP. The architects expected
+a long transition period in which some hosts and routers would run
+IPv4 only, some will run IPv4 and IPv6, and some will run IPv6
+only. It is doubtful they anticipated that transition period would be
+approaching its 30th anniversary.
 
 Addresses and Routing
 ---------------------
@@ -331,12 +316,12 @@ options are required, then they are carried in one or more special
 headers following the IP header, and this is indicated by the value of
 the ``NextHeader`` field. If there are no special headers, the
 ``NextHeader`` field is the demux key identifying the higher-level
-protocol running over IP (e.g., TCP or UDP); that is, it serves the same
-purpose as the IPv4 ``Protocol`` field. Also, fragmentation is now
-handled as an optional header, which means that the
+protocol running over IP (e.g., TCP or UDP); that is, it serves the
+same purpose as the IPv4 ``Protocol`` field. Also, fragmentation is
+now handled as an optional header, which means that the
 fragmentation-related fields of IPv4 are not included in the IPv6
-header. The ``HopLimit`` field is simply the ``TTL`` of IPv4, renamed to
-reflect the way it is actually used.
+header. The ``HopLimit`` field is simply the ``TTL`` of IPv4, renamed
+to reflect the way it is actually used.
 
 .. _fig-v6header:
 .. figure:: figures/f04-12-9780123850591.png
@@ -449,16 +434,16 @@ The first part turns out to be rather easy, since every host on a link
 must have a unique link-level address. For example, all hosts on an
 Ethernet have a unique 48-bit Ethernet address. This can be turned
 into a valid link-local use address by adding the appropriate prefix
-from `Table %s <fig-v6tab>` (``1111 1110 10``) followed by enough 0s
-to make up 128 bits. For some devices—for example, printers or hosts
-on a small routerless network that do not connect to any other
-networks—this address may be perfectly adequate. Those devices that
-need a globally valid address depend on a router on the same link to
-periodically advertise the appropriate prefix for the link. Clearly,
-this requires that the router be configured with the correct address
-prefix, and that this prefix be chosen in such a way that there is
-enough space at the end (e.g., 48 bits) to attach an appropriate
-link-level address.
+from :numref"`Table %s <fig-v6tab>` (``1111 1110 10``) followed by
+enough 0s to make up 128 bits. For some devices—for example, printers
+or hosts on a small routerless network that do not connect to any
+other networks—this address may be perfectly adequate. Those devices
+that need a globally valid address depend on a router on the same link
+to periodically advertise the appropriate prefix for the
+link. Clearly, this requires that the router be configured with the
+correct address prefix, and that this prefix be chosen in such a way
+that there is enough space at the end (e.g., 48 bits) to attach an
+appropriate link-level address.
 
 The ability to embed link-level addresses as long as 48 bits into IPv6
 addresses was one of the reasons for choosing such a large address size.
