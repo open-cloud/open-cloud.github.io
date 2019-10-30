@@ -660,7 +660,7 @@ get back to host A. Yet another alternative is to have the header carry
 a pointer to the current “next port” entry, so that each switch just
 updates the pointer rather than rotating the header; this may be more
 efficient to implement. We show these three approaches in
-:numref:`Figure %s <fig-sroute-appss>`. In each case, the entry that
+:numref:`Figure %s <fig-sroute-apps>`. In each case, the entry that
 this switch needs to read is ``A``, and the entry that the next switch
 needs to read is ``B``.
 

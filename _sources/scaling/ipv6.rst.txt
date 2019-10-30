@@ -1,5 +1,5 @@
 4.2 IP Version 6
-=======================
+================
 
 The motivation for defining a new version of IP is simple: to deal
 with exhaustion of the IP address space. CIDR helped considerably to
@@ -400,7 +400,7 @@ become virtually indistinguishable, so that the main driver for IPv6
 remains the need for larger addresses. 
 
 Autoconfiguration
-~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
 
 While the Internet’s growth has been impressive, one factor that has
 inhibited faster acceptance of the technology is the fact that getting
