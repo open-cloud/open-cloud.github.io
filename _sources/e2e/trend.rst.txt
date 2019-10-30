@@ -84,7 +84,7 @@ streaming*. (See how in `Section 7.2 <../data/multimedia.html>`__.)
    To continue reading about the cloudification of the Internet, see
    `Software Defined Traffic Engineering <../congestion/trend.html>`__.
 
-   To learn more about the centrality of HTTP, we recommend: \* `HTTP:
+   To learn more about the centrality of HTTP, we recommend: `HTTP:
    An Evolvable Narrow Waist for the Future
    Internet <https://www2.eecs.berkeley.edu/Pubs/TechRpts/2012/EECS-2012-5.pdf>`__,
    January 2012.
