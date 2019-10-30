@@ -219,7 +219,7 @@ the three dimensions of color for a total of 24 bits. Rather than
 sending those 24 bits per pixel, however, GIF first reduces 24-bit color
 images to 8-bit color images. This is done by identifying the colors
 used in the picture, of which there will typically be considerably fewer
-than 2\:sup:`24`, and then picking the 256 colors that most closely 
+than 2\ :sup:`24`, and then picking the 256 colors that most closely 
 approximate the colors used in the picture. There might be more than 256 
 colors, however, so the trick is to try not to distort the color too much 
 by picking 256 colors such that no pixel has its color changed too much.
@@ -256,7 +256,7 @@ a 3-dimensional space, and it’s possible to convert from one color space
 to another using linear equations. For one YUV space that is commonly
 used to represent digital images, the equations are:
 
-.. code:: c
+.. code-block:: c
 
    Y = 0.299R + 0.587G + 0.114B
    U = (B-Y) x 0.565
@@ -402,7 +402,7 @@ each number by the quantum 10 using integer arithmetic, yielding 4, 9,
 7 bits needed to encode the original numbers.
 
 .. _tab-quant:
-.. table::   Example JPEG Quantization Table. 
+.. table::  Example JPEG Quantization Table. 
    :widths: auto
    :align: center
 
@@ -434,7 +434,7 @@ how much information is lost and, correspondingly, how much
 compression is achieved. In practice, the JPEG standard specifies a
 set of quantization tables that have proven effective in compressing
 digital images; an example quantization table is given in
-:numref:`Table %s <tab-qufant>`. In tables like this one, the low
+:numref:`Table %s <tab-quant>`. In tables like this one, the low
 coefficients have a quantum close to 1 (meaning that little
 low-frequency information is lost) and the high coefficients have
 larger values (meaning that more high-frequency information is
@@ -464,7 +464,7 @@ Decompression is then simply defined as
 
 For example, if the DC coefficient (i.e., DCT(0,0)) for a particular
 block was equal to 25, then the quantization of this value using
-:numref:`Table %s <tab-qufant>` would result in
+:numref:`Table %s <tab-quant>` would result in
 
 .. code-block:: c
 
@@ -629,10 +629,10 @@ pixel in the macroblock, the first task is to find the corresponding
 reference pixel in the past and future reference frames. This is done
 using the two motion vectors associated with the macroblock. Then, the
 delta for the pixel is added to the average of these two reference
-pixels. Stated more precisely, if we let F\:sub:`p` and F\:sub:`f`
+pixels. Stated more precisely, if we let F\ :sub:`p` and F\ :sub:`f`
 denote the past and future reference frames, respectively, and the
 past/future motion vectors are given by (x\ :sub:`p`, y\ :sub:`p`) and
-:math:`(x_f,y_f)`, then the pixel at coordinate *(x,y)* in the current
+(x\ :sub:`f`, y\ :sub:`f`), then the pixel at coordinate *(x,y)* in the current
 frame (denoted F\ :sub:`c`) is computed as
 
 .. math::

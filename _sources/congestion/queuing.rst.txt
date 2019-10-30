@@ -238,7 +238,7 @@ sending, however, they will start to use their share and the capacity
 available to my flow will drop.
 
 The second thing to notice is that if the link is fully loaded and there
-are *n* flows sending data, I cannot use more than 1/n\:sup:`th` 
+are *n* flows sending data, I cannot use more than 1/n\ :sup:`th` 
 of the link bandwidth. If I try to send more than that, my packets
 will be assigned increasingly large timestamps, causing them to sit in
 the queue longer awaiting transmission. Eventually, the queue will

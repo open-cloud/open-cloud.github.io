@@ -1104,7 +1104,7 @@ Implementation
 There are two items of note regarding the implementation of timeouts in
 TCP. The first is that it is possible to implement the calculation for
 ``EstimatedRTT`` and ``Deviation`` without using floating-point
-arithmetic. Instead, the whole calculation is scaled by 2\:sup:`n`, 
+arithmetic. Instead, the whole calculation is scaled by 2\ :sup:`n`, 
 with delta selected to be 1/2\ :sup:`n`. This allows us to do integer 
 arithmetic, implementing multiplicationand division using shifts, 
 thereby achieving higher performance. The resulting calculation is given 

@@ -452,7 +452,7 @@ class C addresses have only 8 bits for the host and 21 for the network
 part. Therefore, a class C network can have only 256 unique host
 identifiers, which means only 254 attached hosts (one host identifier,
 255, is reserved for broadcast, and 0 is not a valid host number).
-However, the addressing scheme supports 2\:sup:`21` class C networks.
+However, the addressing scheme supports 2\ :sup:`21` class C networks.
  
 .. _fig-class:
 .. figure:: figures/f03-19-9780123850591.png
@@ -684,7 +684,7 @@ more than 255 hosts wastes over 64,000 addresses.
 Assigning one network number per physical network, therefore, uses up
 the IP address space potentially much faster than we would like. While
 we would need to connect over 4 billion hosts to use up all the valid
-addresses, we only need to connect 2\:sup:`14` (about 16,000) class B 
+addresses, we only need to connect 2\ :sup:`14` (about 16,000) class B 
 networks before that part of the address space
 runs out. Therefore, we would like to find some way to use the network
 numbers more efficiently.

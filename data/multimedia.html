@@ -396,7 +396,7 @@ the three dimensions of color for a total of 24 bits. Rather than
 sending those 24 bits per pixel, however, GIF first reduces 24-bit color
 images to 8-bit color images. This is done by identifying the colors
 used in the picture, of which there will typically be considerably fewer
-than 2:sup:<cite>24</cite>, and then picking the 256&nbsp;colors that most closely
+than 2<sup>24</sup>, and then picking the 256&nbsp;colors that most closely
 approximate the colors used in the picture. There might be more than 256
 colors, however, so the trick is to try not to distort the color too much
 by picking 256 colors such that no pixel has its color changed too much.</p>
@@ -429,7 +429,7 @@ components.</p>
 a 3-dimensional space, and it’s possible to convert from one color space
 to another using linear equations. For one YUV space that is commonly
 used to represent digital images, the equations are:</p>
-<div class="code c highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Y</span> <span class="o">=</span> <span class="mf">0.299</span><span class="n">R</span> <span class="o">+</span> <span class="mf">0.587</span><span class="n">G</span> <span class="o">+</span> <span class="mf">0.114</span><span class="n">B</span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">Y</span> <span class="o">=</span> <span class="mf">0.299</span><span class="n">R</span> <span class="o">+</span> <span class="mf">0.587</span><span class="n">G</span> <span class="o">+</span> <span class="mf">0.114</span><span class="n">B</span>
 <span class="n">U</span> <span class="o">=</span> <span class="p">(</span><span class="n">B</span><span class="o">-</span><span class="n">Y</span><span class="p">)</span> <span class="n">x</span> <span class="mf">0.565</span>
 <span class="n">V</span> <span class="o">=</span>  <span class="p">(</span><span class="n">R</span><span class="o">-</span><span class="n">Y</span><span class="p">)</span> <span class="n">x</span> <span class="mf">0.713</span>
 </pre></div>
@@ -650,7 +650,7 @@ how much information is lost and, correspondingly, how much
 compression is achieved. In practice, the JPEG standard specifies a
 set of quantization tables that have proven effective in compressing
 digital images; an example quantization table is given in
-<code class="xref std std-numref docutils literal notranslate"><span class="pre">Table</span> <span class="pre">%s</span></code>. In tables like this one, the low
+<a class="reference internal" href="#tab-quant"><span class="std std-numref">Table 24</span></a>. In tables like this one, the low
 coefficients have a quantum close to 1 (meaning that little
 low-frequency information is lost) and the high coefficients have
 larger values (meaning that more high-frequency information is
@@ -673,7 +673,7 @@ making them ripe for further compression in the third phase.</p>
 </div>
 <p>For example, if the DC coefficient (i.e., DCT(0,0)) for a particular
 block was equal to 25, then the quantization of this value using
-<code class="xref std std-numref docutils literal notranslate"><span class="pre">Table</span> <span class="pre">%s</span></code> would result in</p>
+<a class="reference internal" href="#tab-quant"><span class="std std-numref">Table 24</span></a> would result in</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">Floor</span><span class="p">(</span><span class="mi">25</span><span class="o">/</span><span class="mi">3</span><span class="o">+</span><span class="mf">0.5</span><span class="p">)</span> <span class="o">=</span> <span class="mi">8</span>
 </pre></div>
 </div>
@@ -815,10 +815,10 @@ pixel in the macroblock, the first task is to find the corresponding
 reference pixel in the past and future reference frames. This is done
 using the two motion vectors associated with the macroblock. Then, the
 delta for the pixel is added to the average of these two reference
-pixels. Stated more precisely, if we let F:sub:<cite>p</cite> and F:sub:<cite>f</cite>
+pixels. Stated more precisely, if we let F<sub>p</sub> and F<sub>f</sub>
 denote the past and future reference frames, respectively, and the
 past/future motion vectors are given by (x<sub>p</sub>, y<sub>p</sub>) and
-<span class="math notranslate nohighlight">\((x_f,y_f)\)</span>, then the pixel at coordinate <em>(x,y)</em> in the current
+(x<sub>f</sub>, y<sub>f</sub>), then the pixel at coordinate <em>(x,y)</em> in the current
 frame (denoted F<sub>c</sub>) is computed as</p>
 <div class="math notranslate nohighlight">
 \[F_c(x,y) = (F_p(x+x_p,y+y_p) + F_f(x+x_f,y+y_f))/2 + \delta(x,y)\]</div>
