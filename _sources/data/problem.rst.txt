@@ -4,7 +4,7 @@ Problem: What Do We Do with the Data?
 From the network’s perspective, application programs send messages to
 each other. Each of these messages is just an uninterpreted string of
 bytes. From the application’s perspective, however, these messages
-contain various kinds of *data*—arrays of integers, video frames, lines
+contain various kinds of *data*\ —arrays of integers, video frames, lines
 of text, digital images, and so on. In other words, these bytes have
 meaning. We now consider the problem of how best to encode the different
 kinds of data that application programs want to exchange into byte
