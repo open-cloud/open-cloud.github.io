@@ -2,18 +2,19 @@
 ===========
 
 Now that we have seen how to transmit a sequence of bits over a
-point-to-point link—from adaptor to adaptor—let’s consider the scenario
-in :ref:`Figure 1 <fig-host-link>`. Recall from Chapter 1 that we are focusing
-on packet-switched networks, which means that blocks of data (called
-*frames* at this level), not bit streams, are exchanged between nodes.
-It is the network adaptor that enables the nodes to exchange frames.
-When node A wishes to transmit a frame to node B, it tells its adaptor
-to transmit a frame from the node’s memory. This results in a sequence
-of bits being sent over the link. The adaptor on node B then collects
-together the sequence of bits arriving on the link and deposits the
-corresponding frame in B’s memory. Recognizing exactly what set of bits
-constitutes a frame—that is, determining where the frame begins and
-ends—is the central challenge faced by the adaptor.
+point-to-point link—from adaptor to adaptor—let’s consider the
+scenario in :numref:`Figure %s <fig-host-link>`. Recall from Chapter 1
+that we are focusing on packet-switched networks, which means that
+blocks of data (called *frames* at this level), not bit streams, are
+exchanged between nodes.  It is the network adaptor that enables the
+nodes to exchange frames.  When node A wishes to transmit a frame to
+node B, it tells its adaptor to transmit a frame from the node’s
+memory. This results in a sequence of bits being sent over the
+link. The adaptor on node B then collects together the sequence of
+bits arriving on the link and deposits the corresponding frame in B’s
+memory. Recognizing exactly what set of bits constitutes a frame—that
+is, determining where the frame begins and ends—is the central
+challenge faced by the adaptor.
 
 .. _fig-host-link:
 .. figure:: figures/f02-06-9780123850591.png
@@ -75,7 +76,7 @@ back-to-back frames to be incorrectly received.
 The Point-to-Point Protocol (PPP), which is commonly used to carry
 Internet Protocol packets over various sorts of point-to-point links,
 uses sentinels and character stuffing. The format for a PPP frame is
-given in :ref:`Figure 2 <fig-ppp>`.
+given in :numref:`Figure %s <fig-ppp>`.
  
 .. _fig-ppp:
 .. figure:: figures/f02-08-9780123850591.png
@@ -123,7 +124,7 @@ from an executable file. The Synchronous Data Link Control (SDLC)
 protocol developed by IBM is an example of a bit-oriented protocol; SDLC
 was later standardized by the ISO as the High-Level Data Link Control
 (HDLC) protocol. In the following discussion, we use HDLC as an example;
-its frame format is given in :ref:`Figure 3 <fig-hdlc>`.
+its frame format is given in :numref:`Figure %s <fig-hdlc>`.
 
 HDLC denotes both the beginning and the end of a frame with the
 distinguished bit sequence ``01111110``. This sequence is also
@@ -197,26 +198,26 @@ the 64-kbps channels that traditionally are used for telephone calls.)
 We begin with SONET’s approach to framing and discuss the other issues
 following.
 
-As with the previously discussed framing schemes, a SONET frame has some
-special information that tells the receiver where the frame starts and
-ends; however, that is about as far as the similarities go. Notably, no
-bit stuffing is used, so that a frame’s length does not depend on the
-data being sent. So the question to ask is “How does the receiver know
-where each frame starts and ends?” We consider this question for the
-lowest-speed SONET link, which is known as STS-1 and runs at 51.84 Mbps.
-An STS-1 frame is shown in :ref:`Figure 4 <fig-sonet-frame>`. It is arranged
-as 9 rows of 90 bytes each, and the first 3 bytes of each row are
-overhead, with the rest being available for data that is being
-transmitted over the link. The first 2 bytes of the frame contain a
-special bit pattern, and it is these bytes that enable the receiver to
-determine where the frame starts. However, since bit stuffing is not
-used, there is no reason why this pattern will not occasionally turn up
-in the payload portion of the frame. To guard against this, the receiver
-looks for the special bit pattern consistently, hoping to see it
-appearing once every 810 bytes, since each frame is 9 × 90 = 810 bytes
-long. When the special pattern turns up in the right place enough times,
-the receiver concludes that it is in sync and can then interpret the
-frame correctly.
+As with the previously discussed framing schemes, a SONET frame has
+some special information that tells the receiver where the frame
+starts and ends; however, that is about as far as the similarities
+go. Notably, no bit stuffing is used, so that a frame’s length does
+not depend on the data being sent. So the question to ask is “How does
+the receiver know where each frame starts and ends?” We consider this
+question for the lowest-speed SONET link, which is known as STS-1 and
+runs at 51.84 Mbps.  An STS-1 frame is shown in :numref:`Figure %s
+<fig-sonet-frame>`. It is arranged as 9 rows of 90 bytes each, and the
+first 3 bytes of each row are overhead, with the rest being available
+for data that is being transmitted over the link. The first 2 bytes of
+the frame contain a special bit pattern, and it is these bytes that
+enable the receiver to determine where the frame starts. However,
+since bit stuffing is not used, there is no reason why this pattern
+will not occasionally turn up in the payload portion of the frame. To
+guard against this, the receiver looks for the special bit pattern
+consistently, hoping to see it appearing once every 810 bytes, since
+each frame is 9 × 90 = 810 bytes long. When the special pattern turns
+up in the right place enough times, the receiver concludes that it is
+in sync and can then interpret the frame correctly.
 
 .. _fig-sonet-frame:
 .. figure:: figures/f02-11-9780123850591.png
@@ -289,7 +290,7 @@ Although it is accurate to view an STS-N signal as being used to
 multiplex N STS-1 frames, the payload from these STS-1 frames can be
 linked together to form a larger STS-N payload; such a link is denoted
 STS-Nc (for *concatenated*). One of the fields in the overhead is used
-for this purpose. :ref:`Figure 5 <fig-sonet1>` schematically depicts
+for this purpose. :numref:`Figure %s <fig-sonet1>` schematically depicts
 concatenation in the case of three STS-1 frames being concatenated into
 a single STS-3c frame. The significance of a SONET link being designated
 as STS-3c rather than STS-3 is that, in the former case, the user of the
@@ -303,15 +304,16 @@ really be viewed as three 51.84-Mbps links that happen to share a fiber.
    
    SONET frames out of phase.
 
-Finally, the preceding description of SONET is overly simplistic in that
-it assumes that the payload for each frame is completely contained
-within the frame. (Why wouldn’t it be?) In fact, we should view the
-STS-1 frame just described as simply a placeholder for the frame, where
-the actual payload may *float* across frame boundaries. This situation
-is illustrated in :ref:`Figure 6 <fig-sonet3>`. Here we see both the STS-1
-payload floating across two STS-1 frames and the payload shifted some
-number of bytes to the right and, therefore, wrapped around. One of the
-fields in the frame overhead points to the beginning of the payload. The
-value of this capability is that it simplifies the task of synchronizing
-the clocks used throughout the carriers’ networks, which is something
-that carriers spend a lot of their time worrying about.
+Finally, the preceding description of SONET is overly simplistic in
+that it assumes that the payload for each frame is completely
+contained within the frame. (Why wouldn’t it be?) In fact, we should
+view the STS-1 frame just described as simply a placeholder for the
+frame, where the actual payload may *float* across frame
+boundaries. This situation is illustrated in :numref:`Figure %s
+<fig-sonet3>`. Here we see both the STS-1 payload floating across two
+STS-1 frames and the payload shifted some number of bytes to the right
+and, therefore, wrapped around. One of the fields in the frame
+overhead points to the beginning of the payload. The value of this
+capability is that it simplifies the task of synchronizing the clocks
+used throughout the carriers’ networks, which is something that
+carriers spend a lot of their time worrying about.

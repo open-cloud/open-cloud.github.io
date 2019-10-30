@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>4.3 Multiprotocol Label Switching &mdash; Computer Networks: A Systems Approach Version 6.1 documentation</title>
+  <title>4.4 Multiprotocol Label Switching &mdash; Computer Networks: A Systems Approach Version 6.1 documentation</title>
   
 
   
@@ -39,8 +39,8 @@
   <link rel="stylesheet" href="../static/css/rtd_theme_mods.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="4.4 Routing Among Mobile Devices" href="mobile-ip.html" />
-    <link rel="prev" title="4.2 Multicast" href="multicast.html" /> 
+    <link rel="next" title="4.5 Routing Among Mobile Devices" href="mobile-ip.html" />
+    <link rel="prev" title="4.3 Multicast" href="multicast.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -97,14 +97,15 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../scaling.html">Chapter 4:  Advanced Internetworking</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="problem.html">Problem: Scaling to Billions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="global.html">4.1 Global Internet</a></li>
-<li class="toctree-l2"><a class="reference internal" href="multicast.html">4.2 Multicast</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">4.3 Multiprotocol Label Switching</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ipv6.html">4.2 IP Version 6 (IPv6)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multicast.html">4.3 Multicast</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4.4 Multiprotocol Label Switching</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#destination-based-forwarding">Destination-Based Forwarding</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#explicit-routing">Explicit Routing</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#virtual-private-networks-and-tunnels">Virtual Private Networks and Tunnels</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="mobile-ip.html">4.4 Routing Among Mobile Devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mobile-ip.html">4.5 Routing Among Mobile Devices</a></li>
 <li class="toctree-l2"><a class="reference internal" href="trend.html">Perspective: The Cloud is Eating the Internet</a></li>
 </ul>
 </li>
@@ -158,7 +159,7 @@
         
           <li><a href="../scaling.html">Chapter 4:  Advanced Internetworking</a> &raquo;</li>
         
-      <li>4.3 Multiprotocol Label Switching</li>
+      <li>4.4 Multiprotocol Label Switching</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -178,7 +179,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="multiprotocol-label-switching">
-<h1>4.3 Multiprotocol Label Switching<a class="headerlink" href="#multiprotocol-label-switching" title="Permalink to this headline">¶</a></h1>
+<h1>4.4 Multiprotocol Label Switching<a class="headerlink" href="#multiprotocol-label-switching" title="Permalink to this headline">¶</a></h1>
 <p>We continue our discussion of enhancements to IP by describing an
 addition to the Internet architecture that is very widely used but
 largely hidden from end users. The enhancement, called <em>Multiprotocol
@@ -220,35 +221,37 @@ implemented in MPLS-enabled routers. The following example shows how
 this idea works.</p>
 <div class="figure align-center" id="id1">
 <span id="fig-mpls-dest"></span><a class="reference internal image-reference" href="../_images/f04-18-9780123850591.png"><img alt="../_images/f04-18-9780123850591.png" src="../_images/f04-18-9780123850591.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-number">Figure 114: </span><span class="caption-text">Routing tables in example network.</span></p>
+<p class="caption"><span class="caption-number">Figure 114. </span><span class="caption-text">Routing tables in example network.</span></p>
 </div>
-<p>Consider the network in <a class="reference internal" href="#fig-mpls-dest"><span class="std std-ref">Figure 1</span></a>. Each of the two
-routers on the far right (R3 and R4) has one connected network, with
-prefixes <code class="docutils literal notranslate"><span class="pre">18.1.1/24</span></code> and <code class="docutils literal notranslate"><span class="pre">18.3.3/24</span></code>. The remaining routers (R1 and
-R2) have routing tables that indicate which outgoing interface each
-router would use when forwarding packets to one of those two networks.</p>
-<p>When MPLS is enabled on a router, the router allocates a label for each
-prefix in its routing table and advertises both the label and the prefix
-that it represents to its neighboring routers. This advertisement is
-carried in the Label Distribution Protocol. This is illustrated in
-<a class="reference internal" href="#fig-label-dist"><span class="std std-ref">Figure 2</span></a>. Router R2 has allocated the label value
-<code class="docutils literal notranslate"><span class="pre">15</span></code> for the prefix <code class="docutils literal notranslate"><span class="pre">18.1.1</span></code> and the label value <code class="docutils literal notranslate"><span class="pre">16</span></code> for the
-prefix <code class="docutils literal notranslate"><span class="pre">18.3.3</span></code>. These labels can be chosen at the convenience of the
-allocating router and can be thought of as indices into the routing
-table. After allocating the labels, R2 advertises the label bindings to
-its neighbors; in this case, we see R2 advertising a binding between the
-label <code class="docutils literal notranslate"><span class="pre">15</span></code> and the prefix <code class="docutils literal notranslate"><span class="pre">18.1.1</span></code> to R1. The meaning of such an
-advertisement is that R2 has said, in effect, “Please attach the label
-<code class="docutils literal notranslate"><span class="pre">15</span></code> to all packets sent to me that are destined to prefix
-<code class="docutils literal notranslate"><span class="pre">18.1.1</span></code>.” R1 stores the label in a table alongside the prefix that it
-represents as the remote or outgoing label for any packets that it sends
-to that prefix.</p>
-<p>In <a class="reference internal" href="#fig-label-dist"><span class="std std-ref">Figure 2(c)</span></a>, we see another label advertisement
-from router R3 to R2 for the prefix <code class="docutils literal notranslate"><span class="pre">18.1.1</span></code>, and R2 places the remote
-label that it learned from R3 in the appropriate place in its table.</p>
+<p>Consider the network in <a class="reference internal" href="#fig-mpls-dest"><span class="std std-numref">Figure 114</span></a>. Each of
+the two routers on the far right (R3 and R4) has one connected
+network, with prefixes <code class="docutils literal notranslate"><span class="pre">18.1.1/24</span></code> and <code class="docutils literal notranslate"><span class="pre">18.3.3/24</span></code>. The remaining
+routers (R1 and R2) have routing tables that indicate which outgoing
+interface each router would use when forwarding packets to one of
+those two networks.</p>
+<p>When MPLS is enabled on a router, the router allocates a label for
+each prefix in its routing table and advertises both the label and the
+prefix that it represents to its neighboring routers. This
+advertisement is carried in the Label Distribution Protocol. This is
+illustrated in <a class="reference internal" href="#fig-label-dist"><span class="std std-numref">Figure 115</span></a>. Router R2 has
+allocated the label value <code class="docutils literal notranslate"><span class="pre">15</span></code> for the prefix <code class="docutils literal notranslate"><span class="pre">18.1.1</span></code> and the
+label value <code class="docutils literal notranslate"><span class="pre">16</span></code> for the prefix <code class="docutils literal notranslate"><span class="pre">18.3.3</span></code>. These labels can be
+chosen at the convenience of the allocating router and can be thought
+of as indices into the routing table. After allocating the labels, R2
+advertises the label bindings to its neighbors; in this case, we see
+R2 advertising a binding between the label <code class="docutils literal notranslate"><span class="pre">15</span></code> and the prefix
+<code class="docutils literal notranslate"><span class="pre">18.1.1</span></code> to R1. The meaning of such an advertisement is that R2 has
+said, in effect, “Please attach the label <code class="docutils literal notranslate"><span class="pre">15</span></code> to all packets sent
+to me that are destined to prefix <code class="docutils literal notranslate"><span class="pre">18.1.1</span></code>.” R1 stores the label in
+a table alongside the prefix that it represents as the remote or
+outgoing label for any packets that it sends to that prefix.</p>
+<p>In <a class="reference internal" href="#fig-label-dist"><span class="std std-numref">Figure 115(c)</span></a>, we see another label
+advertisement from router R3 to R2 for the prefix <code class="docutils literal notranslate"><span class="pre">18.1.1</span></code>, and R2
+places the remote label that it learned from R3 in the appropriate
+place in its table.</p>
 <div class="figure align-center" id="id2">
 <span id="fig-label-dist"></span><a class="reference internal image-reference" href="../_images/f04-19-9780123850591.png"><img alt="../_images/f04-19-9780123850591.png" src="../_images/f04-19-9780123850591.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-number">Figure 115: </span><span class="caption-text">(a) R2 allocates labels and advertises bindings to
+<p class="caption"><span class="caption-number">Figure 115. </span><span class="caption-text">(a) R2 allocates labels and advertises bindings to
 R1. (b) R1 stores the received labels in a table. (c) R3
 advertises another binding, and R2 stores the received label in a
 table.</span></p>
@@ -316,8 +319,8 @@ has been applied to optical switches.</p>
 an LSR, we should tie up some loose ends. We have said that labels are
 “attached” to packets, but where exactly are they attached? The answer
 depends on the type of link on which packets are carried. Two common
-methods for carrying labels on packets are shown in <a class="reference internal" href="#fig-labels"><span class="std std-ref">Figure
-3</span></a>. When IP packets are carried as complete frames, as they
+methods for carrying labels on packets are shown in <a class="reference internal" href="#fig-labels"><span class="std std-numref">Figure
+116</span></a>. When IP packets are carried as complete frames, as they
 are on most link types including Ethernet and PPP, the label is inserted
 as a “shim” between the layer 2 header and the IP (or other layer 3)
 header, as shown in the lower part of the figure. However, if an ATM
@@ -327,28 +330,27 @@ ATM cell header, exactly where one would normally find the virtual
 circuit identifier (VCI) and virtual path identifier (VPI) fields.</p>
 <div class="figure align-center" id="id3">
 <span id="fig-labels"></span><a class="reference internal image-reference" href="../_images/f04-20-9780123850591.png"><img alt="../_images/f04-20-9780123850591.png" src="../_images/f04-20-9780123850591.png" style="width: 600px;" /></a>
-<p class="caption"><span class="caption-number">Figure 116: </span><span class="caption-text">(a) Label on an ATM-encapsulated packet; (b) label on
+<p class="caption"><span class="caption-number">Figure 116. </span><span class="caption-text">(a) Label on an ATM-encapsulated packet; (b) label on
 a frame-encapsulated packet.</span></p>
 </div>
 <p>Having now devised a scheme by which an ATM switch can function as an
-LSR, what have we gained? One thing to note is that we could now build a
-network that uses a mixture of conventional IP routers, label edge
+LSR, what have we gained? One thing to note is that we could now build
+a network that uses a mixture of conventional IP routers, label edge
 routers, and ATM switches functioning as LSRs, and they would all use
-the same routing protocols. To understand the benefits of using the same
-protocols, consider the alternative. In <a class="reference internal" href="#fig-overlay"><span class="std std-ref">Figure 4(a)</span></a>, we
-see a set of routers interconnected by virtual circuits over an ATM
-network, a configuration called an <em>overlay</em> network. At one point in
-time, networks of this type were often built because commercially
-available ATM switches supported higher total throughput than routers.
-Today, networks like this are less common because routers have caught up
-with and even surpassed ATM switches. However, these networks still
-exist because of the significant installed base of ATM switches in
-network backbones, which in turn is partly a result of ATM’s ability to
-support a range of capabilities such as circuit emulation and virtual
-circuit services.</p>
+the same routing protocols. To understand the benefits of using the
+same protocols, consider the alternative. In <a class="reference internal" href="#fig-overlay"><span class="std std-numref">Figure 117(a)</span></a>, we see a set of routers interconnected by virtual
+circuits over an ATM network, a configuration called an <em>overlay</em>
+network. At one point in time, networks of this type were often built
+because commercially available ATM switches supported higher total
+throughput than routers.  Today, networks like this are less common
+because routers have caught up with and even surpassed ATM
+switches. However, these networks still exist because of the
+significant installed base of ATM switches in network backbones, which
+in turn is partly a result of ATM’s ability to support a range of
+capabilities such as circuit emulation and virtual circuit services.</p>
 <div class="figure align-center" id="id4">
 <span id="fig-overlay"></span><a class="reference internal image-reference" href="../_images/f04-21-9780123850591.png"><img alt="../_images/f04-21-9780123850591.png" src="../_images/f04-21-9780123850591.png" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-number">Figure 117: </span><span class="caption-text">(a) Routers connect to each other using an overlay of
+<p class="caption"><span class="caption-number">Figure 117. </span><span class="caption-text">(a) Routers connect to each other using an overlay of
 virtual circuits. (b) Routers peer directly with LSRs.</span></p>
 </div>
 <p>In an overlay network, each router would potentially be connected to
@@ -356,13 +358,13 @@ each of the other routers by a virtual circuit, but in this case for
 clarity we have just shown the circuits from R1 to all of its peer
 routers. R1 has five routing neighbors and needs to exchange routing
 protocol messages with all of them—we say that R1 has five routing
-adjacencies. By contrast, in <a class="reference internal" href="#fig-overlay"><span class="std std-ref">Figure 4(b)</span></a>, the ATM
-switches have been replaced with LSRs. There are no longer virtual
+adjacencies. By contrast, in <a class="reference internal" href="#fig-overlay"><span class="std std-numref">Figure 117(b)</span></a>, the
+ATM switches have been replaced with LSRs. There are no longer virtual
 circuits interconnecting the routers. Thus, R1 has only one adjacency,
 with LSR1. In large networks, running MPLS on the switches leads to a
-significant reduction in the number of adjacencies that each router must
-maintain and can greatly reduce the amount of work that the routers have
-to do to keep each other informed of topology changes.</p>
+significant reduction in the number of adjacencies that each router
+must maintain and can greatly reduce the amount of work that the
+routers have to do to keep each other informed of topology changes.</p>
 <p>A second benefit of running the same routing protocols on edge routers
 and on the LSRs is that the edge routers now have a full view of the
 topology of the network. This means that if some link or node fails
@@ -396,24 +398,25 @@ source-routing to IP networks, although the capability is more often
 referred to as <em>explicit routing</em> rather than <em>source routing</em>. One
 reason for the distinction is that it usually isn’t the real source of
 the packet that picks the route. More often it is one of the routers
-inside a service provider’s network. <a class="reference internal" href="#fig-fish"><span class="std std-ref">Figure 5</span></a> shows an
-example of how the explicit routing capability of MPLS might be applied.
-This sort of network is often called a <em>fish</em> network because of its
-shape (the routers R1 and R2 form the tail; R7 is at the head).</p>
+inside a service provider’s network. <a class="reference internal" href="#fig-fish"><span class="std std-numref">Figure 118</span></a>
+shows an example of how the explicit routing capability of MPLS might
+be applied.  This sort of network is often called a <em>fish</em> network
+because of its shape (the routers R1 and R2 form the tail; R7 is at
+the head).</p>
 <div class="figure align-center" id="id5">
 <span id="fig-fish"></span><a class="reference internal image-reference" href="../_images/f04-22-9780123850591.png"><img alt="../_images/f04-22-9780123850591.png" src="../_images/f04-22-9780123850591.png" style="width: 450px;" /></a>
-<p class="caption"><span class="caption-number">Figure 118: </span><span class="caption-text">A network requiring explicit routing.</span></p>
+<p class="caption"><span class="caption-number">Figure 118. </span><span class="caption-text">A network requiring explicit routing.</span></p>
 </div>
-<p>Suppose that the operator of the network in <a class="reference internal" href="#fig-fish"><span class="std std-ref">Figure 5</span></a> has
-determined that any traffic flowing from R1 to R7 should follow the path
-R1-R3-R6-R7 and that any traffic going from R2 to R7 should follow the
-path R2-R3-R4-R5-R7. One reason for such a choice would be to make good
-use of the capacity available along the two distinct paths from R3 to
-R7. We can think of the R1-to-R7 traffic as constituting one forwarding
-equivalence class, and the R2-to-R7 traffic constitutes a second FEC.
-Forwarding traffic in these two classes along different paths is
-difficult with normal IP routing, because R3 doesn’t normally look at
-where traffic came from in making its forwarding decisions.</p>
+<p>Suppose that the operator of the network in <a class="reference internal" href="#fig-fish"><span class="std std-numref">Figure 118</span></a> has determined that any traffic flowing from R1 to R7
+should follow the path R1-R3-R6-R7 and that any traffic going from R2
+to R7 should follow the path R2-R3-R4-R5-R7. One reason for such a
+choice would be to make good use of the capacity available along the
+two distinct paths from R3 to R7. We can think of the R1-to-R7 traffic
+as constituting one forwarding equivalence class, and the R2-to-R7
+traffic constitutes a second FEC.  Forwarding traffic in these two
+classes along different paths is difficult with normal IP routing,
+because R3 doesn’t normally look at where traffic came from in making
+its forwarding decisions.</p>
 <p>Because MPLS uses label swapping to forward packets, it is easy enough
 to achieve the desired routing if the routers are MPLS enabled. If&nbsp;R1
 and R2 attach distinct labels to packets before sending them to R3—thus
@@ -470,10 +473,10 @@ provide an ATM virtual circuit service across a network of conventional
 routers. However, if you had a pair of routers interconnected by a
 tunnel, they could send ATM cells across the tunnel and emulate an ATM
 circuit. The term for this technique within the IETF is <em>pseudowire
-emulation</em>. <a class="reference internal" href="#fig-atm-tunnel"><span class="std std-ref">Figure 6</span></a> illustrates the idea.</p>
+emulation</em>. <a class="reference internal" href="#fig-atm-tunnel"><span class="std std-numref">Figure 119</span></a> illustrates the idea.</p>
 <div class="figure align-center" id="id6">
 <span id="fig-atm-tunnel"></span><a class="reference internal image-reference" href="../_images/f04-23-9780123850591.png"><img alt="../_images/f04-23-9780123850591.png" src="../_images/f04-23-9780123850591.png" style="width: 600px;" /></a>
-<p class="caption"><span class="caption-number">Figure 119: </span><span class="caption-text">An ATM circuit is emulated by a tunnel.</span></p>
+<p class="caption"><span class="caption-number">Figure 119. </span><span class="caption-text">An ATM circuit is emulated by a tunnel.</span></p>
 </div>
 <p>We have already seen how IP tunnels are built: The router at the
 entrance of the tunnel wraps the data to be tunneled in an IP header
@@ -489,24 +492,24 @@ packets. We’ll return to the issue of how to handle non-IP data in a
 moment.</p>
 <p>An MPLS tunnel is not too different from an IP tunnel, except that the
 tunnel header consists of an MPLS header rather than an IP header.
-Looking back to our first example, in <a class="reference internal" href="#fig-label-dist"><span class="std std-ref">Figure 2</span></a>, we saw
-that router R1 attached a label (<code class="docutils literal notranslate"><span class="pre">15</span></code>) to every packet that it sent
-towards prefix 18.1.1. Such a packet would then follow the path
-R1-R2-R3, with each router in the path examining only the MPLS label.
-Thus, we observe that there was no requirement that R1 only send IP
-packets along this path—any data could be wrapped up in the MPLS header
-and it would follow the same path, because the intervening routers never
-look beyond the MPLS header. In this regard, an MPLS header is just like
-an IP tunnel header (except only 4 bytes long instead of 20 bytes). The
-only issue with sending non-IP traffic along a tunnel, MPLS or
-otherwise, is what to do with non-IP traffic when it reaches the end of
-the tunnel. The general solution is to carry some sort of demultiplexing
-identifier in the tunnel payload that tells the router at the end of the
-tunnel what to do. It turns out that an MPLS label is a perfect fit for
-such an identifier. An example will make this clear.</p>
+Looking back to our first example, in <a class="reference internal" href="#fig-label-dist"><span class="std std-numref">Figure 115</span></a>, we saw that router R1 attached a label (<code class="docutils literal notranslate"><span class="pre">15</span></code>) to
+every packet that it sent towards prefix 18.1.1. Such a packet would
+then follow the path R1-R2-R3, with each router in the path examining
+only the MPLS label.  Thus, we observe that there was no requirement
+that R1 only send IP packets along this path—any data could be wrapped
+up in the MPLS header and it would follow the same path, because the
+intervening routers never look beyond the MPLS header. In this regard,
+an MPLS header is just like an IP tunnel header (except only 4 bytes
+long instead of 20 bytes). The only issue with sending non-IP traffic
+along a tunnel, MPLS or otherwise, is what to do with non-IP traffic
+when it reaches the end of the tunnel. The general solution is to
+carry some sort of demultiplexing identifier in the tunnel payload
+that tells the router at the end of the tunnel what to do. It turns
+out that an MPLS label is a perfect fit for such an identifier. An
+example will make this clear.</p>
 <p>Let’s assume we want to tunnel ATM cells from one router to another
-across a network of MPLS-enabled routers, as in <a class="reference internal" href="#fig-atm-tunnel"><span class="std std-ref">Figure
-6</span></a>. Further, we assume that the goal is to emulate an
+across a network of MPLS-enabled routers, as in <a class="reference internal" href="#fig-atm-tunnel"><span class="std std-numref">Figure
+119</span></a>. Further, we assume that the goal is to emulate an
 ATM virtual circuit; that is, cells arrive at the entrance, or head, of
 the tunnel on a certain input port with a certain VCI and should leave
 the tail end of the tunnel on a certain output port and potentially
@@ -520,8 +523,8 @@ the address of the tunnel end router.</li>
 outgoing VCI, and the demultiplexing label.</li>
 </ul>
 <p>Once the routers are provided with this information, we can see how an
-ATM cell would be forwarded. <a class="reference internal" href="#fig-pw-eg"><span class="std std-ref">Figure 7</span></a> illustrates the
-steps.</p>
+ATM cell would be forwarded. <a class="reference internal" href="#fig-pw-eg"><span class="std std-numref">Figure 120</span></a>
+illustrates the steps.</p>
 <ol class="arabic simple">
 <li>An ATM cell arrives on the designated input port with the appropriate
 VCI value (101 in this example).</li>
@@ -540,7 +543,7 @@ this case) and sends it out the correct port.</li>
 </ol>
 <div class="figure align-center" id="id7">
 <span id="fig-pw-eg"></span><a class="reference internal image-reference" href="../_images/f04-24-9780123850591.png"><img alt="../_images/f04-24-9780123850591.png" src="../_images/f04-24-9780123850591.png" style="width: 600px;" /></a>
-<p class="caption"><span class="caption-number">Figure 120: </span><span class="caption-text">Forward ATM cells along a tunnel.</span></p>
+<p class="caption"><span class="caption-number">Figure 120. </span><span class="caption-text">Forward ATM cells along a tunnel.</span></p>
 </div>
 <p>One item in this example that might be surprising is that the packet has
 two labels attached to it. This is one of the interesting features of
@@ -553,30 +556,31 @@ that virtually identical capabilities can be provided using IP tunnels;
 the main advantage of MPLS here is the shorter tunnel header.</p>
 <div class="figure align-center" id="id8">
 <span id="fig-mpls-vpn"></span><a class="reference internal image-reference" href="../_images/f04-25-9780123850591.png"><img alt="../_images/f04-25-9780123850591.png" src="../_images/f04-25-9780123850591.png" style="width: 600px;" /></a>
-<p class="caption"><span class="caption-number">Figure 121: </span><span class="caption-text">Example of a layer 3 VPN. Customers A and B each
+<p class="caption"><span class="caption-number">Figure 121. </span><span class="caption-text">Example of a layer 3 VPN. Customers A and B each
 obtain a virtually private IP service from a single
 provider.</span></p>
 </div>
-<p>Before MPLS was used to tunnel layer 2 services, it was also being used
-to support layer 3 VPNs. We won’t go into the details of layer 3 VPNs,
-which are quite complex, but we will note that they represent one of the
-most popular uses of MPLS today. Layer 3 VPNs also use stacks of MPLS
-labels to tunnel packets across an IP network. However, the packets that
-are tunneled are themselves IP packets—hence, the name <em>layer 3</em> VPNs.
-In a layer 3 VPN, a single service provider operates a network of
-MPLS-enabled routers and provides a “virtually private” IP network
-service to any number of distinct customers. That is, each customer of
-the provider has some number of sites, and the service provider creates
-the illusion for each customer that there are no other customers on the
-network. The customer sees an IP network interconnecting his own sites
-and no other sites. This means that each customer is isolated from all
-other customers in terms of both routing and addressing. Customer A
-can’t sent packets directly to customer B, and <em>vice versa</em>. Customer A
-can even use IP addresses that have also been used by customer B. The
-basic idea is illustrated in <a class="reference internal" href="#fig-mpls-vpn"><span class="std std-ref">Figure 8</span></a>. As in layer 2
-VPNs, MPLS is used to tunnel packets from one site to another; however,
-the configuration of the tunnels is performed automatically by some
-fairly elaborate use of BGP, which is beyond the scope of this book.</p>
+<p>Before MPLS was used to tunnel layer 2 services, it was also being
+used to support layer 3 VPNs. We won’t go into the details of layer 3
+VPNs, which are quite complex, but we will note that they represent
+one of the most popular uses of MPLS today. Layer 3 VPNs also use
+stacks of MPLS labels to tunnel packets across an IP network. However,
+the packets that are tunneled are themselves IP packets—hence, the
+name <em>layer 3</em> VPNs.  In a layer 3 VPN, a single service provider
+operates a network of MPLS-enabled routers and provides a “virtually
+private” IP network service to any number of distinct customers. That
+is, each customer of the provider has some number of sites, and the
+service provider creates the illusion for each customer that there are
+no other customers on the network. The customer sees an IP network
+interconnecting his own sites and no other sites. This means that each
+customer is isolated from all other customers in terms of both routing
+and addressing. Customer A can’t sent packets directly to customer B,
+and <em>vice versa</em>. Customer A can even use IP addresses that have also
+been used by customer B. The basic idea is illustrated in
+<a class="reference internal" href="#fig-mpls-vpn"><span class="std std-numref">Figure 121</span></a>. As in layer 2 VPNs, MPLS is used
+to tunnel packets from one site to another; however, the configuration
+of the tunnels is performed automatically by some fairly elaborate use
+of BGP, which is beyond the scope of this book.</p>
 <blockquote>
 <div>Customer A in fact usually <em>can</em> send data to customer B in some
 restricted way. Most likely, both customer A and customer B have some
@@ -604,10 +608,10 @@ routing and the support of a range of VPN services.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="mobile-ip.html" class="btn btn-neutral float-right" title="4.4 Routing Among Mobile Devices" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="mobile-ip.html" class="btn btn-neutral float-right" title="4.5 Routing Among Mobile Devices" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="multicast.html" class="btn btn-neutral float-left" title="4.2 Multicast" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="multicast.html" class="btn btn-neutral float-left" title="4.3 Multicast" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

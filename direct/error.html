@@ -224,13 +224,14 @@ positions in the first and second copies of the message. In general, the
 goal of error detecting codes is to provide a high probability of
 detecting errors combined with a relatively low number of redundant
 bits.</p>
-<p>Fortunately, we can do a lot better than this simple scheme. In general,
-we can provide quite strong error detection capability while sending
-only <span class="math notranslate nohighlight">\(k\)</span> redundant bits for an <span class="math notranslate nohighlight">\(n\)</span>-bit message, where <span class="math notranslate nohighlight">\(k\)</span> is much
-smaller than <span class="math notranslate nohighlight">\(n\)</span>. On an Ethernet, for example, a frame carrying up to
-12,000&nbsp;bits (1500&nbsp;bytes) of data requires only a 32-bit CRC code, or as
-it is commonly expressed, uses CRC-32. Such a code will catch the
-overwhelming majority of errors, as we will see below.</p>
+<p>Fortunately, we can do a lot better than this simple scheme. In
+general, we can provide quite strong error detection capability while
+sending only <span class="math notranslate nohighlight">\(k\)</span> redundant bits for an <span class="math notranslate nohighlight">\(n\)</span>-bit message,
+where <span class="math notranslate nohighlight">\(k\)</span> is much smaller than <span class="math notranslate nohighlight">\(n\)</span>. On an Ethernet, for
+example, a frame carrying up to 12,000&nbsp;bits (1500&nbsp;bytes) of data
+requires only a 32-bit CRC code, or as it is commonly expressed, uses
+CRC-32. Such a code will catch the overwhelming majority of errors, as
+we will see below.</p>
 <p>We say that the extra bits we send are redundant because they add no new
 information to the message. Instead, they are derived directly from the
 original message using some well-defined algorithm. Both the sender and
@@ -412,28 +413,29 @@ following way:</p>
 <li>Subtract the remainder from <span class="math notranslate nohighlight">\(T(x)\)</span>.</li>
 </ol>
 <p>It should be obvious that what is left at this point is a message that
-is exactly divisible by <span class="math notranslate nohighlight">\(C(x)\)</span>. We may also note that the resulting
-message consists of <span class="math notranslate nohighlight">\(M(x)\)</span> followed by the remainder obtained in
-step&nbsp;2, because when we subtracted the remainder (which can be no more
-than <span class="math notranslate nohighlight">\(k\)</span>&nbsp;bits long), we were just XORing it with the <span class="math notranslate nohighlight">\(k\)</span> zeros added in
-step&nbsp;1. This part will become clearer with an example.</p>
-<p>Consider the message <span class="math notranslate nohighlight">\(x^7 + x^4 + x^3 + x^1\)</span>, or 10011010.
-We begin by multiplying by <span class="math notranslate nohighlight">\(x^3\)</span>, since our divisor polynomial
-is of degree&nbsp;3. This gives 10011010000.
-We divide this by <span class="math notranslate nohighlight">\(C(x)\)</span>, which corresponds to 1101 in this case.
-<a class="reference internal" href="#fig-crcalc"><span class="std std-ref">Figure 1</span></a> shows the polynomial long-division operation.
-Given the rules of polynomial arithmetic described above, the
-long-division operation proceeds much as it would if we were dividing
+is exactly divisible by <span class="math notranslate nohighlight">\(C(x)\)</span>. We may also note that the
+resulting message consists of <span class="math notranslate nohighlight">\(M(x)\)</span> followed by the remainder
+obtained in step&nbsp;2, because when we subtracted the remainder (which
+can be no more than <span class="math notranslate nohighlight">\(k\)</span>&nbsp;bits long), we were just XORing it with
+the <span class="math notranslate nohighlight">\(k\)</span> zeros added in step&nbsp;1. This part will become clearer
+with an example.</p>
+<p>Consider the message <span class="math notranslate nohighlight">\(x^7 + x^4 + x^3 + x^1\)</span>, or 10011010.  We
+begin by multiplying by <span class="math notranslate nohighlight">\(x^3\)</span>, since our divisor polynomial is
+of degree&nbsp;3. This gives 10011010000.  We divide this by <span class="math notranslate nohighlight">\(C(x)\)</span>,
+which corresponds to 1101 in this case.  <a class="reference internal" href="#fig-crcalc"><span class="std std-numref">Figure 32</span></a> shows the polynomial long-division operation.  Given the
+rules of polynomial arithmetic described above, the long-division
+operation proceeds much as it would if we were dividing
 integers. Thus, in the first step of our example, we see that the
 divisor 1101 divides once into the first four bits of the message
-(1001), since they are of the same degree, and leaves a remainder of 100
-(1101 XOR 1001). The next step is to bring down a digit from the message
-polynomial until we get another polynomial with the same degree as
-<span class="math notranslate nohighlight">\(C(x)\)</span>, in this case 1001. We calculate the remainder again (100) and
-continue until the calculation is complete. Note that the “result” of
-the long division, which appears at the top of the calculation, is not
-really of much interest—it is the remainder at the end that matters.</p>
-<p>You can see from the very bottom of <a class="reference internal" href="#fig-crcalc"><span class="std std-ref">Figure 1</span></a> that the
+(1001), since they are of the same degree, and leaves a remainder of
+100 (1101 XOR 1001). The next step is to bring down a digit from the
+message polynomial until we get another polynomial with the same
+degree as <span class="math notranslate nohighlight">\(C(x)\)</span>, in this case 1001. We calculate the remainder
+again (100) and continue until the calculation is complete. Note that
+the “result” of the long division, which appears at the top of the
+calculation, is not really of much interest—it is the remainder at the
+end that matters.</p>
+<p>You can see from the very bottom of <a class="reference internal" href="#fig-crcalc"><span class="std std-numref">Figure 32</span></a> that the
 remainder of the example calculation is 101. So we know that 10011010000
 minus 101 would be exactly divisible by <span class="math notranslate nohighlight">\(C(x)\)</span>, and this is what we
 send. The minus operation in polynomial arithmetic is the logical XOR
@@ -447,19 +449,20 @@ small error (e.g., if the error affected only one bit). A code that
 enables error correction is called an <em>error-correcting code</em>&nbsp;(ECC).</p>
 <div class="figure align-center" id="id1">
 <span id="fig-crcalc"></span><a class="reference internal image-reference" href="../_images/f02-15-9780123850591.png"><img alt="../_images/f02-15-9780123850591.png" src="../_images/f02-15-9780123850591.png" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-number">Figure 32: </span><span class="caption-text">CRC calculation using polynomial long division.</span></p>
+<p class="caption"><span class="caption-number">Figure 32. </span><span class="caption-text">CRC calculation using polynomial long division.</span></p>
 </div>
-<p>Now we will consider the question of where the polynomial <span class="math notranslate nohighlight">\(C(x)\)</span> comes
-from. Intuitively, the idea is to select this polynomial so that it is
-very unlikely to divide evenly into a message that has errors introduced
-into it. If the transmitted message is <span class="math notranslate nohighlight">\(P(x)\)</span>, we may think of the
-introduction of errors as the addition of another polynomial <span class="math notranslate nohighlight">\(E(x)\)</span>, so
-the recipient sees <span class="math notranslate nohighlight">\(P(x) + E(x)\)</span>. The only way that an error could
-slip by undetected would be if the
-received message could be evenly divided by <span class="math notranslate nohighlight">\(C(x)\)</span>, and since we know
-that <span class="math notranslate nohighlight">\(P(x)\)</span> can be evenly divided by <span class="math notranslate nohighlight">\(C(x)\)</span>, this could only happen if
-<span class="math notranslate nohighlight">\(E(x)\)</span> can be divided evenly by <span class="math notranslate nohighlight">\(C(x)\)</span>. The trick is to pick <span class="math notranslate nohighlight">\(C(x)\)</span> so
-that this is very unlikely for common types of errors.</p>
+<p>Now we will consider the question of where the polynomial <span class="math notranslate nohighlight">\(C(x)\)</span>
+comes from. Intuitively, the idea is to select this polynomial so that
+it is very unlikely to divide evenly into a message that has errors
+introduced into it. If the transmitted message is <span class="math notranslate nohighlight">\(P(x)\)</span>, we may
+think of the introduction of errors as the addition of another
+polynomial <span class="math notranslate nohighlight">\(E(x)\)</span>, so the recipient sees <span class="math notranslate nohighlight">\(P(x) +
+E(x)\)</span>. The only way that an error could slip by undetected would be if
+the received message could be evenly divided by <span class="math notranslate nohighlight">\(C(x)\)</span>, and
+since we know that <span class="math notranslate nohighlight">\(P(x)\)</span> can be evenly divided by <span class="math notranslate nohighlight">\(C(x)\)</span>,
+this could only happen if <span class="math notranslate nohighlight">\(E(x)\)</span> can be divided evenly by
+<span class="math notranslate nohighlight">\(C(x)\)</span>. The trick is to pick <span class="math notranslate nohighlight">\(C(x)\)</span> so that this is very
+unlikely for common types of errors.</p>
 <p>One common type of error is a single-bit error, which can be expressed
 as <span class="math notranslate nohighlight">\(E(x) = x^i\)</span> when it affects bit position <em>i</em>. If we select
 <span class="math notranslate nohighlight">\(C(x)\)</span> such that thefirst and the last term (that is, the <span class="math notranslate nohighlight">\(x^k\)</span>
@@ -510,24 +513,23 @@ example, Ethernet uses CRC-32, which is defined as follows:</p>
 x^{12} + x^{11} + x^{10} + x^8 + x^7 + x^5 + x^4 + x^2 + x + 1\)</span></li>
 </ul>
 <p>Finally, we note that the CRC algorithm, while seemingly complex, is
-easily implemented in hardware using a <span class="math notranslate nohighlight">\(k\)</span>-bit shift register and XOR
-gates. The number of bits in the shift register equals the degree of the
-generator polynomial (<span class="math notranslate nohighlight">\(k\)</span>). <a class="reference internal" href="#fig-crc-hard"><span class="std std-ref">Figure 2</span></a> shows the hardware
-that would be used for the generator <span class="math notranslate nohighlight">\(x^3 + x^2 + 1\)</span>
-from our previous example. The message is shifted in from the left,
-beginning with the most significant bit and ending with the string of
-<span class="math notranslate nohighlight">\(k\)</span> zeros that is attached to the message, just as in the long division
-example. When all the bits have been shifted in and appropriately XORed,
-the register contains the remainder—that is, the CRC (most significant
-bit on the right). The position of the XOR gates is determined as
-follows: If the bits in the shift register are labeled 0 through
-<span class="math notranslate nohighlight">\(k-1\)</span>, left to right, then put an XOR gate in front of bit <span class="math notranslate nohighlight">\(n\)</span>
-if there is a term <span class="math notranslate nohighlight">\(x^n\)</span> in the generator polynomial.
-Thus, we see an XOR gate in front of positions 0 and 2 for the generator
-<span class="math notranslate nohighlight">\(x^3 + x^2 + x^0\)</span>.</p>
+easily implemented in hardware using a <span class="math notranslate nohighlight">\(k\)</span>-bit shift register
+and XOR gates. The number of bits in the shift register equals the
+degree of the generator polynomial (<span class="math notranslate nohighlight">\(k\)</span>). <a class="reference internal" href="#fig-crc-hard"><span class="std std-numref">Figure 33</span></a> shows the hardware that would be used for the
+generator <span class="math notranslate nohighlight">\(x^3 + x^2 + 1\)</span> from our previous example. The message
+is shifted in from the left, beginning with the most significant bit
+and ending with the string of <span class="math notranslate nohighlight">\(k\)</span> zeros that is attached to the
+message, just as in the long division example. When all the bits have
+been shifted in and appropriately XORed, the register contains the
+remainder—that is, the CRC (most significant bit on the right). The
+position of the XOR gates is determined as follows: If the bits in the
+shift register are labeled 0 through <span class="math notranslate nohighlight">\(k-1\)</span>, left to right, then
+put an XOR gate in front of bit <span class="math notranslate nohighlight">\(n\)</span> if there is a term
+<span class="math notranslate nohighlight">\(x^n\)</span> in the generator polynomial.  Thus, we see an XOR gate in
+front of positions 0 and 2 for the generator <span class="math notranslate nohighlight">\(x^3 + x^2 + x^0\)</span>.</p>
 <div class="figure align-center" id="id2">
 <span id="fig-crc-hard"></span><a class="reference internal image-reference" href="../_images/f02-16-9780123850591.png"><img alt="../_images/f02-16-9780123850591.png" src="../_images/f02-16-9780123850591.png" style="width: 350px;" /></a>
-<p class="caption"><span class="caption-number">Figure 33: </span><span class="caption-text">CRC calculation using shift register.</span></p>
+<p class="caption"><span class="caption-number">Figure 33. </span><span class="caption-text">CRC calculation using shift register.</span></p>
 </div>
 </div>
 </div>

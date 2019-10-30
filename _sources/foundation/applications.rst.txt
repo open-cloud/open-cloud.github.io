@@ -131,7 +131,7 @@ application is most likely sending video or audio in only one direction.
 Videoconferencing tools that run over the Internet have been around now
 since the early 1990s but have achieved widespread use in the last few
 years, with several commercial products on the market. An example of one
-such system is shown in :ref:`Figure 1 <fig-vic>`.  Just as
+such system is shown in :numref:`Figure %s <fig-vic>`.  Just as
 downloading a web page involves a bit more than meets the eye, so too
 with video applications. Fitting the video content into a relatively
 low bandwidth network, for example, or making sure that the video and

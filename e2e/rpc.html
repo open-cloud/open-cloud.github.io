@@ -192,12 +192,12 @@
 structured as a <em>client/server</em> pair is the request/reply message
 transaction: A client sends a request message to a server, and the
 server responds with a reply message, with the client blocking
-(suspending execution) to wait for the reply. <a class="reference internal" href="#fig-rpc-timeline"><span class="std std-ref">Figure
-1</span></a> illustrates the basic interaction between the
+(suspending execution) to wait for the reply. <a class="reference internal" href="#fig-rpc-timeline"><span class="std std-numref">Figure
+137</span></a> illustrates the basic interaction between the
 client and server in such an exchange.</p>
 <div class="figure align-center" id="id1">
 <span id="fig-rpc-timeline"></span><a class="reference internal image-reference" href="../_images/f05-13-9780123850591.png"><img alt="../_images/f05-13-9780123850591.png" src="../_images/f05-13-9780123850591.png" style="width: 300px;" /></a>
-<p class="caption"><span class="caption-number">Figure 137: </span><span class="caption-text">Timeline for RPC.</span></p>
+<p class="caption"><span class="caption-number">Figure 137. </span><span class="caption-text">Timeline for RPC.</span></p>
 </div>
 <p>A transport protocol that supports the request/reply paradigm is much
 more than a UDP message going in one direction followed by a UDP message
@@ -244,22 +244,22 @@ this message back into the arguments on the server machine, and
 likewise with the return value (this piece of the RPC mechanism is
 usually called a <em>stub compiler</em>).</li>
 </ol>
-<p><a class="reference internal" href="#fig-rpc-stub"><span class="std std-ref">Figure 2</span></a> schematically depicts what happens when a
-client invokes a remote procedure. First, the client calls a local stub
-for the procedure, passing it the arguments required by the procedure.
-This stub hides the fact that the procedure is remote by translating the
-arguments into a request message and then invoking an RPC protocol to
-send the request message to the server machine. At the server, the RPC
-protocol delivers the request message to the server stub, which
-translates it into the arguments to the procedure and then calls the
-local procedure. After the server procedure completes, it returns in a
-reply message that it hands off to the RPC protocol for transmission
-back to the client. The RPC protocol on the client passes this message
-up to the client stub, which translates it into a return value that it
-returns to the client program.</p>
+<p><a class="reference internal" href="#fig-rpc-stub"><span class="std std-numref">Figure 138</span></a> schematically depicts what happens
+when a client invokes a remote procedure. First, the client calls a
+local stub for the procedure, passing it the arguments required by the
+procedure.  This stub hides the fact that the procedure is remote by
+translating the arguments into a request message and then invoking an
+RPC protocol to send the request message to the server machine. At the
+server, the RPC protocol delivers the request message to the server
+stub, which translates it into the arguments to the procedure and then
+calls the local procedure. After the server procedure completes, it
+returns in a reply message that it hands off to the RPC protocol for
+transmission back to the client. The RPC protocol on the client passes
+this message up to the client stub, which translates it into a return
+value that it returns to the client program.</p>
 <div class="figure align-center" id="id2">
 <span id="fig-rpc-stub"></span><a class="reference internal image-reference" href="../_images/f05-14-9780123850591.png"><img alt="../_images/f05-14-9780123850591.png" src="../_images/f05-14-9780123850591.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-number">Figure 138: </span><span class="caption-text">Complete RPC mechanism.</span></p>
+<p class="caption"><span class="caption-number">Figure 138. </span><span class="caption-text">Complete RPC mechanism.</span></p>
 </div>
 <p>This section considers just the protocol-related aspects of an RPC
 mechanism. That is, it ignores the stubs and focuses instead on the RPC
@@ -342,13 +342,13 @@ unreliable substrate (e.g., UDP/IP). Such an RPC protocol would likely
 implement reliability using acknowledgments and timeouts, similarly to
 TCP.</p>
 <p>The basic algorithm is straightforward, as illustrated by the timeline
-given in <a class="reference internal" href="#fig-chan-timeline1"><span class="std std-ref">Figure 3</span></a>. The client sends a request
-message and the server acknowledges it. Then, after executing the
-procedure, the server sends a reply message and the client acknowledges
-the reply.</p>
+given in <a class="reference internal" href="#fig-chan-timeline1"><span class="std std-numref">Figure 139</span></a>. The client sends a
+request message and the server acknowledges it. Then, after executing
+the procedure, the server sends a reply message and the client
+acknowledges the reply.</p>
 <div class="figure align-center" id="id3">
 <span id="fig-chan-timeline1"></span><a class="reference internal image-reference" href="../_images/f05-15-9780123850591.png"><img alt="../_images/f05-15-9780123850591.png" src="../_images/f05-15-9780123850591.png" style="width: 200px;" /></a>
-<p class="caption"><span class="caption-number">Figure 139: </span><span class="caption-text">Simple timeline for a reliable RPC protocol.</span></p>
+<p class="caption"><span class="caption-number">Figure 139. </span><span class="caption-text">Simple timeline for a reliable RPC protocol.</span></p>
 </div>
 <p>Either a message carrying data (a request message or a reply message) or
 the ACK sent to acknowledge that message may be lost in the network. To
@@ -375,19 +375,20 @@ said another way, the channel abstraction makes it possible to
 client/server pair.</p>
 <p>Each message includes a channel ID field to indicate which channel the
 message belongs to. A request message in a given channel would
-implicitly acknowledge the previous reply in that channel, if it hadn’t
-already been acknowledged. An application program can open multiple
-channels to a server if it wants to have more than one request/reply
-transaction between them at the same time (the application would need
-multiple threads). As illustrated in <a class="reference internal" href="#fig-implicitacktimeline"><span class="std std-ref">Figure
-4</span></a>, the reply message serves to acknowledge the
-request message, and a subsequent request acknowledges the preceding
-reply. Note that we saw a very similar approach—called <em>concurrent
-logical channels</em>—in an earlier section as a way to improve on the
-performance of a stop-and-wait reliability mechanism.</p>
+implicitly acknowledge the previous reply in that channel, if it
+hadn’t already been acknowledged. An application program can open
+multiple channels to a server if it wants to have more than one
+request/reply transaction between them at the same time (the
+application would need multiple threads). As illustrated in
+<a class="reference internal" href="#fig-implicitacktimeline"><span class="std std-numref">Figure 140</span></a>, the reply message
+serves to acknowledge the request message, and a subsequent request
+acknowledges the preceding reply. Note that we saw a very similar
+approach—called <em>concurrent logical channels</em>—in an earlier section as
+a way to improve on the performance of a stop-and-wait reliability
+mechanism.</p>
 <div class="figure align-center" id="id4">
 <span id="fig-implicitacktimeline"></span><a class="reference internal image-reference" href="../_images/f05-16-9780123850591.png"><img alt="../_images/f05-16-9780123850591.png" src="../_images/f05-16-9780123850591.png" style="width: 200px;" /></a>
-<p class="caption"><span class="caption-number">Figure 140: </span><span class="caption-text">Timeline for a reliable RPC protocol using implicit
+<p class="caption"><span class="caption-number">Figure 140. </span><span class="caption-text">Timeline for a reliable RPC protocol using implicit
 acknowledgment.</span></p>
 </div>
 <p>Another complication that RPC must address is that the server may take
@@ -507,37 +508,37 @@ Sun workstations and the central role it plays in Sun’s popular Network
 File System (NFS). The IETF subsequently adopted it as a standard
 Internet protocol under the name ONC RPC.</p>
 <p>SunRPC can be implemented over several different transport protocols.
-<a class="reference internal" href="#fig-sunrpc"><span class="std std-ref">Figure 5</span></a> illustrates the protocol graph when SunRPC is
-implemented on UDP. As we noted earlier in this section, a strict
-layerist might frown on the idea of running a transport protocol over a
-transport protocol, or argue that RPC must be something other than a
-transport protocol since it appears “above” the transport layer.
-Pragmatically, the design decision to run RPC over an existing transport
-layer makes quite a lot of sense, as will be apparent in the following
-discussion.</p>
+<a class="reference internal" href="#fig-sunrpc"><span class="std std-numref">Figure 141</span></a> illustrates the protocol graph when
+SunRPC is implemented on UDP. As we noted earlier in this section, a
+strict layerist might frown on the idea of running a transport
+protocol over a transport protocol, or argue that RPC must be
+something other than a transport protocol since it appears “above” the
+transport layer.  Pragmatically, the design decision to run RPC over
+an existing transport layer makes quite a lot of sense, as will be
+apparent in the following discussion.</p>
 <div class="figure align-center" id="id5">
 <span id="fig-sunrpc"></span><a class="reference internal image-reference" href="../_images/f05-17-9780123850591.png"><img alt="../_images/f05-17-9780123850591.png" src="../_images/f05-17-9780123850591.png" style="width: 100px;" /></a>
-<p class="caption"><span class="caption-number">Figure 141: </span><span class="caption-text">Protocol graph for SunRPC on top of UDP.</span></p>
+<p class="caption"><span class="caption-number">Figure 141. </span><span class="caption-text">Protocol graph for SunRPC on top of UDP.</span></p>
 </div>
-<p>SunRPC uses two-tier identifiers to identify remote procedures: a 32-bit
-program number and a 32-bit procedure number. (There is also a 32-bit
-version number, but we ignore that in the following discussion.) For
-example, the NFS server has been assigned program number <code class="docutils literal notranslate"><span class="pre">x00100003</span></code>,
-and within this program <code class="docutils literal notranslate"><span class="pre">getattr</span></code> is procedure <code class="docutils literal notranslate"><span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">setattr</span></code> is
-procedure <code class="docutils literal notranslate"><span class="pre">2</span></code>, <code class="docutils literal notranslate"><span class="pre">read</span></code> is procedure <code class="docutils literal notranslate"><span class="pre">6</span></code>, <code class="docutils literal notranslate"><span class="pre">write</span></code> is procedure
-<code class="docutils literal notranslate"><span class="pre">8</span></code>, and so on. The program number and procedure number are
-transmitted in the SunRPC request message’s header, whose fields are
-shown in <a class="reference internal" href="#fig-sunrpc-format"><span class="std std-ref">Figure 6</span></a>. The server—which may support
-several program numbers—is responsible for calling the specified
-procedure of the specified program. A SunRPC request really represents a
-request to call the specified program and procedure on the particular
-machine to which the request was sent, even though the same program
-number may be implemented on other machines in the same network. Thus,
-the address of the server’s machine (e.g., an IP address) is an implicit
-third tier of the RPC address.</p>
+<p>SunRPC uses two-tier identifiers to identify remote procedures: a
+32-bit program number and a 32-bit procedure number. (There is also a
+32-bit version number, but we ignore that in the following
+discussion.) For example, the NFS server has been assigned program
+number <code class="docutils literal notranslate"><span class="pre">x00100003</span></code>, and within this program <code class="docutils literal notranslate"><span class="pre">getattr</span></code> is procedure
+<code class="docutils literal notranslate"><span class="pre">1</span></code>, <code class="docutils literal notranslate"><span class="pre">setattr</span></code> is procedure <code class="docutils literal notranslate"><span class="pre">2</span></code>, <code class="docutils literal notranslate"><span class="pre">read</span></code> is procedure <code class="docutils literal notranslate"><span class="pre">6</span></code>,
+<code class="docutils literal notranslate"><span class="pre">write</span></code> is procedure <code class="docutils literal notranslate"><span class="pre">8</span></code>, and so on. The program number and
+procedure number are transmitted in the SunRPC request message’s
+header, whose fields are shown in <a class="reference internal" href="#fig-sunrpc-format"><span class="std std-numref">Figure 142</span></a>. The server—which may support several program
+numbers—is responsible for calling the specified procedure of the
+specified program. A SunRPC request really represents a request to
+call the specified program and procedure on the particular machine to
+which the request was sent, even though the same program number may be
+implemented on other machines in the same network. Thus, the address
+of the server’s machine (e.g., an IP address) is an implicit third
+tier of the RPC address.</p>
 <div class="figure align-center" id="id6">
 <span id="fig-sunrpc-format"></span><a class="reference internal image-reference" href="../_images/f05-18-9780123850591.png"><img alt="../_images/f05-18-9780123850591.png" src="../_images/f05-18-9780123850591.png" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-number">Figure 142: </span><span class="caption-text">SunRPC header formats: (a)&nbsp;request; (b)&nbsp;reply.</span></p>
+<p class="caption"><span class="caption-number">Figure 142. </span><span class="caption-text">SunRPC header formats: (a)&nbsp;request; (b)&nbsp;reply.</span></p>
 </div>
 <p>Different program numbers may belong to different servers on the same
 machine. These different servers have different transport layer demux
@@ -573,14 +574,14 @@ wants to talk to the NFS program.</p>
 <div>In practice, NFS is such an important program that it has been given
 its own well-known UDP port, but for the purposes of illustration
 we’re pretending that’s not the&nbsp;case.</div></blockquote>
-<p>To match up a reply message with the corresponding request, so that the
-result of the RPC can be returned to the correct caller, both request
-and reply message headers include a <code class="docutils literal notranslate"><span class="pre">XID</span></code> (transaction ID) field, as
-in <a class="reference internal" href="#fig-sunrpc-format"><span class="std std-ref">Figure 6</span></a>. A <code class="docutils literal notranslate"><span class="pre">XID</span></code> is a unique transaction ID
-used only by one request and the corresponding reply. After the server
-has successfully replied to a given request, it does not remember the
-<code class="docutils literal notranslate"><span class="pre">XID</span></code>. Because of this, SunRPC cannot guarantee at-most-once
-semantics.</p>
+<p>To match up a reply message with the corresponding request, so that
+the result of the RPC can be returned to the correct caller, both
+request and reply message headers include a <code class="docutils literal notranslate"><span class="pre">XID</span></code> (transaction ID)
+field, as in <a class="reference internal" href="#fig-sunrpc-format"><span class="std std-numref">Figure 142</span></a>. A <code class="docutils literal notranslate"><span class="pre">XID</span></code> is a
+unique transaction ID used only by one request and the corresponding
+reply. After the server has successfully replied to a given request,
+it does not remember the <code class="docutils literal notranslate"><span class="pre">XID</span></code>. Because of this, SunRPC cannot
+guarantee at-most-once semantics.</p>
 <p>The details of SunRPC’s semantics depend on the underlying transport
 protocol. It does not implement its own reliability, so it is only
 reliable if the underlying transport is reliable. (Of course, any
@@ -592,14 +593,13 @@ make any attempt to improve on the underlying transport when it comes to
 reliability and message size. Since SunRPC can run over many different
 transport protocols, this gives it considerable flexibility without
 complicating the design of the RPC protocol itself.</p>
-<p>Returning to the SunRPC header format of <a class="reference internal" href="#fig-sunrpc-format"><span class="std std-ref">Figure 6</span></a>,
-the request message contains variable-length <code class="docutils literal notranslate"><span class="pre">Credentials</span></code> and
-<code class="docutils literal notranslate"><span class="pre">Verifier</span></code> fields, both of which are used by the client to
-authenticate itself to the server—that is, to give evidence that the
-client has the right to invoke the server. How a client authenticates
-itself to a server is a general issue that must be addressed by any
-protocol that wants to provide a reasonable level of security. This
-topic is discussed in more detail in another chapter.</p>
+<p>Returning to the SunRPC header format of <a class="reference internal" href="#fig-sunrpc-format"><span class="std std-numref">Figure 142</span></a>, the request message contains variable-length
+<code class="docutils literal notranslate"><span class="pre">Credentials</span></code> and <code class="docutils literal notranslate"><span class="pre">Verifier</span></code> fields, both of which are used by the
+client to authenticate itself to the server—that is, to give evidence
+that the client has the right to invoke the server. How a client
+authenticates itself to a server is a general issue that must be
+addressed by any protocol that wants to provide a reasonable level of
+security. This topic is discussed in more detail in another chapter.</p>
 </div>
 <div class="section" id="dce-rpc">
 <h3>DCE-RPC<a class="headerlink" href="#dce-rpc" title="Permalink to this headline">¶</a></h3>
@@ -624,9 +624,9 @@ between the two approaches, which we will highlight in the following
 paragraphs.</p>
 <div class="figure align-center" id="id7">
 <span id="fig-dce"></span><a class="reference internal image-reference" href="../_images/f05-19-9780123850591.png"><img alt="../_images/f05-19-9780123850591.png" src="../_images/f05-19-9780123850591.png" style="width: 200px;" /></a>
-<p class="caption"><span class="caption-number">Figure 143: </span><span class="caption-text">Typical DCE-RPC message exchange.</span></p>
+<p class="caption"><span class="caption-number">Figure 143. </span><span class="caption-text">Typical DCE-RPC message exchange.</span></p>
 </div>
-<p><a class="reference internal" href="#fig-dce"><span class="std std-ref">Figure 7</span></a> gives a timeline for the typical exchange of
+<p><a class="reference internal" href="#fig-dce"><span class="std std-numref">Figure 143</span></a> gives a timeline for the typical exchange of
 messages, where each message is labeled by its DCE-RPC type. The client
 sends a <code class="docutils literal notranslate"><span class="pre">Request</span></code> message, the server eventually replies with a
 <code class="docutils literal notranslate"><span class="pre">Response</span></code> message, and the client acknowledges (<code class="docutils literal notranslate"><span class="pre">Ack</span></code>) the
@@ -686,17 +686,17 @@ it has received out of order. It does so with a bit vector that
 identifies these out-of-order fragments relative to the highest in-order
 fragment it has received. Finally, the client responds by retransmitting
 the missing fragments.</p>
-<p><a class="reference internal" href="#fig-fack"><span class="std std-ref">Figure 8</span></a> illustrates how this all works. Suppose the server
-has successfully received fragments up through number 20, plus fragments
-23, 25, and 26. The server responds with a <code class="docutils literal notranslate"><span class="pre">Fack</span></code> that identifies
-fragment 20 as the highest in-order fragment, plus a bit-vector
-(<code class="docutils literal notranslate"><span class="pre">SelAck</span></code>) with the third <span class="math notranslate nohighlight">\((23=20+3)\)</span>, fifth <span class="math notranslate nohighlight">\((25=20+5)\)</span>,
-and sixth <span class="math notranslate nohighlight">\((26=20+6)\)</span>&nbsp;bits turned on. So as to support an (almost)
-arbitrarily long bit vector, the size of the vector (measured in 32-bit
-words) is given in the <code class="docutils literal notranslate"><span class="pre">SelAckLen</span></code> field.</p>
+<p><a class="reference internal" href="#fig-fack"><span class="std std-numref">Figure 144</span></a> illustrates how this all works. Suppose
+the server has successfully received fragments up through number 20,
+plus fragments 23, 25, and 26. The server responds with a <code class="docutils literal notranslate"><span class="pre">Fack</span></code>
+that identifies fragment 20 as the highest in-order fragment, plus a
+bit-vector (<code class="docutils literal notranslate"><span class="pre">SelAck</span></code>) with the third <span class="math notranslate nohighlight">\((23=20+3)\)</span>, fifth
+<span class="math notranslate nohighlight">\((25=20+5)\)</span>, and sixth <span class="math notranslate nohighlight">\((26=20+6)\)</span>&nbsp;bits turned on. So as
+to support an (almost) arbitrarily long bit vector, the size of the
+vector (measured in 32-bit words) is given in the <code class="docutils literal notranslate"><span class="pre">SelAckLen</span></code> field.</p>
 <div class="figure align-center" id="id8">
 <span id="fig-fack"></span><a class="reference internal image-reference" href="../_images/f05-20-9780123850591.png"><img alt="../_images/f05-20-9780123850591.png" src="../_images/f05-20-9780123850591.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-number">Figure 144: </span><span class="caption-text">Fragmentation with selective acknowledgments.</span></p>
+<p class="caption"><span class="caption-number">Figure 144. </span><span class="caption-text">Fragmentation with selective acknowledgments.</span></p>
 </div>
 <p>Given DCE-RPC’s support for very large messages—the <code class="docutils literal notranslate"><span class="pre">FragmentNum</span></code>
 field is 16&nbsp;bits long, meaning it can support 64K fragments—it is not
@@ -704,14 +704,14 @@ appropriate for the protocol to blast all the fragments that make up a
 message as fast as it can since doing so might overrun the receiver.
 Instead, DCE-RPC implements a flow-control algorithm that is very
 similar to TCP’s. Specifically, each <code class="docutils literal notranslate"><span class="pre">Fack</span></code> message not only
-acknowledges received fragments but also informs the sender of how many
-fragments it may now send. This is the purpose of the <code class="docutils literal notranslate"><span class="pre">WindowSize</span></code>
-field in <a class="reference internal" href="#fig-fack"><span class="std std-ref">Figure 8</span></a>, which serves exactly the same purpose as
-TCP’s <code class="docutils literal notranslate"><span class="pre">AdvertisedWindow</span></code> field except it counts fragments rather than
-bytes. DCE-RPC also implements a congestion-control mechanism that is
-similar to TCP’s. Given the complexity of congestion control, it is
-perhaps not surprising that some RPC protocols avoid it by avoiding
-fragmentation.</p>
+acknowledges received fragments but also informs the sender of how
+many fragments it may now send. This is the purpose of the
+<code class="docutils literal notranslate"><span class="pre">WindowSize</span></code> field in <a class="reference internal" href="#fig-fack"><span class="std std-numref">Figure 144</span></a>, which serves
+exactly the same purpose as TCP’s <code class="docutils literal notranslate"><span class="pre">AdvertisedWindow</span></code> field except it
+counts fragments rather than bytes. DCE-RPC also implements a
+congestion-control mechanism that is similar to TCP’s. Given the
+complexity of congestion control, it is perhaps not surprising that
+some RPC protocols avoid it by avoiding fragmentation.</p>
 <p>In summary, designers have quite a range of options open to them when
 designing an RPC protocol. SunRPC takes the more minimalist approach and
 adds relatively little to the underlying transport beyond the essentials
@@ -752,14 +752,14 @@ needs to run. Docker is today’s canonical example of a container
 platform.</p>
 <div class="figure align-center" id="id9">
 <span id="fig-rpc-service"></span><a class="reference internal image-reference" href="../_images/Slide12.png"><img alt="../_images/Slide12.png" src="../_images/Slide12.png" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-number">Figure 145: </span><span class="caption-text">Using RPC to invoke a scalable cloud service.</span></p>
+<p class="caption"><span class="caption-number">Figure 145. </span><span class="caption-text">Using RPC to invoke a scalable cloud service.</span></p>
 </div>
 <p>Back to the claim that a service is essentially an extra level of
 indirection layered on top of a server, all this means is that the
 caller identifies the service it wants to invoke, and a <em>load balancer</em>
 directs that invocation to one of the many available server processes
-(containers) that implement that service, as shown in <a class="reference internal" href="#fig-rpc-service"><span class="std std-ref">Figure
-9</span></a>. The load balancer can be implemented in different
+(containers) that implement that service, as shown in <a class="reference internal" href="#fig-rpc-service"><span class="std std-numref">Figure
+145</span></a>. The load balancer can be implemented in different
 ways, including a hardware device, but it is typically implemented by a
 proxy process that runs in a virtual machine (also hosted in the cloud)
 rather than as a physical appliance.</p>
@@ -792,14 +792,14 @@ multiplexing multiple remote procedure calls onto a single TCP
 connection. In other words, gRPC encodes the identifier for the remote
 method as a URI, the request parameters to the remote method as content
 in the HTTP message, and the return value from the remote method in the
-HTTP response. The full gRPC stack is depicted in <a class="reference internal" href="#fig-grpc-stack"><span class="std std-ref">Figure
-10</span></a>, which also includes the language-specific elements.
+HTTP response. The full gRPC stack is depicted in <a class="reference internal" href="#fig-grpc-stack"><span class="std std-numref">Figure
+146</span></a>, which also includes the language-specific elements.
 (One strength of gRPC is the wide set of programming languages it
-supports, with only a small subset shown in <a class="reference internal" href="#fig-grpc-stack"><span class="std std-ref">Figure
-10</span></a>.)</p>
+supports, with only a small subset shown in <a class="reference internal" href="#fig-grpc-stack"><span class="std std-numref">Figure
+146</span></a>.)</p>
 <div class="figure align-center" id="id10">
 <span id="fig-grpc-stack"></span><a class="reference internal image-reference" href="../_images/Slide21.png"><img alt="../_images/Slide21.png" src="../_images/Slide21.png" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-number">Figure 146: </span><span class="caption-text">gRPC core stacked on top of HTTP, TLS, and TCP and
+<p class="caption"><span class="caption-number">Figure 146. </span><span class="caption-text">gRPC core stacked on top of HTTP, TLS, and TCP and
 supporting a collection of languages.</span></p>
 </div>
 <p>We discuss TLS in Chapter 8 (in the context of a broad range of security
@@ -890,32 +890,32 @@ grpc-status = 0 # OK
 trace-proto-bin = jher831yy13JHy3hc
 </pre></div>
 </div>
-<p>In this example, <code class="docutils literal notranslate"><span class="pre">HEADERS</span></code> and <code class="docutils literal notranslate"><span class="pre">DATA</span></code> are two standard HTTP control
-messages, which effectively delineate between “the message’s header” and
-“the message’s payload.” Specifically, each line following <code class="docutils literal notranslate"><span class="pre">HEADERS</span></code>
-(but before <code class="docutils literal notranslate"><span class="pre">DATA</span></code>) is an <code class="docutils literal notranslate"><span class="pre">attribute</span> <span class="pre">=</span> <span class="pre">value</span></code> pair that makes up the
-header (think of each line as analogous to a header field); those pairs
-that start with colon (e.g., <code class="docutils literal notranslate"><span class="pre">:status</span> <span class="pre">=</span> <span class="pre">200</span></code>) are part of the HTTP
-standard (e.g., status <code class="docutils literal notranslate"><span class="pre">200</span></code> indicates success); and those pairs that
-do not start with a colon are gRPC-specific customizations (e.g.,
-<code class="docutils literal notranslate"><span class="pre">grpc-encoding</span> <span class="pre">=</span> <span class="pre">gzip</span></code> indicates that the data in the message that
-follows has been compressed using <code class="docutils literal notranslate"><span class="pre">gzip</span></code>, and <code class="docutils literal notranslate"><span class="pre">grpc-timeout</span> <span class="pre">=</span> <span class="pre">1S</span></code>
-indicates that the client has set a one second timeout).</p>
+<p>In this example, <code class="docutils literal notranslate"><span class="pre">HEADERS</span></code> and <code class="docutils literal notranslate"><span class="pre">DATA</span></code> are two standard HTTP
+control messages, which effectively delineate between “the message’s
+header” and “the message’s payload.” Specifically, each line following
+<code class="docutils literal notranslate"><span class="pre">HEADERS</span></code> (but before <code class="docutils literal notranslate"><span class="pre">DATA</span></code>) is an <code class="docutils literal notranslate"><span class="pre">attribute</span> <span class="pre">=</span> <span class="pre">value</span></code> pair
+that makes up the header (think of each line as analogous to a header
+field); those pairs that start with colon (e.g., <code class="docutils literal notranslate"><span class="pre">:status</span> <span class="pre">=</span> <span class="pre">200</span></code>)
+are part of the HTTP standard (e.g., status <code class="docutils literal notranslate"><span class="pre">200</span></code> indicates
+success); and those pairs that do not start with a colon are
+gRPC-specific customizations (e.g., <code class="docutils literal notranslate"><span class="pre">grpc-encoding</span> <span class="pre">=</span> <span class="pre">gzip</span></code> indicates
+that the data in the message that follows has been compressed using
+<code class="docutils literal notranslate"><span class="pre">gzip</span></code>, and <code class="docutils literal notranslate"><span class="pre">grpc-timeout</span> <span class="pre">=</span> <span class="pre">1S</span></code> indicates that the client has set
+a one second timeout).</p>
 <p>There is one final piece to explain. The header line</p>
 <div class="highlight-html notranslate"><div class="highlight"><pre><span></span>content-type = application/grpc+proto
 </pre></div>
 </div>
-<p>indicates that the message body (as demarcated by the <code class="docutils literal notranslate"><span class="pre">DATA</span></code> line) is
-meaningful only to the application program (i.e., the server method)
-that this client is requesting service from. More specifically, the
-<code class="docutils literal notranslate"><span class="pre">+proto</span></code> string specifies that the recipient will be able to interpret
-the bits in the message according to a <em>Protocol Buffer</em> (abbreviated
-<code class="docutils literal notranslate"><span class="pre">proto</span></code>) interface specification. Protocol Buffers are gRPC’s way of
-specifying how the parameters being passed to the server are encoded
-into a message, which is in turn used to generate the stubs that sit
-between the underlying RPC mechanism and the actual functions being
-called (see <a class="reference internal" href="#fig-rpc-stub"><span class="std std-ref">Figure 2</span></a>). This is a topic we’ll take up in
-Chapter 7.</p>
+<p>indicates that the message body (as demarcated by the <code class="docutils literal notranslate"><span class="pre">DATA</span></code> line)
+is meaningful only to the application program (i.e., the server
+method) that this client is requesting service from. More
+specifically, the <code class="docutils literal notranslate"><span class="pre">+proto</span></code> string specifies that the recipient will
+be able to interpret the bits in the message according to a <em>Protocol
+Buffer</em> (abbreviated <code class="docutils literal notranslate"><span class="pre">proto</span></code>) interface specification. Protocol
+Buffers are gRPC’s way of specifying how the parameters being passed
+to the server are encoded into a message, which is in turn used to
+generate the stubs that sit between the underlying RPC mechanism and
+the actual functions being called (see <a class="reference internal" href="#fig-rpc-stub"><span class="std std-numref">Figure 138</span></a>). This is a topic we’ll take up in Chapter 7.</p>
 <div class="admonition-key-takeaway admonition">
 <p class="first admonition-title">Key Takeaway</p>
 <p class="last">The bottom line is that complex mechanisms like RPC, once packaged as

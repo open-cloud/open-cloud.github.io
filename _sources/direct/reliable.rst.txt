@@ -57,17 +57,17 @@ the sender times out and retransmits the original frame.
    expires; (b) the original frame is lost; (c) the ACK is lost;
    (d) the timeout fires too soon.
 
-:ref:`Figure 1 <fig-ack-timeout>` illustrates timelines for four different
-scenarios that result from this basic algorithm. The sending side is
-represented on the left, the receiving side is depicted on the right,
-and time flows from top to bottom. :ref:`Figure 1(a) <fig-ack-timeout>` shows
-the situation in which the ACK is received before the timer expires; (b)
-and (c) show the situation in which the original frame and the ACK,
-respectively, are lost; and (d) shows the situation in which the timeout
-fires too soon. Recall that by “lost” we mean that the frame was
-corrupted while in transit, that this corruption was detected by an
-error code on the receiver, and that the frame was subsequently
-discarded.
+:numref:`Figure %s <fig-ack-timeout>` illustrates timelines for four
+different scenarios that result from this basic algorithm. The sending
+side is represented on the left, the receiving side is depicted on the
+right, and time flows from top to bottom. :numref:`Figure %s(a)
+<fig-ack-timeout>` shows the situation in which the ACK is received
+before the timer expires; (b) and (c) show the situation in which the
+original frame and the ACK, respectively, are lost; and (d) shows the
+situation in which the timeout fires too soon. Recall that by “lost”
+we mean that the frame was corrupted while in transit, that this
+corruption was detected by an error code on the receiver, and that the
+frame was subsequently discarded.
 
 The packet timelines shown in this section are examples of a frequently
 used tool in teaching, explaining, and designing protocols. They are
@@ -79,22 +79,23 @@ happen quickly turns out to take a long time. These sorts of diagrams
 can often help us understand what might go wrong in such cases and thus
 help a protocol designer be prepared for every eventuality.
 
-There is one important subtlety in the stop-and-wait algorithm. Suppose
-the sender sends a frame and the receiver acknowledges it, but the
-acknowledgment is either lost or delayed in arriving. This situation is
-illustrated in timelines (c) and (d) of :ref:`Figure 1 <fig-ack-timeout>`. In
-both cases, the sender times out and retransmits the original frame, but
-the receiver will think that it is the next frame, since it correctly
-received and acknowledged the first frame. This has the potential to
-cause duplicate copies of a frame to be delivered. To address this
-problem, the header for a stop-and-wait protocol usually includes a
-1-bit sequence number—that is, the sequence number can take on the
-values 0 and 1—and the sequence numbers used for each frame alternate,
-as illustrated in :ref:`Figure 2 <fig-stop-wait>`. Thus, when the sender
-retransmits frame 0, the receiver can determine that it is seeing a
-second copy of frame 0 rather than the first copy of frame 1 and
-therefore can ignore it (the receiver still acknowledges it, in case the
-first ACK was lost).
+There is one important subtlety in the stop-and-wait
+algorithm. Suppose the sender sends a frame and the receiver
+acknowledges it, but the acknowledgment is either lost or delayed in
+arriving. This situation is illustrated in timelines (c) and (d) of
+:numref:`Figure %s <fig-ack-timeout>`. In both cases, the sender times
+out and retransmits the original frame, but the receiver will think
+that it is the next frame, since it correctly received and
+acknowledged the first frame. This has the potential to cause
+duplicate copies of a frame to be delivered. To address this problem,
+the header for a stop-and-wait protocol usually includes a 1-bit
+sequence number—that is, the sequence number can take on the values 0
+and 1—and the sequence numbers used for each frame alternate, as
+illustrated in :numref:`Figure %s <fig-stop-wait>`. Thus, when the
+sender retransmits frame 0, the receiver can determine that it is
+seeing a second copy of frame 0 rather than the first copy of frame 1
+and therefore can ignore it (the receiver still acknowledges it, in
+case the first ACK was lost).
 
 .. _fig-stop-wait:
 .. figure:: figures/f02-18-9780123850591.png
@@ -135,7 +136,7 @@ product of 8 KB and frames are 1 KB in size. We would like the sender to
 be ready to transmit the ninth frame at pretty much the same moment that
 the ACK for the first frame arrives. The algorithm that allows us to do
 this is called *sliding window*, and an illustrative timeline is given
-in :ref:`Figure 3 <fig-slide-win>`.
+in :numref:`Figure %s <fig-slide-win>`.
  
 .. _fig-slide-win:
 .. figure:: figures/f02-19-9780123850591.png
@@ -160,7 +161,7 @@ invariant:
 
 ``LFS - LAR <= SWS``
 
-This situation is illustrated in :ref:`Figure 4 <fig-sw-sender>`.
+This situation is illustrated in :numref:`Figure %s <fig-sw-sender>`.
 
 .. _fig-sw-sender:
 .. figure:: figures/f02-20-9780123850591.png
@@ -185,7 +186,7 @@ receiver also maintains the following invariant:
 
 ``LAF - LFR <= RWS``
 
-This situation is illustrated in :ref:`Figure 5 <fig-sw-rcvr>`.
+This situation is illustrated in :numref:`Figure %s <fig-sw-rcvr>`.
 
 .. _fig-sw-rcvr:
 .. figure:: figures/f02-21-9780123850591.png

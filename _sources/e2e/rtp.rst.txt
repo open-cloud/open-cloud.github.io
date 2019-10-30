@@ -14,29 +14,19 @@ As we will see shortly, real-time applications place some specific
 demands on the transport protocol that are not well met by the protocols
 discussed so far in this chapter.
 
-.. _fig-vat:
-.. figure:: figures/f05-21-9780123850591.png
-   :width: 400px
+.. _fig-zoom:
+.. figure:: figures/Zoom.png
+   :width: 500px
    :align: center
 
-   User interface of vat, an early Internet audioconferencing tool.
+   User interface of a videoconferencing tool.
 
 Multimedia applications—those that involve video, audio, and data—are
 sometimes divided into two classes: *interactive* applications and
-*streaming* applications. An early and at one time popular example of
-the interactive class was ``vat``, a multiparty audioconferencing tool
-that is often used over networks supporting IP multicast. The control
-panel for a typical ``vat`` conference is shown in :ref:`Figure 1 <fig-vat>`.
-VoIP is also a class of interactive application and probably the most
-widely used today. Internet-based multimedia conferencing applications,
-like the commercial products WebEx and GoToMeeting are another example.
-These are the sort of applications with the most stringent real-time
-requirements.
-
-   Even though it’s been overtaken by a plethora of commercial products,
-   we use ``vat`` as a running example in this section because it was
-   the application that introduced interactive real-time functionality
-   into the Internet in the first place.
+*streaming* applications. :numref:`Figure %s <fig-zoom>` shows the
+authors using an example conferencing tool that's typical of the
+interactive class. Along with VoIP, these are the sort of applications
+with the most stringent real-time requirements.
 
 Streaming applications typically deliver audio or video streams from a
 server to a client and are typified by such commercial products as
@@ -61,14 +51,15 @@ streams. We will see below how these concerns affected the design of the
 primary real-time transport protocol in use today, RTP.
 
 Much of RTP actually derives from protocol functionality that was
-originally embedded in the application itself. When the ``vat``
-application was first developed, it ran over UDP, and the designers
+originally embedded in the application itself. When ``vat`` (an early
+prototype that all of today's commercial conferencing products were
+derived from) was first developed, it ran over UDP, and the designers
 figured out which features were needed to handle the real-time nature of
 voice communication. Later, they realized that these features could be
 useful to many other applications and defined a protocol with those
 features, which became RTP. RTP can run over many lower-layer protocols,
 but still commonly runs over UDP. That leads to the protocol stack shown
-in :ref:`Figure 2 <fig-vat-stack>`. Note that we are therefore running a
+in :numref:`Figure %s <fig-vat-stack>`. Note that we are therefore running a
 transport protocol over a transport protocol. There is no rule against
 that, and in fact it makes a lot of sense, since UDP provides such a
 minimal level of functionality, and the basic demultiplexing based on
@@ -153,12 +144,12 @@ that slight shortening or lengthening of the spaces between words are
 not perceptible to users, whereas shortening or lengthening the words
 themselves is both perceptible and annoying.
 
-A final function that we might want to put into the protocol is some way
-of identifying senders that is more user-friendly than an IP address. As
-illustrated in :ref:`Figure 1 <fig-vat>`, audio and video conferencing
-applications can display strings such as on their control panels, and
-thus the application protocol should support the association of such a
-string with a data stream.
+A final function that we might want to put into the protocol is some
+way of identifying senders that is more user-friendly than an IP
+address. As illustrated in :numref:`Figure %s <fig-zoom>`, audio and
+video conferencing applications can display strings such as on their
+control panels, and thus the application protocol should support the
+association of such a string with a data stream.
 
 In addition to the functionality that is required from our protocol, we
 note an additional requirement: It should make reasonably efficient use
@@ -236,15 +227,16 @@ of structure to represent all the different types of information.
 Header Format
 ~~~~~~~~~~~~~
 
-:ref:`Figure 3 <fig-rtp-hdr>` shows the header format used by RTP. The first
-12 bytes are always present, whereas the contributing source identifiers
-are only used in certain circumstances. After this header there may be
-optional header extensions, as described below. Finally, the header is
-followed by the RTP payload, the format of which is determined by the
-application. The intention of this header is that it contain only the
-fields that are likely to be used by many different applications, since
-anything that is very specific to a single application would be more
-efficiently carried in the RTP payload for that application only.
+:numref:`Figure %s <fig-rtp-hdr>` shows the header format used by
+RTP. The first 12 bytes are always present, whereas the contributing
+source identifiers are only used in certain circumstances. After this
+header there may be optional header extensions, as described
+below. Finally, the header is followed by the RTP payload, the format
+of which is determined by the application. The intention of this
+header is that it contain only the fields that are likely to be used
+by many different applications, since anything that is very specific
+to a single application would be more efficiently carried in the RTP
+payload for that application only.
 
 .. _fig-rtp-hdr:
 .. figure:: figures/f05-23-9780123850591.png
@@ -266,17 +258,18 @@ than one future version would be possible. For example, a new RTP header
 with the value 3 in the version field could have a “subversion” field
 somewhere else in the header.
 
-The next bit is the *padding* (``P``) bit, which is set in circumstances
-in which the RTP payload has been padded for some reason. RTP data might
-be padded to fill up a block of a certain size as required by an
-encryption algorithm, for example. In such a case, the complete length
-of the RTP header, data, and padding would be conveyed by the
-lower-layer protocol header (e.g., the UDP header), and the last byte of
-the padding would contain a count of how many bytes should be ignored.
-This is illustrated in :ref:`Figure 4 <fig-rtp-pad>`. Note that this approach
-to padding removes any need for a length field in the RTP header (thus
-serving the goal of keeping the header short); in the common case of no
-padding, the length is deduced from the lower-layer protocol.
+The next bit is the *padding* (``P``) bit, which is set in
+circumstances in which the RTP payload has been padded for some
+reason. RTP data might be padded to fill up a block of a certain size
+as required by an encryption algorithm, for example. In such a case,
+the complete length of the RTP header, data, and padding would be
+conveyed by the lower-layer protocol header (e.g., the UDP header),
+and the last byte of the padding would contain a count of how many
+bytes should be ignored.  This is illustrated in :numref:`Figure %s
+<fig-rtp-pad>`. Note that this approach to padding removes any need
+for a length field in the RTP header (thus serving the goal of keeping
+the header short); in the common case of no padding, the length is
+deduced from the lower-layer protocol.
 
 .. _fig-rtp-pad:
 .. figure:: figures/f05-24-9780123850591.png
@@ -396,7 +389,7 @@ functions:
    come from the same sender
 
 3. A way to convey the identity of a sender for display on a user
-   interface (e.g., the ``vat`` interface shown in :ref:`Figure 1 <fig-vat>`)
+   interface.
 
 The first function may be useful for detecting and responding to
 congestion. Some applications are able to operate at different rates and

@@ -176,17 +176,18 @@ Segment Format
 --------------
 
 TCP is a byte-oriented protocol, which means that the sender writes
-bytes into a TCP connection and the receiver reads bytes out of the TCP
-connection. Although “byte stream” describes the service TCP offers to
-application processes, TCP does not, itself, transmit individual bytes
-over the Internet. Instead, TCP on the source host buffers enough bytes
-from the sending process to fill a reasonably sized packet and then
-sends this packet to its peer on the destination host. TCP on the
-destination host then empties the contents of the packet into a receive
-buffer, and the receiving process reads from this buffer at its leisure.
-This situation is illustrated in :ref:`Figure 1 <fig-tcp-stream>`, which, for
-simplicity, shows data flowing in only one direction. Remember that, in
-general, a single TCP connection supports byte streams flowing in both
+bytes into a TCP connection and the receiver reads bytes out of the
+TCP connection. Although “byte stream” describes the service TCP
+offers to application processes, TCP does not, itself, transmit
+individual bytes over the Internet. Instead, TCP on the source host
+buffers enough bytes from the sending process to fill a reasonably
+sized packet and then sends this packet to its peer on the destination
+host. TCP on the destination host then empties the contents of the
+packet into a receive buffer, and the receiving process reads from
+this buffer at its leisure.  This situation is illustrated in
+:numref:`Figure %s <fig-tcp-stream>`, which, for simplicity, shows
+data flowing in only one direction. Remember that, in general, a
+single TCP connection supports byte streams flowing in both
 directions.
  
 .. _fig-tcp-stream:
@@ -196,12 +197,12 @@ directions.
 
    How TCP manages a byte stream.
 
-The packets exchanged between TCP peers in :ref:`Figure 1 <fig-tcp-stream>`
-are called *segments*, since each one carries a segment of the byte
-stream. Each TCP segment contains the header schematically depicted in
-:ref:`Figure 2 <fig-tcp-format>`. The relevance of most of these fields will
-become apparent throughout this section. For now, we simply introduce
-them.
+The packets exchanged between TCP peers in :numref:`Figure %s
+<fig-tcp-stream>` are called *segments*, since each one carries a
+segment of the byte stream. Each TCP segment contains the header
+schematically depicted in :numref:`Figure %s <fig-tcp-format>`. The
+relevance of most of these fields will become apparent throughout this
+section. For now, we simply introduce them.
 
 .. _fig-tcp-format:
 .. figure:: figures/f05-04-9780123850591.png
@@ -232,12 +233,13 @@ is a byte-oriented protocol, each byte of data has a sequence number.
 The ``SequenceNum`` field contains the sequence number for the first
 byte of data carried in that segment, and the ``Acknowledgement`` and
 ``AdvertisedWindow`` fields carry information about the flow of data
-going in the other direction. To simplify our discussion, we ignore the
-fact that data can flow in both directions, and we concentrate on data
-that has a particular ``SequenceNum`` flowing in one direction and
-``Acknowledgement`` and ``AdvertisedWindow`` values flowing in the
-opposite direction, as illustrated in :ref:`Figure 3 <fig-tcp-flow>`. The use
-of these three fields is described more fully later in this chapter.
+going in the other direction. To simplify our discussion, we ignore
+the fact that data can flow in both directions, and we concentrate on
+data that has a particular ``SequenceNum`` flowing in one direction
+and ``Acknowledgement`` and ``AdvertisedWindow`` values flowing in the
+opposite direction, as illustrated in :numref:`Figure %s
+<fig-tcp-flow>`. The use of these three fields is described more fully
+later in this chapter.
 
 .. _fig-tcp-flow:
 .. figure:: figures/f05-05-9780123850591.png
@@ -309,7 +311,7 @@ The algorithm used by TCP to establish and terminate a connection is
 called a *three-way handshake*. We first describe the basic algorithm
 and then show how it is used by TCP. The three-way handshake involves
 the exchange of three messages between the client and the server, as
-illustrated by the timeline given in :ref:`Figure 4 <fig-twh-timeline>`.
+illustrated by the timeline given in :numref:`Figure %s <fig-twh-timeline>`.
 
 .. _fig-twh-timeline:
 .. figure:: figures/f05-06-9780123850591.png
@@ -326,18 +328,18 @@ wants the other to know about. First, the client (the active
 participant) sends a segment to the server (the passive participant)
 stating the initial sequence number it plans to use (``Flags`` =
 ``SYN``, ``SequenceNum`` = x). The server then responds with a single
-segment that both acknowledges the client’s sequence number
-(``Flags = ACK, Ack = x + 1``) and states its own beginning sequence
-number (``Flags = SYN, SequenceNum = y``). That is, both the ``SYN`` and
+segment that both acknowledges the client’s sequence number (``Flags =
+ACK, Ack = x + 1``) and states its own beginning sequence number
+(``Flags = SYN, SequenceNum = y``). That is, both the ``SYN`` and
 ``ACK`` bits are set in the ``Flags`` field of this second message.
-Finally, the client responds with a third segment that acknowledges the
-server’s sequence number (``Flags = ACK, Ack = y + 1``). The reason why
-each side acknowledges a sequence number that is one larger than the one
-sent is that the ``Acknowledgement`` field actually identifies the “next
-sequence number expected,” thereby implicitly acknowledging all earlier
-sequence numbers. Although not shown in this timeline, a timer is
-scheduled for each of the first two segments, and if the expected
-response is not received the segment is retransmitted.
+Finally, the client responds with a third segment that acknowledges
+the server’s sequence number (``Flags = ACK, Ack = y + 1``). The
+reason why each side acknowledges a sequence number that is one larger
+than the one sent is that the ``Acknowledgement`` field actually
+identifies the “next sequence number expected,” thereby implicitly
+acknowledging all earlier sequence numbers. Although not shown in this
+timeline, a timer is scheduled for each of the first two segments, and
+if the expected response is not received the segment is retransmitted.
 
 You may be asking yourself why the client and server have to exchange
 starting sequence numbers with each other at connection setup time. It
@@ -354,7 +356,7 @@ State-Transition Diagram
 ~~~~~~~~~~~~~~~~~~~~~~~~
 
 TCP is complex enough that its specification includes a state-transition
-diagram. A copy of this diagram is given in :ref:`Figure 5 <fig-tcp-std>`.
+diagram. A copy of this diagram is given in :numref:`Figure %s <fig-tcp-std>`.
 This diagram shows only the states involved in opening a connection
 (everything above ESTABLISHED) and in closing a connection (everything
 below ESTABLISHED). Everything that goes on while a connection is
@@ -378,17 +380,18 @@ in the LISTEN state and a SYN segment arrives (i.e., a segment with the
 state and takes the action of replying with an ``ACK+SYN`` segment.
 
 Notice that two kinds of events trigger a state transition: (1) a
-segment arrives from the peer (e.g., the event on the arc from LISTEN to
-SYN_RCVD), or (2) the local application process invokes an operation on
-TCP (e.g., the *active open* event on the arc from CLOSED to SYN_SENT).
-In other words, TCP’s state-transition diagram effectively defines the
-*semantics* of both its peer-to-peer interface and its service
-interface. The *syntax* of these two interfaces is given by the segment
-format (as illustrated in :ref:`Figure 2 <fig-tcp-format>`) and by some
-application programming interface, such as the socket API, respectively.
+segment arrives from the peer (e.g., the event on the arc from LISTEN
+to SYN_RCVD), or (2) the local application process invokes an
+operation on TCP (e.g., the *active open* event on the arc from CLOSED
+to SYN_SENT).  In other words, TCP’s state-transition diagram
+effectively defines the *semantics* of both its peer-to-peer interface
+and its service interface. The *syntax* of these two interfaces is
+given by the segment format (as illustrated in :numref:`Figure %s
+<fig-tcp-format>`) and by some application programming interface, such
+as the socket API, respectively.
 
 Now let’s trace the typical transitions taken through the diagram in
-:ref:`Figure 5 <fig-tcp-std>`. Keep in mind that at each end of the
+:numref:`Figure %s <fig-tcp-std>`. Keep in mind that at each end of the
 connection, TCP makes different transitions from state to state. When
 opening a connection, the server first invokes a passive open operation
 on TCP, which causes TCP to move to the LISTEN state. At some later
@@ -494,15 +497,15 @@ Reliable and Ordered Delivery
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To see how the sending and receiving sides of TCP interact with each
-other to implement reliable and ordered delivery, consider the situation
-illustrated in :ref:`Figure 6 <fig-tcp-fc>`. TCP on the sending side maintains
-a send buffer. This buffer is used to store data that has been sent but
-not yet acknowledged, as well as data that has been written by the
-sending application but not transmitted. On the receiving side, TCP
-maintains a receive buffer. This buffer holds data that arrives out of
-order, as well as data that is in the correct order (i.e., there are no
-missing bytes earlier in the stream) but that the application process
-has not yet had the chance to read.
+other to implement reliable and ordered delivery, consider the
+situation illustrated in :numref:`Figure %s <fig-tcp-fc>`. TCP on the
+sending side maintains a send buffer. This buffer is used to store
+data that has been sent but not yet acknowledged, as well as data that
+has been written by the sending application but not transmitted. On
+the receiving side, TCP maintains a receive buffer. This buffer holds
+data that arrives out of order, as well as data that is in the correct
+order (i.e., there are no missing bytes earlier in the stream) but
+that the application process has not yet had the chance to read.
 
 .. _fig-tcp-fc:
 .. figure:: figures/f05-08-9780123850591.png
@@ -561,7 +564,7 @@ byte to meet this criterion. Second,
 since, if data has arrived in order, ``NextByteExpected`` points to the
 byte after ``LastByteRcvd``, whereas if data has arrived out of order,
 then ``NextByteExpected`` points to the start of the first gap in the
-data, as in :ref:`Figure 6 <fig-tcp-fc>`. Note that bytes to the left of
+data, as in :numref:`Figure %s <fig-tcp-fc>`. Note that bytes to the left of
 ``LastByteRead`` need not be buffered because they have already been
 read by the local application process, and bytes to the right of
 ``LastByteRcvd`` need not be buffered because they have not yet arrived.
@@ -715,24 +718,25 @@ TCP’s correctness and performance. TCP’s ``SequenceNum`` field is
 32 bits long, and its ``AdvertisedWindow`` field is 16 bits long,
 meaning that TCP has easily satisfied the requirement of the sliding
 window algorithm that the sequence number space be twice as big as the
-window size: 2\:sup`32` >> 2 × 2\:sup:`16`. However, this requirement 
-is not the interesting thing about these two fields. 
+window size: 2\ :sup:`32` >> 2 × 2\ :sup:`16`. However, this
+requirement is not the interesting thing about these two fields.
 Consider each field in turn.
 
 The relevance of the 32-bit sequence number space is that the sequence
-number used on a given connection might wrap around—a byte with sequence
-number S could be sent at one time, and then at a later time a second
-byte with the same sequence number S might be sent. Once again, we
-assume that packets cannot survive in the Internet for longer than the
-recommended MSL. Thus, we currently need to make sure that the sequence
-number does not wrap around within a 120-second period of time. Whether
-or not this happens depends on how fast data can be transmitted over the
-Internet—that is, how fast the 32-bit sequence number space can be
-consumed. (This discussion assumes that we are trying to consume the
-sequence number space as fast as possible, but of course we will be if
-we are doing our job of keeping the pipe full.) :ref:`Table 1 <tab-eqnum>`
-shows how long it takes for the sequence number to wrap around on
-networks with various bandwidths.
+number used on a given connection might wrap around—a byte with
+sequence number S could be sent at one time, and then at a later time
+a second byte with the same sequence number S might be sent. Once
+again, we assume that packets cannot survive in the Internet for
+longer than the recommended MSL. Thus, we currently need to make sure
+that the sequence number does not wrap around within a 120-second
+period of time. Whether or not this happens depends on how fast data
+can be transmitted over the Internet—that is, how fast the 32-bit
+sequence number space can be consumed. (This discussion assumes that
+we are trying to consume the sequence number space as fast as
+possible, but of course we will be if we are doing our job of keeping
+the pipe full.) :numref:`Table %s <tab-eqnum>` shows how long it takes
+for the sequence number to wrap around on networks with various
+bandwidths.
 
 .. _tab-eqnum:
 .. table::  Time Until 32-Bit Sequence Number Space Wraps Around.
@@ -781,7 +785,7 @@ bandwidth product that dictates how big the ``AdvertisedWindow`` field
 needs to be—the window needs to be opened far enough to allow a full
 delay × bandwidth product’s worth of data to be transmitted. Assuming an
 RTT of 100 ms (a typical number for a cross-country connection in the
-United States), :ref:`Table 2 <tab-adv-win>` gives the delay × bandwidth
+United States), :numref:`Table %s <tab-adv-win>` gives the delay × bandwidth
 product for several network technologies.
 
 .. _tab-adv-win:
@@ -859,22 +863,23 @@ window opens further.
 
 It turns out that the strategy of aggressively taking advantage of any
 available window leads to a situation now known as the *silly window
-syndrome*. :ref:`Figure 7 <fig-sillywindow>` helps visualize what happens. If
-you think of a TCP stream as a conveyor belt with “full” containers
-(data segments) going in one direction and empty containers (ACKs) going
-in the reverse direction, then ``MSS``-sized segments correspond to
-large containers and 1-byte segments correspond to very small
-containers. As long as the sender is sending ``MSS``-sized segments and
-the receiver ACKs at least one ``MSS`` of data at a time, everything is
-good (:ref:`Figure 7(a) <fig-sillywindow>`). But, what if the receiver has to
-reduce the window, so that at some time the sender can’t send a full
-``MSS`` of data? If the sender aggressively fills a
-smaller-than-\ ``MSS`` empty container as soon as it arrives, then the
-receiver will ACK that smaller number of bytes, and hence the small
-container introduced into the system remains in the system indefinitely.
-That is, it is immediately filled and emptied at each end and is never
-coalesced with adjacent containers to create larger containers, as in
-:ref:`Figure 7(b) <fig-sillywindow>`. This scenario was discovered when early
+syndrome*. :numref:`Figure %s <fig-sillywindow>` helps visualize what
+happens.  If you think of a TCP stream as a conveyor belt with “full”
+containers (data segments) going in one direction and empty containers
+(ACKs) going in the reverse direction, then ``MSS``-sized segments
+correspond to large containers and 1-byte segments correspond to very
+small containers. As long as the sender is sending ``MSS``-sized
+segments and the receiver ACKs at least one ``MSS`` of data at a time,
+everything is good (:numref:`Figure %s(a) <fig-sillywindow>`). But,
+what if the receiver has to reduce the window, so that at some time
+the sender can’t send a full ``MSS`` of data? If the sender
+aggressively fills a smaller-than-\ ``MSS`` empty container as soon as
+it arrives, then the receiver will ACK that smaller number of bytes,
+and hence the small container introduced into the system remains in
+the system indefinitely.  That is, it is immediately filled and
+emptied at each end and is never coalesced with adjacent containers to
+create larger containers, as in :numref:`Figure %s(b)
+<fig-sillywindow>`. This scenario was discovered when early
 implementations of TCP regularly found themselves filling the network
 with tiny segments.
 
@@ -920,12 +925,12 @@ don’t wait long enough, then we risk sending a bunch of tiny packets and
 falling into the silly window syndrome. The answer is to introduce a
 timer and to transmit when the timer expires.
 
-While we could use a clock-based timer—for example, one that fires every
-100 ms—Nagle introduced an elegant *self-clocking* solution. The idea is
-that as long as TCP has any data in flight, the sender will eventually
-receive an ACK. This ACK can be treated like a timer firing, triggering
-the transmission of more data. Nagle’s algorithm provides a simple,
-unified rule for deciding when to transmit:
+While we could use a clock-based timer—for example, one that fires
+every 100 ms—Nagle introduced an elegant *self-clocking* solution. The
+idea is that as long as TCP has any data in flight, the sender will
+eventually receive an ACK. This ACK can be treated like a timer
+firing, triggering the transmission of more data. Nagle’s algorithm
+provides a simple, unified rule for deciding when to transmit:
 
 .. code-block:: c
 
@@ -973,25 +978,25 @@ pair of hosts. This is the algorithm that was originally described in
 the TCP specification—and the following description presents it in those
 terms—but it could be used by any end-to-end protocol.
 
-The idea is to keep a running average of the RTT and then to compute the
-timeout as a function of this RTT. Specifically, every time TCP sends a
-data segment, it records the time. When an ACK for that segment arrives,
-TCP reads the time again, and then takes the difference between these
-two times as a ``SampleRTT``. TCP then computes an ``EstimatedRTT`` as a
-weighted average between the previous estimate and this new sample. That
-is,
+The idea is to keep a running average of the RTT and then to compute
+the timeout as a function of this RTT. Specifically, every time TCP
+sends a data segment, it records the time. When an ACK for that
+segment arrives, TCP reads the time again, and then takes the
+difference between these two times as a ``SampleRTT``. TCP then
+computes an ``EstimatedRTT`` as a weighted average between the
+previous estimate and this new sample. That is,
 
 .. code-block:: c
 
    EstimatedRTT = alpha x EstimatedRTT + (1 - alpha) x SampleRTT
 
-The parameter ``alpha`` is selected to *smooth* the ``EstimatedRTT``. A
-small ``alpha`` tracks changes in the RTT but is perhaps too heavily
-influenced by temporary fluctuations. On the other hand, a large
-``alpha`` is more stable but perhaps not quick enough to adapt to real
-changes. The original TCP specification recommended a setting of
-``alpha`` between 0.8 and 0.9. TCP then uses ``EstimatedRTT`` to compute
-the timeout in a rather conservative way:
+The parameter ``alpha`` is selected to *smooth* the
+``EstimatedRTT``. A small ``alpha`` tracks changes in the RTT but is
+perhaps too heavily influenced by temporary fluctuations. On the other
+hand, a large ``alpha`` is more stable but perhaps not quick enough to
+adapt to real changes. The original TCP specification recommended a
+setting of ``alpha`` between 0.8 and 0.9. TCP then uses
+``EstimatedRTT`` to compute the timeout in a rather conservative way:
 
 .. code-block:: c
 
@@ -1003,16 +1008,17 @@ Karn/Partridge Algorithm
 After several years of use on the Internet, a rather obvious flaw was
 discovered in this simple algorithm. The problem was that an ACK does
 not really acknowledge a transmission; it actually acknowledges the
-receipt of data. In other words, whenever a segment is retransmitted and
-then an ACK arrives at the sender, it is impossible to determine if this
-ACK should be associated with the first or the second transmission of
-the segment for the purpose of measuring the sample RTT. It is necessary
-to know which transmission to associate it with so as to compute an
-accurate ``SampleRTT``. As illustrated in :ref:`Figure 8 <fig-tcp-karn>`, if
-you assume that the ACK is for the original transmission but it was
-really for the second, then the ``SampleRTT`` is too large (a); if you
-assume that the ACK is for the second transmission but it was actually
-for the first, then the ``SampleRTT`` is too small (b).
+receipt of data. In other words, whenever a segment is retransmitted
+and then an ACK arrives at the sender, it is impossible to determine
+if this ACK should be associated with the first or the second
+transmission of the segment for the purpose of measuring the sample
+RTT. It is necessary to know which transmission to associate it with
+so as to compute an accurate ``SampleRTT``. As illustrated in
+:numref:`Figure %s <fig-tcp-karn>`, if you assume that the ACK is for
+the original transmission but it was really for the second, then the
+``SampleRTT`` is too large (a); if you assume that the ACK is for the
+second transmission but it was actually for the first, then the
+``SampleRTT`` is too small (b).
 
 .. _fig-tcp-karn:
 .. figure:: figures/f05-10-9780123850591.png
@@ -1077,7 +1083,7 @@ It then folds this new sample into the timeout calculation as follows:
    EstimatedRTT = EstimatedRTT + ( delta x Difference)
    Deviation = Deviation + delta (|Difference| - Deviation)
 
-where delta and delta are fractions between 0 and 1. That is, we
+where ``delta`` and delta are fractions between 0 and 1. That is, we
 calculate both the mean RTT and the variation in that mean.
 
 TCP then computes the timeout value as a function of both
@@ -1087,8 +1093,8 @@ TCP then computes the timeout value as a function of both
 
    TimeOut = mu x EstimatedRTT + phi x Deviation
 
-where based on experience, mu is typically set to 1 and phi is set to 4.
-Thus, when the variance is small, ``TimeOut`` is close to
+where based on experience, ``mu`` is typically set to 1 and ``phi`` is
+set to 4.  Thus, when the variance is small, ``TimeOut`` is close to
 ``EstimatedRTT``; a large variance causes the ``Deviation`` term to
 dominate the calculation.
 
@@ -1099,11 +1105,11 @@ There are two items of note regarding the implementation of timeouts in
 TCP. The first is that it is possible to implement the calculation for
 ``EstimatedRTT`` and ``Deviation`` without using floating-point
 arithmetic. Instead, the whole calculation is scaled by 2\:sup:`n`, 
-with delta selected to be 1/2\:sup:`n`. This allows us to do integer 
+with delta selected to be 1/2\ :sup:`n`. This allows us to do integer 
 arithmetic, implementing multiplicationand division using shifts, 
 thereby achieving higher performance. The resulting calculation is given 
 by the following code fragment, where n=3
-(i.e., delta = 1/8). Note that ``EstimatedRTT`` and ``Deviation`` are
+(i.e., ``delta = 1/8``). Note that ``EstimatedRTT`` and ``Deviation`` are
 stored in their scaled-up forms, while the value of ``SampleRTT`` at the
 start of the code and of ``TimeOut`` at the end are real, unscaled
 values. If you find the code hard to follow, you might want to try
@@ -1237,7 +1243,7 @@ connection establishment phase.
 The first extension helps to improve TCP’s timeout mechanism. Instead of
 measuring the RTT using a coarse-grained event, TCP can read the actual
 system clock when it is about to send a segment, and put this time—think
-of it as a 32-bit *timestamp*—in the segment’s header. The receiver then
+of it as a 32-bit *timestamp*\ —in the segment’s header. The receiver then
 echoes this timestamp back to the sender in its acknowledgment, and the
 sender subtracts this timestamp from the current time to measure the
 RTT. In essence, the timestamp option provides a convenient place for
@@ -1333,14 +1339,14 @@ performance seen by application programs.
 We begin, as any report of experimental results should, by describing
 our experimental method. This includes the apparatus used in the
 experiments; in this case, each workstation has a pair of dual CPU
-2.4-GHz Xeon processors running Linux. In order to enable speeds above 1
-Gbps, a pair of Ethernet adaptors (labeled NIC, for network interface
-card) are used on each machine. The Ethernet spans a single machine room
-so propagation is not an issue, making this a measure of
+2.4-GHz Xeon processors running Linux. In order to enable speeds above
+1 Gbps, a pair of Ethernet adaptors (labeled NIC, for network
+interface card) are used on each machine. The Ethernet spans a single
+machine room so propagation is not an issue, making this a measure of
 processor/software overheads. A test program running on top of the
 socket interface simply tries to transfer data as quickly as possible
-from one machine to the other. :ref:`Figure 9 <fig-experiment>` illustrates
-the setup.
+from one machine to the other. :numref:`Figure %s <fig-experiment>`
+illustrates the setup.
 
 You may notice that this experimental setup is not especially bleeding
 edge in terms of the hardware or link speed. The point of this section
@@ -1348,15 +1354,16 @@ is not to show how fast a particular protocol can run, but to illustrate
 the general methodology for measuring and reporting protocol
 performance.
 
-The throughput test is performed for a variety of message sizes using a
-standard benchmarking tool called TTCP. The results of the throughput
-test are given in :ref:`Figure 10 <fig-xput>`. The key thing to notice in this
-graph is that throughput improves as the messages get larger. This makes
-sense—each message involves a certain amount of overhead, so a larger
-message means that this overhead is amortized over more bytes. The
-throughput curve flattens off above 1 KB, at which point the per-message
-overhead becomes insignificant when compared to the large number of
-bytes that the protocol stack has to process.
+The throughput test is performed for a variety of message sizes using
+a standard benchmarking tool called TTCP. The results of the
+throughput test are given in :numref:`Figure %s <fig-xput>`. The key
+thing to notice in this graph is that throughput improves as the
+messages get larger. This makes sense—each message involves a certain
+amount of overhead, so a larger message means that this overhead is
+amortized over more bytes. The throughput curve flattens off above
+1 KB, at which point the per-message overhead becomes insignificant
+when compared to the large number of bytes that the protocol stack has
+to process.
 
 .. _fig-xput:
 .. figure:: figures/f05-12-9780123850591.png

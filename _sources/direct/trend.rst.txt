@@ -29,8 +29,8 @@ services—e.g., Public Safety, Autonomous Vehicles, Automated Factories,
 Internet-of-Things (IoT), Immersive User Interfaces—that benefit from
 low latency connectivity to end users, and more importantly, to the
 increasing number of devices those users surround themselves with. This
-results in a multi-tier cloud similar to the one shown in :ref:`Figure
-1 <fig-cord>`.
+results in a multi-tier cloud similar to the one shown in :numref:`Figure
+%s <fig-cord>`.
 
 .. _fig-cord:
 .. figure:: figures/access/Slide3.png
@@ -105,7 +105,7 @@ instinctively go where there are opportunities to innovate.
 .. admonition:: Broader Perspective
 		
   To continue reading about the cloudification of the Internet, see
-  `Virtual Networks All the Way Down <../internetworking/trend.md>`__. 
+  `Virtual Networks All the Way Down <../internetworking/trend.html>`__. 
 
   To learn more about the transformation taking place in access networks, we recommend: `CORD: Central Office Re-architected as a Datacenter, IEEE Communications, October 2016 <https://wiki.opencord.org/display/CORD/Documentation?preview=/1278027/1966399/PETERSON_CORD.pdf>`__ and `Democratizing the Network Edge SIGCOMM CCR, April 2019 <https://ccronline.sigcomm.org/2019/democratizing-the-network-edge/>`__.
 

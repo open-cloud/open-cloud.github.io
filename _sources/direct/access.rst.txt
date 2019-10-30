@@ -40,10 +40,12 @@ happens at the source in the ISP’s premises, in a device called an
 *Optical Line Terminal* (OLT), and at the end-points in individual
 homes, in a device called an *Optical Network Unit* (ONU).
 
-:ref:`Figure 1 <fig-pon>` shows an example PON, simplified to depict just one
+:numref:`Figure %s <fig-pon>` shows an example PON, simplified to
+depict just one
 ONU and one OLT. In practice, a Central Office would include multiple
 OLTs connecting to thousands of customer homes. For completeness,
-:ref:`Figure 1 <fig-pon>` also includes two other details about how the PON is
+:numref:`Figure %s <fig-pon>` also includes two other details about
+how the PON is
 connected to the ISP’s backbone (and hence, to the rest of the
 Internet). The *Agg Switch* aggregates traffic from a set of OLTs, and
 the *BNG* (Broadband Network Gateway) is a piece of Telco equipment
@@ -101,17 +103,18 @@ station, as many of us do in our homes), exclusive use of various
 frequency bands have been auctioned off and licensed to service
 providers, who in turn sell mobile access service to their subscribers.
 
-The frequency bands that are used for cellular networks vary around the
-world, and are complicated by the fact that ISPs often simultaneously
-support both old/legacy technologies and new/next-generation
-technologies, each of which occupies a different frequency band. The
-high-level summary is that traditional cellular technologies range from
-700-MHz to 2400-MHz, with new mid-spectrum allocations now happening at
-6-GHz and millimeter-wave (mmWave) allocations opening above 24-GHz. One
-interesting footnote is that there is also an unlicensed band at 3.5-GHz
-set aside in North America, called *Citizens Broadband Radio Service*
-(CBRS), that anyone with a cellular radio can use. This opens the door
-for setting up private cellular networks.
+The frequency bands that are used for cellular networks vary around
+the world, and are complicated by the fact that ISPs often
+simultaneously support both old/legacy technologies and
+new/next-generation technologies, each of which occupies a different
+frequency band. The high-level summary is that traditional cellular
+technologies range from 700-MHz to 2400-MHz, with new mid-spectrum
+allocations now happening at 6-GHz and millimeter-wave (mmWave)
+allocations opening above 24-GHz. One interesting footnote is that
+there is also an unlicensed band at 3.5-GHz set aside in North
+America, called *Citizens Broadband Radio Service* (CBRS), that anyone
+with a cellular radio can use. This opens the door for setting up
+private cellular networks.
 
    To be more precise, the CBRS band allows three tiers of users to
    share the spectrum: first right of use goes to the original owners of
@@ -136,20 +139,21 @@ the EPC is often called a *Radio Access Network* (RAN).
    are soon to be upgraded to gNB’s, we have decided to use the more
    generic and less cryptic BBU.
 
-:ref:`Figure 2 <fig-ran>` depicts one possible configuration of the end-to-end
-scenario, with a few additional bits of detail. The EPC has multiple
-subcomponents, including an MME (Mobility Management Entity), an HSS
-(Home Subscriber Server), and an S/PGW (Session/Packet Gateway) pair;
-the first tracks and manages the movement of UEs throughout the RAN, the
-second is a database that contains subscriber-related information, and
-the Gateway pair processes and forwards packets between the RAN and the
-Internet (it forms the EPC’s *user plane*). We say “one possible
-configuration” because the cellular standards allow wide variability in
-how many S/PGWs a given MME is responsible for, making is possible for a
-single MME to manage mobility across a wide geographic area that is
-served by multiple Central Offices. Finally, while not explicitly
-spelled out in :ref:`Figure 2 <fig-ran>`, it is sometimes the case that the
-ISP’s PON network is used to connect the remote BBUs back to the Central
+:numref:`Figure %s <fig-ran>` depicts one possible configuration of
+the end-to-end scenario, with a few additional bits of detail. The EPC
+has multiple subcomponents, including an MME (Mobility Management
+Entity), an HSS (Home Subscriber Server), and an S/PGW (Session/Packet
+Gateway) pair; the first tracks and manages the movement of UEs
+throughout the RAN, the second is a database that contains
+subscriber-related information, and the Gateway pair processes and
+forwards packets between the RAN and the Internet (it forms the EPC’s
+*user plane*). We say “one possible configuration” because the
+cellular standards allow wide variability in how many S/PGWs a given
+MME is responsible for, making is possible for a single MME to manage
+mobility across a wide geographic area that is served by multiple
+Central Offices. Finally, while not explicitly spelled out in
+:numref:`Figure %s <fig-ran>`, it is sometimes the case that the ISP’s
+PON network is used to connect the remote BBUs back to the Central
 Office.
 
 .. _fig-ran:
@@ -219,13 +223,14 @@ of user data into OFDMA symbols is designed to minimize the risk of data
 loss due to interference between adjacent bands.
 
 The use of OFDMA naturally leads to conceptualizing the radio spectrum
-as a two-dimensional resource, as shown in :ref:`Figure 3 <fig-ofdma>`. The
-minimal schedulable unit, called a *Resource Element (RE)*, corresponds
-to a 15kHz-wide band around one subcarrier frequency and the time it
-takes to transmit one OFDMA symbol. The number of bits that can be
-encoded in each symbol depends on the modulation rate, so for example
-using Quadrature Amplitude Modulation (QAM), 16-QAM yields 4 bits per
-symbol and 64-QAM yields 16 bits per symbol.
+as a two-dimensional resource, as shown in :numref:`Figure %s
+<fig-ofdma>`.  The minimal schedulable unit, called a *Resource
+Element (RE)*, corresponds to a 15kHz-wide band around one subcarrier
+frequency and the time it takes to transmit one OFDMA symbol. The
+number of bits that can be encoded in each symbol depends on the
+modulation rate, so for example using Quadrature Amplitude Modulation
+(QAM), 16-QAM yields 4 bits per symbol and 64-QAM yields 6 bits per
+symbol.
  
 .. _fig-ofdma:
 .. figure:: figures/access/Slide4.png
@@ -237,15 +242,15 @@ symbol and 64-QAM yields 16 bits per symbol.
 
 A scheduler makes allocation decisions at the granularity of blocks of
 7x12=84 resource elements, called a *Physical Resource Block (PRB)*.
-:ref:`Figure 3 <fig-ofdma>` shows two back-to-back PRBs, where UEs are
+:numref:`Figure %s <fig-ofdma>` shows two back-to-back PRBs, where UEs are
 depicted by different colored blocks. Of course time continues to flow
 along one axis, and depending on the size of the licensed frequency
 band, there may be many more subcarrier slots (and hence PRBs) available
 along the other axis, so the scheduler is essentially scheduling a
 sequence of PRBs for transmission.
 
-The 1ms *Transmission Time Interval (TTI)* shown in :ref:`Figure
-3 <fig-ofdma>` corresponds to the time frame in which the BBU receives
+The 1ms *Transmission Time Interval (TTI)* shown in :numref:`Figure
+%s <fig-ofdma>` corresponds to the time frame in which the BBU receives
 feedback from UEs about the quality of the signal they are experiencing.
 This feedback, called a *Channel Quality Indicator (CQI)*, essentially
 reports the observed signal-to-noise ratio, which impacts the UE’s
@@ -275,12 +280,12 @@ coverage.
 These different waveforms affect the scheduling and subcarrier intervals
 (i.e., the “size” of the Resource Elements just described).
 
--  For sub-1GHz bands, 5G allows maximum 50MHz bandwidths. In this case,
-   there are two waveforms: one with subcarrier spacing of 15kHz and
-   another of 30kHz. (We used 15kHz in the example shown in :ref:`Figure
-   3 <fig-ofdma>`. The corresponding scheduling intervals are 0.5ms and
-   0.25ms, respectively. (We used 0.5ms in the example shown in :ref:`Figure
-   3 <fig-ofdma>`.)
+- For sub-1GHz bands, 5G allows maximum 50MHz bandwidths. In this
+   case, there are two waveforms: one with subcarrier spacing of 15kHz
+   and another of 30kHz. (We used 15kHz in the example shown in
+   :numref:`Figure %s <fig-ofdma>`. The corresponding scheduling
+   intervals are 0.5ms and 0.25ms, respectively. (We used 0.5ms in the
+   example shown in :numref:`Figure %s <fig-ofdma>`.)
 
 -  For 1GHz-6GHz bands, maximum bandwidths go up to 100MHz.
    Correspondingly, there are three waveforms with subcarrier spacings

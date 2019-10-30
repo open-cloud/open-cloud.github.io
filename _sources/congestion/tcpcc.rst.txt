@@ -110,14 +110,15 @@ obviously too conservative. We also need to be able to increase the
 congestion window to take advantage of newly available capacity in the
 network. This is the “additive increase” part of AIMD, and it works as
 follows. Every time the source successfully sends a
-``CongestionWindow``\ ’s worth of packets—that is, each packet sent out
-during the last round-trip time (RTT) has been ACKed—it adds the
-equivalent of 1 packet to ``CongestionWindow``. This linear increase is
-illustrated in :ref:`Figure 1 <fig-linear>`. Note that, in practice, TCP does
-not wait for an entire window’s worth of ACKs to add 1 packet’s worth to
-the congestion window, but instead increments ``CongestionWindow`` by a
-little for each ACK that arrives. Specifically, the congestion window is
-incremented as follows each time an ACK arrives:
+``CongestionWindow``\ ’s worth of packets—that is, each packet sent
+out during the last round-trip time (RTT) has been ACKed—it adds the
+equivalent of 1 packet to ``CongestionWindow``. This linear increase
+is illustrated in :numref:`Figure %s <fig-linear>`. Note that, in
+practice, TCP does not wait for an entire window’s worth of ACKs to
+add 1 packet’s worth to the congestion window, but instead increments
+``CongestionWindow`` by a little for each ACK that
+arrives. Specifically, the congestion window is incremented as follows
+each time an ACK arrives:
 
 .. code-block:: c
 
@@ -137,22 +138,23 @@ of ``MSS`` bytes, then that fraction is .
    Typical TCP sawtooth pattern.
 
 This pattern of continually increasing and decreasing the congestion
-window continues throughout the lifetime of the connection. In fact, if
-you plot the current value of ``CongestionWindow`` as a function of
-time, you get a sawtooth pattern, as illustrated in :ref:`Figure
-2 <fig-sawtooth>`. The important concept to understand about AIMD is that
-the source is willing to reduce its congestion window at a much faster
-rate than it is willing to increase its congestion window. This is in
-contrast to an additive increase/additive decrease strategy in which the
-window would be increased by 1 packet when an ACK arrives and decreased
-by 1 when a timeout occurs. It has been shown that AIMD is a necessary
-condition for a congestion-control mechanism to be stable (see the
-Further Reading section). One intuitive reason to decrease the window
-aggressively and increase it conservatively is that the consequences of
-having too large a window are much worse than those of it being too
-small. For example, when the window is too large, packets that are
-dropped will be retransmitted, making congestion even worse; thus, it is
-important to get out of this state quickly.
+window continues throughout the lifetime of the connection. In fact,
+if you plot the current value of ``CongestionWindow`` as a function of
+time, you get a sawtooth pattern, as illustrated in :numref:`Figure %s
+<fig-sawtooth>`. The important concept to understand about AIMD is
+that the source is willing to reduce its congestion window at a much
+faster rate than it is willing to increase its congestion window. This
+is in contrast to an additive increase/additive decrease strategy in
+which the window would be increased by 1 packet when an ACK arrives
+and decreased by 1 when a timeout occurs. It has been shown that AIMD
+is a necessary condition for a congestion-control mechanism to be
+stable (see the Further Reading section). One intuitive reason to
+decrease the window aggressively and increase it conservatively is
+that the consequences of having too large a window are much worse than
+those of it being too small. For example, when the window is too
+large, packets that are dropped will be retransmitted, making
+congestion even worse; thus, it is important to get out of this state
+quickly.
 
 Finally, since a timeout is an indication of congestion that triggers
 multiplicative decrease, TCP needs the most accurate timeout mechanism
@@ -178,12 +180,13 @@ congestion window exponentially, rather than linearly.
 Specifically, the source starts out by setting ``CongestionWindow`` to
 one packet. When the ACK for this packet arrives, TCP adds 1 to
 ``CongestionWindow`` and then sends two packets. Upon receiving the
-corresponding two ACKs, TCP increments ``CongestionWindow`` by 2—one for
-each ACK—and next sends four packets. The end result is that TCP
+corresponding two ACKs, TCP increments ``CongestionWindow`` by 2—one
+for each ACK—and next sends four packets. The end result is that TCP
 effectively doubles the number of packets it has in transit every RTT.
-:ref:`Figure 3 <fig-exponential>` shows the growth in the number of packets in
-transit during slow start. Compare this to the linear growth of additive
-increase illustrated in :ref:`Figure 1 <fig-linear>`.
+:numref:`Figure %s <fig-exponential>` shows the growth in the number
+of packets in transit during slow start. Compare this to the linear
+growth of additive increase illustrated in :numref:`Figure %s
+<fig-linear>`.
 
 .. _fig-exponential:
 .. figure:: figures/f06-10-9780123850591.png
@@ -269,11 +272,11 @@ where ``state`` represents the state of a particular TCP connection and
 defines an upper bound on how large the congestion window is allowed to
 grow.
 
-:ref:`Figure 4 <fig-trace1>` traces how TCP’s ``CongestionWindow`` increases
-and decreases over time and serves to illustrate the interplay of slow
-start and additive increase/multiplicative decrease. This trace was
-taken from an actual TCP connection and shows the current value of
-``CongestionWindow``—the colored line—over time.
+:numref:`Figure %s <fig-trace1>` traces how TCP’s ``CongestionWindow``
+increases and decreases over time and serves to illustrate the
+interplay of slow start and additive increase/multiplicative
+decrease. This trace was taken from an actual TCP connection and shows
+the current value of ``CongestionWindow``—the colored line—over time.
 
 .. _fig-trace1:
 .. figure:: figures/f06-11-9780123850591.png
@@ -409,17 +412,18 @@ three duplicate ACKs before retransmitting the packet.
 
    Fast retransmit based on duplicate ACKs.
 
-:ref:`Figure 5 <fig-tcp-fast>` illustrates how duplicate ACKs lead to a fast
-retransmit. In this example, the destination receives packets 1 and 2,
-but packet 3 is lost in the network. Thus, the destination will send a
-duplicate ACK for packet 2 when packet 4 arrives, again when packet 5
-arrives, and so on. (To simplify this example, we think in terms of
-packets 1, 2, 3, and so on, rather than worrying about the sequence
-numbers for each byte.) When the sender sees the third duplicate ACK for
-packet 2—the one sent because the receiver had gotten packet 6—it
-retransmits packet 3. Note that when the retransmitted copy of packet 3
-arrives at the destination, the receiver then sends a cumulative ACK for
-everything up to and including packet 6 back to the source.
+:numref:`Figure %s <fig-tcp-fast>` illustrates how duplicate ACKs lead
+to a fast retransmit. In this example, the destination receives
+packets 1 and 2, but packet 3 is lost in the network. Thus, the
+destination will send a duplicate ACK for packet 2 when packet 4
+arrives, again when packet 5 arrives, and so on. (To simplify this
+example, we think in terms of packets 1, 2, 3, and so on, rather than
+worrying about the sequence numbers for each byte.) When the sender
+sees the third duplicate ACK for packet 2—the one sent because the
+receiver had gotten packet 6—it retransmits packet 3. Note that when
+the retransmitted copy of packet 3 arrives at the destination, the
+receiver then sends a cumulative ACK for everything up to and
+including packet 6 back to the source.
 
 .. _fig-trace2:
 .. figure:: figures/f06-13-9780123850591.png
@@ -432,36 +436,39 @@ everything up to and including packet 6 back to the source.
    packet that was eventually retransmitted was first 
    transmitted.
 
-:ref:`Figure 6 <fig-trace2>` illustrates the behavior of a version of TCP with
-the fast retransmit mechanism. It is interesting to compare this trace
-with that given in :ref:`Figure 4 <fig-trace1>`, where fast retransmit was not
-implemented—the long periods during which the congestion window stays
-flat and no packets are sent has been eliminated. In general, this
-technique is able to eliminate about half of the coarse-grained timeouts
-on a typical TCP connection, resulting in roughly a 20% improvement in
-the throughput over what could otherwise have been achieved. Notice,
-however, that the fast retransmit strategy does not eliminate all
-coarse-grained timeouts. This is because for a small window size there
-will not be enough packets in transit to cause enough duplicate ACKs to
-be delivered. Given enough lost packets—for example, as happens during
+:numref:`Figure %s <fig-trace2>` illustrates the behavior of a version
+of TCP with the fast retransmit mechanism. It is interesting to
+compare this trace with that given in :numref:`Figure %s
+<fig-trace1>`, where fast retransmit was not implemented—the long
+periods during which the congestion window stays flat and no packets
+are sent has been eliminated. In general, this technique is able to
+eliminate about half of the coarse-grained timeouts on a typical TCP
+connection, resulting in roughly a 20% improvement in the throughput
+over what could otherwise have been achieved. Notice, however, that
+the fast retransmit strategy does not eliminate all coarse-grained
+timeouts. This is because for a small window size there will not be
+enough packets in transit to cause enough duplicate ACKs to be
+delivered. Given enough lost packets—for example, as happens during
 the initial slow start phase—the sliding window algorithm eventually
 blocks the sender until a timeout occurs. In practice, TCP’s fast
-retransmit mechanism can detect up to three dropped packets per window.
+retransmit mechanism can detect up to three dropped packets per
+window.
 
 Finally, there is one last improvement we can make. When the fast
-retransmit mechanism signals congestion, rather than drop the congestion
-window all the way back to one packet and run slow start, it is possible
-to use the ACKs that are still in the pipe to clock the sending of
-packets. This mechanism, which is called *fast recovery*, effectively
-removes the slow start phase that happens between when fast retransmit
-detects a lost packet and additive increase begins. For example, fast
-recovery avoids the slow start period between 3.8 and 4 seconds in
-:ref:`Figure 6 <fig-trace2>` and instead simply cuts the congestion window in
-half (from 22 KB to 11 KB) and resumes additive increase. In other
-words, slow start is only used at the beginning of a connection and
-whenever a coarse-grained timeout occurs. At all other times, the
-congestion window is following a pure additive increase/multiplicative
-decrease pattern.
+retransmit mechanism signals congestion, rather than drop the
+congestion window all the way back to one packet and run slow start,
+it is possible to use the ACKs that are still in the pipe to clock the
+sending of packets. This mechanism, which is called *fast recovery*,
+effectively removes the slow start phase that happens between when
+fast retransmit detects a lost packet and additive increase
+begins. For example, fast recovery avoids the slow start period
+between 3.8 and 4 seconds in :numref:`Figure %s <fig-trace2>` and
+instead simply cuts the congestion window in half (from 22 KB to
+11 KB) and resumes additive increase. In other words, slow start is
+only used at the beginning of a connection and whenever a
+coarse-grained timeout occurs. At all other times, the congestion
+window is following a pure additive increase/multiplicative decrease
+pattern.
 
 TCP CUBIC
 ---------
@@ -492,17 +499,17 @@ short-RTT flows, which will have ACKs arriving more frequently.
    window as a function of time.
 
 The second important aspect of CUBIC is its use of a cubic function to
-adjust the congestion window. The basic idea is easiest to understand by
-looking at the general shape of a cubic function, which has three
+adjust the congestion window. The basic idea is easiest to understand
+by looking at the general shape of a cubic function, which has three
 phases: slowing growth, flatten plateau, increasing growth. A generic
-example is shown in :ref:`Figure 7 <fig-cubic>`, which we have annotated with
-one extra piece of information: the maximum congestion window size
-achieved just before the last congestion event as a target (denoted 
-:math:`W_{max}`). The idea is to start fast but slow the growth rate as 
-you get close to :math:`W_{max}`, be cautious and have near-zero growth 
-when close to :math:`W_{max}`, and then increase the growth rate as you 
-move away from :math:`W_{max}`. The latter phase is essentially probing 
-for a new achievable :math:`W_{max}`.
+example is shown in :numref:`Figure %s <fig-cubic>`, which we have
+annotated with one extra piece of information: the maximum congestion
+window size achieved just before the last congestion event as a target
+(denoted :math:`W_{max}`). The idea is to start fast but slow the
+growth rate as you get close to :math:`W_{max}`, be cautious and have
+near-zero growth when close to :math:`W_{max}`, and then increase the
+growth rate as you move away from :math:`W_{max}`. The latter phase is
+essentially probing for a new achievable :math:`W_{max}`.
 
 Specifically, CUBIC computes the congestion window as a function of time
 (t) since the last congestion event
@@ -519,9 +526,9 @@ where
 
    \mathsf{K} =  \sqrt[3]{\mathsf{W}_{max} \times (1 - \beta{})/\mathsf{C}}
 
-C is a scaling constant and :math:`\beta` is the multiplicative decrease factor. 
-CUBIC sets the latter to 0.7
-rather than the 0.5 that standard TCP uses. Looking back at :ref:`Figure
-7 <fig-cubic>`, CUBIC is often described as shifting between a concave
+C is a scaling constant and :math:`\beta` is the multiplicative
+decrease factor.  CUBIC sets the latter to 0.7 rather than the 0.5
+that standard TCP uses. Looking back at :numref:`Figure %s
+<fig-cubic>`, CUBIC is often described as shifting between a concave
 function to being convex (whereas standard TCP’s additive function is
 only convex).

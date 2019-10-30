@@ -5,8 +5,8 @@ A common pattern of communication used by application programs
 structured as a *client/server* pair is the request/reply message
 transaction: A client sends a request message to a server, and the
 server responds with a reply message, with the client blocking
-(suspending execution) to wait for the reply. :ref:`Figure
-1 <fig-rpc-timeline>` illustrates the basic interaction between the
+(suspending execution) to wait for the reply. :numref:`Figure
+%s <fig-rpc-timeline>` illustrates the basic interaction between the
 client and server in such an exchange.
 
 .. _fig-rpc-timeline:
@@ -65,19 +65,19 @@ Thus, a complete RPC mechanism actually involves two major components:
    likewise with the return value (this piece of the RPC mechanism is
    usually called a *stub compiler*).
 
-:ref:`Figure 2 <fig-rpc-stub>` schematically depicts what happens when a
-client invokes a remote procedure. First, the client calls a local stub
-for the procedure, passing it the arguments required by the procedure.
-This stub hides the fact that the procedure is remote by translating the
-arguments into a request message and then invoking an RPC protocol to
-send the request message to the server machine. At the server, the RPC
-protocol delivers the request message to the server stub, which
-translates it into the arguments to the procedure and then calls the
-local procedure. After the server procedure completes, it returns in a
-reply message that it hands off to the RPC protocol for transmission
-back to the client. The RPC protocol on the client passes this message
-up to the client stub, which translates it into a return value that it
-returns to the client program.
+:numref:`Figure %s <fig-rpc-stub>` schematically depicts what happens
+when a client invokes a remote procedure. First, the client calls a
+local stub for the procedure, passing it the arguments required by the
+procedure.  This stub hides the fact that the procedure is remote by
+translating the arguments into a request message and then invoking an
+RPC protocol to send the request message to the server machine. At the
+server, the RPC protocol delivers the request message to the server
+stub, which translates it into the arguments to the procedure and then
+calls the local procedure. After the server procedure completes, it
+returns in a reply message that it hands off to the RPC protocol for
+transmission back to the client. The RPC protocol on the client passes
+this message up to the client stub, which translates it into a return
+value that it returns to the client program.
 
 .. _fig-rpc-stub:
 .. figure:: figures/f05-14-9780123850591.png
@@ -177,10 +177,10 @@ implement reliability using acknowledgments and timeouts, similarly to
 TCP.
 
 The basic algorithm is straightforward, as illustrated by the timeline
-given in :ref:`Figure 3 <fig-chan-timeline1>`. The client sends a request
-message and the server acknowledges it. Then, after executing the
-procedure, the server sends a reply message and the client acknowledges
-the reply.
+given in :numref:`Figure %s <fig-chan-timeline1>`. The client sends a
+request message and the server acknowledges it. Then, after executing
+the procedure, the server sends a reply message and the client
+acknowledges the reply.
 
 .. _fig-chan-timeline1:
 .. figure:: figures/f05-15-9780123850591.png
@@ -217,16 +217,17 @@ client/server pair.
 
 Each message includes a channel ID field to indicate which channel the
 message belongs to. A request message in a given channel would
-implicitly acknowledge the previous reply in that channel, if it hadn’t
-already been acknowledged. An application program can open multiple
-channels to a server if it wants to have more than one request/reply
-transaction between them at the same time (the application would need
-multiple threads). As illustrated in :ref:`Figure
-4 <fig-implicitAckTimeline>`, the reply message serves to acknowledge the
-request message, and a subsequent request acknowledges the preceding
-reply. Note that we saw a very similar approach—called *concurrent
-logical channels*—in an earlier section as a way to improve on the
-performance of a stop-and-wait reliability mechanism.
+implicitly acknowledge the previous reply in that channel, if it
+hadn’t already been acknowledged. An application program can open
+multiple channels to a server if it wants to have more than one
+request/reply transaction between them at the same time (the
+application would need multiple threads). As illustrated in
+:numref:`Figure %s <fig-implicitAckTimeline>`, the reply message
+serves to acknowledge the request message, and a subsequent request
+acknowledges the preceding reply. Note that we saw a very similar
+approach—called *concurrent logical channels*—in an earlier section as
+a way to improve on the performance of a stop-and-wait reliability
+mechanism.
 
 .. _fig-implicitAckTimeline:
 .. figure:: figures/f05-16-9780123850591.png
@@ -364,14 +365,14 @@ File System (NFS). The IETF subsequently adopted it as a standard
 Internet protocol under the name ONC RPC.
 
 SunRPC can be implemented over several different transport protocols.
-:ref:`Figure 5 <fig-sunrpc>` illustrates the protocol graph when SunRPC is
-implemented on UDP. As we noted earlier in this section, a strict
-layerist might frown on the idea of running a transport protocol over a
-transport protocol, or argue that RPC must be something other than a
-transport protocol since it appears “above” the transport layer.
-Pragmatically, the design decision to run RPC over an existing transport
-layer makes quite a lot of sense, as will be apparent in the following
-discussion.
+:numref:`Figure %s <fig-sunrpc>` illustrates the protocol graph when
+SunRPC is implemented on UDP. As we noted earlier in this section, a
+strict layerist might frown on the idea of running a transport
+protocol over a transport protocol, or argue that RPC must be
+something other than a transport protocol since it appears “above” the
+transport layer.  Pragmatically, the design decision to run RPC over
+an existing transport layer makes quite a lot of sense, as will be
+apparent in the following discussion.
 
 .. _fig-sunrpc:
 .. figure:: figures/f05-17-9780123850591.png
@@ -380,22 +381,23 @@ discussion.
 
    Protocol graph for SunRPC on top of UDP.
 
-SunRPC uses two-tier identifiers to identify remote procedures: a 32-bit
-program number and a 32-bit procedure number. (There is also a 32-bit
-version number, but we ignore that in the following discussion.) For
-example, the NFS server has been assigned program number ``x00100003``,
-and within this program ``getattr`` is procedure ``1``, ``setattr`` is
-procedure ``2``, ``read`` is procedure ``6``, ``write`` is procedure
-``8``, and so on. The program number and procedure number are
-transmitted in the SunRPC request message’s header, whose fields are
-shown in :ref:`Figure 6 <fig-sunrpc-format>`. The server—which may support
-several program numbers—is responsible for calling the specified
-procedure of the specified program. A SunRPC request really represents a
-request to call the specified program and procedure on the particular
-machine to which the request was sent, even though the same program
-number may be implemented on other machines in the same network. Thus,
-the address of the server’s machine (e.g., an IP address) is an implicit
-third tier of the RPC address.
+SunRPC uses two-tier identifiers to identify remote procedures: a
+32-bit program number and a 32-bit procedure number. (There is also a
+32-bit version number, but we ignore that in the following
+discussion.) For example, the NFS server has been assigned program
+number ``x00100003``, and within this program ``getattr`` is procedure
+``1``, ``setattr`` is procedure ``2``, ``read`` is procedure ``6``,
+``write`` is procedure ``8``, and so on. The program number and
+procedure number are transmitted in the SunRPC request message’s
+header, whose fields are shown in :numref:`Figure %s
+<fig-sunrpc-format>`. The server—which may support several program
+numbers—is responsible for calling the specified procedure of the
+specified program. A SunRPC request really represents a request to
+call the specified program and procedure on the particular machine to
+which the request was sent, even though the same program number may be
+implemented on other machines in the same network. Thus, the address
+of the server’s machine (e.g., an IP address) is an implicit third
+tier of the RPC address.
 
 .. _fig-sunrpc-format:
 .. figure:: figures/f05-18-9780123850591.png
@@ -440,14 +442,14 @@ wants to talk to the NFS program.
    its own well-known UDP port, but for the purposes of illustration
    we’re pretending that’s not the case.
 
-To match up a reply message with the corresponding request, so that the
-result of the RPC can be returned to the correct caller, both request
-and reply message headers include a ``XID`` (transaction ID) field, as
-in :ref:`Figure 6 <fig-sunrpc-format>`. A ``XID`` is a unique transaction ID
-used only by one request and the corresponding reply. After the server
-has successfully replied to a given request, it does not remember the
-``XID``. Because of this, SunRPC cannot guarantee at-most-once
-semantics.
+To match up a reply message with the corresponding request, so that
+the result of the RPC can be returned to the correct caller, both
+request and reply message headers include a ``XID`` (transaction ID)
+field, as in :numref:`Figure %s <fig-sunrpc-format>`. A ``XID`` is a
+unique transaction ID used only by one request and the corresponding
+reply. After the server has successfully replied to a given request,
+it does not remember the ``XID``. Because of this, SunRPC cannot
+guarantee at-most-once semantics.
 
 The details of SunRPC’s semantics depend on the underlying transport
 protocol. It does not implement its own reliability, so it is only
@@ -461,14 +463,14 @@ reliability and message size. Since SunRPC can run over many different
 transport protocols, this gives it considerable flexibility without
 complicating the design of the RPC protocol itself.
 
-Returning to the SunRPC header format of :ref:`Figure 6 <fig-sunrpc-format>`,
-the request message contains variable-length ``Credentials`` and
-``Verifier`` fields, both of which are used by the client to
-authenticate itself to the server—that is, to give evidence that the
-client has the right to invoke the server. How a client authenticates
-itself to a server is a general issue that must be addressed by any
-protocol that wants to provide a reasonable level of security. This
-topic is discussed in more detail in another chapter.
+Returning to the SunRPC header format of :numref:`Figure %s
+<fig-sunrpc-format>`, the request message contains variable-length
+``Credentials`` and ``Verifier`` fields, both of which are used by the
+client to authenticate itself to the server—that is, to give evidence
+that the client has the right to invoke the server. How a client
+authenticates itself to a server is a general issue that must be
+addressed by any protocol that wants to provide a reasonable level of
+security. This topic is discussed in more detail in another chapter.
 
 DCE-RPC
 ~~~~~~~
@@ -501,7 +503,7 @@ paragraphs.
 
    Typical DCE-RPC message exchange.
 
-:ref:`Figure 7 <fig-dce>` gives a timeline for the typical exchange of
+:numref:`Figure %s <fig-dce>` gives a timeline for the typical exchange of
 messages, where each message is labeled by its DCE-RPC type. The client
 sends a ``Request`` message, the server eventually replies with a
 ``Response`` message, and the client acknowledges (``Ack``) the
@@ -565,14 +567,14 @@ identifies these out-of-order fragments relative to the highest in-order
 fragment it has received. Finally, the client responds by retransmitting
 the missing fragments.
 
-:ref:`Figure 8 <fig-fack>` illustrates how this all works. Suppose the server
-has successfully received fragments up through number 20, plus fragments
-23, 25, and 26. The server responds with a ``Fack`` that identifies
-fragment 20 as the highest in-order fragment, plus a bit-vector
-(``SelAck``) with the third :math:`(23=20+3)`, fifth :math:`(25=20+5)`,
-and sixth :math:`(26=20+6)` bits turned on. So as to support an (almost)
-arbitrarily long bit vector, the size of the vector (measured in 32-bit
-words) is given in the ``SelAckLen`` field.
+:numref:`Figure %s <fig-fack>` illustrates how this all works. Suppose
+the server has successfully received fragments up through number 20,
+plus fragments 23, 25, and 26. The server responds with a ``Fack``
+that identifies fragment 20 as the highest in-order fragment, plus a
+bit-vector (``SelAck``) with the third :math:`(23=20+3)`, fifth
+:math:`(25=20+5)`, and sixth :math:`(26=20+6)` bits turned on. So as
+to support an (almost) arbitrarily long bit vector, the size of the
+vector (measured in 32-bit words) is given in the ``SelAckLen`` field.
 
 .. _fig-fack:
 .. figure:: figures/f05-20-9780123850591.png
@@ -587,14 +589,14 @@ appropriate for the protocol to blast all the fragments that make up a
 message as fast as it can since doing so might overrun the receiver.
 Instead, DCE-RPC implements a flow-control algorithm that is very
 similar to TCP’s. Specifically, each ``Fack`` message not only
-acknowledges received fragments but also informs the sender of how many
-fragments it may now send. This is the purpose of the ``WindowSize``
-field in :ref:`Figure 8 <fig-fack>`, which serves exactly the same purpose as
-TCP’s ``AdvertisedWindow`` field except it counts fragments rather than
-bytes. DCE-RPC also implements a congestion-control mechanism that is
-similar to TCP’s. Given the complexity of congestion control, it is
-perhaps not surprising that some RPC protocols avoid it by avoiding
-fragmentation.
+acknowledges received fragments but also informs the sender of how
+many fragments it may now send. This is the purpose of the
+``WindowSize`` field in :numref:`Figure %s <fig-fack>`, which serves
+exactly the same purpose as TCP’s ``AdvertisedWindow`` field except it
+counts fragments rather than bytes. DCE-RPC also implements a
+congestion-control mechanism that is similar to TCP’s. Given the
+complexity of congestion control, it is perhaps not surprising that
+some RPC protocols avoid it by avoiding fragmentation.
 
 In summary, designers have quite a range of options open to them when
 designing an RPC protocol. SunRPC takes the more minimalist approach and
@@ -649,8 +651,8 @@ Back to the claim that a service is essentially an extra level of
 indirection layered on top of a server, all this means is that the
 caller identifies the service it wants to invoke, and a *load balancer*
 directs that invocation to one of the many available server processes
-(containers) that implement that service, as shown in :ref:`Figure
-9 <fig-rpc-service>`. The load balancer can be implemented in different
+(containers) that implement that service, as shown in :numref:`Figure
+%s <fig-rpc-service>`. The load balancer can be implemented in different
 ways, including a hardware device, but it is typically implemented by a
 proxy process that runs in a virtual machine (also hosted in the cloud)
 rather than as a physical appliance.
@@ -686,11 +688,11 @@ multiplexing multiple remote procedure calls onto a single TCP
 connection. In other words, gRPC encodes the identifier for the remote
 method as a URI, the request parameters to the remote method as content
 in the HTTP message, and the return value from the remote method in the
-HTTP response. The full gRPC stack is depicted in :ref:`Figure
-10 <fig-grpc-stack>`, which also includes the language-specific elements.
+HTTP response. The full gRPC stack is depicted in :numref:`Figure
+%s <fig-grpc-stack>`, which also includes the language-specific elements.
 (One strength of gRPC is the wide set of programming languages it
-supports, with only a small subset shown in :ref:`Figure
-10 <fig-grpc-stack>`.)
+supports, with only a small subset shown in :numref:`Figure
+%s <fig-grpc-stack>`.)
   
 .. _fig-grpc-stack:
 .. figure:: figures/rpc/Slide2.png
@@ -798,17 +800,18 @@ client:
    grpc-status = 0 # OK
    trace-proto-bin = jher831yy13JHy3hc
 
-In this example, ``HEADERS`` and ``DATA`` are two standard HTTP control
-messages, which effectively delineate between “the message’s header” and
-“the message’s payload.” Specifically, each line following ``HEADERS``
-(but before ``DATA``) is an ``attribute = value`` pair that makes up the
-header (think of each line as analogous to a header field); those pairs
-that start with colon (e.g., ``:status = 200``) are part of the HTTP
-standard (e.g., status ``200`` indicates success); and those pairs that
-do not start with a colon are gRPC-specific customizations (e.g.,
-``grpc-encoding = gzip`` indicates that the data in the message that
-follows has been compressed using ``gzip``, and ``grpc-timeout = 1S``
-indicates that the client has set a one second timeout).
+In this example, ``HEADERS`` and ``DATA`` are two standard HTTP
+control messages, which effectively delineate between “the message’s
+header” and “the message’s payload.” Specifically, each line following
+``HEADERS`` (but before ``DATA``) is an ``attribute = value`` pair
+that makes up the header (think of each line as analogous to a header
+field); those pairs that start with colon (e.g., ``:status = 200``)
+are part of the HTTP standard (e.g., status ``200`` indicates
+success); and those pairs that do not start with a colon are
+gRPC-specific customizations (e.g., ``grpc-encoding = gzip`` indicates
+that the data in the message that follows has been compressed using
+``gzip``, and ``grpc-timeout = 1S`` indicates that the client has set
+a one second timeout).
 
 There is one final piece to explain. The header line
 
@@ -816,17 +819,17 @@ There is one final piece to explain. The header line
 
    content-type = application/grpc+proto
 
-indicates that the message body (as demarcated by the ``DATA`` line) is
-meaningful only to the application program (i.e., the server method)
-that this client is requesting service from. More specifically, the
-``+proto`` string specifies that the recipient will be able to interpret
-the bits in the message according to a *Protocol Buffer* (abbreviated
-``proto``) interface specification. Protocol Buffers are gRPC’s way of
-specifying how the parameters being passed to the server are encoded
-into a message, which is in turn used to generate the stubs that sit
-between the underlying RPC mechanism and the actual functions being
-called (see :ref:`Figure 2 <fig-rpc-stub>`). This is a topic we’ll take up in
-Chapter 7.
+indicates that the message body (as demarcated by the ``DATA`` line)
+is meaningful only to the application program (i.e., the server
+method) that this client is requesting service from. More
+specifically, the ``+proto`` string specifies that the recipient will
+be able to interpret the bits in the message according to a *Protocol
+Buffer* (abbreviated ``proto``) interface specification. Protocol
+Buffers are gRPC’s way of specifying how the parameters being passed
+to the server are encoded into a message, which is in turn used to
+generate the stubs that sit between the underlying RPC mechanism and
+the actual functions being called (see :numref:`Figure %s
+<fig-rpc-stub>`). This is a topic we’ll take up in Chapter 7.
 
 .. admonition:: Key Takeaway
 

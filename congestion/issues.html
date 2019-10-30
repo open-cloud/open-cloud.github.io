@@ -249,7 +249,7 @@ an internetwork.</p>
 <p>In such an environment, a given source may have more than enough
 capacity on the immediate outgoing link to send a packet, but somewhere
 in the middle of a network its packets encounter a link that is being
-used by many different traffic sources. <a class="reference internal" href="#fig-congestion"><span class="std std-ref">Figure 1</span></a>
+used by many different traffic sources. <a class="reference internal" href="#fig-congestion"><span class="std std-numref">Figure 152</span></a>
 illustrates this situation—two high-speed links are feeding a low-speed
 link. This is in contrast to shared-access networks like Ethernet and
 wireless networks, where the source can directly observe the traffic on
@@ -265,7 +265,7 @@ While it is true that a congested link could be assigned a large edge
 weight by the routing protocol, and, as a consequence, routers would
 route around it, “routing around” a congested link does not generally
 solve the congestion problem. To see this, we need look no further
-than the simple network depicted in <a class="reference internal" href="#fig-congestion"><span class="std std-ref">Figure 1</span></a>,
+than the simple network depicted in <a class="reference internal" href="#fig-congestion"><span class="std std-numref">Figure 152</span></a>,
 where all traffic has to flow through the same router to reach the
 destination. Although this is an extreme example, it is common to
 have a certain router that it is not possible to route around. This
@@ -295,7 +295,7 @@ focus of this chapter is on resource allocation approaches that apply in
 an internetwork, and thus we focus mainly on connectionless networks.</p>
 <div class="figure align-center" id="id1">
 <span id="fig-congestion"></span><a class="reference internal image-reference" href="../_images/f06-01-9780123850591.png"><img alt="../_images/f06-01-9780123850591.png" src="../_images/f06-01-9780123850591.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-number">Figure 152: </span><span class="caption-text">A potential bottleneck router.</span></p>
+<p class="caption"><span class="caption-number">Figure 152. </span><span class="caption-text">A potential bottleneck router.</span></p>
 </div>
 <p>We need to qualify the term <em>connectionless</em> because our classification
 of networks as being either connectionless or connection oriented is a
@@ -312,15 +312,15 @@ allocation; it is one that we will use in this chapter.</p>
 at different granularities. For example, a flow can be host-to-host
 (i.e., have the same source/destination host addresses) or
 process-to-process (i.e., have the same source/destination host/port
-pairs). In the latter case, a flow is essentially the same as a channel,
-as we have been using that term throughout this book. The reason we
-introduce a new term is that a flow is visible to the routers inside the
-network, whereas a channel is an end-to-end abstraction. <a class="reference internal" href="#fig-flow"><span class="std std-ref">Figure
-2</span></a> illustrates several flows passing through a series of
-routers.</p>
+pairs). In the latter case, a flow is essentially the same as a
+channel, as we have been using that term throughout this book. The
+reason we introduce a new term is that a flow is visible to the
+routers inside the network, whereas a channel is an end-to-end
+abstraction. <a class="reference internal" href="#fig-flow"><span class="std std-numref">Figure 153</span></a> illustrates several flows
+passing through a series of routers.</p>
 <div class="figure align-center" id="id2">
 <span id="fig-flow"></span><a class="reference internal image-reference" href="../_images/f06-02-9780123850591.png"><img alt="../_images/f06-02-9780123850591.png" src="../_images/f06-02-9780123850591.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-number">Figure 153: </span><span class="caption-text">Multiple flows passing through a set of routers.</span></p>
+<p class="caption"><span class="caption-number">Figure 153. </span><span class="caption-text">Multiple flows passing through a set of routers.</span></p>
 </div>
 <p>Because multiple related packets flow through each router, it sometimes
 makes sense to maintain some state information for each flow,
@@ -529,15 +529,16 @@ used.</p>
 description of an M/M/1 queue. The 1 means it has a single server,
 and the Ms mean that the distribution of both packet arrival and
 service times is “Markovian,” or exponential.</div></blockquote>
-<p>The objective is to maximize this ratio, which is a function of how much
-load you place on the network. The load, in turn, is set by the resource
-allocation mechanism. <a class="reference internal" href="#fig-power"><span class="std std-ref">Figure 3</span></a> gives a representative power
-curve, where, ideally, the resource allocation mechanism would operate
-at the peak of this curve. To the left of the peak, the mechanism is
-being too conservative; that is, it is not allowing enough packets to be
-sent to keep the links busy. To the right of the peak, so many packets
-are being allowed into the network that increases in delay due to
-queuing are starting to dominate any small gains in throughput.</p>
+<p>The objective is to maximize this ratio, which is a function of how
+much load you place on the network. The load, in turn, is set by the
+resource allocation mechanism. <a class="reference internal" href="#fig-power"><span class="std std-numref">Figure 154</span></a> gives a
+representative power curve, where, ideally, the resource allocation
+mechanism would operate at the peak of this curve. To the left of the
+peak, the mechanism is being too conservative; that is, it is not
+allowing enough packets to be sent to keep the links busy. To the
+right of the peak, so many packets are being allowed into the network
+that increases in delay due to queuing are starting to dominate any
+small gains in throughput.</p>
 <p>Interestingly, this power curve looks very much like the system
 throughput curve in a timesharing computer system. System throughput
 improves as more jobs are admitted into the system, until it reaches a
@@ -546,21 +547,21 @@ thrash (spends all of its time swapping memory pages) and the throughput
 begins to drop.</p>
 <div class="figure align-center" id="id3">
 <span id="fig-power"></span><a class="reference internal image-reference" href="../_images/f06-03-9780123850591.png"><img alt="../_images/f06-03-9780123850591.png" src="../_images/f06-03-9780123850591.png" style="width: 350px;" /></a>
-<p class="caption"><span class="caption-number">Figure 154: </span><span class="caption-text">Ratio of throughput to delay as a function of load.</span></p>
+<p class="caption"><span class="caption-number">Figure 154. </span><span class="caption-text">Ratio of throughput to delay as a function of load.</span></p>
 </div>
 <p>As we will see in later sections of this chapter, many
 congestion-control schemes are able to control load in only very crude
-ways; that is, it is simply not possible to turn the “knob” a little and
-allow only a small number of additional packets into the network. As a
-consequence, network designers need to be concerned about what happens
-even when the system is operating under extremely heavy load—that is, at
-the rightmost end of the curve in <a class="reference internal" href="#fig-power"><span class="std std-ref">Figure 3</span></a>. Ideally, we
-would like to avoid the situation in which the system throughput goes to
-zero because the system is thrashing. In networking terminology, we want
-a system that is <em>stable</em>—where packets continue to get through the
-network even when the network is operating under heavy load. If a
-mechanism is not stable, the network may experience <em>congestion
-collapse</em>.</p>
+ways; that is, it is simply not possible to turn the “knob” a little
+and allow only a small number of additional packets into the
+network. As a consequence, network designers need to be concerned
+about what happens even when the system is operating under extremely
+heavy load—that is, at the rightmost end of the curve in
+<a class="reference internal" href="#fig-power"><span class="std std-numref">Figure 154</span></a>. Ideally, we would like to avoid the
+situation in which the system throughput goes to zero because the
+system is thrashing. In networking terminology, we want a system that
+is <em>stable</em>—where packets continue to get through the network even
+when the network is operating under heavy load. If a mechanism is not
+stable, the network may experience <em>congestion collapse</em>.</p>
 </div>
 <div class="section" id="fair-resource-allocation">
 <h3>Fair Resource Allocation<a class="headerlink" href="#fair-resource-allocation" title="Permalink to this headline">¶</a></h3>
@@ -574,16 +575,16 @@ might use reservations to enable a video stream to receive 1&nbsp;Mbps across
 some link while a file transfer receives only 10&nbsp;kbps over the same
 link.</p>
 <p>In the absence of explicit information to the contrary, when several
-flows share a particular link, we would like for each flow to receive an
-equal share of the bandwidth. This definition presumes that a <em>fair</em>
-share of bandwidth means an <em>equal</em> share of bandwidth. But, even in the
-absence of reservations, equal shares may not equate to fair shares.
-Should we also consider the length of the paths being compared? For
-example, as illustrated in <a class="reference internal" href="#fig-path-len"><span class="std std-ref">Figure 4</span></a>, what is fair when
-one four-hop flow is competing with three one-hop flows?</p>
+flows share a particular link, we would like for each flow to receive
+an equal share of the bandwidth. This definition presumes that a
+<em>fair</em> share of bandwidth means an <em>equal</em> share of bandwidth. But,
+even in the absence of reservations, equal shares may not equate to
+fair shares.  Should we also consider the length of the paths being
+compared? For example, as illustrated in <a class="reference internal" href="#fig-path-len"><span class="std std-numref">Figure 155</span></a>, what is fair when one four-hop flow is competing with
+three one-hop flows?</p>
 <div class="figure align-center" id="id4">
 <span id="fig-path-len"></span><a class="reference internal image-reference" href="../_images/f06-04-9780123850591.png"><img alt="../_images/f06-04-9780123850591.png" src="../_images/f06-04-9780123850591.png" style="width: 600px;" /></a>
-<p class="caption"><span class="caption-number">Figure 155: </span><span class="caption-text">One four-hop flow competing with three one-hop flows.</span></p>
+<p class="caption"><span class="caption-number">Figure 155. </span><span class="caption-text">One four-hop flow competing with three one-hop flows.</span></p>
 </div>
 <p>Assuming that fair implies equal and that all paths are of equal length,
 networking researcher Raj Jain proposed a metric that can be used to

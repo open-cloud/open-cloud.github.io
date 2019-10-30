@@ -44,21 +44,22 @@ application writers.
 
    Example of a layered network system.
 
-Abstractions naturally lead to layering, especially in network systems.
-The general idea is that you start with the services offered by the
-underlying hardware and then add a sequence of layers, each providing a
-higher (more abstract) level of service. The services provided at the
-high layers are implemented in terms of the services provided by the low
-layers. Drawing on the discussion of requirements given in the previous
-section, for example, we might imagine a simple network as having two
-layers of abstraction sandwiched between the application program and the
-underlying hardware, as illustrated in :ref:`Figure 1 <fig-layers1>`. The
-layer immediately above the hardware in this case might provide
-host-to-host connectivity, abstracting away the fact that there may be
-an arbitrarily complex network topology between any two hosts. The next
-layer up builds on the available host-to-host communication service and
-provides support for process-to-process channels, abstracting away the
-fact that the network occasionally loses messages, for example.
+Abstractions naturally lead to layering, especially in network
+systems.  The general idea is that you start with the services offered
+by the underlying hardware and then add a sequence of layers, each
+providing a higher (more abstract) level of service. The services
+provided at the high layers are implemented in terms of the services
+provided by the low layers. Drawing on the discussion of requirements
+given in the previous section, for example, we might imagine a simple
+network as having two layers of abstraction sandwiched between the
+application program and the underlying hardware, as illustrated in
+:numref:`Figure %s <fig-layers1>`. The layer immediately above the
+hardware in this case might provide host-to-host connectivity,
+abstracting away the fact that there may be an arbitrarily complex
+network topology between any two hosts. The next layer up builds on
+the available host-to-host communication service and provides support
+for process-to-process channels, abstracting away the fact that the
+network occasionally loses messages, for example.
 
 Layering provides two nice features. First, it decomposes the problem of
 building a network into more manageable components. Rather than
@@ -77,7 +78,7 @@ abstractions. To see this, consider the two types of channels discussed
 in the previous section. One provides a request/reply service and one
 supports a message stream service. These two channels might be
 alternative offerings at some level of a multilevel networking system,
-as illustrated in :ref:`Figure 2 <fig-layers2>`.
+as illustrated in :numref:`Figure %s <fig-layers2>`.
 
 .. _fig-layers2:
 .. figure:: figures/f01-09-9780123850591.png
@@ -121,8 +122,8 @@ respond when it receives such a command.
 To summarize, a protocol defines a communication service that it exports
 locally (the service interface), along with a set of rules governing the
 messages that the protocol exchanges with its peer(s) to implement this
-service (the peer interface). This situation is illustrated in :ref:`Figure
-3 <fig-interfaces>`.
+service (the peer interface). This situation is illustrated in :numref:`Figure
+%s <fig-interfaces>`.
 
 .. _fig-interfaces:
 .. figure:: figures/f01-10-9780123850591.png
@@ -139,8 +140,8 @@ peer. In addition, there are potentially more than one protocol at any
 given level, each providing a different communication service. We
 therefore represent the suite of protocols that make up a network system
 with a *protocol graph*. The nodes of the graph correspond to protocols,
-and the edges represent a *depends on* relation. For example, :ref:`Figure
-4 <fig-protgraph>` illustrates a protocol graph for the hypothetical
+and the edges represent a *depends on* relation. For example, :numref:`Figure
+%s <fig-protgraph>` illustrates a protocol graph for the hypothetical
 layered system we have been discussing—protocols RRP (Request/Reply
 Protocol) and MSP (Message Stream Protocol) implement two different
 types of process-to-process channels, and both depend on the
@@ -237,7 +238,7 @@ program. The message passed up from RRP to the application on host 2 is
 exactly the same message as the application passed down to RRP on
 host 1; the application does not see any of the headers that have been
 attached to it to implement the lower-level communication services. This
-whole process is illustrated in :ref:`Figure 5 <fig-encapsulation>`. Note that
+whole process is illustrated in :numref:`Figure %s <fig-encapsulation>`. Note that
 in this example, nodes in the network (e.g., switches and routers) may
 inspect the HHP header at the front of the message.
 
@@ -257,7 +258,7 @@ Multiplexing and Demultiplexing
 Recall that a fundamental idea of packet switching is to multiplex
 multiple flows of data over a single physical link. This same idea
 applies up and down the protocol graph, not just to switching nodes. In
-:ref:`Figure 4 <fig-protgraph>`, for example, we can think of RRP as
+:numref:`Figure %s <fig-protgraph>`, for example, we can think of RRP as
 implementing a logical communication channel, with messages from two
 different applications multiplexed over this channel at the source host
 and then demultiplexed back to the appropriate application at the
@@ -290,8 +291,8 @@ delivered.
 
 The ISO was one of the first organizations to formally define a common
 way to connect computers. Their architecture, called the *Open Systems
-Interconnection* (OSI) architecture and illustrated in :ref:`Figure
-6 <fig-osi>`, defines a partitioning of network functionality into seven
+Interconnection* (OSI) architecture and illustrated in :numref:`Figure
+%s <fig-osi>`, defines a partitioning of network functionality into seven
 layers, where one or more protocols implement the functionality assigned
 to a given layer. In this sense, the schematic given in is not a
 protocol graph, *per se*, but rather a *reference model* for a protocol
@@ -341,13 +342,14 @@ Internet Architecture
 ---------------------
 
 The Internet architecture, which is also sometimes called the TCP/IP
-architecture after its two main protocols, is depicted in :ref:`Figure
-7 <fig-internet1>`. An alternative representation is given in :ref:`Figure
-8 <fig-internet2>`. The Internet architecture evolved out of experiences
-with an earlier packet-switched network called the ARPANET. Both the
-Internet and the ARPANET were funded by the Advanced Research Projects
-Agency (ARPA), one of the research and development funding agencies of
-the U.S. Department of Defense. The Internet and ARPANET were around
+architecture after its two main protocols, is depicted in
+:numref:`Figure %s <fig-internet1>`. An alternative representation is
+given in :numref:`Figure %s <fig-internet2>`. The Internet
+architecture evolved out of experiences with an earlier
+packet-switched network called the ARPANET. Both the Internet and the
+ARPANET were funded by the Advanced Research Projects Agency (ARPA),
+one of the research and development funding agencies of the
+U.S. Department of Defense. The Internet and ARPANET were around
 before the OSI architecture, and the experience gained from building
 them was a major influence on the OSI reference model.
 	
@@ -368,25 +370,25 @@ them was a major influence on the OSI reference model.
    referred to as “layer 2.”
 
 While the 7-layer OSI model can, with some imagination, be applied to
-the Internet, a 4-layer model is often used instead. At the lowest level
-is a wide variety of network protocols, denoted NET\ :sub:`1`, NET\ :sub:`2`, 
-and so on. In practice, these protocols are implemented by a
-combination of hardware (e.g., a network adaptor) and software (e.g., a
-network device driver). For example, you might find Ethernet or wireless
-protocols (such as the 802.11 Wi-Fi standards) at this layer. (These
-protocols in turn may actually involve several sublayers, but the
-Internet architecture does not presume anything about them.) The second
-layer consists of a single protocol—the *Internet Protocol* (IP). This
-is the protocol that supports the interconnection of multiple networking
-technologies into a single, logical internetwork. The third layer
-contains two main protocols—the *Transmission Control Protocol* (TCP)
-and the *User Datagram Protocol* (UDP). TCP and UDP provide alternative
-logical channels to application programs: TCP provides a reliable
-byte-stream channel, and UDP provides an unreliable datagram delivery
-channel (*datagram* may be thought of as a synonym for message). In the
-language of the Internet, TCP and UDP are sometimes called *end-to-end*
-protocols, although it is equally correct to refer to them as
-*transport* protocols.
+the Internet, a 4-layer model is often used instead. At the lowest
+level is a wide variety of network protocols, denoted NET\ :sub:`1`,
+NET\ :sub:`2`, and so on. In practice, these protocols are implemented
+by a combination of hardware (e.g., a network adaptor) and software
+(e.g., a network device driver). For example, you might find Ethernet
+or wireless protocols (such as the 802.11 Wi-Fi standards) at this
+layer. (These protocols in turn may actually involve several
+sublayers, but the Internet architecture does not presume anything
+about them.) The second layer consists of a single protocol—the
+*Internet Protocol* (IP). This is the protocol that supports the
+interconnection of multiple networking technologies into a single,
+logical internetwork. The third layer contains two main protocols—the
+*Transmission Control Protocol* (TCP) and the *User Datagram Protocol*
+(UDP). TCP and UDP provide alternative logical channels to application
+programs: TCP provides a reliable byte-stream channel, and UDP
+provides an unreliable datagram delivery channel (*datagram* may be
+thought of as a synonym for message). In the language of the Internet,
+TCP and UDP are sometimes called *end-to-end* protocols, although it
+is equally correct to refer to them as *transport* protocols.
 
 Running above the transport layer is a range of application protocols,
 such as HTTP, FTP, Telnet (remote login), and the Simple Mail Transfer
@@ -430,15 +432,15 @@ layer is layer 3, and the link or subnet layer below IP is layer 2.
    Internet.
    
 The Internet architecture has three features that are worth
-highlighting. First, as best illustrated by :ref:`Figure 8 <fig-internet2>`,
-the Internet architecture does not imply strict layering. The
-application is free to bypass the defined transport layers and to
-directly use IP or one of the underlying networks. In fact, programmers
-are free to define new channel abstractions or applications that run on
-top of any of the existing protocols.
+highlighting. First, as best illustrated by :numref:`Figure %s
+<fig-internet2>`, the Internet architecture does not imply strict
+layering. The application is free to bypass the defined transport
+layers and to directly use IP or one of the underlying networks. In
+fact, programmers are free to define new channel abstractions or
+applications that run on top of any of the existing protocols.
 
-Second, if you look closely at the protocol graph in :ref:`Figure
-7 <fig-internet1>`, you will notice an hourglass shape—wide at the top,
+Second, if you look closely at the protocol graph in :numref:`Figure
+%s <fig-internet1>`, you will notice an hourglass shape—wide at the top,
 narrow in the middle, and wide at the bottom. This shape actually
 reflects the central philosophy of the architecture. That is, IP serves
 as the focal point for the architecture—it defines a common method for

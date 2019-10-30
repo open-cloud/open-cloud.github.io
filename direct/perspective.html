@@ -198,17 +198,17 @@ can all be made reliable and useful to higher layers in the protocol
 stack. This chapter examines those strategies.</p>
 <div class="figure align-center" id="id1">
 <span id="fig-isp-access"></span><a class="reference internal image-reference" href="../_images/f02-01-9780123850591.png"><img alt="../_images/f02-01-9780123850591.png" src="../_images/f02-01-9780123850591.png" style="width: 650px;" /></a>
-<p class="caption"><span class="caption-number">Figure 21: </span><span class="caption-text">An end-user’s view of the Internet.</span></p>
+<p class="caption"><span class="caption-number">Figure 21. </span><span class="caption-text">An end-user’s view of the Internet.</span></p>
 </div>
-<p><a class="reference internal" href="#fig-isp-access"><span class="std std-ref">Figure 1</span></a> illustrates various types of links that might
-be found in today’s Internet. On the left, we see a variety of end-user
-devices ranging from smartphones to tablets to full-fledged computers
-connected by various means to an ISP. While those links might use
-different technologies, they all look the same in this picture—a
-straight line connecting a device to a router. There are links that
-connect routers together inside the ISP, as well as links that connect
-the ISP to the “rest of the Internet,” which consists of lots of other
-ISPs and the hosts to which they connect.</p>
+<p><a class="reference internal" href="#fig-isp-access"><span class="std std-numref">Figure 21</span></a> illustrates various types of
+links that might be found in today’s Internet. On the left, we see a
+variety of end-user devices ranging from smartphones to tablets to
+full-fledged computers connected by various means to an ISP. While
+those links might use different technologies, they all look the same
+in this picture—a straight line connecting a device to a router. There
+are links that connect routers together inside the ISP, as well as
+links that connect the ISP to the “rest of the Internet,” which
+consists of lots of other ISPs and the hosts to which they connect.</p>
 <p>These links all look alike not just because we’re not very good artists
 but because part of the role of a network architecture is to provide a
 common abstraction of something as complex and diverse as a link. The
@@ -251,26 +251,26 @@ through copper would have a wavelength of</p>
 \[= 2/3 \times 3 \times 10^8 / 300\]</div>
 <div class="math notranslate nohighlight">
 \[= 667 \times 10^3\ meters\]</div>
-<p>Generally, electromagnetic waves span a much wider range of frequencies,
-ranging from radio waves, to infrared light, to visible light, to&nbsp;x-rays
-and gamma rays. <a class="reference internal" href="#fig-spectrum"><span class="std std-ref">Figure 2</span></a> depicts the electromagnetic
-spectrum and shows which media are commonly used to carry which
-frequency bands.</p>
+<p>Generally, electromagnetic waves span a much wider range of
+frequencies, ranging from radio waves, to infrared light, to visible
+light, to&nbsp;x-rays and gamma rays. <a class="reference internal" href="#fig-spectrum"><span class="std std-numref">Figure 22</span></a>
+depicts the electromagnetic spectrum and shows which media are
+commonly used to carry which frequency bands.</p>
 <div class="figure align-center" id="id2">
 <span id="fig-spectrum"></span><a class="reference internal image-reference" href="../_images/f02-02-9780123850591.png"><img alt="../_images/f02-02-9780123850591.png" src="../_images/f02-02-9780123850591.png" style="width: 600px;" /></a>
-<p class="caption"><span class="caption-number">Figure 22: </span><span class="caption-text">Electromagnetic spectrum.</span></p>
+<p class="caption"><span class="caption-number">Figure 22. </span><span class="caption-text">Electromagnetic spectrum.</span></p>
 </div>
-<p>What <a class="reference internal" href="#fig-spectrum"><span class="std std-ref">Figure 2</span></a> doesn’t show is where the cellular
-network fits in. This is a bit complicated because the specific
-frequency bands that are licensed for cellular networks vary around
-the world, and even further complicated by the fact that network
-operators often simultaneously support both old/legacy technologies
-and new/next-generation technologies, each of which occupies a
-different frequency band. The high-level summary is that traditional
-cellular technologies range from 700-MHz to 2400-MHz, with new
-mid-spectrum allocations now happening at 6-GHz, and millimeter-wave
-(mmWave) allocations opening above 24-GHz. This mmWave band is likely
-to become an important part of the 5G mobile network.</p>
+<p>What <a class="reference internal" href="#fig-spectrum"><span class="std std-numref">Figure 22</span></a> doesn’t show is where the
+cellular network fits in. This is a bit complicated because the
+specific frequency bands that are licensed for cellular networks vary
+around the world, and even further complicated by the fact that
+network operators often simultaneously support both old/legacy
+technologies and new/next-generation technologies, each of which
+occupies a different frequency band. The high-level summary is that
+traditional cellular technologies range from 700-MHz to 2400-MHz, with
+new mid-spectrum allocations now happening at 6-GHz, and
+millimeter-wave (mmWave) allocations opening above 24-GHz. This mmWave
+band is likely to become an important part of the 5G mobile network.</p>
 <p>So far we understand a link to be a physical medium carrying signals in
 the form of electromagnetic waves. Such links provide the foundation for
 transmitting all sorts of information, including the kind of data we are
@@ -289,23 +289,24 @@ signals—think of them as a “high” signal and a “low” signal—and we
 consider only the upper layer, which is concerned with the much simpler
 problem of encoding binary data onto these two signals. The next section
 discusses such encodings.</p>
-<p>Another way to classify links is in terms of how they are used. Various
-economic and deployment issues tend to influence where different link
-types are found. Most consumers interact with the Internet either
-through wireless networks (which they encounter in coffee shops,
-airports, universities, etc.) or through so-called <em>last-mile</em> links (or
-alternatively, <em>access networks</em>) provided by an ISP, as illustrated in
-<a class="reference internal" href="#fig-isp-access"><span class="std std-ref">Figure 1</span></a>. These link types are summarized in <a class="reference internal" href="#tab-home"><span class="std std-ref">Table
-1</span></a>. They typically are chosen because they are cost-effective
-ways of reaching millions of consumers. DSL (Digital Subscriber Line),
-for example, is an older technology that was deployed over the existing
-twisted pair copper wires that already existed for plain old telephone
-services; G.Fast is a copper-based technology typically used within
-multi-dwelling apartment buildings, and PON (Passive Optical Network) is
-a newer technology that is commonly used to connect homes and businesses
-over recently deployed fiber.</p>
+<p>Another way to classify links is in terms of how they are
+used. Various economic and deployment issues tend to influence where
+different link types are found. Most consumers interact with the
+Internet either through wireless networks (which they encounter in
+coffee shops, airports, universities, etc.) or through so-called
+<em>last-mile</em> links (or alternatively, <em>access networks</em>) provided by an
+ISP, as illustrated in <a class="reference internal" href="#fig-isp-access"><span class="std std-numref">Figure 21</span></a>. These
+link types are summarized in <a class="reference internal" href="#tab-home"><span class="std std-numref">Table 2</span></a>. They
+typically are chosen because they are cost-effective ways of reaching
+millions of consumers. DSL (Digital Subscriber Line), for example, is
+an older technology that was deployed over the existing twisted pair
+copper wires that already existed for plain old telephone services;
+G.Fast is a copper-based technology typically used within
+multi-dwelling apartment buildings, and PON (Passive Optical Network)
+is a newer technology that is commonly used to connect homes and
+businesses over recently deployed fiber.</p>
 <span id="tab-home"></span><table border="1" class="colwidths-auto docutils align-center" id="id3">
-<caption><span class="caption-number">Table 2: </span><span class="caption-text">Common services available for the last-mile connection to your home.</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
+<caption><span class="caption-number">Table 2. </span><span class="caption-text">Common services available for the last-mile connection to your home.</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Service</th>
 <th class="head">Bandwidth</th>

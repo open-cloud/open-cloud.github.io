@@ -54,17 +54,17 @@ more detail, starting with what happens in the router.
 
 A single congestion bit is added to the packet header. A router sets
 this bit in a packet if its average queue length is greater than or
-equal to 1 at the time the packet arrives. This average queue length is
-measured over a time interval that spans the last busy+idle cycle, plus
-the current busy cycle. (The router is *busy* when it is transmitting
-and *idle* when it is not.) :ref:`Figure 1 <fig-decbit>` shows the queue
-length at a router as a function of time. Essentially, the router
-calculates the area under the curve and divides this value by the time
-interval to compute the average queue length. Using a queue length of 1
-as the trigger for setting the congestion bit is a trade-off between
-significant queuing (and hence higher throughput) and increased idle
-time (and hence lower delay). In other words, a queue length of 1 seems
-to optimize the power function.
+equal to 1 at the time the packet arrives. This average queue length
+is measured over a time interval that spans the last busy+idle cycle,
+plus the current busy cycle. (The router is *busy* when it is
+transmitting and *idle* when it is not.) :numref:`Figure %s
+<fig-decbit>` shows the queue length at a router as a function of
+time. Essentially, the router calculates the area under the curve and
+divides this value by the time interval to compute the average queue
+length. Using a queue length of 1 as the trigger for setting the
+congestion bit is a trade-off between significant queuing (and hence
+higher throughput) and increased idle time (and hence lower delay). In
+other words, a queue length of 1 seems to optimize the power function.
 
 .. _fig-decbit:
 .. figure:: figures/f06-14-9780123850591.png
@@ -143,16 +143,17 @@ In hardware, it might be calculated at some fixed sampling interval.
 
 The reason for using an average queue length rather than an
 instantaneous one is that it more accurately captures the notion of
-congestion. Because of the bursty nature of Internet traffic, queues can
-become full very quickly and then become empty again. If a queue is
-spending most of its time empty, then it’s probably not appropriate to
-conclude that the router is congested and to tell the hosts to slow
+congestion. Because of the bursty nature of Internet traffic, queues
+can become full very quickly and then become empty again. If a queue
+is spending most of its time empty, then it’s probably not appropriate
+to conclude that the router is congested and to tell the hosts to slow
 down. Thus, the weighted running average calculation tries to detect
-long-lived congestion, as indicated in the right-hand portion of :ref:`Figure
-2 <fig-red-avg>`, by filtering out short-term changes in the queue
-length. You can think of the running average as a low-pass filter, where
-``Weight`` determines the time constant of the filter. The question of
-how we pick this time constant is discussed below.
+long-lived congestion, as indicated in the right-hand portion of
+:numref:`Figure %s <fig-red-avg>`, by filtering out short-term changes
+in the queue length. You can think of the running average as a
+low-pass filter, where ``Weight`` determines the time constant of the
+filter. The question of how we pick this time constant is discussed
+below.
 
 .. _fig-red-avg:
 .. figure:: figures/f06-15-9780123850591.png
@@ -178,19 +179,20 @@ thresholds, according to the following rules:
 
 If the average queue length is smaller than the lower threshold, no
 action is taken, and if the average queue length is larger than the
-upper threshold, then the packet is always dropped. If the average queue
-length is between the two thresholds, then the newly arriving packet is
-dropped with some probability ``P``. This situation is depicted in
-:ref:`Figure 3 <fig-red>`:ref:. The approximate relationship between ``P`` and
-``AvgLen`` is shown in :ref:`Figure 4 <fig-red-prob>`. Note that the
-probability of drop increases slowly when ``AvgLen`` is between the two
-thresholds, reaching ``MaxP`` at the upper threshold, at which point it
-jumps to unity. The rationale behind this is that, if ``AvgLen`` reaches
-the upper threshold, then the gentle approach (dropping a few packets)
-is not working and drastic measures are called for: dropping all
-arriving packets. Some research has suggested that a smoother transition
-from random dropping to complete dropping, rather than the discontinuous
-approach shown here, may be appropriate.
+upper threshold, then the packet is always dropped. If the average
+queue length is between the two thresholds, then the newly arriving
+packet is dropped with some probability ``P``. This situation is
+depicted in :numref:`Figure %s <fig-red>`. The approximate
+relationship between ``P`` and ``AvgLen`` is shown in :numref:`Figure
+%s <fig-red-prob>`. Note that the probability of drop increases slowly
+when ``AvgLen`` is between the two thresholds, reaching ``MaxP`` at
+the upper threshold, at which point it jumps to unity. The rationale
+behind this is that, if ``AvgLen`` reaches the upper threshold, then
+the gentle approach (dropping a few packets) is not working and
+drastic measures are called for: dropping all arriving packets. Some
+research has suggested that a smoother transition from random dropping
+to complete dropping, rather than the discontinuous approach shown
+here, may be appropriate.
 
 .. _fig-red:
 .. figure:: figures/f06-16-9780123850591.png
@@ -206,19 +208,19 @@ approach shown here, may be appropriate.
 
    Drop probability function for RED.
 
-Although :ref:`Figure 4 <fig-red-prob>` shows the probability of drop as a
-function only of ``AvgLen``, the situation is actually a little more
-complicated. In fact, ``P`` is a function of both ``AvgLen`` and how
-long it has been since the last packet was dropped. Specifically, it is
-computed as follows:
+Although :numref:`Figure %s <fig-red-prob>` shows the probability of
+drop as a function only of ``AvgLen``, the situation is actually a
+little more complicated. In fact, ``P`` is a function of both
+``AvgLen`` and how long it has been since the last packet was
+dropped. Specifically, it is computed as follows:
 
 .. code-block:: c
 
    TempP = MaxP x (AvgLen - MinThreshold) / (MaxThreshold - MinThreshold)
    P = TempP/(1 - count x TempP)
 
-``TempP`` is the variable that is plotted on the y-axis in :ref:`Figure
-4 <fig-red-prob>`, ``count`` keeps track of how many newly arriving
+``TempP`` is the variable that is plotted on the y-axis in :numref:`Figure
+%s <fig-red-prob>`, ``count`` keeps track of how many newly arriving
 packets have been queued (not dropped), and ``AvgLen`` has been between
 the two thresholds. ``P`` increases slowly as ``count`` increases,
 thereby making a drop increasingly likely as the time since the last
@@ -433,19 +435,20 @@ the strategy it uses has been adopted by other implementations that are
 now being deployed.
 
 The intuition behind the Vegas algorithm can be seen in the trace of
-standard TCP given in :ref:`Figure 5 <fig-trace3>`. The top graph shown in
-:ref:`Figure 5 <fig-trace3>` traces the connection’s congestion window; it
-shows the same information as the traces given earlier in this section.
-The middle and bottom graphs depict new information: The middle graph
-shows the average sending rate as measured at the source, and the bottom
-graph shows the average queue length as measured at the bottleneck
-router. All three graphs are synchronized in time. In the period between
-4.5 and 6.0 seconds (shaded region), the congestion window increases
-(top graph). We expect the observed throughput to also increase, but
-instead it stays flat (middle graph). This is because the throughput
-cannot increase beyond the available bandwidth. Beyond this point, any
-increase in the window size only results in packets taking up buffer
-space at the bottleneck router (bottom graph).
+standard TCP given in :numref:`Figure %s <fig-trace3>`. The top graph
+shown in :numref:`Figure %s <fig-trace3>` traces the connection’s
+congestion window; it shows the same information as the traces given
+earlier in this section.  The middle and bottom graphs depict new
+information: The middle graph shows the average sending rate as
+measured at the source, and the bottom graph shows the average queue
+length as measured at the bottleneck router. All three graphs are
+synchronized in time. In the period between 4.5 and 6.0 seconds
+(shaded region), the congestion window increases (top graph). We
+expect the observed throughput to also increase, but instead it stays
+flat (middle graph). This is because the throughput cannot increase
+beyond the available bandwidth. Beyond this point, any increase in the
+window size only results in packets taking up buffer space at the
+bottleneck router (bottom graph).
 
 .. _fig-trace3:
 .. figure:: figures/f06-18-9780123850591.png
@@ -460,12 +463,13 @@ space at the bottleneck router (bottom graph).
    time when a packet that was eventually retransmitted was first
    transmitted.
 
-A useful metaphor that describes the phenomenon illustrated in :ref:`Figure
-5 <fig-trace3>` is driving on ice. The speedometer (congestion window)
-may say that you are going 30 miles an hour, but by looking out the car
-window and seeing people pass you on foot (measured sending rate) you
-know that you are going no more than 5 miles an hour. The extra energy
-is being absorbed by the car’s tires (router buffers).
+A useful metaphor that describes the phenomenon illustrated in
+:numref:`Figure %s <fig-trace3>` is driving on ice. The speedometer
+(congestion window) may say that you are going 30 miles an hour, but
+by looking out the car window and seeing people pass you on foot
+(measured sending rate) you know that you are going no more than 5
+miles an hour. The extra energy is being absorbed by the car’s tires
+(router buffers).
 
 TCP Vegas uses this idea to measure and control the amount of extra data
 this connection has in transit, where by “extra data” we mean data that
@@ -491,35 +495,35 @@ not overflowing the connection, then the expected throughput is given by
 
    ExpectedRate = CongestionWindow / BaseRTT
 
-where ``CongestionWindow`` is the TCP congestion window, which we assume
-(for the purpose of this discussion) to be equal to the number of bytes
-in transit.
+where ``CongestionWindow`` is the TCP congestion window, which we
+assume (for the purpose of this discussion) to be equal to the number
+of bytes in transit.
 
 Second, TCP Vegas calculates the current sending rate, ``ActualRate``.
 This is done by recording the sending time for a distinguished packet,
-recording how many bytes are transmitted between the time that packet is
-sent and when its acknowledgment is received, computing the sample RTT
-for the distinguished packet when its acknowledgment arrives, and
+recording how many bytes are transmitted between the time that packet
+is sent and when its acknowledgment is received, computing the sample
+RTT for the distinguished packet when its acknowledgment arrives, and
 dividing the number of bytes transmitted by the sample RTT. This
 calculation is done once per round-trip time.
 
-Third, TCP Vegas compares ``ActualRate`` to ``ExpectedRate`` and adjusts
-the window accordingly. We let ``Diff = ExpectedRate - ActualRate``.
-Note that ``Diff`` is positive or 0 by definition, since
-``ActualRate >ExpectedRate`` implies that we need to change ``BaseRTT``
-to the latest sampled RTT. We also define two thresholds, *α < β*,
-roughly corresponding to having too little and too much extra data in
-the network, respectively. When ``Diff`` < *α*, TCP Vegas increases the
-congestion window linearly during the next RTT, and when ``Diff`` > *β*,
-TCP Vegas decreases the congestion window linearly during the next RTT.
-TCP Vegas leaves the congestion window unchanged when *α* < ``Diff`` <
-*β*.
+Third, TCP Vegas compares ``ActualRate`` to ``ExpectedRate`` and
+adjusts the window accordingly. We let ``Diff = ExpectedRate -
+ActualRate``.  Note that ``Diff`` is positive or 0 by definition,
+since ``ActualRate >ExpectedRate`` implies that we need to change
+``BaseRTT`` to the latest sampled RTT. We also define two thresholds,
+*α < β*, roughly corresponding to having too little and too much extra
+data in the network, respectively. When ``Diff`` < *α*, TCP Vegas
+increases the congestion window linearly during the next RTT, and when
+``Diff`` > *β*, TCP Vegas decreases the congestion window linearly
+during the next RTT.  TCP Vegas leaves the congestion window unchanged
+when *α* < ``Diff`` < *β*.
 
-Intuitively, we can see that the farther away the actual throughput gets
-from the expected throughput, the more congestion there is in the
-network, which implies that the sending rate should be reduced. The *β*
-threshold triggers this decrease. On the other hand, when the actual
-throughput rate gets too close to the expected throughput, the
+Intuitively, we can see that the farther away the actual throughput
+gets from the expected throughput, the more congestion there is in the
+network, which implies that the sending rate should be reduced. The
+*β* threshold triggers this decrease. On the other hand, when the
+actual throughput rate gets too close to the expected throughput, the
 connection is in danger of not utilizing the available bandwidth. The
 *α* threshold triggers this increase. The overall goal is to keep
 between\ *α* and *β* extra bytes in the network.
@@ -534,20 +538,21 @@ between\ *α* and *β* extra bytes in the network.
    (black line) throughput. The shaded area is the region between the
    *α* and *β* thresholds.
 
-:ref:`Figure 6 <fig-vegas>` traces the TCP Vegas congestion-avoidance
-algorithm. The top graph traces the congestion window, showing the same
-information as the other traces given throughout this chapter. The
-bottom graph traces the expected and actual throughput rates that govern
-how the congestion window is set. It is this bottom graph that best
-illustrates how the algorithm works. The colored line tracks the
-``ExpectedRate``, while the black line tracks the ``ActualRate``. The
-wide shaded strip gives the region between the *α* and *β* thresholds;
-the top of the shaded strip is *α* KBps away from ``ExpectedRate``, and
-the bottom of the shaded strip is *β* KBps away from ``ExpectedRate``.
-The goal is to keep the ``ActualRate`` between these two thresholds,
-within the shaded region. Whenever ``ActualRate`` falls below the shaded
-region (i.e., gets too far from ``ExpectedRate``), TCP Vegas decreases
-the congestion window because it fears that too many packets are being
+:numref:`Figure %s <fig-vegas>` traces the TCP Vegas
+congestion-avoidance algorithm. The top graph traces the congestion
+window, showing the same information as the other traces given
+throughout this chapter. The bottom graph traces the expected and
+actual throughput rates that govern how the congestion window is
+set. It is this bottom graph that best illustrates how the algorithm
+works. The colored line tracks the ``ExpectedRate``, while the black
+line tracks the ``ActualRate``. The wide shaded strip gives the region
+between the *α* and *β* thresholds; the top of the shaded strip is
+*α* KBps away from ``ExpectedRate``, and the bottom of the shaded
+strip is *β* KBps away from ``ExpectedRate``.  The goal is to keep the
+``ActualRate`` between these two thresholds, within the shaded
+region. Whenever ``ActualRate`` falls below the shaded region (i.e.,
+gets too far from ``ExpectedRate``), TCP Vegas decreases the
+congestion window because it fears that too many packets are being
 buffered in the network. Likewise, whenever ``ActualRate`` goes above
 the shaded region (i.e., gets too close to the ``ExpectedRate``), TCP
 Vegas increases the congestion window because it fears that it is

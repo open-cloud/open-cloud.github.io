@@ -194,24 +194,24 @@ transmission.</p>
 <em>network adaptor</em>—a piece of hardware that connects a node to a link.
 The network adaptor contains a signalling component that actually
 encodes bits into signals at the sending node and decodes signals into
-bits at the receiving node. Thus, as illustrated in <a class="reference internal" href="#fig-node-link-1"><span class="std std-ref">Figure
-1</span></a>, signals travel over a link between two signalling
+bits at the receiving node. Thus, as illustrated in <a class="reference internal" href="#fig-node-link-1"><span class="std std-numref">Figure
+23</span></a>, signals travel over a link between two signalling
 components, and bits flow between network adaptors.</p>
 <div class="figure align-center" id="id1">
 <span id="fig-node-link-1"></span><a class="reference internal image-reference" href="../_images/f02-03-9780123850591.png"><img alt="../_images/f02-03-9780123850591.png" src="../_images/f02-03-9780123850591.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-number">Figure 23: </span><span class="caption-text">Signals travel between signalling components; bits
+<p class="caption"><span class="caption-number">Figure 23. </span><span class="caption-text">Signals travel between signalling components; bits
 flow between adaptors.</span></p>
 </div>
 <p>Let’s return to the problem of encoding bits onto signals. The obvious
-thing to do is to map the data value&nbsp;1 onto the high signal and the data
-value&nbsp;0 onto the low signal. This is exactly the mapping used by an
-encoding scheme called, cryptically enough, <em>non-return to zero</em> (NRZ).
-For example, <a class="reference internal" href="#fig-nrz"><span class="std std-ref">Figure 2</span></a> schematically depicts the NRZ-encoded
-signal (bottom) that corresponds to the transmission of a particular
-sequence of bits (top).</p>
+thing to do is to map the data value&nbsp;1 onto the high signal and the
+data value&nbsp;0 onto the low signal. This is exactly the mapping used by
+an encoding scheme called, cryptically enough, <em>non-return to zero</em>
+(NRZ).  For example, <a class="reference internal" href="#fig-nrz"><span class="std std-numref">Figure 24</span></a> schematically
+depicts the NRZ-encoded signal (bottom) that corresponds to the
+transmission of a particular sequence of bits (top).</p>
 <div class="figure align-center" id="id2">
 <span id="fig-nrz"></span><a class="reference internal image-reference" href="../_images/f02-04-9780123850591.png"><img alt="../_images/f02-04-9780123850591.png" src="../_images/f02-04-9780123850591.png" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-number">Figure 24: </span><span class="caption-text">NRZ encoding of a bit stream.</span></p>
+<p class="caption"><span class="caption-number">Figure 24. </span><span class="caption-text">NRZ encoding of a bit stream.</span></p>
 </div>
 <p>The problem with NRZ is that a sequence of several consecutive 1s means
 that the signal stays high on the link for an extended period of time;
@@ -245,26 +245,25 @@ transition leads to clock drift. Thus, clock recovery depends on having
 lots of transitions in the signal, no matter what data is being sent.</p>
 <p>One approach that addresses this problem, called <em>non-return to zero
 inverted</em> (NRZI), has the sender make a transition from the current
-signal to encode a 1 and stay at the current signal to encode a 0. This
-solves the problem of consecutive 1s, but obviously does nothing for
-consecutive 0s. NRZI is illustrated in <a class="reference internal" href="#fig-encode-all"><span class="std std-ref">Figure 3</span></a>. An
-alternative, called <em>Manchester encoding</em>, does a more explicit job of
-merging the clock with the signal by transmitting the exclusive OR of
-the NRZ-encoded data and the clock. (Think of the local clock as an
-internal signal that alternates from low to high; a low/high pair is
-considered one clock cycle.) The Manchester encoding is also illustrated
-in <a class="reference internal" href="#fig-encode-all"><span class="std std-ref">Figure 3</span></a>. Observe that the Manchester encoding
-results in 0 being encoded as a low-to-high transition and 1 being
-encoded as a high-to-low transition. Because both 0s and 1s result in a
-transition to the signal, the clock can be effectively recovered at the
+signal to encode a 1 and stay at the current signal to encode
+a 0. This solves the problem of consecutive 1s, but obviously does
+nothing for consecutive 0s. NRZI is illustrated in <a class="reference internal" href="#fig-encode-all"><span class="std std-numref">Figure 25</span></a>. An alternative, called <em>Manchester encoding</em>, does
+a more explicit job of merging the clock with the signal by
+transmitting the exclusive OR of the NRZ-encoded data and the
+clock. (Think of the local clock as an internal signal that alternates
+from low to high; a low/high pair is considered one clock cycle.) The
+Manchester encoding is also illustrated in <a class="reference internal" href="#fig-encode-all"><span class="std std-numref">Figure 25</span></a>. Observe that the Manchester encoding results in 0
+being encoded as a low-to-high transition and 1 being encoded as a
+high-to-low transition. Because both 0s and 1s result in a transition
+to the signal, the clock can be effectively recovered at the
 receiver. (There is also a variant of the Manchester encoding, called
 <em>Differential Manchester</em>, in which a 1 is encoded with the first half
-of the signal equal to the last half of the previous bit’s signal and a
-0 is encoded with the first half of the signal opposite to the last half
-of the previous bit’s signal.)</p>
+of the signal equal to the last half of the previous bit’s signal and
+a 0 is encoded with the first half of the signal opposite to the last
+half of the previous bit’s signal.)</p>
 <div class="figure align-center" id="id3">
 <span id="fig-encode-all"></span><a class="reference internal image-reference" href="../_images/f02-05-9780123850591.png"><img alt="../_images/f02-05-9780123850591.png" src="../_images/f02-05-9780123850591.png" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-number">Figure 25: </span><span class="caption-text">Different encoding strategies.</span></p>
+<p class="caption"><span class="caption-number">Figure 25. </span><span class="caption-text">Different encoding strategies.</span></p>
 </div>
 <p>The problem with the Manchester encoding scheme is that it doubles the
 rate at which signal transitions are made on the link, which means that
@@ -273,7 +272,7 @@ rate at which the signal changes is called the link’s <em>baud rate</em>. In
 the case of the Manchester encoding, the bit rate is half the baud rate,
 so the encoding is considered only 50% efficient. Keep in mind that if
 the receiver had been able to keep up with the faster baud rate required
-by the Manchester encoding in <a class="reference internal" href="#fig-encode-all"><span class="std std-ref">Figure 3</span></a>, then
+by the Manchester encoding in <a class="reference internal" href="#fig-encode-all"><span class="std std-numref">Figure 25</span></a>, then
 both NRZ and NRZI could have been able to transmit twice as many bits
 in the same time period.</p>
 <p>Note that bit rate isn’t necessarily less than or equal to the baud
@@ -304,7 +303,7 @@ then transmitted using the NRZI encoding, which explains why the code is
 only concerned about consecutive 0s—NRZI already solves the problem of
 consecutive 1s. Note that the 4B/5B encoding results in 80% efficiency.</p>
 <span id="tab-4b5b"></span><table border="1" class="colwidths-auto docutils align-center" id="id4">
-<caption><span class="caption-number">Table 3: </span><span class="caption-text">4B/5B encoding.</span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
+<caption><span class="caption-number">Table 3. </span><span class="caption-text">4B/5B encoding.</span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">4-bit Data Symbol</th>
 <th class="head">5-bit Code</th>
@@ -361,7 +360,8 @@ consecutive 1s. Note that the 4B/5B encoding results in 80% efficiency.</p>
 </tr>
 </tbody>
 </table>
-<p><a class="reference internal" href="#tab-4b5b"><span class="std std-ref">Table 1</span></a> gives the 5-bit codes that correspond to each of the
+<p><a class="reference internal" href="#tab-4b5b"><span class="std std-numref">Table 3</span></a> gives the 5-bit codes that correspond
+to each of the
 16 possible 4-bit data symbols. Notice that since 5&nbsp;bits are enough to
 encode 32 different codes, and we are using only 16 of these for data,
 there are 16 codes left over that we can use for other purposes. Of

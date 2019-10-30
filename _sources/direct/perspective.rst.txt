@@ -28,15 +28,15 @@ stack. This chapter examines those strategies.
    
    An end-user's view of the Internet.
 
-:ref:`Figure 1 <fig-isp-access>` illustrates various types of links that might
-be found in today’s Internet. On the left, we see a variety of end-user
-devices ranging from smartphones to tablets to full-fledged computers
-connected by various means to an ISP. While those links might use
-different technologies, they all look the same in this picture—a
-straight line connecting a device to a router. There are links that
-connect routers together inside the ISP, as well as links that connect
-the ISP to the “rest of the Internet,” which consists of lots of other
-ISPs and the hosts to which they connect.
+:numref:`Figure %s <fig-isp-access>` illustrates various types of
+links that might be found in today’s Internet. On the left, we see a
+variety of end-user devices ranging from smartphones to tablets to
+full-fledged computers connected by various means to an ISP. While
+those links might use different technologies, they all look the same
+in this picture—a straight line connecting a device to a router. There
+are links that connect routers together inside the ISP, as well as
+links that connect the ISP to the “rest of the Internet,” which
+consists of lots of other ISPs and the hosts to which they connect.
 
 These links all look alike not just because we’re not very good artists
 but because part of the role of a network architecture is to provide a
@@ -89,11 +89,11 @@ through copper would have a wavelength of
 
    = 667 \times 10^3\ meters
 
-Generally, electromagnetic waves span a much wider range of frequencies,
-ranging from radio waves, to infrared light, to visible light, to x-rays
-and gamma rays. :ref:`Figure 2 <fig-spectrum>` depicts the electromagnetic
-spectrum and shows which media are commonly used to carry which
-frequency bands.
+Generally, electromagnetic waves span a much wider range of
+frequencies, ranging from radio waves, to infrared light, to visible
+light, to x-rays and gamma rays. :numref:`Figure %s <fig-spectrum>`
+depicts the electromagnetic spectrum and shows which media are
+commonly used to carry which frequency bands.
  
 .. _fig-spectrum:
 .. figure:: figures/f02-02-9780123850591.png
@@ -102,17 +102,17 @@ frequency bands.
    
    Electromagnetic spectrum.
 
-What :ref:`Figure 2 <fig-spectrum>` doesn't show is where the cellular
-network fits in. This is a bit complicated because the specific
-frequency bands that are licensed for cellular networks vary around
-the world, and even further complicated by the fact that network
-operators often simultaneously support both old/legacy technologies
-and new/next-generation technologies, each of which occupies a
-different frequency band. The high-level summary is that traditional
-cellular technologies range from 700-MHz to 2400-MHz, with new
-mid-spectrum allocations now happening at 6-GHz, and millimeter-wave
-(mmWave) allocations opening above 24-GHz. This mmWave band is likely
-to become an important part of the 5G mobile network.
+What :numref:`Figure %s <fig-spectrum>` doesn't show is where the
+cellular network fits in. This is a bit complicated because the
+specific frequency bands that are licensed for cellular networks vary
+around the world, and even further complicated by the fact that
+network operators often simultaneously support both old/legacy
+technologies and new/next-generation technologies, each of which
+occupies a different frequency band. The high-level summary is that
+traditional cellular technologies range from 700-MHz to 2400-MHz, with
+new mid-spectrum allocations now happening at 6-GHz, and
+millimeter-wave (mmWave) allocations opening above 24-GHz. This mmWave
+band is likely to become an important part of the 5G mobile network.
 
 So far we understand a link to be a physical medium carrying signals in
 the form of electromagnetic waves. Such links provide the foundation for
@@ -133,21 +133,22 @@ consider only the upper layer, which is concerned with the much simpler
 problem of encoding binary data onto these two signals. The next section
 discusses such encodings.
 
-Another way to classify links is in terms of how they are used. Various
-economic and deployment issues tend to influence where different link
-types are found. Most consumers interact with the Internet either
-through wireless networks (which they encounter in coffee shops,
-airports, universities, etc.) or through so-called *last-mile* links (or
-alternatively, *access networks*) provided by an ISP, as illustrated in
-:ref:`Figure 1 <fig-isp-access>`. These link types are summarized in :ref:`Table
-1 <tab-home>`. They typically are chosen because they are cost-effective
-ways of reaching millions of consumers. DSL (Digital Subscriber Line),
-for example, is an older technology that was deployed over the existing
-twisted pair copper wires that already existed for plain old telephone
-services; G.Fast is a copper-based technology typically used within
-multi-dwelling apartment buildings, and PON (Passive Optical Network) is
-a newer technology that is commonly used to connect homes and businesses
-over recently deployed fiber.
+Another way to classify links is in terms of how they are
+used. Various economic and deployment issues tend to influence where
+different link types are found. Most consumers interact with the
+Internet either through wireless networks (which they encounter in
+coffee shops, airports, universities, etc.) or through so-called
+*last-mile* links (or alternatively, *access networks*) provided by an
+ISP, as illustrated in :numref:`Figure %s <fig-isp-access>`. These
+link types are summarized in :numref:`Table %s <tab-home>`. They
+typically are chosen because they are cost-effective ways of reaching
+millions of consumers. DSL (Digital Subscriber Line), for example, is
+an older technology that was deployed over the existing twisted pair
+copper wires that already existed for plain old telephone services;
+G.Fast is a copper-based technology typically used within
+multi-dwelling apartment buildings, and PON (Passive Optical Network)
+is a newer technology that is commonly used to connect homes and
+businesses over recently deployed fiber.
 
 .. _tab-home:
 .. table::  Common services available for the last-mile connection to your home. 

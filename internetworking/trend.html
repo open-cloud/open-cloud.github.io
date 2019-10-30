@@ -243,19 +243,17 @@ original physical resource. To re-purpose the mythology of the World
 Turtle: It’s virtual networks all the way down.</p>
 <div class="figure align-center" id="id1">
 <span id="fig-vxlan"></span><a class="reference internal image-reference" href="../_images/Slide8.png"><img alt="../_images/Slide8.png" src="../_images/Slide8.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-number">Figure 96: </span><span class="caption-text">VXLAN Header encapsulated in a UDP/IP packet.
+<p class="caption"><span class="caption-number">Figure 96. </span><span class="caption-text">VXLAN Header encapsulated in a UDP/IP packet.
 header.</span></p>
 </div>
-<p>The actual VXLAN header is simple, as shown in <a class="reference internal" href="#fig-vxlan"><span class="std std-ref">Figure 2</span></a>. It
-includes a 24-bit <em>Virtual Network Id</em> (VNI), plus some flag and
-reserved bits. It also implies a particular setting of the UDP source
-and destination port fields (see <a class="reference external" href="../e2e/udp.md">Section 5.1</a>), with
-the destination port 4789 officially reserved for VXLANs. Figuring out
-how to uniquely identify virtual LANs (VLAN tags) and virtual networks
-(VXLAN VIDs) is the easy part. This is because encapsulation is the
-fundamental cornerstone of virtualization; all you need to add is an
-identifier that tells you which of many possible users this encapsulated
-packet belongs to.</p>
+<p>The actual VXLAN header is simple, as shown in <a class="reference internal" href="#fig-vxlan"><span class="std std-numref">Figure 96</span></a>. It includes a 24-bit <em>Virtual Network Id</em> (VNI), plus
+some flag and reserved bits. It also implies a particular setting of
+the UDP source and destination port fields (see <a class="reference external" href="../e2e/udp.html">Section 5.1</a>), with the destination port 4789 officially
+reserved for VXLANs. Figuring out how to uniquely identify virtual
+LANs (VLAN tags) and virtual networks (VXLAN VIDs) is the easy
+part. This is because encapsulation is the fundamental cornerstone of
+virtualization; all you need to add is an identifier that tells you
+which of many possible users this encapsulated packet belongs to.</p>
 <p>The hard part is grappling with the idea of virtual networks being
 nested (encapsulated) inside virtual networks, which is networking’s
 version of recursion. The other challenge is understanding how to
@@ -269,12 +267,15 @@ leading the way.</p>
 <div class="admonition-broader-perspective admonition">
 <p class="first admonition-title">Broader Perspective</p>
 <p>To continue reading about the cloudification of the Internet, see
-<a class="reference external" href="../scaling/trend.md">The Cloud is Eating the Internet</a>.</p>
-<p class="last">To learn more about the maturation of virtual networks, we recommend:
-* <a class="reference external" href="https://networkheresy.com/2012/05/31/network-virtualization/">Network
-Heresy</a>,
-2012. * <a class="reference external" href="https://tungstenfabric.github.io/website/">Tungsten
-Fabric</a>, 2018.</p>
+<a class="reference external" href="../scaling/trend.html">The Cloud is Eating the Internet</a>.</p>
+<dl class="last docutils">
+<dt>To learn more about the maturation of virtual networks, we recommend:</dt>
+<dd><ul class="first last simple">
+<li><a class="reference external" href="https://networkheresy.com/2012/05/31/network-virtualization/">Network Heresy</a>,  2012.</li>
+<li><a class="reference external" href="https://tungstenfabric.github.io/website/">Tungsten Fabric</a>, 2018.</li>
+</ul>
+</dd>
+</dl>
 </div>
 </div>
 

@@ -1,4 +1,4 @@
-4.4 Routing Among Mobile Devices
+4.5 Routing Among Mobile Devices
 ================================
 
 It probably should not be a great surprise to learn that mobile devices
@@ -27,22 +27,23 @@ need.
 If we look a little more closely, however, it’s clear that for some
 application scenarios, just getting a new IP address every time you
 move—which is what DHCP does for you—isn’t always enough. Suppose you
-are using your laptop or smartphone for a Voice over IP telephone call,
-and while talking on the phone you move from one hotspot to another, or
-even switch from Wi-Fi to the cellular network for your Internet
-connection.
+are using your laptop or smartphone for a Voice over IP telephone
+call, and while talking on the phone you move from one hotspot to
+another, or even switch from Wi-Fi to the cellular network for your
+Internet connection.
 
 Clearly, when you move from one access network to another, you need to
 get a new IP address—one that corresponds to the new network. But, the
 computer or telephone at the other end of your conversation doesn’t
 immediately know where you have moved or what your new IP address is.
 Consequently, in the absence of some other mechanism, packets would
-continue to be sent to the address where you *used* to be, not where you
-are now. This problem is illustrated in :ref:`Figure 1 <fig-mobileeg>`; as the
-mobile node moves from the 802.11 network in :ref:`Figure 1(a) <fig-mobileeg>`
-to the cellular network in :ref:`Figure 1(b) <fig-mobileeg>`, somehow packets
-from the *correspondent node* need to find their way to the new network
-and then on to the mobile node.
+continue to be sent to the address where you *used* to be, not where
+you are now. This problem is illustrated in :numref:`Figure %s
+<fig-mobileeg>`; as the mobile node moves from the 802.11 network in
+:numref:`Figure %s(a) <fig-mobileeg>` to the cellular network in
+:numref:`Figure %s(b) <fig-mobileeg>`, somehow packets from the
+*correspondent node* need to find their way to the new network and
+then on to the mobile node.
 
 .. _fig-mobileeg:
 .. figure:: figures/f04-26-22092018.png
@@ -94,11 +95,11 @@ trying to maintain the appearance that it does not change.
 While we are all familiar with endpoints that move, it is worth noting
 that routers can also move. This is certainly less common today than
 endpoint mobility, but there are plenty of environments where a mobile
-router might make sense. One example might be an emergency response team
-trying to deploy a network after some natural disaster has knocked out
-all the fixed infrastructure. There are additional considerations when
-*all* the nodes in a network, not just the endpoints, are mobile, a
-topic we will discuss later in this section.
+router might make sense. One example might be an emergency response
+team trying to deploy a network after some natural disaster has
+knocked out all the fixed infrastructure. There are additional
+considerations when *all* the nodes in a network, not just the
+endpoints, are mobile, a topic we will discuss later in this section.
 
 Before we start to look at some of the approaches to supporting mobile
 devices, a couple of points of clarification. It is common to find that
@@ -110,13 +111,13 @@ around as it communicates. Certainly many nodes that use wireless
 communication channels are not mobile, and sometimes mobile nodes will
 use wired communication (although this is less common).
 
-Finally, in this chapter we are mostly interested in what we might call
-*network-layer mobility*. That is, we are interested in how to deal with
-nodes that move from one network to another. Moving from one access
-point to another in the same 802.11 network can be handled by mechanisms
-specific to 802.11, and cellular networks also have ways to handle
-mobility, of course, but in large heterogeneous systems like the
-Internet we need to support mobility more broadly across networks.
+Finally, in this chapter we are mostly interested in what we might
+call *network-layer mobility*. That is, we are interested in how to
+deal with nodes that move from one network to another. Moving from one
+access point to another in the same 802.11 network can be handled by
+mechanisms specific to 802.11, and cellular networks also have ways to
+handle mobility, of course, but in large heterogeneous systems like
+the Internet we need to support mobility more broadly across networks.
 
 Routing to Mobile Hosts (Mobile IP)
 -----------------------------------
@@ -154,7 +155,7 @@ functionality, the *foreign agent,* is also required. This router is
 located on a network to which the mobile node attaches itself when it is
 away from its home network. We will consider first the operation of
 Mobile IP when a foreign agent is used. An example network with both
-home and foreign agents is shown in :ref:`Figure 2 <fig-mobile>`.
+home and foreign agents is shown in :numref:`Figure %s <fig-mobile>`.
  
 .. _fig-mobile:
 .. figure:: figures/f04-27-9780123850591.png
@@ -188,8 +189,8 @@ the mobile node into three parts:
 
 3. How does the foreign agent deliver the packet to the mobile node?
 
-The first problem might look easy if you just look at :ref:`Figure
-2 <fig-mobile>`, in which the home agent is clearly the only path between
+The first problem might look easy if you just look at :numref:`Figure
+%s <fig-mobile>`, in which the home agent is clearly the only path between
 the sending host and the home network and thus must receive packets that
 are destined to the mobile node. But what if the sending (correspondent)
 node were on network 18, or what if there were another router connected
@@ -235,9 +236,9 @@ of the foreign network (e.g., using DHCP). This address will then be
 used as the care-of address. In our example, this address would have a
 network number of 12. This approach has the desirable feature of
 allowing mobile nodes to attach to networks that don’t have foreign
-agents; thus, mobility can be achieved with only the addition of a home
-agent and some new software on the mobile node (assuming DHCP is used on
-the foreign network).
+agents; thus, mobility can be achieved with only the addition of a
+home agent and some new software on the mobile node (assuming DHCP is
+used on the foreign network).
 
 What about traffic in the other direction (i.e., from mobile node to
 fixed node)? This turns out to be much easier. The mobile node just puts

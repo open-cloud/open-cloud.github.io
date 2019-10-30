@@ -368,31 +368,31 @@ file end-to-end.</p>
 <div class="section" id="segment-format">
 <h2>Segment Format<a class="headerlink" href="#segment-format" title="Permalink to this headline">¶</a></h2>
 <p>TCP is a byte-oriented protocol, which means that the sender writes
-bytes into a TCP connection and the receiver reads bytes out of the TCP
-connection. Although “byte stream” describes the service TCP offers to
-application processes, TCP does not, itself, transmit individual bytes
-over the Internet. Instead, TCP on the source host buffers enough bytes
-from the sending process to fill a reasonably sized packet and then
-sends this packet to its peer on the destination host. TCP on the
-destination host then empties the contents of the packet into a receive
-buffer, and the receiving process reads from this buffer at its leisure.
-This situation is illustrated in <a class="reference internal" href="#fig-tcp-stream"><span class="std std-ref">Figure 1</span></a>, which, for
-simplicity, shows data flowing in only one direction. Remember that, in
-general, a single TCP connection supports byte streams flowing in both
+bytes into a TCP connection and the receiver reads bytes out of the
+TCP connection. Although “byte stream” describes the service TCP
+offers to application processes, TCP does not, itself, transmit
+individual bytes over the Internet. Instead, TCP on the source host
+buffers enough bytes from the sending process to fill a reasonably
+sized packet and then sends this packet to its peer on the destination
+host. TCP on the destination host then empties the contents of the
+packet into a receive buffer, and the receiving process reads from
+this buffer at its leisure.  This situation is illustrated in
+<a class="reference internal" href="#fig-tcp-stream"><span class="std std-numref">Figure 127</span></a>, which, for simplicity, shows
+data flowing in only one direction. Remember that, in general, a
+single TCP connection supports byte streams flowing in both
 directions.</p>
 <div class="figure align-center" id="id1">
 <span id="fig-tcp-stream"></span><a class="reference internal image-reference" href="../_images/f05-03-9780123850591.png"><img alt="../_images/f05-03-9780123850591.png" src="../_images/f05-03-9780123850591.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-number">Figure 127: </span><span class="caption-text">How TCP manages a byte stream.</span></p>
+<p class="caption"><span class="caption-number">Figure 127. </span><span class="caption-text">How TCP manages a byte stream.</span></p>
 </div>
-<p>The packets exchanged between TCP peers in <a class="reference internal" href="#fig-tcp-stream"><span class="std std-ref">Figure 1</span></a>
-are called <em>segments</em>, since each one carries a segment of the byte
-stream. Each TCP segment contains the header schematically depicted in
-<a class="reference internal" href="#fig-tcp-format"><span class="std std-ref">Figure 2</span></a>. The relevance of most of these fields will
-become apparent throughout this section. For now, we simply introduce
-them.</p>
+<p>The packets exchanged between TCP peers in <a class="reference internal" href="#fig-tcp-stream"><span class="std std-numref">Figure 127</span></a> are called <em>segments</em>, since each one carries a
+segment of the byte stream. Each TCP segment contains the header
+schematically depicted in <a class="reference internal" href="#fig-tcp-format"><span class="std std-numref">Figure 128</span></a>. The
+relevance of most of these fields will become apparent throughout this
+section. For now, we simply introduce them.</p>
 <div class="figure align-center" id="id2">
 <span id="fig-tcp-format"></span><a class="reference internal image-reference" href="../_images/f05-04-9780123850591.png"><img alt="../_images/f05-04-9780123850591.png" src="../_images/f05-04-9780123850591.png" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-number">Figure 128: </span><span class="caption-text">TCP header format.</span></p>
+<p class="caption"><span class="caption-number">Figure 128. </span><span class="caption-text">TCP header format.</span></p>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">SrcPort</span></code> and <code class="docutils literal notranslate"><span class="pre">DstPort</span></code> fields identify the source and
 destination ports, respectively, just as in UDP. These two fields, plus
@@ -413,15 +413,15 @@ is a byte-oriented protocol, each byte of data has a sequence number.
 The <code class="docutils literal notranslate"><span class="pre">SequenceNum</span></code> field contains the sequence number for the first
 byte of data carried in that segment, and the <code class="docutils literal notranslate"><span class="pre">Acknowledgement</span></code> and
 <code class="docutils literal notranslate"><span class="pre">AdvertisedWindow</span></code> fields carry information about the flow of data
-going in the other direction. To simplify our discussion, we ignore the
-fact that data can flow in both directions, and we concentrate on data
-that has a particular <code class="docutils literal notranslate"><span class="pre">SequenceNum</span></code> flowing in one direction and
-<code class="docutils literal notranslate"><span class="pre">Acknowledgement</span></code> and <code class="docutils literal notranslate"><span class="pre">AdvertisedWindow</span></code> values flowing in the
-opposite direction, as illustrated in <a class="reference internal" href="#fig-tcp-flow"><span class="std std-ref">Figure 3</span></a>. The use
-of these three fields is described more fully later in this chapter.</p>
+going in the other direction. To simplify our discussion, we ignore
+the fact that data can flow in both directions, and we concentrate on
+data that has a particular <code class="docutils literal notranslate"><span class="pre">SequenceNum</span></code> flowing in one direction
+and <code class="docutils literal notranslate"><span class="pre">Acknowledgement</span></code> and <code class="docutils literal notranslate"><span class="pre">AdvertisedWindow</span></code> values flowing in the
+opposite direction, as illustrated in <a class="reference internal" href="#fig-tcp-flow"><span class="std std-numref">Figure 129</span></a>. The use of these three fields is described more fully
+later in this chapter.</p>
 <div class="figure align-center" id="id3">
 <span id="fig-tcp-flow"></span><a class="reference internal image-reference" href="../_images/f05-05-9780123850591.png"><img alt="../_images/f05-05-9780123850591.png" src="../_images/f05-05-9780123850591.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-number">Figure 129: </span><span class="caption-text">Simplified illustration (showing only one direction)
+<p class="caption"><span class="caption-number">Figure 129. </span><span class="caption-text">Simplified illustration (showing only one direction)
 of the TCP process, with data flow in one direction and ACKs in
 the other.</span></p>
 </div>
@@ -482,10 +482,10 @@ passive open.</div></blockquote>
 called a <em>three-way handshake</em>. We first describe the basic algorithm
 and then show how it is used by TCP. The three-way handshake involves
 the exchange of three messages between the client and the server, as
-illustrated by the timeline given in <a class="reference internal" href="#fig-twh-timeline"><span class="std std-ref">Figure 4</span></a>.</p>
+illustrated by the timeline given in <a class="reference internal" href="#fig-twh-timeline"><span class="std std-numref">Figure 130</span></a>.</p>
 <div class="figure align-center" id="id4">
 <span id="fig-twh-timeline"></span><a class="reference internal image-reference" href="../_images/f05-06-9780123850591.png"><img alt="../_images/f05-06-9780123850591.png" src="../_images/f05-06-9780123850591.png" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-number">Figure 130: </span><span class="caption-text">Timeline for three-way handshake algorithm.</span></p>
+<p class="caption"><span class="caption-number">Figure 130. </span><span class="caption-text">Timeline for three-way handshake algorithm.</span></p>
 </div>
 <p>The idea is that two parties want to agree on a set of parameters,
 which, in the case of opening a TCP connection, are the starting
@@ -495,18 +495,18 @@ wants the other to know about. First, the client (the active
 participant) sends a segment to the server (the passive participant)
 stating the initial sequence number it plans to use (<code class="docutils literal notranslate"><span class="pre">Flags</span></code> =
 <code class="docutils literal notranslate"><span class="pre">SYN</span></code>, <code class="docutils literal notranslate"><span class="pre">SequenceNum</span></code> = x). The server then responds with a single
-segment that both acknowledges the client’s sequence number
-(<code class="docutils literal notranslate"><span class="pre">Flags</span> <span class="pre">=</span> <span class="pre">ACK,</span> <span class="pre">Ack</span> <span class="pre">=</span> <span class="pre">x</span> <span class="pre">+</span> <span class="pre">1</span></code>) and states its own beginning sequence
-number (<code class="docutils literal notranslate"><span class="pre">Flags</span> <span class="pre">=</span> <span class="pre">SYN,</span> <span class="pre">SequenceNum</span> <span class="pre">=</span> <span class="pre">y</span></code>). That is, both the <code class="docutils literal notranslate"><span class="pre">SYN</span></code> and
+segment that both acknowledges the client’s sequence number (<code class="docutils literal notranslate"><span class="pre">Flags</span> <span class="pre">=</span>
+<span class="pre">ACK,</span> <span class="pre">Ack</span> <span class="pre">=</span> <span class="pre">x</span> <span class="pre">+</span> <span class="pre">1</span></code>) and states its own beginning sequence number
+(<code class="docutils literal notranslate"><span class="pre">Flags</span> <span class="pre">=</span> <span class="pre">SYN,</span> <span class="pre">SequenceNum</span> <span class="pre">=</span> <span class="pre">y</span></code>). That is, both the <code class="docutils literal notranslate"><span class="pre">SYN</span></code> and
 <code class="docutils literal notranslate"><span class="pre">ACK</span></code> bits are set in the <code class="docutils literal notranslate"><span class="pre">Flags</span></code> field of this second message.
-Finally, the client responds with a third segment that acknowledges the
-server’s sequence number (<code class="docutils literal notranslate"><span class="pre">Flags</span> <span class="pre">=</span> <span class="pre">ACK,</span> <span class="pre">Ack</span> <span class="pre">=</span> <span class="pre">y</span> <span class="pre">+</span> <span class="pre">1</span></code>). The reason why
-each side acknowledges a sequence number that is one larger than the one
-sent is that the <code class="docutils literal notranslate"><span class="pre">Acknowledgement</span></code> field actually identifies the “next
-sequence number expected,” thereby implicitly acknowledging all earlier
-sequence numbers. Although not shown in this timeline, a timer is
-scheduled for each of the first two segments, and if the expected
-response is not received the segment is retransmitted.</p>
+Finally, the client responds with a third segment that acknowledges
+the server’s sequence number (<code class="docutils literal notranslate"><span class="pre">Flags</span> <span class="pre">=</span> <span class="pre">ACK,</span> <span class="pre">Ack</span> <span class="pre">=</span> <span class="pre">y</span> <span class="pre">+</span> <span class="pre">1</span></code>). The
+reason why each side acknowledges a sequence number that is one larger
+than the one sent is that the <code class="docutils literal notranslate"><span class="pre">Acknowledgement</span></code> field actually
+identifies the “next sequence number expected,” thereby implicitly
+acknowledging all earlier sequence numbers. Although not shown in this
+timeline, a timer is scheduled for each of the first two segments, and
+if the expected response is not received the segment is retransmitted.</p>
 <p>You may be asking yourself why the client and server have to exchange
 starting sequence numbers with each other at connection setup time. It
 would be simpler if each side simply started at some “well-known”
@@ -521,7 +521,7 @@ connection.</p>
 <div class="section" id="state-transition-diagram">
 <h3>State-Transition Diagram<a class="headerlink" href="#state-transition-diagram" title="Permalink to this headline">¶</a></h3>
 <p>TCP is complex enough that its specification includes a state-transition
-diagram. A copy of this diagram is given in <a class="reference internal" href="#fig-tcp-std"><span class="std std-ref">Figure 5</span></a>.
+diagram. A copy of this diagram is given in <a class="reference internal" href="#fig-tcp-std"><span class="std std-numref">Figure 131</span></a>.
 This diagram shows only the states involved in opening a connection
 (everything above ESTABLISHED) and in closing a connection (everything
 below ESTABLISHED). Everything that goes on while a connection is
@@ -529,7 +529,7 @@ open—that is, the operation of the sliding window algorithm—is hidden in
 the ESTABLISHED state.</p>
 <div class="figure align-center" id="id5">
 <span id="fig-tcp-std"></span><a class="reference internal image-reference" href="../_images/f05-07-9780123850591.png"><img alt="../_images/f05-07-9780123850591.png" src="../_images/f05-07-9780123850591.png" style="width: 600px;" /></a>
-<p class="caption"><span class="caption-number">Figure 131: </span><span class="caption-text">TCP state-transition diagram.</span></p>
+<p class="caption"><span class="caption-number">Figure 131. </span><span class="caption-text">TCP state-transition diagram.</span></p>
 </div>
 <p>TCP’s state-transition diagram is fairly easy to understand. Each box
 denotes a state that one end of a TCP connection can find itself in. All
@@ -540,16 +540,16 @@ in the LISTEN state and a SYN segment arrives (i.e., a segment with the
 <code class="docutils literal notranslate"><span class="pre">SYN</span></code> flag set), the connection makes a transition to the SYN_RCVD
 state and takes the action of replying with an <code class="docutils literal notranslate"><span class="pre">ACK+SYN</span></code> segment.</p>
 <p>Notice that two kinds of events trigger a state transition: (1) a
-segment arrives from the peer (e.g., the event on the arc from LISTEN to
-SYN_RCVD), or (2) the local application process invokes an operation on
-TCP (e.g., the <em>active open</em> event on the arc from CLOSED to SYN_SENT).
-In other words, TCP’s state-transition diagram effectively defines the
-<em>semantics</em> of both its peer-to-peer interface and its service
-interface. The <em>syntax</em> of these two interfaces is given by the segment
-format (as illustrated in <a class="reference internal" href="#fig-tcp-format"><span class="std std-ref">Figure 2</span></a>) and by some
-application programming interface, such as the socket API, respectively.</p>
+segment arrives from the peer (e.g., the event on the arc from LISTEN
+to SYN_RCVD), or (2) the local application process invokes an
+operation on TCP (e.g., the <em>active open</em> event on the arc from CLOSED
+to SYN_SENT).  In other words, TCP’s state-transition diagram
+effectively defines the <em>semantics</em> of both its peer-to-peer interface
+and its service interface. The <em>syntax</em> of these two interfaces is
+given by the segment format (as illustrated in <a class="reference internal" href="#fig-tcp-format"><span class="std std-numref">Figure 128</span></a>) and by some application programming interface, such
+as the socket API, respectively.</p>
 <p>Now let’s trace the typical transitions taken through the diagram in
-<a class="reference internal" href="#fig-tcp-std"><span class="std std-ref">Figure 5</span></a>. Keep in mind that at each end of the
+<a class="reference internal" href="#fig-tcp-std"><span class="std std-numref">Figure 131</span></a>. Keep in mind that at each end of the
 connection, TCP makes different transitions from state to state. When
 opening a connection, the server first invokes a passive open operation
 on TCP, which causes TCP to move to the LISTEN state. At some later
@@ -646,18 +646,18 @@ discuss this at greater length below.</p>
 <div class="section" id="reliable-and-ordered-delivery">
 <h3>Reliable and Ordered Delivery<a class="headerlink" href="#reliable-and-ordered-delivery" title="Permalink to this headline">¶</a></h3>
 <p>To see how the sending and receiving sides of TCP interact with each
-other to implement reliable and ordered delivery, consider the situation
-illustrated in <a class="reference internal" href="#fig-tcp-fc"><span class="std std-ref">Figure 6</span></a>. TCP on the sending side maintains
-a send buffer. This buffer is used to store data that has been sent but
-not yet acknowledged, as well as data that has been written by the
-sending application but not transmitted. On the receiving side, TCP
-maintains a receive buffer. This buffer holds data that arrives out of
-order, as well as data that is in the correct order (i.e., there are no
-missing bytes earlier in the stream) but that the application process
-has not yet had the chance to read.</p>
+other to implement reliable and ordered delivery, consider the
+situation illustrated in <a class="reference internal" href="#fig-tcp-fc"><span class="std std-numref">Figure 132</span></a>. TCP on the
+sending side maintains a send buffer. This buffer is used to store
+data that has been sent but not yet acknowledged, as well as data that
+has been written by the sending application but not transmitted. On
+the receiving side, TCP maintains a receive buffer. This buffer holds
+data that arrives out of order, as well as data that is in the correct
+order (i.e., there are no missing bytes earlier in the stream) but
+that the application process has not yet had the chance to read.</p>
 <div class="figure align-center" id="id6">
 <span id="fig-tcp-fc"></span><a class="reference internal image-reference" href="../_images/f05-08-9780123850591.png"><img alt="../_images/f05-08-9780123850591.png" src="../_images/f05-08-9780123850591.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-number">Figure 132: </span><span class="caption-text">Relationship between TCP send buffer (a) and receive
+<p class="caption"><span class="caption-number">Figure 132. </span><span class="caption-text">Relationship between TCP send buffer (a) and receive
 buffer&nbsp;(b).</span></p>
 </div>
 <p>To make the following discussion simpler to follow, we initially ignore
@@ -699,7 +699,7 @@ byte to meet this criterion. Second,</p>
 <p>since, if data has arrived in order, <code class="docutils literal notranslate"><span class="pre">NextByteExpected</span></code> points to the
 byte after <code class="docutils literal notranslate"><span class="pre">LastByteRcvd</span></code>, whereas if data has arrived out of order,
 then <code class="docutils literal notranslate"><span class="pre">NextByteExpected</span></code> points to the start of the first gap in the
-data, as in <a class="reference internal" href="#fig-tcp-fc"><span class="std std-ref">Figure 6</span></a>. Note that bytes to the left of
+data, as in <a class="reference internal" href="#fig-tcp-fc"><span class="std std-numref">Figure 132</span></a>. Note that bytes to the left of
 <code class="docutils literal notranslate"><span class="pre">LastByteRead</span></code> need not be buffered because they have already been
 read by the local application process, and bytes to the right of
 <code class="docutils literal notranslate"><span class="pre">LastByteRcvd</span></code> need not be buffered because they have not yet arrived.</p>
@@ -831,25 +831,26 @@ TCP’s correctness and performance. TCP’s <code class="docutils literal notra
 32&nbsp;bits long, and its <code class="docutils literal notranslate"><span class="pre">AdvertisedWindow</span></code> field is 16&nbsp;bits long,
 meaning that TCP has easily satisfied the requirement of the sliding
 window algorithm that the sequence number space be twice as big as the
-window size: 2:sup`32` &gt;&gt; 2 × 2:sup:<cite>16</cite>. However, this requirement
-is not the interesting thing about these two fields.
+window size: 2<sup>32</sup> &gt;&gt; 2 × 2<sup>16</sup>. However, this
+requirement is not the interesting thing about these two fields.
 Consider each field in turn.</p>
 <p>The relevance of the 32-bit sequence number space is that the sequence
-number used on a given connection might wrap around—a byte with sequence
-number S could be sent at one time, and then at a later time a second
-byte with the same sequence number S might be sent. Once again, we
-assume that packets cannot survive in the Internet for longer than the
-recommended MSL. Thus, we currently need to make sure that the sequence
-number does not wrap around within a 120-second period of time. Whether
-or not this happens depends on how fast data can be transmitted over the
-Internet—that is, how fast the 32-bit sequence number space can be
-consumed. (This discussion assumes that we are trying to consume the
-sequence number space as fast as possible, but of course we will be if
-we are doing our job of keeping the pipe full.) <a class="reference internal" href="#tab-eqnum"><span class="std std-ref">Table 1</span></a>
-shows how long it takes for the sequence number to wrap around on
-networks with various bandwidths.</p>
+number used on a given connection might wrap around—a byte with
+sequence number S could be sent at one time, and then at a later time
+a second byte with the same sequence number S might be sent. Once
+again, we assume that packets cannot survive in the Internet for
+longer than the recommended MSL. Thus, we currently need to make sure
+that the sequence number does not wrap around within a 120-second
+period of time. Whether or not this happens depends on how fast data
+can be transmitted over the Internet—that is, how fast the 32-bit
+sequence number space can be consumed. (This discussion assumes that
+we are trying to consume the sequence number space as fast as
+possible, but of course we will be if we are doing our job of keeping
+the pipe full.) <a class="reference internal" href="#tab-eqnum"><span class="std std-numref">Table 22</span></a> shows how long it takes
+for the sequence number to wrap around on networks with various
+bandwidths.</p>
 <span id="tab-eqnum"></span><table border="1" class="colwidths-auto docutils align-center" id="id7">
-<caption><span class="caption-number">Table 22: </span><span class="caption-text">Time Until 32-Bit Sequence Number Space&nbsp;Wraps Around.</span><a class="headerlink" href="#id7" title="Permalink to this table">¶</a></caption>
+<caption><span class="caption-number">Table 22. </span><span class="caption-text">Time Until 32-Bit Sequence Number Space&nbsp;Wraps Around.</span><a class="headerlink" href="#id7" title="Permalink to this table">¶</a></caption>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Bandwidth</th>
 <th class="head">Time until Wraparound</th>
@@ -901,10 +902,10 @@ bandwidth product that dictates how big the <code class="docutils literal notran
 needs to be—the window needs to be opened far enough to allow a full
 delay × bandwidth product’s worth of data to be transmitted. Assuming an
 RTT of 100&nbsp;ms (a typical number for a cross-country connection in the
-United States), <a class="reference internal" href="#tab-adv-win"><span class="std std-ref">Table 2</span></a> gives the delay × bandwidth
+United States), <a class="reference internal" href="#tab-adv-win"><span class="std std-numref">Table 23</span></a> gives the delay × bandwidth
 product for several network technologies.</p>
 <span id="tab-adv-win"></span><table border="1" class="colwidths-auto docutils align-center" id="id8">
-<caption><span class="caption-number">Table 23: </span><span class="caption-text">Required Window Size for 100-ms RTT</span><a class="headerlink" href="#id8" title="Permalink to this table">¶</a></caption>
+<caption><span class="caption-number">Table 23. </span><span class="caption-text">Required Window Size for 100-ms RTT</span><a class="headerlink" href="#id8" title="Permalink to this table">¶</a></caption>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Bandwidth</th>
 <th class="head">Delay × Bandwidth Product</th>
@@ -982,27 +983,27 @@ segment. After all, there is no telling how long it will be before the
 window opens further.</p>
 <p>It turns out that the strategy of aggressively taking advantage of any
 available window leads to a situation now known as the <em>silly window
-syndrome</em>. <a class="reference internal" href="#fig-sillywindow"><span class="std std-ref">Figure 7</span></a> helps visualize what happens. If
-you think of a TCP stream as a conveyor belt with “full” containers
-(data segments) going in one direction and empty containers (ACKs) going
-in the reverse direction, then <code class="docutils literal notranslate"><span class="pre">MSS</span></code>-sized segments correspond to
-large containers and 1-byte segments correspond to very small
-containers. As long as the sender is sending <code class="docutils literal notranslate"><span class="pre">MSS</span></code>-sized segments and
-the receiver ACKs at least one <code class="docutils literal notranslate"><span class="pre">MSS</span></code> of data at a time, everything is
-good (<a class="reference internal" href="#fig-sillywindow"><span class="std std-ref">Figure 7(a)</span></a>). But, what if the receiver has to
-reduce the window, so that at some time the sender can’t send a full
-<code class="docutils literal notranslate"><span class="pre">MSS</span></code> of data? If the sender aggressively fills a
-smaller-than-<code class="docutils literal notranslate"><span class="pre">MSS</span></code> empty container as soon as it arrives, then the
-receiver will ACK that smaller number of bytes, and hence the small
-container introduced into the system remains in the system indefinitely.
-That is, it is immediately filled and emptied at each end and is never
-coalesced with adjacent containers to create larger containers, as in
-<a class="reference internal" href="#fig-sillywindow"><span class="std std-ref">Figure 7(b)</span></a>. This scenario was discovered when early
+syndrome</em>. <a class="reference internal" href="#fig-sillywindow"><span class="std std-numref">Figure 133</span></a> helps visualize what
+happens.  If you think of a TCP stream as a conveyor belt with “full”
+containers (data segments) going in one direction and empty containers
+(ACKs) going in the reverse direction, then <code class="docutils literal notranslate"><span class="pre">MSS</span></code>-sized segments
+correspond to large containers and 1-byte segments correspond to very
+small containers. As long as the sender is sending <code class="docutils literal notranslate"><span class="pre">MSS</span></code>-sized
+segments and the receiver ACKs at least one <code class="docutils literal notranslate"><span class="pre">MSS</span></code> of data at a time,
+everything is good (<a class="reference internal" href="#fig-sillywindow"><span class="std std-numref">Figure 133(a)</span></a>). But,
+what if the receiver has to reduce the window, so that at some time
+the sender can’t send a full <code class="docutils literal notranslate"><span class="pre">MSS</span></code> of data? If the sender
+aggressively fills a smaller-than-<code class="docutils literal notranslate"><span class="pre">MSS</span></code> empty container as soon as
+it arrives, then the receiver will ACK that smaller number of bytes,
+and hence the small container introduced into the system remains in
+the system indefinitely.  That is, it is immediately filled and
+emptied at each end and is never coalesced with adjacent containers to
+create larger containers, as in <a class="reference internal" href="#fig-sillywindow"><span class="std std-numref">Figure 133(b)</span></a>. This scenario was discovered when early
 implementations of TCP regularly found themselves filling the network
 with tiny segments.</p>
 <div class="figure align-center" id="id9">
 <span id="fig-sillywindow"></span><a class="reference internal image-reference" href="../_images/f05-09-9780123850591.png"><img alt="../_images/f05-09-9780123850591.png" src="../_images/f05-09-9780123850591.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-number">Figure 133: </span><span class="caption-text">Silly window syndrome. (a) As long as the sender sends
+<p class="caption"><span class="caption-number">Figure 133. </span><span class="caption-text">Silly window syndrome. (a) As long as the sender sends
 MSS-sized segments and the receiver ACKs one MSS at a time, the
 system works smoothly. (b) As soon as the sender sends less than
 one MSS, or the receiver ACKs less than one MSS, a small
@@ -1036,12 +1037,12 @@ wait too long, then we hurt interactive applications like Telnet. If we
 don’t wait long enough, then we risk sending a bunch of tiny packets and
 falling into the silly window syndrome. The answer is to introduce a
 timer and to transmit when the timer expires.</p>
-<p>While we could use a clock-based timer—for example, one that fires every
-100 ms—Nagle introduced an elegant <em>self-clocking</em> solution. The idea is
-that as long as TCP has any data in flight, the sender will eventually
-receive an ACK. This ACK can be treated like a timer firing, triggering
-the transmission of more data. Nagle’s algorithm provides a simple,
-unified rule for deciding when to transmit:</p>
+<p>While we could use a clock-based timer—for example, one that fires
+every 100 ms—Nagle introduced an elegant <em>self-clocking</em> solution. The
+idea is that as long as TCP has any data in flight, the sender will
+eventually receive an ACK. This ACK can be treated like a timer
+firing, triggering the transmission of more data. Nagle’s algorithm
+provides a simple, unified rule for deciding when to transmit:</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">When</span> <span class="n">the</span> <span class="n">application</span> <span class="n">produces</span> <span class="n">data</span> <span class="n">to</span> <span class="n">send</span>
     <span class="k">if</span> <span class="n">both</span> <span class="n">the</span> <span class="n">available</span> <span class="n">data</span> <span class="n">and</span> <span class="n">the</span> <span class="n">window</span> <span class="o">&gt;=</span> <span class="n">MSS</span>
         <span class="n">send</span> <span class="n">a</span> <span class="n">full</span> <span class="n">segment</span>
@@ -1084,23 +1085,23 @@ experience using&nbsp;TCP.</p>
 pair of hosts. This is the algorithm that was originally described in
 the TCP specification—and the following description presents it in those
 terms—but it could be used by any end-to-end protocol.</p>
-<p>The idea is to keep a running average of the RTT and then to compute the
-timeout as a function of this RTT. Specifically, every time TCP sends a
-data segment, it records the time. When an ACK for that segment arrives,
-TCP reads the time again, and then takes the difference between these
-two times as a <code class="docutils literal notranslate"><span class="pre">SampleRTT</span></code>. TCP then computes an <code class="docutils literal notranslate"><span class="pre">EstimatedRTT</span></code> as a
-weighted average between the previous estimate and this new sample. That
-is,</p>
+<p>The idea is to keep a running average of the RTT and then to compute
+the timeout as a function of this RTT. Specifically, every time TCP
+sends a data segment, it records the time. When an ACK for that
+segment arrives, TCP reads the time again, and then takes the
+difference between these two times as a <code class="docutils literal notranslate"><span class="pre">SampleRTT</span></code>. TCP then
+computes an <code class="docutils literal notranslate"><span class="pre">EstimatedRTT</span></code> as a weighted average between the
+previous estimate and this new sample. That is,</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">EstimatedRTT</span> <span class="o">=</span> <span class="n">alpha</span> <span class="n">x</span> <span class="n">EstimatedRTT</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">alpha</span><span class="p">)</span> <span class="n">x</span> <span class="n">SampleRTT</span>
 </pre></div>
 </div>
-<p>The parameter <code class="docutils literal notranslate"><span class="pre">alpha</span></code> is selected to <em>smooth</em> the <code class="docutils literal notranslate"><span class="pre">EstimatedRTT</span></code>. A
-small <code class="docutils literal notranslate"><span class="pre">alpha</span></code> tracks changes in the RTT but is perhaps too heavily
-influenced by temporary fluctuations. On the other hand, a large
-<code class="docutils literal notranslate"><span class="pre">alpha</span></code> is more stable but perhaps not quick enough to adapt to real
-changes. The original TCP specification recommended a setting of
-<code class="docutils literal notranslate"><span class="pre">alpha</span></code> between 0.8 and 0.9. TCP then uses <code class="docutils literal notranslate"><span class="pre">EstimatedRTT</span></code> to compute
-the timeout in a rather conservative way:</p>
+<p>The parameter <code class="docutils literal notranslate"><span class="pre">alpha</span></code> is selected to <em>smooth</em> the
+<code class="docutils literal notranslate"><span class="pre">EstimatedRTT</span></code>. A small <code class="docutils literal notranslate"><span class="pre">alpha</span></code> tracks changes in the RTT but is
+perhaps too heavily influenced by temporary fluctuations. On the other
+hand, a large <code class="docutils literal notranslate"><span class="pre">alpha</span></code> is more stable but perhaps not quick enough to
+adapt to real changes. The original TCP specification recommended a
+setting of <code class="docutils literal notranslate"><span class="pre">alpha</span></code> between 0.8 and 0.9. TCP then uses
+<code class="docutils literal notranslate"><span class="pre">EstimatedRTT</span></code> to compute the timeout in a rather conservative way:</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">TimeOut</span> <span class="o">=</span> <span class="mi">2</span> <span class="n">x</span> <span class="n">EstimatedRTT</span>
 </pre></div>
 </div>
@@ -1110,19 +1111,20 @@ the timeout in a rather conservative way:</p>
 <p>After several years of use on the Internet, a rather obvious flaw was
 discovered in this simple algorithm. The problem was that an ACK does
 not really acknowledge a transmission; it actually acknowledges the
-receipt of data. In other words, whenever a segment is retransmitted and
-then an ACK arrives at the sender, it is impossible to determine if this
-ACK should be associated with the first or the second transmission of
-the segment for the purpose of measuring the sample RTT. It is necessary
-to know which transmission to associate it with so as to compute an
-accurate <code class="docutils literal notranslate"><span class="pre">SampleRTT</span></code>. As illustrated in <a class="reference internal" href="#fig-tcp-karn"><span class="std std-ref">Figure 8</span></a>, if
-you assume that the ACK is for the original transmission but it was
-really for the second, then the <code class="docutils literal notranslate"><span class="pre">SampleRTT</span></code> is too large (a); if you
-assume that the ACK is for the second transmission but it was actually
-for the first, then the <code class="docutils literal notranslate"><span class="pre">SampleRTT</span></code> is too small (b).</p>
+receipt of data. In other words, whenever a segment is retransmitted
+and then an ACK arrives at the sender, it is impossible to determine
+if this ACK should be associated with the first or the second
+transmission of the segment for the purpose of measuring the sample
+RTT. It is necessary to know which transmission to associate it with
+so as to compute an accurate <code class="docutils literal notranslate"><span class="pre">SampleRTT</span></code>. As illustrated in
+<a class="reference internal" href="#fig-tcp-karn"><span class="std std-numref">Figure 134</span></a>, if you assume that the ACK is for
+the original transmission but it was really for the second, then the
+<code class="docutils literal notranslate"><span class="pre">SampleRTT</span></code> is too large (a); if you assume that the ACK is for the
+second transmission but it was actually for the first, then the
+<code class="docutils literal notranslate"><span class="pre">SampleRTT</span></code> is too small (b).</p>
 <div class="figure align-center" id="id10">
 <span id="fig-tcp-karn"></span><a class="reference internal image-reference" href="../_images/f05-10-9780123850591.png"><img alt="../_images/f05-10-9780123850591.png" src="../_images/f05-10-9780123850591.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-number">Figure 134: </span><span class="caption-text">Associating the ACK with (a)&nbsp;original transmission
+<p class="caption"><span class="caption-number">Figure 134. </span><span class="caption-text">Associating the ACK with (a)&nbsp;original transmission
 versus (b)&nbsp;retransmission.</span></p>
 </div>
 <p>The solution, which was proposed in 1987, is surprisingly simple.
@@ -1174,15 +1176,15 @@ It then folds this new sample into the timeout calculation as follows:</p>
 <span class="n">Deviation</span> <span class="o">=</span> <span class="n">Deviation</span> <span class="o">+</span> <span class="n">delta</span> <span class="p">(</span><span class="o">|</span><span class="n">Difference</span><span class="o">|</span> <span class="o">-</span> <span class="n">Deviation</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>where delta and delta are fractions between 0 and 1. That is, we
+<p>where <code class="docutils literal notranslate"><span class="pre">delta</span></code> and delta are fractions between 0 and 1. That is, we
 calculate both the mean RTT and the variation in that mean.</p>
 <p>TCP then computes the timeout value as a function of both
 <code class="docutils literal notranslate"><span class="pre">EstimatedRTT</span></code> and <code class="docutils literal notranslate"><span class="pre">Deviation</span></code> as follows:</p>
 <div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">TimeOut</span> <span class="o">=</span> <span class="n">mu</span> <span class="n">x</span> <span class="n">EstimatedRTT</span> <span class="o">+</span> <span class="n">phi</span> <span class="n">x</span> <span class="n">Deviation</span>
 </pre></div>
 </div>
-<p>where based on experience, mu is typically set to 1 and phi is set to 4.
-Thus, when the variance is small, <code class="docutils literal notranslate"><span class="pre">TimeOut</span></code> is close to
+<p>where based on experience, <code class="docutils literal notranslate"><span class="pre">mu</span></code> is typically set to 1 and <code class="docutils literal notranslate"><span class="pre">phi</span></code> is
+set to 4.  Thus, when the variance is small, <code class="docutils literal notranslate"><span class="pre">TimeOut</span></code> is close to
 <code class="docutils literal notranslate"><span class="pre">EstimatedRTT</span></code>; a large variance causes the <code class="docutils literal notranslate"><span class="pre">Deviation</span></code> term to
 dominate the calculation.</p>
 </div>
@@ -1192,11 +1194,11 @@ dominate the calculation.</p>
 TCP. The first is that it is possible to implement the calculation for
 <code class="docutils literal notranslate"><span class="pre">EstimatedRTT</span></code> and <code class="docutils literal notranslate"><span class="pre">Deviation</span></code> without using floating-point
 arithmetic. Instead, the whole calculation is scaled by 2:sup:<cite>n</cite>,
-with delta selected to be 1/2:sup:<cite>n</cite>. This allows us to do integer
+with delta selected to be 1/2<sup>n</sup>. This allows us to do integer
 arithmetic, implementing multiplicationand division using shifts,
 thereby achieving higher performance. The resulting calculation is given
 by the following code fragment, where n=3
-(i.e., delta = 1/8). Note that <code class="docutils literal notranslate"><span class="pre">EstimatedRTT</span></code> and <code class="docutils literal notranslate"><span class="pre">Deviation</span></code> are
+(i.e., <code class="docutils literal notranslate"><span class="pre">delta</span> <span class="pre">=</span> <span class="pre">1/8</span></code>). Note that <code class="docutils literal notranslate"><span class="pre">EstimatedRTT</span></code> and <code class="docutils literal notranslate"><span class="pre">Deviation</span></code> are
 stored in their scaled-up forms, while the value of <code class="docutils literal notranslate"><span class="pre">SampleRTT</span></code> at the
 start of the code and of <code class="docutils literal notranslate"><span class="pre">TimeOut</span></code> at the end are real, unscaled
 values. If you find the code hard to follow, you might want to try
@@ -1401,37 +1403,38 @@ The importance of such measurements is that they represent the
 performance seen by application programs.</p>
 <div class="figure align-center" id="id11">
 <span id="fig-experiment"></span><a class="reference internal image-reference" href="../_images/f05-11-9780123850591.png"><img alt="../_images/f05-11-9780123850591.png" src="../_images/f05-11-9780123850591.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-number">Figure 135: </span><span class="caption-text">Measured system: Two Linux workstations and a pair of
+<p class="caption"><span class="caption-number">Figure 135. </span><span class="caption-text">Measured system: Two Linux workstations and a pair of
 Gbps Ethernet links.</span></p>
 </div>
 <p>We begin, as any report of experimental results should, by describing
 our experimental method. This includes the apparatus used in the
 experiments; in this case, each workstation has a pair of dual CPU
-2.4-GHz Xeon processors running Linux. In order to enable speeds above 1
-Gbps, a pair of Ethernet adaptors (labeled NIC, for network interface
-card) are used on each machine. The Ethernet spans a single machine room
-so propagation is not an issue, making this a measure of
+2.4-GHz Xeon processors running Linux. In order to enable speeds above
+1 Gbps, a pair of Ethernet adaptors (labeled NIC, for network
+interface card) are used on each machine. The Ethernet spans a single
+machine room so propagation is not an issue, making this a measure of
 processor/software overheads. A test program running on top of the
 socket interface simply tries to transfer data as quickly as possible
-from one machine to the other. <a class="reference internal" href="#fig-experiment"><span class="std std-ref">Figure 9</span></a> illustrates
-the setup.</p>
+from one machine to the other. <a class="reference internal" href="#fig-experiment"><span class="std std-numref">Figure 135</span></a>
+illustrates the setup.</p>
 <p>You may notice that this experimental setup is not especially bleeding
 edge in terms of the hardware or link speed. The point of this section
 is not to show how fast a particular protocol can run, but to illustrate
 the general methodology for measuring and reporting protocol
 performance.</p>
-<p>The throughput test is performed for a variety of message sizes using a
-standard benchmarking tool called TTCP. The results of the throughput
-test are given in <a class="reference internal" href="#fig-xput"><span class="std std-ref">Figure 10</span></a>. The key thing to notice in this
-graph is that throughput improves as the messages get larger. This makes
-sense—each message involves a certain amount of overhead, so a larger
-message means that this overhead is amortized over more bytes. The
-throughput curve flattens off above 1&nbsp;KB, at which point the per-message
-overhead becomes insignificant when compared to the large number of
-bytes that the protocol stack has to process.</p>
+<p>The throughput test is performed for a variety of message sizes using
+a standard benchmarking tool called TTCP. The results of the
+throughput test are given in <a class="reference internal" href="#fig-xput"><span class="std std-numref">Figure 136</span></a>. The key
+thing to notice in this graph is that throughput improves as the
+messages get larger. This makes sense—each message involves a certain
+amount of overhead, so a larger message means that this overhead is
+amortized over more bytes. The throughput curve flattens off above
+1&nbsp;KB, at which point the per-message overhead becomes insignificant
+when compared to the large number of bytes that the protocol stack has
+to process.</p>
 <div class="figure align-center" id="id12">
 <span id="fig-xput"></span><a class="reference internal image-reference" href="../_images/f05-12-9780123850591.png"><img alt="../_images/f05-12-9780123850591.png" src="../_images/f05-12-9780123850591.png" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-number">Figure 136: </span><span class="caption-text">Measured throughput using TCP, for various message
+<p class="caption"><span class="caption-number">Figure 136. </span><span class="caption-text">Measured throughput using TCP, for various message
 sizes.</span></p>
 </div>
 <p>It’s worth noting that the maximum throughput is less than 2 Gbps, the

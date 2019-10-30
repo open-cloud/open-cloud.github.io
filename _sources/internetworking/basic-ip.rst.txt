@@ -49,13 +49,14 @@ switches would still be viewed as a single network.
    A simple internetwork. H denotes a host and R denotes
    a router.
 
-:ref:`Figure 1 <fig-inet>` shows an example internetwork. An internetwork is
-often referred to as a “network of networks” because it is made up of
-lots of smaller networks. In this figure, we see Ethernets, a wireless
-network, and a point-to-point link. Each of these is a single-technology
-network. The nodes that interconnect the networks are called *routers*.
-They are also sometimes called *gateways*, but since this term has
-several other connotations, we restrict our usage to router.
+:numref:`Figure %s <fig-inet>` shows an example internetwork. An
+internetwork is often referred to as a “network of networks” because
+it is made up of lots of smaller networks. In this figure, we see
+Ethernets, a wireless network, and a point-to-point link. Each of
+these is a single-technology network. The nodes that interconnect the
+networks are called *routers*.  They are also sometimes called
+*gateways*, but since this term has several other connotations, we
+restrict our usage to router.
 
 .. _fig-ip-graph:
 .. figure:: figures/f03-15-9780123850591.png
@@ -71,9 +72,9 @@ heterogeneous internetworks. It was originally known as the Kahn-Cerf
 protocol after its inventors. One way to think of IP is that it runs on
 all the nodes (both hosts and routers) in a collection of networks and
 defines the infrastructure that allows these nodes and networks to
-function as a single logical internetwork. For example, :ref:`Figure
-2 <fig-ip-graph>` shows how hosts H5 and H8 are logically connected by
-the internet in :ref:`Figure 1 <fig-inet>`, including the protocol graph
+function as a single logical internetwork. For example, :numref:`Figure
+%s <fig-ip-graph>` shows how hosts H5 and H8 are logically connected by
+the internet in :numref:`Figure %s <fig-inet>`, including the protocol graph
 running on each node. Note that higher-level protocols, such as TCP and
 UDP, typically run on top of IP on the hosts.
 
@@ -152,22 +153,23 @@ failure modes.
 Packet Format
 ~~~~~~~~~~~~~
 
-Clearly, a key part of the IP service model is the type of packets that
-can be carried. The IP datagram, like most packets, consists of a header
-followed by a number of bytes of data. The format of the header is shown
-in :ref:`Figure 3 <fig-iphead>`. Note that we have adopted a different style
-of representing packets than the one we used in previous chapters. This
-is because packet formats at the internetworking layer and above, where
-we will be focusing our attention for the next few chapters, are almost
-invariably designed to align on 32-bit boundaries to simplify the task
-of processing them in software. Thus, the common way of representing
-them (used in Internet Requests for Comments, for example) is to draw
-them as a succession of 32-bit words. The top word is the one
-transmitted first, and the leftmost byte of each word is the one
-transmitted first. In this representation, you can easily recognize
-fields that are a multiple of 8 bits long. On the odd occasion when
-fields are not an even multiple of 8 bits, you can determine the field
-lengths by looking at the bit positions marked at the top of the packet.
+Clearly, a key part of the IP service model is the type of packets
+that can be carried. The IP datagram, like most packets, consists of a
+header followed by a number of bytes of data. The format of the header
+is shown in :numref:`Figure %s <fig-iphead>`. Note that we have
+adopted a different style of representing packets than the one we used
+in previous chapters. This is because packet formats at the
+internetworking layer and above, where we will be focusing our
+attention for the next few chapters, are almost invariably designed to
+align on 32-bit boundaries to simplify the task of processing them in
+software. Thus, the common way of representing them (used in Internet
+Requests for Comments, for example) is to draw them as a succession of
+32-bit words. The top word is the one transmitted first, and the
+leftmost byte of each word is the one transmitted first. In this
+representation, you can easily recognize fields that are a multiple of
+8 bits long. On the odd occasion when fields are not an even multiple
+of 8 bits, you can determine the field lengths by looking at the bit
+positions marked at the top of the packet.
 
 .. _fig-iphead:
 .. figure:: figures/f03-16-9780123850591.png
@@ -314,16 +316,16 @@ did arrive. IP does not attempt to recover from missing fragments.
    networks graphed in the earlier figure.
 
 To see what this all means, consider what happens when host H5 sends a
-datagram to host H8 in the example internet shown in :ref:`Figure
-1 <fig-inet>`. Assuming that the MTU is 1500 bytes for the two Ethernets
-and the 802.11 network, and 532 bytes for the point-to-point network,
-then a 1420-byte datagram (20-byte IP header plus 1400 bytes of data)
-sent from H5 makes it across the 802.11 network and the first Ethernet
-without fragmentation but must be fragmented into three datagrams at
-router R2. These three fragments are then forwarded by router R3 across
-the second Ethernet to the destination host. This situation is
-illustrated in :ref:`Figure 4 <fig-frag>`. This figure also serves to
-reinforce two important points:
+datagram to host H8 in the example internet shown in :numref:`Figure
+%s <fig-inet>`. Assuming that the MTU is 1500 bytes for the two
+Ethernets and the 802.11 network, and 532 bytes for the point-to-point
+network, then a 1420-byte datagram (20-byte IP header plus 1400 bytes
+of data) sent from H5 makes it across the 802.11 network and the first
+Ethernet without fragmentation but must be fragmented into three
+datagrams at router R2. These three fragments are then forwarded by
+router R3 across the second Ethernet to the destination host. This
+situation is illustrated in :numref:`Figure %s <fig-frag>`. This
+figure also serves to reinforce two important points:
 
 1. Each fragment is itself a self-contained IP datagram that is
    transmitted over a sequence of physical networks, independent of the
@@ -340,25 +342,25 @@ reinforce two important points:
    Header fields used in IP fragmentation: 
    (a) unfragmented packet; (b) fragmented packets.
 
-The fragmentation process can be understood in detail by looking at the
-header fields of each datagram, as is done in :ref:`Figure 5 <fig-fragment>`.
-The unfragmented packet, shown at the top, has 1400 bytes of data and a
-20-byte IP header. When the packet arrives at router R2, which has an
-MTU of 532 bytes, it has to be fragmented. A 532-byte MTU leaves
-512 bytes for data after the 20-byte IP header, so the first fragment
-contains 512 bytes of data. The router sets the M bit in the ``Flags``
-field (see :ref:`Figure 3 <fig-iphead>`), meaning that there are more
-fragments to follow, and it sets the ``Offset`` to 0, since this
-fragment contains the first part of the original datagram. The data
-carried in the second fragment starts with the 513th byte of the
-original data, so the ``Offset`` field in this header is set to 64,
-which is 512/8. Why the division by 8? Because the designers of IP
-decided that fragmentation should always happen on 8-byte boundaries,
-which means that the ``Offset`` field counts 8-byte chunks, not bytes.
-(We leave it as an exercise for you to figure out why this design
-decision was made.) The third fragment contains the last 376 bytes of
-data, and the offset is now 2 × 512/8 = 128. Since this is the last
-fragment, the M bit is not set.
+The fragmentation process can be understood in detail by looking at
+the header fields of each datagram, as is done in :numref:`Figure %s
+<fig-fragment>`.  The unfragmented packet, shown at the top, has
+1400 bytes of data and a 20-byte IP header. When the packet arrives at
+router R2, which has an MTU of 532 bytes, it has to be fragmented. A
+532-byte MTU leaves 512 bytes for data after the 20-byte IP header, so
+the first fragment contains 512 bytes of data. The router sets the M
+bit in the ``Flags`` field (see :numref:`Figure %s <fig-iphead>`),
+meaning that there are more fragments to follow, and it sets the
+``Offset`` to 0, since this fragment contains the first part of the
+original datagram. The data carried in the second fragment starts with
+the 513th byte of the original data, so the ``Offset`` field in this
+header is set to 64, which is 512/8. Why the division by 8? Because
+the designers of IP decided that fragmentation should always happen on
+8-byte boundaries, which means that the ``Offset`` field counts 8-byte
+chunks, not bytes.  (We leave it as an exercise for you to figure out
+why this design decision was made.) The third fragment contains the
+last 376 bytes of data, and the offset is now 2 × 512/8 = 128. Since
+this is the last fragment, the M bit is not set.
 
 Observe that the fragmentation process is done in such a way that it
 could be repeated if a fragment arrived at another network with an even
@@ -391,27 +393,28 @@ addressing scheme—one in which no two hosts have the same address.
 Global uniqueness is the first property that should be provided in an
 addressing scheme.
 
-Ethernet addresses are globally unique, but that alone does not suffice
-for an addressing scheme in a large internetwork. Ethernet addresses are
-also *flat*, which means that they have no structure and provide very
-few clues to routing protocols. (In fact, Ethernet addresses do have a
-structure for the purposes of *assignment*—the first 24 bits identify
-the manufacturer—but this provides no useful information to routing
-protocols since this structure has nothing to do with network topology.)
-In contrast, IP addresses are *hierarchical*, by which we mean that they
-are made up of several parts that correspond to some sort of hierarchy
-in the internetwork. Specifically, IP addresses consist of two parts,
-usually referred to as a *network* part and a *host* part. This is a
-fairly logical structure for an internetwork, which is made up of many
+Ethernet addresses are globally unique, but that alone does not
+suffice for an addressing scheme in a large internetwork. Ethernet
+addresses are also *flat*, which means that they have no structure and
+provide very few clues to routing protocols. (In fact, Ethernet
+addresses do have a structure for the purposes of *assignment*—the
+first 24 bits identify the manufacturer—but this provides no useful
+information to routing protocols since this structure has nothing to
+do with network topology.)  In contrast, IP addresses are
+*hierarchical*, by which we mean that they are made up of several
+parts that correspond to some sort of hierarchy in the
+internetwork. Specifically, IP addresses consist of two parts, usually
+referred to as a *network* part and a *host* part. This is a fairly
+logical structure for an internetwork, which is made up of many
 interconnected networks. The network part of an IP address identifies
 the network to which the host is attached; all hosts attached to the
 same network have the same network part in their IP address. The host
 part then identifies each host uniquely on that particular network.
-Thus, in the simple internetwork of :ref:`Figure 1 <fig-inet>`, the addresses
-of the hosts on network 1, for example, would all have the same network
-part and different host parts.
+Thus, in the simple internetwork of :numref:`Figure %s <fig-inet>`,
+the addresses of the hosts on network 1, for example, would all have
+the same network part and different host parts.
 
-Note that the routers in :ref:`Figure 1 <fig-inet>` are attached to two
+Note that the routers in :numref:`Figure %s <fig-inet>` are attached to two
 networks. They need to have an address on each network, one for each
 interface. For example, router R1, which sits between the wireless
 network and an Ethernet, has an IP address on the interface to the
@@ -424,28 +427,29 @@ interfaces than to hosts.
 
 Now, what do these hierarchical addresses look like? Unlike some other
 forms of hierarchical address, the sizes of the two parts are not the
-same for all addresses. Originally, IP addresses were divided into three
-different classes, as shown in :ref:`Figure 6 <fig-class>`, each of which
-defines different-sized network and host parts. (There are also class D
-addresses that specify a multicast group and class E addresses that are
-currently unused.) In all cases, the address is 32 bits long.
+same for all addresses. Originally, IP addresses were divided into
+three different classes, as shown in :numref:`Figure %s <fig-class>`,
+each of which defines different-sized network and host parts. (There
+are also class D addresses that specify a multicast group and class E
+addresses that are currently unused.) In all cases, the address is
+32 bits long.
 
 The class of an IP address is identified in the most significant few
 bits. If the first bit is 0, it is a class A address. If the first bit
-is 1 and the second is 0, it is a class B address. If the first two bits
-are 1 and the third is 0, it is a class C address. Thus, of the
+is 1 and the second is 0, it is a class B address. If the first two
+bits are 1 and the third is 0, it is a class C address. Thus, of the
 approximately 4 billion possible IP addresses, half are class A,
 one-quarter are class B, and one-eighth are class C. Each class
 allocates a certain number of bits for the network part of the address
 and the rest for the host part. Class A networks have 7 bits for the
 network part and 24 bits for the host part, meaning that there can be
-only 126 class A networks (the values 0 and 127 are reserved), but each
-of them can accommodate up to :math:`2^{24} - 2` (about 16 million) hosts 
-(again, there are two reserved values).
-Class B addresses allocate 14 bits for the network and 16 bits for the
-host, meaning that each class B network has room for 65,534 hosts.
-Finally, class C addresses have only 8 bits for the host and 21 for the
-network part. Therefore, a class C network can have only 256 unique host
+only 126 class A networks (the values 0 and 127 are reserved), but
+each of them can accommodate up to :math:`2^{24} - 2` (about
+16 million) hosts (again, there are two reserved values).  Class B
+addresses allocate 14 bits for the network and 16 bits for the host,
+meaning that each class B network has room for 65,534 hosts.  Finally,
+class C addresses have only 8 bits for the host and 21 for the network
+part. Therefore, a class C network can have only 256 unique host
 identifiers, which means only 254 attached hosts (one host identifier,
 255, is reserved for broadcast, and 0 is not a valid host number).
 However, the addressing scheme supports 2\:sup:`21` class C networks.
@@ -560,8 +564,8 @@ forwarding table, this simplifies to
    else
        deliver packet to default router
 
-Let’s see how this works in the example internetwork of :ref:`Figure
-1 <fig-inet>`. First, suppose that H1 wants to send a datagram to H2.
+Let’s see how this works in the example internetwork of :numref:`Figure
+%s <fig-inet>`. First, suppose that H1 wants to send a datagram to H2.
 Since they are on the same physical network, H1 and H2 have the same
 network number in their IP address. Thus, H1 deduces that it can deliver
 the datagram directly to H2 over the Ethernet. The one issue that needs
@@ -569,18 +573,18 @@ to be resolved is how H1 finds out the correct Ethernet address for
 H2—the resolution mechanism described in a later section addresses this
 issue.
 
-Now suppose H5 wants to send a datagram to H8. Since these hosts are on
-different physical networks, they have different network numbers, so H5
-deduces that it needs to send the datagram to a router. R1 is the only
-choice—the default router—so H1 sends the datagram over the wireless
-network to R1. Similarly, R1 knows that it cannot deliver a datagram
-directly to H8 because neither of R1’s interfaces are on the same
-network as H8. Suppose R1’s default router is R2; R1 then sends the
-datagram to R2 over the Ethernet. Assuming R2 has the forwarding table
-shown in :ref:`Table 1 <tab-ipfwdtab>`, it looks up H8’s network number
-(network 4) and forwards the datagram over the point-to-point network to
-R3. Finally, R3, since it is on the same network as H8, forwards the
-datagram directly to H8.
+Now suppose H5 wants to send a datagram to H8. Since these hosts are
+on different physical networks, they have different network numbers,
+so H5 deduces that it needs to send the datagram to a router. R1 is
+the only choice—the default router—so H1 sends the datagram over the
+wireless network to R1. Similarly, R1 knows that it cannot deliver a
+datagram directly to H8 because neither of R1’s interfaces are on the
+same network as H8. Suppose R1’s default router is R2; R1 then sends
+the datagram to R2 over the Ethernet. Assuming R2 has the forwarding
+table shown in :numref:`Table %s <tab-ipfwdtab>`, it looks up H8’s
+network number (network 4) and forwards the datagram over the
+point-to-point network to R3. Finally, R3, since it is on the same
+network as H8, forwards the datagram directly to H8.
  
 .. _tab-ipfwdtab:
 .. table:: Forwarding table for Router R2.
@@ -600,7 +604,7 @@ connected networks in the forwarding table. For example, we could label
 the network interfaces of router R2 as interface 0 for the 
 point-to-point link (network 3) and interface 1 for the Ethernet 
 (network 2). Then R2 would have the forwarding table shown 
-in :ref:`Table 2 <tab-ipfwdtab2>`. 
+in :numref:`Table %s <tab-ipfwdtab2>`. 
 
 .. _tab-ipfwdtab2:
 .. table:: Complete Forwarding table for Router R2.
@@ -722,7 +726,7 @@ must have the same network number. The subnet mask enables us to
 introduce a *subnet number*; all hosts on the same physical network will
 have the same subnet number, which means that hosts may be on different
 physical networks but share a single network number. This concept is
-illustrated in :ref:`Figure 7 <fig-subaddr>`.
+illustrated in :numref:`Figure %s <fig-subaddr>`.
   
 .. _fig-subaddr:
 .. figure:: figures/f03-20-9780123850591.png
@@ -732,15 +736,15 @@ illustrated in :ref:`Figure 7 <fig-subaddr>`.
    Subnet addressing.
 
 What subnetting means to a host is that it is now configured with both
-an IP address and a subnet mask for the subnet to which it is attached.
-For example, host H1 in :ref:`Figure 8 <fig-subnet>` is configured with an
-address of 128.96.34.15 and a subnet mask of 255.255.255.128. (All hosts
-on a given subnet are configured with the same mask; that is, there is
-exactly one subnet mask per subnet.) The bitwise AND of these two
-numbers defines the subnet number of the host and of all other hosts on
-the same subnet. In this case, 128.96.34.15 AND 255.255.255.128 equals
-128.96.34.0, so this is the subnet number for the topmost subnet in the
-figure.
+an IP address and a subnet mask for the subnet to which it is
+attached.  For example, host H1 in :numref:`Figure %s <fig-subnet>` is
+configured with an address of 128.96.34.15 and a subnet mask of
+255.255.255.128. (All hosts on a given subnet are configured with the
+same mask; that is, there is exactly one subnet mask per subnet.) The
+bitwise AND of these two numbers defines the subnet number of the host
+and of all other hosts on the same subnet. In this case, 128.96.34.15
+AND 255.255.255.128 equals 128.96.34.0, so this is the subnet number
+for the topmost subnet in the figure.
  
 .. _fig-subnet:
 .. figure:: figures/f03-21-9780123850591.png
@@ -771,8 +775,8 @@ table, the router ANDs the packet’s destination address with the
 ``SubnetMask``\ for each entry in turn; if the result matches the
 ``SubnetNumber`` of the entry, then this is the right entry to use, and
 it forwards the packet to the next hop router indicated. In the example
-network of :ref:`Figure 8 <fig-subnet>`, router R1 would have the entries
-shown in :ref:`Table 3 <tab-subnettab>`.
+network of :numref:`Figure %s <fig-subnet>`, router R1 would have the entries
+shown in :numref:`Table %s <tab-subnettab>`.
 
 .. _tab-subnettab:
 .. table:: Example Forwarding Table with Subnetting.
@@ -821,8 +825,8 @@ inefficient.
 An important consequence of subnetting is that different parts of the
 internet see the world differently. From outside our hypothetical
 campus, routers see a single network. In the example above, routers
-outside the campus see the collection of networks in :ref:`Figure
-8 <fig-subnet>` as just the network 128.96, and they keep one entry in
+outside the campus see the collection of networks in :numref:`Figure
+%s <fig-subnet>` as just the network 128.96, and they keep one entry in
 their forwarding tables to tell them how to reach it. Routers within the
 campus, however, need to be able to route packets to the right subnet.
 Thus, not all parts of the internet see exactly the same routing
@@ -861,10 +865,9 @@ number of hosts. Since we would now be handing out address space in
 chunks of 256 addresses at a time, we could more accurately match the
 amount of address space consumed to the size of the organization. For
 any organization with at least 256 hosts, we can guarantee an address
-utilization of at least 50%, and typically much more.
-
-   Even if you can justify a request of a class B network number, don’t
-   bother. They are all spoken for.
+utilization of at least 50%, and typically much more. (Sadly, even if
+you can justify a request of a class B network number, don’t bother,
+because they were all spoken for long ago.)
 
 This solution, however, raises a problem that is at least as serious:
 excessive storage requirements at the routers. If a single site has,
@@ -925,7 +928,7 @@ large number of corporations and campuses (customers). If we assign
 prefixes to the customers in such a way that many different customer
 networks connected to the provider network share a common, shorter
 address prefix, then we can get even greater aggregation of routes.
-Consider the example in :ref:`Figure 9 <fig-cidreg>`. Assume that eight
+Consider the example in :numref:`Figure %s <fig-cidreg>`. Assume that eight
 customers served by the provider network have each been assigned
 adjacent 24-bit network prefixes. Those prefixes all start with the same
 21 bits. Since all of the customers are reachable through the same
@@ -1042,11 +1045,11 @@ need to clutter its ARP table with this information.
 
    ARP packet format for mapping IP addresses into Ethernet addresses.
 
-:ref:`Figure 10 <fig-arp>` shows the ARP packet format for IP-to-Ethernet
-address mappings. In fact, ARP can be used for lots of other kinds of
-mappings—the major differences are in the address sizes. In addition to
-the IP and link-layer addresses of both sender and target, the packet
-contains
+:numref:`Figure %s <fig-arp>` shows the ARP packet format for
+IP-to-Ethernet address mappings. In fact, ARP can be used for lots of
+other kinds of mappings—the major differences are in the address
+sizes. In addition to the IP and link-layer addresses of both sender
+and target, the packet contains
 
 -  A ``HardwareType`` field, which specifies the type of physical
    network (e.g., Ethernet)
@@ -1064,10 +1067,10 @@ contains
 -  The source and target hardware (Ethernet) and protocol (IP) addresses
 
 Note that the results of the ARP process can be added as an extra column
-in a forwarding table like the one in `Table 1 <#ipfwdtab>`__. Thus, for
-example, when R2 needs to forward a packet to network 2, it not only
-finds that the next hop is R1, but also finds the MAC address to place
-on the packet to send it to R1.
+in a forwarding table like the one in :numref:`Table %s <tab-ipfwdtab>`.
+Thus, for example, when R2 needs to forward a packet to network 2, it
+not only finds that the next hop is R1, but also finds the MAC address
+to place on the packet to send it to R1.
 
 .. admonition:: Key Takeaway
 
@@ -1171,8 +1174,8 @@ is configured with just one piece of information: the IP address of the
 DHCP server. When a relay agent receives a ``DHCPDISCOVER`` message, it
 unicasts it to the DHCP server and awaits the response, which it will
 then send back to the requesting client. The process of relaying a
-message from a host to a remote DHCP server is shown in :ref:`Figure
-11 <fig-dhcp-relay>`.
+message from a host to a remote DHCP server is shown in :numref:`Figure
+%s <fig-dhcp-relay>`.
   
 .. _fig-dhcp-relay:
 .. figure:: figures/f03-24-9780123850591.png
@@ -1183,11 +1186,12 @@ message from a host to a remote DHCP server is shown in :ref:`Figure
    message from a host and sends a unicast DHCPDISCOVER to the DHCP
    server.
 
-:ref:`Figure 12 <fig-dhcp>` below shows the format of a DHCP message. The
-message is actually sent using a protocol called the *User Datagram
-Protocol* (UDP) that runs over IP. UDP is discussed in detail in the
-next chapter, but the only interesting thing it does in this context is
-to provide a demultiplexing key that says, “This is a DHCP packet.”
+:numref:`Figure %s <fig-dhcp>` below shows the format of a DHCP
+message. The message is actually sent using a protocol called the
+*User Datagram Protocol* (UDP) that runs over IP. UDP is discussed in
+detail in the next chapter, but the only interesting thing it does in
+this context is to provide a demultiplexing key that says, “This is a
+DHCP packet.”
  
 .. _fig-dhcp:
 .. figure:: figures/f03-25-9780123850591.png
@@ -1271,9 +1275,9 @@ at the end of this chapter.
 Virtual Networks and Tunnels
 ----------------------------
 
-We conclude our introduction to IP by considering an issue you might not
-have anticipated, but one that is becoming increasingly important.
-Our discussion up to this point has focused on making it possible for
+We conclude our introduction to IP by considering an issue you might
+not have anticipated, but one that is increasingly important. Our
+discussion up to this point has focused on making it possible for
 nodes on different networks to communicate with each other in an
 unrestricted way. This is usually the goal in the Internet—everybody
 wants to be able to send email to everybody, and the creator of a new
@@ -1285,7 +1289,7 @@ important example of such a situation is the *virtual private network*
 The term *VPN* is heavily overused and definitions vary, but intuitively
 we can define a VPN by considering first the idea of a private network.
 Corporations with many sites often build private networks by leasing
-transmission lines from the phone companies and using those lines to
+circuits from the phone companies and using those lines to
 interconnect sites. In such a network, communication is restricted to
 take place only among the sites of that corporation, which is often
 desirable for security reasons. To make a private network *virtual*, the
@@ -1301,12 +1305,12 @@ the establishment of such a VC can be administratively prevented, thus
 preventing unwanted connectivity between corporation X and
 corporation Y.
 
-:ref:`Figure 13(a) <fig-vpn>` shows two private networks for two separate
-corporations. In :ref:`Figure 13(b) <fig-vpn>` they are both migrated to a
-virtual circuit network. The limited connectivity of a real private
-network is maintained, but since the private networks now share the same
-transmission facilities and switches we say that two virtual private
-networks have been created.
+:numref:`Figure %s(a) <fig-vpn>` shows two private networks for two
+separate corporations. In :numref:`Figure %s(b) <fig-vpn>` they are
+both migrated to a virtual circuit network. The limited connectivity
+of a real private network is maintained, but since the private
+networks now share the same transmission facilities and switches we
+say that two virtual private networks have been created.
 
 .. _fig-vpn:
 .. figure:: figures/f03-26-9780123850591.png
@@ -1317,7 +1321,7 @@ networks have been created.
    separate private networks; (b) two virtual private networks
    sharing common switches.
 
-In :ref:`Figure 13 <fig-vpn>`, a virtual circuit network (using ATM, for
+In :numref:`Figure %s <fig-vpn>`, a virtual circuit network (using ATM, for
 example) is used to provide the controlled connectivity among sites. It
 is also possible to provide a similar function using an IP network to
 provide the connectivity. However, we cannot just connect the various
@@ -1346,11 +1350,11 @@ source address is that of the encapsulating router.
    internetwork.
 
 In the forwarding table of the router at the entrance to the tunnel,
-this virtual link looks much like a normal link. Consider, for example,
-the network in :ref:`Figure 14 <fig-tunnel>`. A tunnel has been configured
-from R1 to R2 and assigned a virtual interface number of 0. The
-forwarding table in R1 might therefore look like
-:ref:`Table 4 <tab-tunneltab>`.
+this virtual link looks much like a normal link. Consider, for
+example, the network in :numref:`Figure %s <fig-tunnel>`. A tunnel has
+been configured from R1 to R2 and assigned a virtual interface number
+of 0. The forwarding table in R1 might therefore look like
+:numref:`Table %s <tab-tunneltab>`.
 
 .. _tab-tunneltab:
 .. table:: Forwarding Table for Router R1.

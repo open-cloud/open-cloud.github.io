@@ -49,7 +49,7 @@ optimized for the purpose of calculating changes in topology. In many
 cases, the forwarding table may even be implemented in specialized
 hardware, whereas this is rarely if ever done for the routing table.
 
-:ref:`Table 1 <tab-rtab>` gives an example of a row from a routing
+:numref:`Table %s <tab-rtab>` gives an example of a row from a routing
 table, which tells us that network prefix 18/8 is to be reached by a
 next hop router with the IP address 171.69.245.10
 
@@ -64,7 +64,7 @@ next hop router with the IP address 171.69.245.10
    | 18/8          | 171.69.245.10 |
    +---------------+---------------+
 
-In contrast, :ref:`Table 2 <tab-ftab>` gives an example of a row from a 
+In contrast, :numref:`Table %s <tab-ftab>` gives an example of a row from a 
 forwarding table, which contains the information about exactly how to
 forward a packet to that next hop: Send it out interface number 0 with
 a MAC address of 8:0:2b:e4:b:1:2. Note that the last piece
@@ -103,14 +103,14 @@ networks, not for a network the size of the Internet.
 Network as a Graph
 ------------------
 
-Routing is, in essence, a problem of graph theory. :ref:`Figure
-1 <fig-graph-route>` shows a graph representing a network. The nodes of
+Routing is, in essence, a problem of graph theory. :numref:`Figure %s
+<fig-graph-route>` shows a graph representing a network. The nodes of
 the graph, labeled A through F, may be hosts, switches, routers, or
 networks. For our initial discussion, we will focus on the case where
-the nodes are routers. The edges of the graph correspond to the network
-links. Each edge has an associated *cost*, which gives some indication
-of the desirability of sending traffic over that link. A discussion of
-how edge costs are assigned is given in a later section.
+the nodes are routers. The edges of the graph correspond to the
+network links. Each edge has an associated *cost*, which gives some
+indication of the desirability of sending traffic over that link. A
+discussion of how edge costs are assigned is given in a later section.
 
    In the example networks (graphs) used throughout this chapter, we use
    undirected edges and assign each edge a single cost. This is actually
@@ -126,12 +126,13 @@ how edge costs are assigned is given in a later section.
 
    Network represented as a graph.
 
-The basic problem of routing is to find the lowest-cost path between any
-two nodes, where the cost of a path equals the sum of the costs of all
-the edges that make up the path. For a simple network like the one in
-:ref:`Figure 1 <fig-graph-route>`, you could imagine just calculating all the
-shortest paths and loading them into some nonvolatile storage on each
-node. Such a static approach has several shortcomings:
+The basic problem of routing is to find the lowest-cost path between
+any two nodes, where the cost of a path equals the sum of the costs of
+all the edges that make up the path. For a simple network like the one
+in :numref:`Figure %s <fig-graph-route>`, you could imagine just
+calculating all the shortest paths and loading them into some
+nonvolatile storage on each node. Such a static approach has several
+shortcomings:
 
 -  It does not deal with node or link failures.
 
@@ -210,24 +211,25 @@ that is down is assigned an infinite cost.
    +---+---+---+---+---+---+---+---+
 
 To see how a distance-vector routing algorithm works, it is easiest to
-consider an example like the one depicted in :ref:`Figure 2 <fig-dvroute>`. In
-this example, the cost of each link is set to 1, so that a least-cost
-path is simply the one with the fewest hops. (Since all edges have the
-same cost, we do not show the costs in the graph.) We can represent each
-node’s knowledge about the distances to all other nodes as a table like
-:ref:`Table 3 <tab-dvtab1>`. Note that each node knows only the information in
-one row of the table (the one that bears its name in the left column).
-The global view that is presented here is not available at any single
-point in the network.
+consider an example like the one depicted in :numref:`Figure %s
+<fig-dvroute>`. In this example, the cost of each link is set to 1, so
+that a least-cost path is simply the one with the fewest hops. (Since
+all edges have the same cost, we do not show the costs in the graph.)
+We can represent each node’s knowledge about the distances to all
+other nodes as a table like :numref:`Table %s <tab-dvtab1>`. Note that
+each node knows only the information in one row of the table (the one
+that bears its name in the left column).  The global view that is
+presented here is not available at any single point in the network.
 
-We may consider each row in :ref:`Table 3 <tab-dvtab1>` as a list of distances
-from one node to all other nodes, representing the current beliefs of
-that node. Initially, each node sets a cost of 1 to its directly
-connected neighbors and ∞ to all other nodes. Thus, A initially believes
-that it can reach B in one hop and that D is unreachable. The routing
-table stored at A reflects this set of beliefs and includes the name of
-the next hop that A would use to reach any reachable node. Initially,
-then, A’s routing table would look like :ref:`Table 4 <tab-dvtab2>`.
+We may consider each row in :numref:`Table %s <tab-dvtab1>` as a list
+of distances from one node to all other nodes, representing the
+current beliefs of that node. Initially, each node sets a cost of 1 to
+its directly connected neighbors and ∞ to all other nodes. Thus, A
+initially believes that it can reach B in one hop and that D is
+unreachable. The routing table stored at A reflects this set of
+beliefs and includes the name of the next hop that A would use to
+reach any reachable node. Initially, then, A’s routing table would
+look like :numref:`Table %s <tab-dvtab2>`.
 
 .. _tab-dvtab2:
 .. table::  Initial Routing Table at Node A. 
@@ -265,7 +267,7 @@ concludes that the cost of reaching B via C is 2. Since this is worse
 than the current cost of reaching B (1), this new information is
 ignored. At this point, A can update its routing table with costs and
 next hops for all nodes in the network. The result is shown in
-:ref:`Table 5 <tab-dvtab3>`.
+:numref:`Table %s <tab-dvtab3>`.
 
 .. _tab-dvtab3:
 .. table:: Final Routing Table at Node A.
@@ -288,16 +290,17 @@ next hops for all nodes in the network. The result is shown in
    | G           | 2    | F       |
    +-------------+------+---------+
 
-In the absence of any topology changes, it takes only a few exchanges of 
-information between neighbors before each node has a complete routing 
-table. The process of getting consistent routing information to all the 
-nodes is called *convergence*. :ref:`Table 6 <tab-dvtab4>` shows the final set 
-of costs from each node to all other nodes when routing has converged. 
-We must stress that there is no one node in the network that has all the 
-information in this table—each node only knows about the contents of its 
-own routing table. The beauty of a distributed algorithm like this is 
-that it enables all nodes to achieve a consistent view of the network in 
-the absence of any centralized authority. 
+In the absence of any topology changes, it takes only a few exchanges
+of information between neighbors before each node has a complete
+routing table. The process of getting consistent routing information
+to all the nodes is called *convergence*. :numref:`Table %s
+<tab-dvtab4>` shows the final set of costs from each node to all other
+nodes when routing has converged.  We must stress that there is no one
+node in the network that has all the information in this table—each
+node only knows about the contents of its own routing table. The
+beauty of a distributed algorithm like this is that it enables all
+nodes to achieve a consistent view of the network in the absence of
+any centralized authority.
 
 .. _tab-dvtab4:
 .. table:: Final Distances Stored at Each Node (Global View).
@@ -508,10 +511,11 @@ Routing protocols in internetworks differ very slightly from the
 idealized graph model described above. In an internetwork, the goal of
 the routers is to learn how to forward packets to various *networks*.
 Thus, rather than advertising the cost of reaching other routers, the
-routers advertise the cost of reaching networks. For example, in :ref:`Figure
-3 <fig-rip-eg>`, router C would advertise to router A the fact that it
-can reach networks 2 and 3 (to which it is directly connected) at a cost
-of 0, networks 5 and 6 at cost 1, and network 4 at cost 2.
+routers advertise the cost of reaching networks. For example, in
+:numref:`Figure %s <fig-rip-eg>`, router C would advertise to router A
+the fact that it can reach networks 2 and 3 (to which it is directly
+connected) at a cost of 0, networks 5 and 6 at cost 1, and network 4
+at cost 2.
 
 .. _fig-rip-eg:
 .. figure:: figures/f03-30-9780123850591.png
@@ -528,12 +532,12 @@ of 0, networks 5 and 6 at cost 1, and network 4 at cost 2.
    RIPv2 packet format.
 
 We can see evidence of this in the RIP (version 2) packet format in
-:ref:`Figure 4 <fig-rip>`. The majority of the packet is taken up with
-``(address, mask, distance)`` triples. However, the principles of the
-routing algorithm are just the same. For example, if router A learns
-from router B that network X can be reached at a lower cost via B than
-via the existing next hop in the routing table, A updates the cost and
-next hop information for the network number accordingly.
+:numref:`Figure %s <fig-rip>`. The majority of the packet is taken up
+with ``(address, mask, distance)`` triples. However, the principles of
+the routing algorithm are just the same. For example, if router A
+learns from router B that network X can be reached at a lower cost via
+B than via the existing next hop in the routing table, A updates the
+cost and next hop information for the network number accordingly.
 
 RIP is in fact a fairly straightforward implementation of
 distance-vector routing. Routers running RIP send their advertisements
@@ -637,14 +641,15 @@ eventually reaches all nodes.
    node X; (b) X floods LSP to A and C; (c) A and C flood LSP to B
    (but not X); (d) flooding is complete.
 
-:ref:`Figure 5 <fig-flood>` shows an LSP being flooded in a small network.
-Each node becomes shaded as it stores the new LSP. In `Figure
-5(a) <#flood>`__ the LSP arrives at node X, which sends it to neighbors
-A and C in :ref:`Figure 5(b) <fig-flood>`. A and C do not send it back to X,
-but send it on to B. Since B receives two identical copies of the LSP,
-it will accept whichever arrived first and ignore the second as a
-duplicate. It then passes the LSP onto D, which has no neighbors to
-flood it to, and the process is complete.
+:numref:`Figure %s <fig-flood>` shows an LSP being flooded in a small
+network.  Each node becomes shaded as it stores the new LSP. In
+:numref:`Figure %s(a) <fig-flood>` the LSP arrives at node X, which
+sends it to neighbors A and C in :numref:`Figure %s(b) <fig-flood>`. A
+and C do not send it back to X, but send it on to B. Since B receives
+two identical copies of the LSP, it will accept whichever arrived
+first and ignore the second as a duplicate. It then passes the LSP
+onto D, which has no neighbors to flood it to, and the process is
+complete.
 
 Just as in RIP, each node generates LSPs under two circumstances. Either
 the expiry of a periodic timer or a change in topology can cause a node
@@ -778,15 +783,16 @@ The algorithm works as follows:
 
    Link-state routing: an example network.
 
-This will become a lot easier to understand when we look at an example.
-Consider the network depicted in :ref:`Figure 6 <fig-lsroute>`. Note that,
-unlike our previous example, this network has a range of different edge
-costs. :ref:`Table 7 <tab-ls-trace>` traces the steps for building the routing
-table for node D. We denote the two outputs of D by using the names of
-the nodes to which they connect, B and C. Note the way the algorithm
-seems to head off on false leads (like the 11-unit cost path to B that
-was the first addition to the ``Tentative`` list) but ends up with the
-least-cost paths to all nodes.
+This will become a lot easier to understand when we look at an
+example.  Consider the network depicted in :numref:`Figure %s
+<fig-lsroute>`. Note that, unlike our previous example, this network
+has a range of different edge costs. :numref:`Table %s <tab-ls-trace>`
+traces the steps for building the routing table for node D. We denote
+the two outputs of D by using the names of the nodes to which they
+connect, B and C. Note the way the algorithm seems to head off on
+false leads (like the 11-unit cost path to B that was the first
+addition to the ``Tentative`` list) but ends up with the least-cost
+paths to all nodes.
 
 .. _tab-ls-trace:
 .. table:: Steps for Building Routing Table for Node D.
@@ -917,17 +923,18 @@ basic link-state algorithm described above, including the following:
    OSPF header format.
 
 There are several different types of OSPF messages, but all begin with
-the same header, as shown in :ref:`Figure 7 <fig-ospf>`. The ``Version`` field
-is currently set to 2, and the ``Type`` field may take the values 1
-through 5. The ``SourceAddr`` identifies the sender of the message, and
-the ``AreaId`` is a 32-bit identifier of the area in which the node is
-located. The entire packet, except the authentication data, is protected
-by a 16-bit checksum using the same algorithm as the IP header. The
-``Authentication type`` is 0 if no authentication is used; otherwise, it
-may be 1, implying that a simple password is used, or 2, which indicates
-that a cryptographic authentication checksum is used. In the latter
-cases, the ``Authentication`` field carries the password or
-cryptographic checksum.
+the same header, as shown in :numref:`Figure %s <fig-ospf>`. The
+``Version`` field is currently set to 2, and the ``Type`` field may
+take the values 1 through 5. The ``SourceAddr`` identifies the sender
+of the message, and the ``AreaId`` is a 32-bit identifier of the area
+in which the node is located. The entire packet, except the
+authentication data, is protected by a 16-bit checksum using the same
+algorithm as the IP header. The ``Authentication type`` is 0 if no
+authentication is used; otherwise, it may be 1, implying that a simple
+password is used, or 2, which indicates that a cryptographic
+authentication checksum is used. In the latter cases, the
+``Authentication`` field carries the password or cryptographic
+checksum.
 
 Of the five OSPF message types, type 1 is the “hello” message, which a
 router sends to its peers to notify them that it is still alive and
@@ -955,15 +962,15 @@ that domain and the appropriate next hop for each network.
 
    OSPF link-state advertisement.
 
-:ref:`Figure 8 <fig-ospf-lsa>` shows the packet format for a type 1 link-state
-advertisement. Type 1 LSAs advertise the cost of links between routers.
-Type 2 LSAs are used to advertise networks to which the advertising
-router is connected, while other types are used to support additional
-hierarchy as described in the next section. Many fields in the LSA
-should be familiar from the preceding discussion. The ``LS Age`` is the
-equivalent of a time to live, except that it counts up and the LSA
-expires when the age reaches a defined maximum value. The ``Type`` field
-tells us that this is a type 1 LSA.
+:numref:`Figure %s <fig-ospf-lsa>` shows the packet format for a
+type 1 link-state advertisement. Type 1 LSAs advertise the cost of
+links between routers.  Type 2 LSAs are used to advertise networks to
+which the advertising router is connected, while other types are used
+to support additional hierarchy as described in the next section. Many
+fields in the LSA should be familiar from the preceding
+discussion. The ``LS Age`` is the equivalent of a time to live, except
+that it counts up and the LSA expires when the age reaches a defined
+maximum value. The ``Type`` field tells us that this is a type 1 LSA.
 
 In a type 1 LSA, the ``Link state ID`` and the ``Advertising router``
 field are identical. Each carries a 32-bit identifier for the router
@@ -1107,9 +1114,9 @@ the likelihood that all nodes would abandon a route at once is greatly
 reduced.
 
 The compression of the dynamic range was achieved by feeding the
-measured utilization, the link type, and the link speed into a function
-that is shown graphically in :ref:`Figure 9 <fig-metric>`. below. Observe the
-following:
+measured utilization, the link type, and the link speed into a
+function that is shown graphically in :numref:`Figure %s
+<fig-metric>`. below. Observe the following:
 
 .. _fig-metric:
 .. figure:: figures/f03-36-9780123850591.png
@@ -1135,8 +1142,8 @@ All of these factors mean that a link is much less likely to be
 universally abandoned, since a threefold increase in cost is likely to
 make the link unattractive for some paths while letting it remain the
 best choice for others. The slopes, offsets, and breakpoints for the
-curves in :ref:`Figure 9 <fig-metric>` were arrived at by a great deal of
-trial and error, and they were carefully tuned to provide good
+curves in :numref:`Figure %s <fig-metric>` were arrived at by a great
+deal of trial and error, and they were carefully tuned to provide good
 performance.
 
 Despite all these improvements, it turns out that in the majority of

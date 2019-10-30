@@ -63,7 +63,7 @@ an internetwork.
 In such an environment, a given source may have more than enough
 capacity on the immediate outgoing link to send a packet, but somewhere
 in the middle of a network its packets encounter a link that is being
-used by many different traffic sources. :ref:`Figure 1 <fig-congestion>`
+used by many different traffic sources. :numref:`Figure %s <fig-congestion>`
 illustrates this situation—two high-speed links are feeding a low-speed
 link. This is in contrast to shared-access networks like Ethernet and
 wireless networks, where the source can directly observe the traffic on
@@ -80,7 +80,7 @@ algorithms in a switched network.
    weight by the routing protocol, and, as a consequence, routers would
    route around it, “routing around” a congested link does not generally
    solve the congestion problem. To see this, we need look no further
-   than the simple network depicted in :ref:`Figure 1 <fig-congestion>`,
+   than the simple network depicted in :numref:`Figure %s <fig-congestion>`,
    where all traffic has to flow through the same router to reach the
    destination. Although this is an extreme example, it is common to
    have a certain router that it is not possible to route around. This
@@ -132,12 +132,12 @@ One of the powers of the flow abstraction is that flows can be defined
 at different granularities. For example, a flow can be host-to-host
 (i.e., have the same source/destination host addresses) or
 process-to-process (i.e., have the same source/destination host/port
-pairs). In the latter case, a flow is essentially the same as a channel,
-as we have been using that term throughout this book. The reason we
-introduce a new term is that a flow is visible to the routers inside the
-network, whereas a channel is an end-to-end abstraction. :ref:`Figure
-2 <fig-flow>` illustrates several flows passing through a series of
-routers.
+pairs). In the latter case, a flow is essentially the same as a
+channel, as we have been using that term throughout this book. The
+reason we introduce a new term is that a flow is visible to the
+routers inside the network, whereas a channel is an end-to-end
+abstraction. :numref:`Figure %s <fig-flow>` illustrates several flows
+passing through a series of routers.
    
 .. _fig-flow:
 .. figure:: figures/f06-02-9780123850591.png
@@ -372,15 +372,16 @@ used.
    and the Ms mean that the distribution of both packet arrival and
    service times is “Markovian,” or exponential.
 
-The objective is to maximize this ratio, which is a function of how much
-load you place on the network. The load, in turn, is set by the resource
-allocation mechanism. :ref:`Figure 3 <fig-power>` gives a representative power
-curve, where, ideally, the resource allocation mechanism would operate
-at the peak of this curve. To the left of the peak, the mechanism is
-being too conservative; that is, it is not allowing enough packets to be
-sent to keep the links busy. To the right of the peak, so many packets
-are being allowed into the network that increases in delay due to
-queuing are starting to dominate any small gains in throughput.
+The objective is to maximize this ratio, which is a function of how
+much load you place on the network. The load, in turn, is set by the
+resource allocation mechanism. :numref:`Figure %s <fig-power>` gives a
+representative power curve, where, ideally, the resource allocation
+mechanism would operate at the peak of this curve. To the left of the
+peak, the mechanism is being too conservative; that is, it is not
+allowing enough packets to be sent to keep the links busy. To the
+right of the peak, so many packets are being allowed into the network
+that increases in delay due to queuing are starting to dominate any
+small gains in throughput.
 
 Interestingly, this power curve looks very much like the system
 throughput curve in a timesharing computer system. System throughput
@@ -398,17 +399,17 @@ begins to drop.
 
 As we will see in later sections of this chapter, many
 congestion-control schemes are able to control load in only very crude
-ways; that is, it is simply not possible to turn the “knob” a little and
-allow only a small number of additional packets into the network. As a
-consequence, network designers need to be concerned about what happens
-even when the system is operating under extremely heavy load—that is, at
-the rightmost end of the curve in :ref:`Figure 3 <fig-power>`. Ideally, we
-would like to avoid the situation in which the system throughput goes to
-zero because the system is thrashing. In networking terminology, we want
-a system that is *stable*—where packets continue to get through the
-network even when the network is operating under heavy load. If a
-mechanism is not stable, the network may experience *congestion
-collapse*.
+ways; that is, it is simply not possible to turn the “knob” a little
+and allow only a small number of additional packets into the
+network. As a consequence, network designers need to be concerned
+about what happens even when the system is operating under extremely
+heavy load—that is, at the rightmost end of the curve in
+:numref:`Figure %s <fig-power>`. Ideally, we would like to avoid the
+situation in which the system throughput goes to zero because the
+system is thrashing. In networking terminology, we want a system that
+is *stable*—where packets continue to get through the network even
+when the network is operating under heavy load. If a mechanism is not
+stable, the network may experience *congestion collapse*.
 
 Fair Resource Allocation
 ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -424,13 +425,14 @@ some link while a file transfer receives only 10 kbps over the same
 link.
 
 In the absence of explicit information to the contrary, when several
-flows share a particular link, we would like for each flow to receive an
-equal share of the bandwidth. This definition presumes that a *fair*
-share of bandwidth means an *equal* share of bandwidth. But, even in the
-absence of reservations, equal shares may not equate to fair shares.
-Should we also consider the length of the paths being compared? For
-example, as illustrated in :ref:`Figure 4 <fig-path-len>`, what is fair when
-one four-hop flow is competing with three one-hop flows?
+flows share a particular link, we would like for each flow to receive
+an equal share of the bandwidth. This definition presumes that a
+*fair* share of bandwidth means an *equal* share of bandwidth. But,
+even in the absence of reservations, equal shares may not equate to
+fair shares.  Should we also consider the length of the paths being
+compared? For example, as illustrated in :numref:`Figure %s
+<fig-path-len>`, what is fair when one four-hop flow is competing with
+three one-hop flows?
    
 .. _fig-path-len:
 .. figure:: figures/f06-04-9780123850591.png

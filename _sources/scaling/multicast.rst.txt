@@ -1,4 +1,4 @@
-4.2 Multicast
+4.3 Multicast
 =============
 
 Multi-access networks like Ethernet implement multicast in hardware.
@@ -304,59 +304,61 @@ tree for a group, not one for every sender to a group.
 
 When a router sends a ``Join`` message toward the RP for a group G, it
 is sent using normal IP unicast transmission. This is illustrated in
-:ref:`Figure 1(a) <fig-pim-shared>`, in which router R4 is sending a ``Join``
-to the rendezvous point for some group. The initial ``Join`` message is
-“wildcarded”; that is, it applies to all senders. A ``Join`` message
-clearly must pass through some sequence of routers before reaching the
-RP (e.g., R2). Each router along the path looks at the ``Join`` and
-creates a forwarding table entry for the shared tree, called a (\*, G)
-entry (where \* means “all senders”). To create the forwarding table
-entry, it looks at the interface on which the ``Join`` arrived and marks
-that interface as one on which it should forward data packets for this
-group. It then determines which interface it will use to forward the
-``Join`` toward the RP. This will be the only acceptable interface for
-incoming packets sent to this group. It then forwards the ``Join``
-toward the RP. Eventually, the message arrives at the RP, completing the
-construction of the tree branch. The shared tree thus constructed is
-shown as a solid line from the RP to R4 in :ref:`Figure 1(a) <fig-pim-shared>`.
+:numref:`Figure %s(a) <fig-pim-shared>`, in which router R4 is sending
+a ``Join`` to the rendezvous point for some group. The initial
+``Join`` message is “wildcarded”; that is, it applies to all
+senders. A ``Join`` message clearly must pass through some sequence of
+routers before reaching the RP (e.g., R2). Each router along the path
+looks at the ``Join`` and creates a forwarding table entry for the
+shared tree, called a (\*, G) entry (where \* means “all senders”). To
+create the forwarding table entry, it looks at the interface on which
+the ``Join`` arrived and marks that interface as one on which it
+should forward data packets for this group. It then determines which
+interface it will use to forward the ``Join`` toward the RP. This will
+be the only acceptable interface for incoming packets sent to this
+group. It then forwards the ``Join`` toward the RP. Eventually, the
+message arrives at the RP, completing the construction of the tree
+branch. The shared tree thus constructed is shown as a solid line from
+the RP to R4 in :numref:`Figure %s(a) <fig-pim-shared>`.
 
 As more routers send ``Join``\ s toward the RP, they cause new branches
-to be added to the tree, as illustrated in :ref:`Figure
-1(b) <fig-pim-shared>`. Note that, in this case, the ``Join`` only needs
+to be added to the tree, as illustrated in :numref:`Figure
+%s(b) <fig-pim-shared>`. Note that, in this case, the ``Join`` only needs
 to travel to R2, which can add the new branch to the tree simply by
 adding a new outgoing interface to the forwarding table entry created
 for this group. R2 need not forward the ``Join`` on to the RP. Note also
 that the end result of this process is to build a tree whose root is the
 RP.
 
-At this point, suppose a host wishes to send a message to the group. To
-do so, it constructs a packet with the appropriate multicast group
-address as its destination and sends it to a router on its local network
-known as the *designated router* (DR). Suppose the DR is R1 in :ref:`Figure
-1 <fig-pim-shared>`. There is no state for this multicast group between
-R1 and the RP at this point, so instead of simply forwarding the
-multicast packet, R1 *tunnels* it to the RP. That is, R1 encapsulates
-the multicast packet inside a PIM ``Register`` message that it sends to
-the unicast IP address of the RP. Just like an IP tunnel endpoint, the
-RP receives the packet addressed to it, looks at the payload of the
-``Register`` message, and finds inside an IP packet addressed to the
-multicast address of this group. The RP, of course, does know what to do
-with such a packet—it sends it out onto the shared tree of which the RP
-is the root. In the example of :ref:`Figure 1 <fig-pim-shared>`, this means
-that the RP sends the packet on to R2, which is able to forward it on to
-R4 and R5. The complete delivery of a packet from R1 to R4 and R5 is
-shown in :ref:`Figure 2 <fig-pim-deliver>`. We see the tunneled packet travel
-from R1 to the RP with an extra IP header containing the unicast address
-of RP, and then the multicast packet addressed to G making its way along
-the shared tree to R4 and R5.
+At this point, suppose a host wishes to send a message to the
+group. To do so, it constructs a packet with the appropriate multicast
+group address as its destination and sends it to a router on its local
+network known as the *designated router* (DR). Suppose the DR is R1 in
+:numref:`Figure %s <fig-pim-shared>`. There is no state for this
+multicast group between R1 and the RP at this point, so instead of
+simply forwarding the multicast packet, R1 *tunnels* it to the
+RP. That is, R1 encapsulates the multicast packet inside a PIM
+``Register`` message that it sends to the unicast IP address of the
+RP. Just like an IP tunnel endpoint, the RP receives the packet
+addressed to it, looks at the payload of the ``Register`` message, and
+finds inside an IP packet addressed to the multicast address of this
+group. The RP, of course, does know what to do with such a packet—it
+sends it out onto the shared tree of which the RP is the root. In the
+example of :numref:`Figure %s <fig-pim-shared>`, this means that the
+RP sends the packet on to R2, which is able to forward it on to R4 and
+R5. The complete delivery of a packet from R1 to R4 and R5 is shown in
+:numref:`Figure %s <fig-pim-deliver>`. We see the tunneled packet
+travel from R1 to the RP with an extra IP header containing the
+unicast address of RP, and then the multicast packet addressed to G
+making its way along the shared tree to R4 and R5.
 
 At this point, we might be tempted to declare success, since all hosts
 can send to all receivers this way. However, there is some bandwidth
 inefficiency and processing cost in the encapsulation and decapsulation
 of packets on the way to the RP, so the RP forces knowledge about this
 group into the intervening routers so tunneling can be avoided. It sends
-a ``Join`` message toward the sending host (:ref:`Figure
-1(c) <fig-pim-shared>`). As this ``Join`` travels toward the host, it
+a ``Join`` message toward the sending host (:numref:`Figure
+%s(c) <fig-pim-shared>`). As this ``Join`` travels toward the host, it
 causes the routers along the path (R3) to learn about the group, so that
 it will be possible for the DR to send the packet to the group as
 *native* (i.e., not tunneled) multicast packets.
@@ -374,29 +376,31 @@ An important detail to note at this stage is that the ``Join`` message
 sent by the RP to the sending host is specific to that sender, whereas
 the previous ones sent by R4 and R5 applied to all senders. Thus, the
 effect of the new ``Join`` is to create *sender-specific* state in the
-routers between the identified source and the RP. This is referred to as
-(S, G) state, since it applies to one sender to one group, and contrasts
-with the (\*, G) state that was installed between the receivers and the
-RP that applies to all senders. Thus, in :ref:`Figure 1(c) <fig-pim-shared>`,
-we see a source-specific route from R1 to the RP (indicated by the
-dashed line) and a tree that is valid for all senders from the RP to the
-receivers (indicated by the solid line).
+routers between the identified source and the RP. This is referred to
+as (S, G) state, since it applies to one sender to one group, and
+contrasts with the (\*, G) state that was installed between the
+receivers and the RP that applies to all senders. Thus, in
+:numref:`Figure %s(c) <fig-pim-shared>`, we see a source-specific
+route from R1 to the RP (indicated by the dashed line) and a tree that
+is valid for all senders from the RP to the receivers (indicated by
+the solid line).
 
-The next possible optimization is to replace the entire shared tree with
-a source-specific tree. This is desirable because the path from sender
-to receiver via the RP might be significantly longer than the shortest
-possible path. This again is likely to be triggered by a high data rate
-being observed from some sender. In this case, the router at the
-downstream end of the tree—say, R4 in our example—sends a
+The next possible optimization is to replace the entire shared tree
+with a source-specific tree. This is desirable because the path from
+sender to receiver via the RP might be significantly longer than the
+shortest possible path. This again is likely to be triggered by a high
+data rate being observed from some sender. In this case, the router at
+the downstream end of the tree—say, R4 in our example—sends a
 source-specific ``Join`` toward the source. As it follows the shortest
 path toward the source, the routers along the way create (S, G) state
-for this tree, and the result is a tree that has its root at the source,
-rather than the RP. Assuming both R4 and R5 made the switch to the
-source-specific tree, we would end up with the tree shown in :ref:`Figure
-1(d) <fig-pim-shared>`. Note that this tree no longer involves the RP at
-all. We have removed the shared tree from this picture to simplify the
-diagram, but in reality all routers with receivers for a group must stay
-on the shared tree in case new senders show up.
+for this tree, and the result is a tree that has its root at the
+source, rather than the RP. Assuming both R4 and R5 made the switch to
+the source-specific tree, we would end up with the tree shown in
+:numref:`Figure %s(d) <fig-pim-shared>`. Note that this tree no longer
+involves the RP at all. We have removed the shared tree from this
+picture to simplify the diagram, but in reality all routers with
+receivers for a group must stay on the shared tree in case new senders
+show up.
 
 We can now see why PIM is protocol independent. All of its mechanisms
 for building and maintaining trees take advantage of unicast routing
@@ -465,15 +469,16 @@ originating RP.
    SR.
 
 If an MSDP peer RP that receives one of these broadcasts has active
-receivers for that multicast group, it sends a source-specific ``Join``,
-on that RP’s own behalf, to the source host, as shown in :ref:`Figure
-3(a) <fig-msdp>`. The ``Join`` message builds a branch of the
-source-specific tree to this RP, as shown in :ref:`Figure 3(b) <fig-msdp>`.
-The result is that every RP that is part of the MSDP network and has
-active receivers for a particular multicast group is added to the
-source-specific tree of the new source. When an RP receives a multicast
-from the source, the RP uses its shared tree to forward the multicast to
-the receivers in its domain.
+receivers for that multicast group, it sends a source-specific
+``Join``, on that RP’s own behalf, to the source host, as shown in
+:numref:`Figure %s(a) <fig-msdp>`. The ``Join`` message builds a
+branch of the source-specific tree to this RP, as shown in
+:numref:`Figure %s(b) <fig-msdp>`.  The result is that every RP that
+is part of the MSDP network and has active receivers for a particular
+multicast group is added to the source-specific tree of the new
+source. When an RP receives a multicast from the source, the RP uses
+its shared tree to forward the multicast to the receivers in its
+domain.
 
 Source-Specific Multicast (PIM-SSM)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -532,39 +537,40 @@ model.
 Bidirectional Trees (BIDIR-PIM)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-We round off our discussion of multicast with another enhancement to PIM
-known as *Bidirectional PIM*. BIDIR-PIM is a recent variant of PIM-SM
-that is well suited to many-to-many multicasting within a domain,
-especially when senders and receivers to a group may be the same, as in
-a multiparty videoconference, for example. As in PIM-SM, would-be
-receivers join groups by sending IGMP Membership Report messages (which
-must not be source specific), and a shared tree rooted at an RP is used
-to forward multicast packets to receivers. Unlike PIM-SM, however, the
-shared tree also has branches to the *sources*. That wouldn’t make any
-sense with PIM-SM’s unidirectional tree, but BIDIR-PIM’s trees are
-bidirectional—a router that receives a multicast packet from a
-downstream branch can forward it both up the tree and down other
-branches. The route followed to deliver a packet to any particular
-receiver goes only as far up the tree as necessary before going down the
-branch to that receiver. See the multicast route from R1 to R2 in
-:ref:`Figure 4(b) <fig-pim-bidir>` for an example. R4 forwards a multicast
-packet downstream to R2 at the same time that it forwards a copy of the
-same packet upstream to R5.
+We round off our discussion of multicast with another enhancement to
+PIM known as *Bidirectional PIM*. BIDIR-PIM is a recent variant of
+PIM-SM that is well suited to many-to-many multicasting within a
+domain, especially when senders and receivers to a group may be the
+same, as in a multiparty videoconference, for example. As in PIM-SM,
+would-be receivers join groups by sending IGMP Membership Report
+messages (which must not be source specific), and a shared tree rooted
+at an RP is used to forward multicast packets to receivers. Unlike
+PIM-SM, however, the shared tree also has branches to the
+*sources*. That wouldn’t make any sense with PIM-SM’s unidirectional
+tree, but BIDIR-PIM’s trees are bidirectional—a router that receives a
+multicast packet from a downstream branch can forward it both up the
+tree and down other branches. The route followed to deliver a packet
+to any particular receiver goes only as far up the tree as necessary
+before going down the branch to that receiver. See the multicast route
+from R1 to R2 in :numref:`Figure %s(b) <fig-pim-bidir>` for an
+example. R4 forwards a multicast packet downstream to R2 at the same
+time that it forwards a copy of the same packet upstream to R5.
 
 A surprising aspect of BIDIR-PIM is that there need not actually be an
 RP. All that is needed is a routable address, which is known as an RP
 address even though it need not be the address of an RP or anything at
-all. How can this be? A ``Join`` from a receiver is forwarded toward the
-RP address until it reaches a router with an interface on the link where
-the RP address would reside, where the Join terminates. :ref:`Figure
-4(a) <fig-pim-bidir>` shows a ``Join`` from R2 terminating at R5, and a
-``Join`` from R3 terminating at R6. The upstream forwarding of a
-multicast packet similarly flows toward the RP address until it reaches
-a router with an interface on the link where the RP address would
-reside, but then the router forwards the multicast packet onto that link
-as the final step of upstream forwarding, ensuring that all other
-routers on that link receive the packet. :ref:`Figure 4(b) <fig-pim-bidir>`
-illustrates the flow of multicast traffic originating at R1.
+all. How can this be? A ``Join`` from a receiver is forwarded toward
+the RP address until it reaches a router with an interface on the link
+where the RP address would reside, where the Join
+terminates. :numref:`Figure %s(a) <fig-pim-bidir>` shows a ``Join``
+from R2 terminating at R5, and a ``Join`` from R3 terminating at
+R6. The upstream forwarding of a multicast packet similarly flows
+toward the RP address until it reaches a router with an interface on
+the link where the RP address would reside, but then the router
+forwards the multicast packet onto that link as the final step of
+upstream forwarding, ensuring that all other routers on that link
+receive the packet. :numref:`Figure %s(b) <fig-pim-bidir>` illustrates
+the flow of multicast traffic originating at R1.
 
 .. _fig-pim-bidir:
 .. figure:: figures/f04-17-9780123850591.png

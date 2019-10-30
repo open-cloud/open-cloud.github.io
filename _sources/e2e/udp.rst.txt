@@ -23,16 +23,17 @@ a message to a port and for the destination process to receive the
 message from a port.
 
 The header for an end-to-end protocol that implements this
-demultiplexing function typically contains an identifier (port) for both
-the sender (source) and the receiver (destination) of the message. For
-example, the UDP header is given in :ref:`Figure 1 <fig-udp-format>`. Notice
-that the UDP port field is only 16 bits long. This means that there are
-up to 64K possible ports, clearly not enough to identify all the
-processes on all the hosts in the Internet. Fortunately, ports are not
-interpreted across the entire Internet, but only on a single host. That
-is, a process is really identified by a port on some particular host: a
-(port, host) pair. This pair constitutes the demultiplexing key for the
-UDP protocol.
+demultiplexing function typically contains an identifier (port) for
+both the sender (source) and the receiver (destination) of the
+message. For example, the UDP header is given in :numref:`Figure %s
+<fig-udp-format>`.  Notice that the UDP port field is only 16 bits
+long. This means that there are up to 64K possible ports, clearly not
+enough to identify all the processes on all the hosts in the
+Internet. Fortunately, ports are not interpreted across the entire
+Internet, but only on a single host. That is, a process is really
+identified by a port on some particular host: a (port, host)
+pair. This pair constitutes the demultiplexing key for the UDP
+protocol.
 
 The next issue is how a process learns the port for the process to which
 it wants to send a message. Typically, a client process initiates a
@@ -71,16 +72,16 @@ services over time and for each host to use a different port for the
 same service.
 
 As just mentioned, a port is purely an abstraction. Exactly how it is
-implemented differs from system to system, or more precisely, from OS to
-OS. For example, the socket API described in Chapter 1 is an example
-implementation of ports. Typically, a port is implemented by a message
-queue, as illustrated in :ref:`Figure 2 <fig-udp-queue>`. When a message
-arrives, the protocol (e.g., UDP) appends the message to the end of the
-queue. Should the queue be full, the message is discarded. There is no
-flow-control mechanism in UDP to tell the sender to slow down. When an
-application process wants to receive a message, one is removed from the
-front of the queue. If the queue is empty, the process blocks until a
-message becomes available.
+implemented differs from system to system, or more precisely, from OS
+to OS. For example, the socket API described in Chapter 1 is an
+example implementation of ports. Typically, a port is implemented by a
+message queue, as illustrated in :numref:`Figure %s
+<fig-udp-queue>`. When a message arrives, the protocol (e.g., UDP)
+appends the message to the end of the queue. Should the queue be full,
+the message is discarded. There is no flow-control mechanism in UDP to
+tell the sender to slow down. When an application process wants to
+receive a message, one is removed from the front of the queue. If the
+queue is empty, the process blocks until a message becomes available.
 
 .. _fig-udp-queue:
 .. figure:: figures/f05-02-9780123850591.png

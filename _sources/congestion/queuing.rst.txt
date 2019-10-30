@@ -17,14 +17,15 @@ FIFO
 
 The idea of FIFO queuing, also called first-come, first-served (FCFS)
 queuing, is simple: The first packet that arrives at a router is the
-first packet to be transmitted. This is illustrated in :ref:`Figure
-1(a) <fig-fifo>`, which shows a FIFO with “slots” to hold up to eight
-packets. Given that the amount of buffer space at each router is finite,
-if a packet arrives and the queue (buffer space) is full, then the
-router discards that packet, as shown in :ref:`Figure 1(b) <fig-fifo>`. This
-is done without regard to which flow the packet belongs to or how
-important the packet is. This is sometimes called *tail drop*, since
-packets that arrive at the tail end of the FIFO are dropped.
+first packet to be transmitted. This is illustrated in :numref:`Figure
+%s(a) <fig-fifo>`, which shows a FIFO with “slots” to hold up to eight
+packets. Given that the amount of buffer space at each router is
+finite, if a packet arrives and the queue (buffer space) is full, then
+the router discards that packet, as shown in :numref:`Figure %s(b)
+<fig-fifo>`. This is done without regard to which flow the packet
+belongs to or how important the packet is. This is sometimes called
+*tail drop*, since packets that arrive at the tail end of the FIFO are
+dropped.
 
 .. _fig-fifo:
 .. figure:: figures/f06-05-9780123850591.png
@@ -110,15 +111,15 @@ such as Internet telephony do this today.) Such an application is able
 to flood the Internet’s routers with its own packets, thereby causing
 other applications’ packets to be discarded.
 
-Fair queuing (FQ) is an algorithm that has been designed to address this
-problem. The idea of FQ is to maintain a separate queue for each flow
-currently being handled by the router. The router then services these
-queues in a sort of round-robin, as illustrated in :ref:`Figure 2 <fig-fq>`.
-When a flow sends packets too quickly, then its queue fills up. When a
-queue reaches a particular length, additional packets belonging to that
-flow’s queue are discarded. In this way, a given source cannot
-arbitrarily increase its share of the network’s capacity at the expense
-of other flows.
+Fair queuing (FQ) is an algorithm that has been designed to address
+this problem. The idea of FQ is to maintain a separate queue for each
+flow currently being handled by the router. The router then services
+these queues in a sort of round-robin, as illustrated in
+:numref:`Figure %s <fig-fq>`.  When a flow sends packets too quickly,
+then its queue fills up. When a queue reaches a particular length,
+additional packets belonging to that flow’s queue are discarded. In
+this way, a given source cannot arbitrarily increase its share of the
+network’s capacity at the expense of other flows.
 
 .. _fig-fq:
 .. figure:: figures/f06-06-9780123850591.png
@@ -218,14 +219,14 @@ scheme that we are attempting to approximate.
    already in progress is completed.
 
 To better see how this implementation of fair queuing works, consider
-the example given in :ref:`Figure 3 <fig-fair-queuing>`. Part (a) shows the
-queues for two flows; the algorithm selects both packets from flow 1 to
-be transmitted before the packet in the flow 2 queue, because of their
-earlier finishing times. In (b), the router has already begun to send a
-packet from flow 2 when the packet from flow 1 arrives. Though the
-packet arriving on flow 1 would have finished before flow 2 if we had
-been using perfect bit-by-bit fair queuing, the implementation does not
-preempt the flow 2 packet.
+the example given in :numref:`Figure %s <fig-fair-queuing>`. Part (a)
+shows the queues for two flows; the algorithm selects both packets
+from flow 1 to be transmitted before the packet in the flow 2 queue,
+because of their earlier finishing times. In (b), the router has
+already begun to send a packet from flow 2 when the packet from flow 1
+arrives. Though the packet arriving on flow 1 would have finished
+before flow 2 if we had been using perfect bit-by-bit fair queuing,
+the implementation does not preempt the flow 2 packet.
 
 There are two things to notice about fair queuing. First, the link is
 never left idle as long as there is at least one packet in the queue.

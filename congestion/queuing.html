@@ -193,17 +193,17 @@ that have been proposed.</p>
 <h2>FIFO<a class="headerlink" href="#fifo" title="Permalink to this headline">¶</a></h2>
 <p>The idea of FIFO queuing, also called first-come, first-served (FCFS)
 queuing, is simple: The first packet that arrives at a router is the
-first packet to be transmitted. This is illustrated in <a class="reference internal" href="#fig-fifo"><span class="std std-ref">Figure
-1(a)</span></a>, which shows a FIFO with “slots” to hold up to eight
-packets. Given that the amount of buffer space at each router is finite,
-if a packet arrives and the queue (buffer space) is full, then the
-router discards that packet, as shown in <a class="reference internal" href="#fig-fifo"><span class="std std-ref">Figure 1(b)</span></a>. This
-is done without regard to which flow the packet belongs to or how
-important the packet is. This is sometimes called <em>tail drop</em>, since
-packets that arrive at the tail end of the FIFO are dropped.</p>
+first packet to be transmitted. This is illustrated in <a class="reference internal" href="#fig-fifo"><span class="std std-numref">Figure
+156(a)</span></a>, which shows a FIFO with “slots” to hold up to eight
+packets. Given that the amount of buffer space at each router is
+finite, if a packet arrives and the queue (buffer space) is full, then
+the router discards that packet, as shown in <a class="reference internal" href="#fig-fifo"><span class="std std-numref">Figure 156(b)</span></a>. This is done without regard to which flow the packet
+belongs to or how important the packet is. This is sometimes called
+<em>tail drop</em>, since packets that arrive at the tail end of the FIFO are
+dropped.</p>
 <div class="figure align-center" id="id1">
 <span id="fig-fifo"></span><a class="reference internal image-reference" href="../_images/f06-05-9780123850591.png"><img alt="../_images/f06-05-9780123850591.png" src="../_images/f06-05-9780123850591.png" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-number">Figure 156: </span><span class="caption-text">FIFO queuing (a), and tail drop at a FIFO queue (b).</span></p>
+<p class="caption"><span class="caption-number">Figure 156. </span><span class="caption-text">FIFO queuing (a), and tail drop at a FIFO queue (b).</span></p>
 </div>
 <p>Note that tail drop and FIFO are two separable ideas. FIFO is a
 <em>scheduling discipline</em>—it determines the order in which packets are
@@ -276,18 +276,18 @@ to bypass its end-to-end congestion-control mechanism. (Applications
 such as Internet telephony do this today.) Such an application is able
 to flood the Internet’s routers with its own packets, thereby causing
 other applications’ packets to be discarded.</p>
-<p>Fair queuing (FQ) is an algorithm that has been designed to address this
-problem. The idea of FQ is to maintain a separate queue for each flow
-currently being handled by the router. The router then services these
-queues in a sort of round-robin, as illustrated in <a class="reference internal" href="#fig-fq"><span class="std std-ref">Figure 2</span></a>.
-When a flow sends packets too quickly, then its queue fills up. When a
-queue reaches a particular length, additional packets belonging to that
-flow’s queue are discarded. In this way, a given source cannot
-arbitrarily increase its share of the network’s capacity at the expense
-of other flows.</p>
+<p>Fair queuing (FQ) is an algorithm that has been designed to address
+this problem. The idea of FQ is to maintain a separate queue for each
+flow currently being handled by the router. The router then services
+these queues in a sort of round-robin, as illustrated in
+<a class="reference internal" href="#fig-fq"><span class="std std-numref">Figure 157</span></a>.  When a flow sends packets too quickly,
+then its queue fills up. When a queue reaches a particular length,
+additional packets belonging to that flow’s queue are discarded. In
+this way, a given source cannot arbitrarily increase its share of the
+network’s capacity at the expense of other flows.</p>
 <div class="figure align-center" id="id2">
 <span id="fig-fq"></span><a class="reference internal image-reference" href="../_images/f06-06-9780123850591.png"><img alt="../_images/f06-06-9780123850591.png" src="../_images/f06-06-9780123850591.png" style="width: 350px;" /></a>
-<p class="caption"><span class="caption-number">Figure 157: </span><span class="caption-text">Round-robin service of four flows at a router.</span></p>
+<p class="caption"><span class="caption-number">Figure 157. </span><span class="caption-text">Round-robin service of four flows at a router.</span></p>
 </div>
 <p>Note that FQ does not involve the router telling the traffic sources
 anything about the state of the router or in any way limiting how
@@ -362,19 +362,19 @@ of FQ just described from exactly simulating the bit-by-bit round-robin
 scheme that we are attempting to approximate.</p>
 <div class="figure align-center" id="id3">
 <span id="fig-fair-queuing"></span><a class="reference internal image-reference" href="../_images/f06-07-9780123850591.png"><img alt="../_images/f06-07-9780123850591.png" src="../_images/f06-07-9780123850591.png" style="width: 600px;" /></a>
-<p class="caption"><span class="caption-number">Figure 158: </span><span class="caption-text">Example of fair queuing in action: (a) Packets with
+<p class="caption"><span class="caption-number">Figure 158. </span><span class="caption-text">Example of fair queuing in action: (a) Packets with
 earlier finishing times are sent first; (b)&nbsp;sending of a packet
 already in progress is completed.</span></p>
 </div>
 <p>To better see how this implementation of fair queuing works, consider
-the example given in <a class="reference internal" href="#fig-fair-queuing"><span class="std std-ref">Figure 3</span></a>. Part&nbsp;(a) shows the
-queues for two flows; the algorithm selects both packets from flow&nbsp;1 to
-be transmitted before the packet in the flow&nbsp;2 queue, because of their
-earlier finishing times. In&nbsp;(b), the router has already begun to send a
-packet from flow&nbsp;2 when the packet from flow&nbsp;1 arrives. Though the
-packet arriving on flow&nbsp;1 would have finished before flow&nbsp;2 if we had
-been using perfect bit-by-bit fair queuing, the implementation does not
-preempt the flow 2 packet.</p>
+the example given in <a class="reference internal" href="#fig-fair-queuing"><span class="std std-numref">Figure 158</span></a>. Part&nbsp;(a)
+shows the queues for two flows; the algorithm selects both packets
+from flow&nbsp;1 to be transmitted before the packet in the flow&nbsp;2 queue,
+because of their earlier finishing times. In&nbsp;(b), the router has
+already begun to send a packet from flow&nbsp;2 when the packet from flow&nbsp;1
+arrives. Though the packet arriving on flow&nbsp;1 would have finished
+before flow&nbsp;2 if we had been using perfect bit-by-bit fair queuing,
+the implementation does not preempt the flow 2 packet.</p>
 <p>There are two things to notice about fair queuing. First, the link is
 never left idle as long as there is at least one packet in the queue.
 Any queuing scheme with this characteristic is said to be <em>work

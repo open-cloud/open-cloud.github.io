@@ -48,13 +48,14 @@ goal of error detecting codes is to provide a high probability of
 detecting errors combined with a relatively low number of redundant
 bits.
 
-Fortunately, we can do a lot better than this simple scheme. In general,
-we can provide quite strong error detection capability while sending
-only :math:`k` redundant bits for an :math:`n`-bit message, where :math:`k` is much
-smaller than :math:`n`. On an Ethernet, for example, a frame carrying up to
-12,000 bits (1500 bytes) of data requires only a 32-bit CRC code, or as
-it is commonly expressed, uses CRC-32. Such a code will catch the
-overwhelming majority of errors, as we will see below.
+Fortunately, we can do a lot better than this simple scheme. In
+general, we can provide quite strong error detection capability while
+sending only :math:`k` redundant bits for an :math:`n`-bit message,
+where :math:`k` is much smaller than :math:`n`. On an Ethernet, for
+example, a frame carrying up to 12,000 bits (1500 bytes) of data
+requires only a 32-bit CRC code, or as it is commonly expressed, uses
+CRC-32. Such a code will catch the overwhelming majority of errors, as
+we will see below.
 
 We say that the extra bits we send are redundant because they add no new
 information to the message. Instead, they are derived directly from the
@@ -263,30 +264,32 @@ following way:
 3. Subtract the remainder from :math:`T(x)`.
 
 It should be obvious that what is left at this point is a message that
-is exactly divisible by :math:`C(x)`. We may also note that the resulting
-message consists of :math:`M(x)` followed by the remainder obtained in
-step 2, because when we subtracted the remainder (which can be no more
-than :math:`k` bits long), we were just XORing it with the :math:`k` zeros added in
-step 1. This part will become clearer with an example.
+is exactly divisible by :math:`C(x)`. We may also note that the
+resulting message consists of :math:`M(x)` followed by the remainder
+obtained in step 2, because when we subtracted the remainder (which
+can be no more than :math:`k` bits long), we were just XORing it with
+the :math:`k` zeros added in step 1. This part will become clearer
+with an example.
 
-Consider the message :math:`x^7 + x^4 + x^3 + x^1`, or 10011010. 
-We begin by multiplying by :math:`x^3`, since our divisor polynomial 
-is of degree 3. This gives 10011010000.
-We divide this by :math:`C(x)`, which corresponds to 1101 in this case.
-:ref:`Figure 1 <fig-crcalc>` shows the polynomial long-division operation.
-Given the rules of polynomial arithmetic described above, the
-long-division operation proceeds much as it would if we were dividing
+Consider the message :math:`x^7 + x^4 + x^3 + x^1`, or 10011010.  We
+begin by multiplying by :math:`x^3`, since our divisor polynomial is
+of degree 3. This gives 10011010000.  We divide this by :math:`C(x)`,
+which corresponds to 1101 in this case.  :numref:`Figure %s
+<fig-crcalc>` shows the polynomial long-division operation.  Given the
+rules of polynomial arithmetic described above, the long-division
+operation proceeds much as it would if we were dividing
 integers. Thus, in the first step of our example, we see that the
 divisor 1101 divides once into the first four bits of the message
-(1001), since they are of the same degree, and leaves a remainder of 100
-(1101 XOR 1001). The next step is to bring down a digit from the message
-polynomial until we get another polynomial with the same degree as
-:math:`C(x)`, in this case 1001. We calculate the remainder again (100) and
-continue until the calculation is complete. Note that the “result” of
-the long division, which appears at the top of the calculation, is not
-really of much interest—it is the remainder at the end that matters.
+(1001), since they are of the same degree, and leaves a remainder of
+100 (1101 XOR 1001). The next step is to bring down a digit from the
+message polynomial until we get another polynomial with the same
+degree as :math:`C(x)`, in this case 1001. We calculate the remainder
+again (100) and continue until the calculation is complete. Note that
+the “result” of the long division, which appears at the top of the
+calculation, is not really of much interest—it is the remainder at the
+end that matters.
 
-You can see from the very bottom of :ref:`Figure 1 <fig-crcalc>` that the
+You can see from the very bottom of :numref:`Figure %s <fig-crcalc>` that the
 remainder of the example calculation is 101. So we know that 10011010000
 minus 101 would be exactly divisible by :math:`C(x)`, and this is what we
 send. The minus operation in polynomial arithmetic is the logical XOR
@@ -306,17 +309,18 @@ enables error correction is called an *error-correcting code* (ECC).
 
    CRC calculation using polynomial long division.
 
-Now we will consider the question of where the polynomial :math:`C(x)` comes
-from. Intuitively, the idea is to select this polynomial so that it is
-very unlikely to divide evenly into a message that has errors introduced
-into it. If the transmitted message is :math:`P(x)`, we may think of the
-introduction of errors as the addition of another polynomial :math:`E(x)`, so
-the recipient sees :math:`P(x) + E(x)`. The only way that an error could
-slip by undetected would be if the
-received message could be evenly divided by :math:`C(x)`, and since we know
-that :math:`P(x)` can be evenly divided by :math:`C(x)`, this could only happen if
-:math:`E(x)` can be divided evenly by :math:`C(x)`. The trick is to pick :math:`C(x)` so
-that this is very unlikely for common types of errors.
+Now we will consider the question of where the polynomial :math:`C(x)`
+comes from. Intuitively, the idea is to select this polynomial so that
+it is very unlikely to divide evenly into a message that has errors
+introduced into it. If the transmitted message is :math:`P(x)`, we may
+think of the introduction of errors as the addition of another
+polynomial :math:`E(x)`, so the recipient sees :math:`P(x) +
+E(x)`. The only way that an error could slip by undetected would be if
+the received message could be evenly divided by :math:`C(x)`, and
+since we know that :math:`P(x)` can be evenly divided by :math:`C(x)`,
+this could only happen if :math:`E(x)` can be divided evenly by
+:math:`C(x)`. The trick is to pick :math:`C(x)` so that this is very
+unlikely for common types of errors.
 
 One common type of error is a single-bit error, which can be expressed
 as :math:`E(x) = x^i` when it affects bit position *i*. If we select 
@@ -372,21 +376,21 @@ example, Ethernet uses CRC-32, which is defined as follows:
    x^{12} + x^{11} + x^{10} + x^8 + x^7 + x^5 + x^4 + x^2 + x + 1`
 
 Finally, we note that the CRC algorithm, while seemingly complex, is
-easily implemented in hardware using a :math:`k`-bit shift register and XOR
-gates. The number of bits in the shift register equals the degree of the
-generator polynomial (:math:`k`). :ref:`Figure 2 <fig-crc-hard>` shows the hardware
-that would be used for the generator :math:`x^3 + x^2 + 1` 
-from our previous example. The message is shifted in from the left,
-beginning with the most significant bit and ending with the string of
-:math:`k` zeros that is attached to the message, just as in the long division
-example. When all the bits have been shifted in and appropriately XORed,
-the register contains the remainder—that is, the CRC (most significant
-bit on the right). The position of the XOR gates is determined as
-follows: If the bits in the shift register are labeled 0 through 
-:math:`k-1`, left to right, then put an XOR gate in front of bit :math:`n`
-if there is a term :math:`x^n` in the generator polynomial. 
-Thus, we see an XOR gate in front of positions 0 and 2 for the generator 
-:math:`x^3 + x^2 + x^0`.
+easily implemented in hardware using a :math:`k`\ -bit shift register
+and XOR gates. The number of bits in the shift register equals the
+degree of the generator polynomial (:math:`k`). :numref:`Figure %s
+<fig-crc-hard>` shows the hardware that would be used for the
+generator :math:`x^3 + x^2 + 1` from our previous example. The message
+is shifted in from the left, beginning with the most significant bit
+and ending with the string of :math:`k` zeros that is attached to the
+message, just as in the long division example. When all the bits have
+been shifted in and appropriately XORed, the register contains the
+remainder—that is, the CRC (most significant bit on the right). The
+position of the XOR gates is determined as follows: If the bits in the
+shift register are labeled 0 through :math:`k-1`, left to right, then
+put an XOR gate in front of bit :math:`n` if there is a term
+:math:`x^n` in the generator polynomial.  Thus, we see an XOR gate in
+front of positions 0 and 2 for the generator :math:`x^3 + x^2 + x^0`.
 
 .. _fig-crc-hard:
 .. figure:: figures/f02-16-9780123850591.png

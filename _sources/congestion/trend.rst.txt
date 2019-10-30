@@ -25,7 +25,7 @@ ocean or launching a satellite into space.
 
 But with the advent of technologies like DWDM (`Section
 3.1 <../internetworking/switching.html>`__) and MPLS (`Section
-4.3 <../scaling/mpls.html>`__), we don’t always have to lay more fiber,
+4.4 <../scaling/mpls.html>`__), we don’t always have to lay more fiber,
 but can instead turn on additional wavelengths or establish new circuits
 between any pair of sites. (These sites need not be directly connected
 by fiber. For example, a wavelength between Boston and San Francisco
@@ -45,7 +45,7 @@ publicly described their private WAN, called B4, which is built entirely
 using white-box switches and SDN. B4 does not add/drop wavelengths to
 adjust inter-node bandwidth—it dynamically builds end-to-end tunnels
 using a technique called *Equal-Cost Multipath* (ECMP), an alternative
-to CSPF introduced in `Section 4.3 <../scaling/mpls.html>`__\ —but the
+to CSPF introduced in `Section 4.4 <../scaling/mpls.html>`__\ —but the
 flexibility it affords is similar.
 
 A Traffic Engineering (TE) control program then provisions the network
@@ -88,7 +88,7 @@ increasingly becoming the norm.
    To continue reading about the cloudification of the Internet, see
    `Big Data and Analytics <../data/trend.html>`__.
 
-   To learn more about the B4, we recommend: \* `B4: Experience with a
+   To learn more about the B4, we recommend: `B4: Experience with a
    Globally Deployed Software Defined
    WAN <https://cseweb.ucsd.edu/~vahdat/papers/b4-sigcomm13.pdf>`__,
    August 2013.

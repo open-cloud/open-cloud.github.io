@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>4.4 Routing Among Mobile Devices &mdash; Computer Networks: A Systems Approach Version 6.1 documentation</title>
+  <title>4.5 Routing Among Mobile Devices &mdash; Computer Networks: A Systems Approach Version 6.1 documentation</title>
   
 
   
@@ -40,7 +40,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Perspective: The Cloud is Eating the Internet" href="trend.html" />
-    <link rel="prev" title="4.3 Multiprotocol Label Switching" href="mpls.html" /> 
+    <link rel="prev" title="4.4 Multiprotocol Label Switching" href="mpls.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -97,9 +97,10 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../scaling.html">Chapter 4:  Advanced Internetworking</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="problem.html">Problem: Scaling to Billions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="global.html">4.1 Global Internet</a></li>
-<li class="toctree-l2"><a class="reference internal" href="multicast.html">4.2 Multicast</a></li>
-<li class="toctree-l2"><a class="reference internal" href="mpls.html">4.3 Multiprotocol Label Switching</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">4.4 Routing Among Mobile Devices</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ipv6.html">4.2 IP Version 6 (IPv6)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multicast.html">4.3 Multicast</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mpls.html">4.4 Multiprotocol Label Switching</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4.5 Routing Among Mobile Devices</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#challenges-for-mobile-networking">Challenges for Mobile Networking</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#routing-to-mobile-hosts-mobile-ip">Routing to Mobile Hosts (Mobile IP)</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#route-optimization-in-mobile-ip">Route Optimization in Mobile IP</a></li>
@@ -161,7 +162,7 @@
         
           <li><a href="../scaling.html">Chapter 4:  Advanced Internetworking</a> &raquo;</li>
         
-      <li>4.4 Routing Among Mobile Devices</li>
+      <li>4.5 Routing Among Mobile Devices</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -181,7 +182,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="routing-among-mobile-devices">
-<h1>4.4 Routing Among Mobile Devices<a class="headerlink" href="#routing-among-mobile-devices" title="Permalink to this headline">¶</a></h1>
+<h1>4.5 Routing Among Mobile Devices<a class="headerlink" href="#routing-among-mobile-devices" title="Permalink to this headline">¶</a></h1>
 <p>It probably should not be a great surprise to learn that mobile devices
 present some challenges for the Internet architecture. The Internet was
 designed in an era when computers were large, immobile devices, and,
@@ -205,24 +206,24 @@ need.</p>
 <p>If we look a little more closely, however, it’s clear that for some
 application scenarios, just getting a new IP address every time you
 move—which is what DHCP does for you—isn’t always enough. Suppose you
-are using your laptop or smartphone for a Voice over IP telephone call,
-and while talking on the phone you move from one hotspot to another, or
-even switch from Wi-Fi to the cellular network for your Internet
-connection.</p>
+are using your laptop or smartphone for a Voice over IP telephone
+call, and while talking on the phone you move from one hotspot to
+another, or even switch from Wi-Fi to the cellular network for your
+Internet connection.</p>
 <p>Clearly, when you move from one access network to another, you need to
 get a new IP address—one that corresponds to the new network. But, the
 computer or telephone at the other end of your conversation doesn’t
 immediately know where you have moved or what your new IP address is.
 Consequently, in the absence of some other mechanism, packets would
-continue to be sent to the address where you <em>used</em> to be, not where you
-are now. This problem is illustrated in <a class="reference internal" href="#fig-mobileeg"><span class="std std-ref">Figure 1</span></a>; as the
-mobile node moves from the 802.11 network in <a class="reference internal" href="#fig-mobileeg"><span class="std std-ref">Figure 1(a)</span></a>
-to the cellular network in <a class="reference internal" href="#fig-mobileeg"><span class="std std-ref">Figure 1(b)</span></a>, somehow packets
-from the <em>correspondent node</em> need to find their way to the new network
-and then on to the mobile node.</p>
+continue to be sent to the address where you <em>used</em> to be, not where
+you are now. This problem is illustrated in <a class="reference internal" href="#fig-mobileeg"><span class="std std-numref">Figure 122</span></a>; as the mobile node moves from the 802.11 network in
+<a class="reference internal" href="#fig-mobileeg"><span class="std std-numref">Figure 122(a)</span></a> to the cellular network in
+<a class="reference internal" href="#fig-mobileeg"><span class="std std-numref">Figure 122(b)</span></a>, somehow packets from the
+<em>correspondent node</em> need to find their way to the new network and
+then on to the mobile node.</p>
 <div class="figure align-center" id="id1">
 <span id="fig-mobileeg"></span><a class="reference internal image-reference" href="../_images/f04-26-22092018.png"><img alt="../_images/f04-26-22092018.png" src="../_images/f04-26-22092018.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-number">Figure 122: </span><span class="caption-text">Forwarding packets from a correspondent node to a
+<p class="caption"><span class="caption-number">Figure 122. </span><span class="caption-text">Forwarding packets from a correspondent node to a
 mobile node.</span></p>
 </div>
 <p>There are many different ways to tackle the problem just described, and
@@ -263,11 +264,11 @@ trying to maintain the appearance that it does not change.</p>
 <p>While we are all familiar with endpoints that move, it is worth noting
 that routers can also move. This is certainly less common today than
 endpoint mobility, but there are plenty of environments where a mobile
-router might make sense. One example might be an emergency response team
-trying to deploy a network after some natural disaster has knocked out
-all the fixed infrastructure. There are additional considerations when
-<em>all</em> the nodes in a network, not just the endpoints, are mobile, a
-topic we will discuss later in this section.</p>
+router might make sense. One example might be an emergency response
+team trying to deploy a network after some natural disaster has
+knocked out all the fixed infrastructure. There are additional
+considerations when <em>all</em> the nodes in a network, not just the
+endpoints, are mobile, a topic we will discuss later in this section.</p>
 <p>Before we start to look at some of the approaches to supporting mobile
 devices, a couple of points of clarification. It is common to find that
 people confuse wireless networks with mobility. After all, mobility and
@@ -277,13 +278,13 @@ while mobility is about dealing with what happens when a node moves
 around as it communicates. Certainly many nodes that use wireless
 communication channels are not mobile, and sometimes mobile nodes will
 use wired communication (although this is less common).</p>
-<p>Finally, in this chapter we are mostly interested in what we might call
-<em>network-layer mobility</em>. That is, we are interested in how to deal with
-nodes that move from one network to another. Moving from one access
-point to another in the same 802.11 network can be handled by mechanisms
-specific to 802.11, and cellular networks also have ways to handle
-mobility, of course, but in large heterogeneous systems like the
-Internet we need to support mobility more broadly across networks.</p>
+<p>Finally, in this chapter we are mostly interested in what we might
+call <em>network-layer mobility</em>. That is, we are interested in how to
+deal with nodes that move from one network to another. Moving from one
+access point to another in the same 802.11 network can be handled by
+mechanisms specific to 802.11, and cellular networks also have ways to
+handle mobility, of course, but in large heterogeneous systems like
+the Internet we need to support mobility more broadly across networks.</p>
 </div>
 <div class="section" id="routing-to-mobile-hosts-mobile-ip">
 <h2>Routing to Mobile Hosts (Mobile IP)<a class="headerlink" href="#routing-to-mobile-hosts-mobile-ip" title="Permalink to this headline">¶</a></h2>
@@ -317,10 +318,10 @@ functionality, the <em>foreign agent,</em> is also required. This router is
 located on a network to which the mobile node attaches itself when it is
 away from its home network. We will consider first the operation of
 Mobile&nbsp;IP when a foreign agent is used. An example network with both
-home and foreign agents is shown in <a class="reference internal" href="#fig-mobile"><span class="std std-ref">Figure 2</span></a>.</p>
+home and foreign agents is shown in <a class="reference internal" href="#fig-mobile"><span class="std std-numref">Figure 123</span></a>.</p>
 <div class="figure align-center" id="id2">
 <span id="fig-mobile"></span><a class="reference internal image-reference" href="../_images/f04-27-9780123850591.png"><img alt="../_images/f04-27-9780123850591.png" src="../_images/f04-27-9780123850591.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-number">Figure 123: </span><span class="caption-text">Mobile host and mobility agents.</span></p>
+<p class="caption"><span class="caption-number">Figure 123. </span><span class="caption-text">Mobile host and mobility agents.</span></p>
 </div>
 <p>Both home and foreign agents periodically announce their presence on the
 networks to which they are attached using agent advertisement messages.
@@ -344,8 +345,8 @@ mobile node?</li>
 <li>How does the home agent then deliver the packet to the foreign agent?</li>
 <li>How does the foreign agent deliver the packet to the mobile node?</li>
 </ol>
-<p>The first problem might look easy if you just look at <a class="reference internal" href="#fig-mobile"><span class="std std-ref">Figure
-2</span></a>, in which the home agent is clearly the only path between
+<p>The first problem might look easy if you just look at <a class="reference internal" href="#fig-mobile"><span class="std std-numref">Figure
+123</span></a>, in which the home agent is clearly the only path between
 the sending host and the home network and thus must receive packets that
 are destined to the mobile node. But what if the sending (correspondent)
 node were on network&nbsp;18, or what if there were another router connected
@@ -388,9 +389,9 @@ of the foreign network (e.g., using DHCP). This address will then be
 used as the care-of address. In our example, this address would have a
 network number of&nbsp;12. This approach has the desirable feature of
 allowing mobile nodes to attach to networks that don’t have foreign
-agents; thus, mobility can be achieved with only the addition of a home
-agent and some new software on the mobile node (assuming DHCP is used on
-the foreign network).</p>
+agents; thus, mobility can be achieved with only the addition of a
+home agent and some new software on the mobile node (assuming DHCP is
+used on the foreign network).</p>
 <p>What about traffic in the other direction (i.e., from mobile node to
 fixed node)? This turns out to be much easier. The mobile node just puts
 the IP address of the fixed node in the destination field of its IP
@@ -503,7 +504,7 @@ mobile networking.</p>
         <a href="trend.html" class="btn btn-neutral float-right" title="Perspective: The Cloud is Eating the Internet" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="mpls.html" class="btn btn-neutral float-left" title="4.3 Multiprotocol Label Switching" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="mpls.html" class="btn btn-neutral float-left" title="4.4 Multiprotocol Label Switching" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

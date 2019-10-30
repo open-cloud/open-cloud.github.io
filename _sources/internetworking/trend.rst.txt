@@ -84,16 +84,16 @@ Turtle: It’s virtual networks all the way down.
    VXLAN Header encapsulated in a UDP/IP packet. 
    header.
 
-The actual VXLAN header is simple, as shown in :ref:`Figure 2 <fig-vxlan>`. It
-includes a 24-bit *Virtual Network Id* (VNI), plus some flag and
-reserved bits. It also implies a particular setting of the UDP source
-and destination port fields (see `Section 5.1 <../e2e/udp.md>`__), with
-the destination port 4789 officially reserved for VXLANs. Figuring out
-how to uniquely identify virtual LANs (VLAN tags) and virtual networks
-(VXLAN VIDs) is the easy part. This is because encapsulation is the
-fundamental cornerstone of virtualization; all you need to add is an
-identifier that tells you which of many possible users this encapsulated
-packet belongs to.
+The actual VXLAN header is simple, as shown in :numref:`Figure %s
+<fig-vxlan>`. It includes a 24-bit *Virtual Network Id* (VNI), plus
+some flag and reserved bits. It also implies a particular setting of
+the UDP source and destination port fields (see `Section 5.1
+<../e2e/udp.html>`__), with the destination port 4789 officially
+reserved for VXLANs. Figuring out how to uniquely identify virtual
+LANs (VLAN tags) and virtual networks (VXLAN VIDs) is the easy
+part. This is because encapsulation is the fundamental cornerstone of
+virtualization; all you need to add is an identifier that tells you
+which of many possible users this encapsulated packet belongs to.
 
 The hard part is grappling with the idea of virtual networks being
 nested (encapsulated) inside virtual networks, which is networking’s
@@ -109,10 +109,9 @@ leading the way.
 .. admonition:: Broader Perspective
 
    To continue reading about the cloudification of the Internet, see
-   `The Cloud is Eating the Internet <../scaling/trend.md>`__.
+   `The Cloud is Eating the Internet <../scaling/trend.html>`__.
 
    To learn more about the maturation of virtual networks, we recommend:
-   \* `Network
-   Heresy <https://networkheresy.com/2012/05/31/network-virtualization/>`__,
-   2012. \* `Tungsten
-   Fabric <https://tungstenfabric.github.io/website/>`__, 2018.
+    * `Network Heresy <https://networkheresy.com/2012/05/31/network-virtualization/>`__,  2012.
+
+    * `Tungsten Fabric <https://tungstenfabric.github.io/website/>`__, 2018.

@@ -55,8 +55,8 @@ tapping into it. A *transceiver*, a small device directly attached to
 the tap, detected when the line was idle and drove the signal when the
 host was transmitting. It also received incoming signals. The
 transceiver, in turn, connected to an Ethernet adaptor, which was
-plugged into the host. This configuration is shown in :ref:`Figure
-1 <fig-tap>`.
+plugged into the host. This configuration is shown in :numref:`Figure
+%s <fig-tap>`.
 
 .. _fig-tap:
 .. figure:: figures/f02-22-9780123850591.png
@@ -73,7 +73,7 @@ frames. No more than four repeaters could be positioned between any pair
 of hosts, meaning that a classical Ethernet had a total reach of only
 2500 m. For example, using just two repeaters between any pair of hosts
 supports a configuration similar to the one illustrated in
-:ref:`Figure 2 <fig-net-repeat>`; that is, a segment running down the
+:numref:`Figure %s <fig-net-repeat>`; that is, a segment running down the
 spine of a building with a segment on each floor.
 
 .. _fig-net-repeat:
@@ -116,8 +116,8 @@ describe the Ethernet’s frame format and addresses.
 Frame Format
 ~~~~~~~~~~~~
 
-Each Ethernet frame is defined by the format given in :ref:`Figure
-3 <fig-enet-format>`. The 64-bit preamble allows the receiver to
+Each Ethernet frame is defined by the format given in :numref:`Figure
+%s <fig-enet-format>`. The 64-bit preamble allows the receiver to
 synchronize with the signal; it is a sequence of alternating 0s and 1s.
 Both the source and destination hosts are identified with a 48-bit
 address. The packet type field serves as the demultiplexing key; it
@@ -276,7 +276,8 @@ during this time.
    at time t+d and collides with A's frame; (d) B's runt (32-bit)
    frame arrives at A at time t+2×d.
 
-:ref:`Figure 4 <fig-worst>` illustrates the worst-case scenario, where hosts A
+:numref:`Figure %s <fig-worst>` illustrates the worst-case scenario,
+where hosts A
 and B are at opposite ends of the network. Suppose host A begins
 transmitting a frame at time t, as shown in (a). It takes it one link
 latency (let’s denote the latency as d) for the frame to reach host B.

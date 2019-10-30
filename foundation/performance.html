@@ -235,8 +235,8 @@ no end in sight. Intuitively, if you think of a second of time as a
 distance you could measure with a ruler and bandwidth as how many bits
 fit in that distance, then you can think of each bit as a pulse of some
 width. For example, each bit on a 1-Mbps link is 1 μs wide, while each
-bit on a 2-Mbps link is 0.5 μs wide, as illustrated in <a class="reference internal" href="#fig-bit-width"><span class="std std-ref">Figure
-1</span></a>. The more sophisticated the transmitting and receiving
+bit on a 2-Mbps link is 0.5 μs wide, as illustrated in <a class="reference internal" href="#fig-bit-width"><span class="std std-numref">Figure
+16</span></a>. The more sophisticated the transmitting and receiving
 technology, the narrower each bit can become and, thus, the higher the
 bandwidth. For logical process-to-process channels, bandwidth is also
 influenced by other factors, including how many times the software that
@@ -244,7 +244,7 @@ implements the channel has to handle, and possibly transform, each bit
 of data.</p>
 <div class="figure align-center" id="id1">
 <span id="fig-bit-width"></span><a class="reference internal image-reference" href="../_images/f01-16-9780123850591.png"><img alt="../_images/f01-16-9780123850591.png" src="../_images/f01-16-9780123850591.png" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-number">Figure 16: </span><span class="caption-text">Bits transmitted at a particular bandwidth can be
+<p class="caption"><span class="caption-number">Figure 16. </span><span class="caption-text">Bits transmitted at a particular bandwidth can be
 regarded as having some width: (a) bits transmitted at 1 Mbps
 (each bit is 1 microsecond wide); (b) bits transmitted at 2 Mbps
 (each bit is 0.5 microseconds wide).</span></p>
@@ -273,7 +273,7 @@ which the data is carried. Third, there may be queuing delays inside the
 network, since packet switches generally need to store packets for some
 time before forwarding them on an outbound link. So, we could define the
 total latency as</p>
-<div class="code c highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Latency</span> <span class="o">=</span> <span class="n">Propagation</span> <span class="o">+</span> <span class="n">Transmit</span> <span class="o">+</span> <span class="n">Queue</span>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">Latency</span> <span class="o">=</span> <span class="n">Propagation</span> <span class="o">+</span> <span class="n">Transmit</span> <span class="o">+</span> <span class="n">Queue</span>
 <span class="n">Propagation</span> <span class="o">=</span>  <span class="n">Distance</span><span class="o">/</span><span class="n">SpeedOfLight</span>
 <span class="n">Transmit</span> <span class="o">=</span> <span class="n">Size</span><span class="o">/</span><span class="n">Bandwidth</span>
 </pre></div>
@@ -309,21 +309,22 @@ between a 20.001-second response time and a 20.1-second response time is
 negligible.</p>
 <div class="figure align-center" id="id2">
 <span id="fig-latency"></span><a class="reference internal image-reference" href="../_images/f01-17-9780123850591.png"><img alt="../_images/f01-17-9780123850591.png" src="../_images/f01-17-9780123850591.png" style="width: 600px;" /></a>
-<p class="caption"><span class="caption-number">Figure 17: </span><span class="caption-text">Perceived latency (response time) versus round-trip
+<p class="caption"><span class="caption-number">Figure 17. </span><span class="caption-text">Perceived latency (response time) versus round-trip
 time for various object sizes and link speeds.</span></p>
 </div>
-<p><a class="reference internal" href="#fig-latency"><span class="std std-ref">Figure 2</span></a> gives you a sense of how latency or bandwidth
-can dominate performance in different circumstances. The graph shows how
-long it takes to move objects of various sizes (1&nbsp;byte, 2&nbsp;KB, 1&nbsp;MB)
-across networks with RTTs ranging from 1 to 100&nbsp;ms and link speeds of
-either 1.5 or 10&nbsp;Mbps. We use logarithmic scales to show relative
-performance. For a 1-byte object (say, a keystroke), latency remains
-almost exactly equal to the RTT, so that you cannot distinguish between
-a 1.5-Mbps network and a 10-Mbps network. For a 2-KB object (say, an
-email message), the link speed makes quite a difference on a 1-ms RTT
-network but a negligible difference on a 100-ms RTT network. And for a
-1-MB object (say, a digital image), the RTT makes no difference—it is
-the link speed that dominates performance across the full range of RTT.</p>
+<p><a class="reference internal" href="#fig-latency"><span class="std std-numref">Figure 17</span></a> gives you a sense of how latency or
+bandwidth can dominate performance in different circumstances. The
+graph shows how long it takes to move objects of various sizes
+(1&nbsp;byte, 2&nbsp;KB, 1&nbsp;MB) across networks with RTTs ranging from 1 to
+100&nbsp;ms and link speeds of either 1.5 or 10&nbsp;Mbps. We use logarithmic
+scales to show relative performance. For a 1-byte object (say, a
+keystroke), latency remains almost exactly equal to the RTT, so that
+you cannot distinguish between a 1.5-Mbps network and a 10-Mbps
+network. For a 2-KB object (say, an email message), the link speed
+makes quite a difference on a 1-ms RTT network but a negligible
+difference on a 100-ms RTT network. And for a 1-MB object (say, a
+digital image), the RTT makes no difference—it is the link speed that
+dominates performance across the full range of RTT.</p>
 <p>Note that throughout this book we use the terms <em>latency</em> and <em>delay</em> in
 a generic way to denote how long it takes to perform a particular
 function, such as delivering a message or moving an object. When we are
@@ -346,8 +347,8 @@ the network to justify this waste.</p>
 <h2>Delay × Bandwidth Product<a class="headerlink" href="#delay-bandwidth-product" title="Permalink to this headline">¶</a></h2>
 <p>It is also useful to talk about the product of these two metrics, often
 called the <em>delay × bandwidth product</em>. Intuitively, if we think of a
-channel between a pair of processes as a hollow pipe (see <a class="reference internal" href="#fig-pipe"><span class="std std-ref">Figure
-3</span></a>), where the latency corresponds to the length of the pipe
+channel between a pair of processes as a hollow pipe (see <a class="reference internal" href="#fig-pipe"><span class="std std-numref">Figure
+18</span></a>), where the latency corresponds to the length of the pipe
 and the bandwidth gives the diameter of the pipe, then the delay ×
 bandwidth product gives the volume of the pipe—the maximum number of
 bits that could be in transit through the pipe at any given instant.
@@ -363,7 +364,7 @@ of 45 Mbps is able to hold</p>
 early 1980s could hold.</p>
 <div class="figure align-center" id="id3">
 <span id="fig-pipe"></span><a class="reference internal image-reference" href="../_images/f01-18-9780123850591.png"><img alt="../_images/f01-18-9780123850591.png" src="../_images/f01-18-9780123850591.png" style="width: 400px;" /></a>
-<p class="caption"><span class="caption-number">Figure 18: </span><span class="caption-text">Network as a pipe.</span></p>
+<p class="caption"><span class="caption-number">Figure 18. </span><span class="caption-text">Network as a pipe.</span></p>
 </div>
 <p>The delay × bandwidth product is important to know when constructing
 high-performance networks because it corresponds to how many bits the
@@ -380,15 +381,14 @@ respond. In our example above, that amount corresponds to
 the sender does not fill the pipe—i.e., does not send a whole RTT ×
 bandwidth product’s worth of data before it stops to wait for a
 signal—the sender will not fully utilize the network.</p>
-<p>Note that most of the time we are interested in the RTT scenario, which
-we simply refer to as the delay × bandwidth product, without explicitly
-saying that “delay” is the RTT (i.e., multiply the one-way delay by
-two). Usually, whether the “delay” in delay × bandwidth means one-way
-latency or RTT is made clear by the context. <a class="reference internal" href="#tab-delay-bw"><span class="std std-ref">Table 1</span></a>
-shows some examples of RTT × bandwidth products for some typical network
-links.</p>
+<p>Note that most of the time we are interested in the RTT scenario,
+which we simply refer to as the delay × bandwidth product, without
+explicitly saying that “delay” is the RTT (i.e., multiply the one-way
+delay by two). Usually, whether the “delay” in delay × bandwidth means
+one-way latency or RTT is made clear by the context. <a class="reference internal" href="#tab-delay-bw"><span class="std std-numref">Table 1</span></a> shows some examples of RTT × bandwidth products for
+some typical network links.</p>
 <span id="tab-delay-bw"></span><table border="1" class="colwidths-auto docutils align-center" id="id4">
-<caption><span class="caption-number">Table 1: </span><span class="caption-text">Example delay × bandwidth products.</span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
+<caption><span class="caption-number">Table 1. </span><span class="caption-text">Example delay × bandwidth products.</span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Link Type</th>
 <th class="head">Bandwidth</th>
@@ -440,7 +440,7 @@ times to transmit the file; during each RTT, 1.25% of the file is sent.
 In contrast, the same 1-MB file doesn’t even come close to filling
 1&nbsp;RTT’s worth of the 1-Gbps link, which has a delay × bandwidth product
 of 12.5&nbsp;MB.</p>
-<p><a class="reference internal" href="#fig-bw-lat"><span class="std std-ref">Figure 4</span></a> illustrates the difference between the two
+<p><a class="reference internal" href="#fig-bw-lat"><span class="std std-numref">Figure 19</span></a> illustrates the difference between the two
 networks. In effect, the 1-MB file looks like a stream of data that
 needs to be transmitted across a 1-Mbps network, while it looks like a
 single packet on a 1-Gbps network. To help drive this point home,
@@ -448,7 +448,7 @@ consider that a 1-MB file is to a 1-Gbps network what a 1-KB <em>packet</em> is
 to a 1-Mbps network.</p>
 <div class="figure align-center" id="id5">
 <span id="fig-bw-lat"></span><a class="reference internal image-reference" href="../_images/f01-19-9780123850591.png"><img alt="../_images/f01-19-9780123850591.png" src="../_images/f01-19-9780123850591.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-number">Figure 19: </span><span class="caption-text">Relationship between bandwidth and latency. A 1-MB
+<p class="caption"><span class="caption-number">Figure 19. </span><span class="caption-text">Relationship between bandwidth and latency. A 1-MB
 file would fill the 1-Mbps link 80 times but only fill 1/12th of a
 1-Gbps link.</span></p>
 </div>
@@ -541,22 +541,23 @@ delay, it sometimes doesn’t matter so much whether the one-way latency
 of the network is 100&nbsp;ms or 500&nbsp;ms as how much the latency varies from
 packet to packet. The variation in latency is called <em>jitter</em>.</p>
 <p>Consider the situation in which the source sends a packet once every
-33&nbsp;ms, as would be the case for a video application transmitting frames
-30 times a second. If the packets arrive at the destination spaced out
-exactly 33&nbsp;ms apart, then we can deduce that the delay experienced by
-each packet in the network was exactly the same. If the spacing between
-when packets arrive at the destination—sometimes called the
-<em>inter-packet gap</em>—is variable, however, then the delay experienced by
-the sequence of packets must have also been variable, and the network is
-said to have introduced jitter into the packet stream, as shown in
-<a class="reference internal" href="#fig-jitter"><span class="std std-ref">Figure 5</span></a>. Such variation is generally not introduced in a
-single physical link, but it can happen when packets experience
-different queuing delays in a multihop packet-switched network. This
-queuing delay corresponds to the component of latency defined earlier in
-this section, which varies with time.</p>
+33&nbsp;ms, as would be the case for a video application transmitting
+frames 30 times a second. If the packets arrive at the destination
+spaced out exactly 33&nbsp;ms apart, then we can deduce that the delay
+experienced by each packet in the network was exactly the same. If the
+spacing between when packets arrive at the destination—sometimes
+called the <em>inter-packet gap</em>—is variable, however, then the delay
+experienced by the sequence of packets must have also been variable,
+and the network is said to have introduced jitter into the packet
+stream, as shown in <a class="reference internal" href="#fig-jitter"><span class="std std-numref">Figure 20</span></a>. Such variation
+is generally not introduced in a single physical link, but it can
+happen when packets experience different queuing delays in a multihop
+packet-switched network. This queuing delay corresponds to the
+component of latency defined earlier in this section, which varies
+with time.</p>
 <div class="figure align-center" id="id6">
 <span id="fig-jitter"></span><a class="reference internal image-reference" href="../_images/f01-20-9780123850591.png"><img alt="../_images/f01-20-9780123850591.png" src="../_images/f01-20-9780123850591.png" style="width: 600px;" /></a>
-<p class="caption"><span class="caption-number">Figure 20: </span><span class="caption-text">Network-induced jitter.</span></p>
+<p class="caption"><span class="caption-number">Figure 20. </span><span class="caption-text">Network-induced jitter.</span></p>
 </div>
 <p>To understand the relevance of jitter, suppose that the packets being
 transmitted over the network contain video frames, and in order to

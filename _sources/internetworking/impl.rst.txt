@@ -28,18 +28,19 @@ We’ll call out the differences between the two when appropriate.
 Software Switch
 ---------------
 
-:ref:`Figure 1 <fig-softswitch>` shows a software switch built using a
-general-purpose processor with four network interface cards (NICs). The
-path for a typical packet that arrives on, say, NIC 1 and is forwarded
-out on NIC 2 is straightforward: as NIC 1 receives the packet it copies
-its bytes directly into the main memory over the I/O bus (PCIe in this
-example) using a technique called *direct memory access* (DMA). Once the
-packet is in memory, the CPU examines its header to determine which
-interface the packet should be sent out on, and instructs NIC 2 to
-transmit the packet, again directly out of main memory using DMA. The
-important take-away is that the packet is buffered in main memory (this
-is the “store” half of store-and-forward), with the CPU reading only the
-necessary header fields into its internal registers for processing.
+:numref:`Figure %s <fig-softswitch>` shows a software switch built
+using a general-purpose processor with four network interface cards
+(NICs). The path for a typical packet that arrives on, say, NIC 1 and
+is forwarded out on NIC 2 is straightforward: as NIC 1 receives the
+packet it copies its bytes directly into the main memory over the I/O
+bus (PCIe in this example) using a technique called *direct memory
+access* (DMA). Once the packet is in memory, the CPU examines its
+header to determine which interface the packet should be sent out on,
+and instructs NIC 2 to transmit the packet, again directly out of main
+memory using DMA. The important take-away is that the packet is
+buffered in main memory (this is the “store” half of
+store-and-forward), with the CPU reading only the necessary header
+fields into its internal registers for processing.
  
 .. _fig-softswitch:
 .. figure:: figures/impl/Slide1.png
@@ -123,8 +124,8 @@ forwarding table.
    Separation) as an architectural principle.
 
    These two kinds of processing are easy to conflate when both run on
-   the same CPU, as is the case in software switch depicted in :ref:`Figure
-   1 <fig-softswitch>`, but performance can be dramatically improved by
+   the same CPU, as is the case in software switch depicted in :numref:`Figure
+   %s <fig-softswitch>`, but performance can be dramatically improved by
    optimizing how the data plane is implemented, and correspondingly,
    specifying a well-defined interface between the control and data
    planes.
@@ -168,18 +169,18 @@ historically dominated the industry.
    White-box switch using a Network Processing
    Unit.
 
-:ref:`Figure 2 <fig-whitebox>` is a simplified depiction of a white-box
-switch. The key difference from the earlier implementation on a
-general-purpose processor is the addition of a Network Processor Unit
-(NPU), a domain-specific processor with an architecture and instruction
-set that has been optimized for processing packet headers (i.e., for
-implementing the data plane). NPUs are similar in spirit to GPUs that
-have an architecture optimized for rendering computer graphics, but in
-this case, the NPU is optimized for parsing packet headers and making a
-forwarding decision. NPUs are able to process packets (input, make a
-forwarding decision, and output) at rates measured in
-Terabits-per-second (Tbps), easily fast enough to keep up with
-32x100-Gbps ports, or the 48x40-Gbps ports shown in the diagram.
+:numref:`Figure %s <fig-whitebox>` is a simplified depiction of a
+white-box switch. The key difference from the earlier implementation
+on a general-purpose processor is the addition of a Network Processor
+Unit (NPU), a domain-specific processor with an architecture and
+instruction set that has been optimized for processing packet headers
+(i.e., for implementing the data plane). NPUs are similar in spirit to
+GPUs that have an architecture optimized for rendering computer
+graphics, but in this case, the NPU is optimized for parsing packet
+headers and making a forwarding decision. NPUs are able to process
+packets (input, make a forwarding decision, and output) at rates
+measured in Terabits-per-second (Tbps), easily fast enough to keep up
+with 32x100-Gbps ports, or the 48x40-Gbps ports shown in the diagram.
 
    Our use of the term NPU is a bit non-standard. Historically, NPU was
    the name given more narrowly-defined network processing chips used,
@@ -237,15 +238,16 @@ lookup on packet A while Stage 1 is doing an initial lookup on packet B,
 and so on. This means the NPU as a whole is able to keep up with line
 speeds. As of this writing, the state-of-the-art is 12.8 Tbps.
 
-Finally, :ref:`Figure 2 <fig-whitebox>` includes other commodity components
-that make this all practical. In particular, it is now possible to buy
-pluggable *transceiver* modules that take care of all the media access
-details—be it Gigabit Ethernet, 10-Gigabit Ethernet, or SONET—as well as
-the optics. These transceivers all conform to standardized form factors,
-such as SFP+, that can in turn be connected to other components over a
-standardized bus (e.g., SFI). Again, the key takeaway is that the
-networking industry is just now entering into the same commoditized
-world that the computing industry has enjoyed for the last two decades.
+Finally, :numref:`Figure %s <fig-whitebox>` includes other commodity
+components that make this all practical. In particular, it is now
+possible to buy pluggable *transceiver* modules that take care of all
+the media access details—be it Gigabit Ethernet, 10-Gigabit Ethernet,
+or SONET—as well as the optics. These transceivers all conform to
+standardized form factors, such as SFP+, that can in turn be connected
+to other components over a standardized bus (e.g., SFI). Again, the
+key takeaway is that the networking industry is just now entering into
+the same commoditized world that the computing industry has enjoyed
+for the last two decades.
 
 Software Defined Networks
 -------------------------
@@ -304,25 +306,25 @@ past the number of physical ports in 2012.
    control applications and providing a logically centralized point 
    of control for an underlying network data plane.
 
-One of other key enablers for SDN’s success, as depicted in :ref:`Figure
-3 <fig-sdn>`, is the Network Operating System (NOS). Like a server
-operating system (e.g., Linux, iOS, Android, Windows) that provides a
-set of high-level abstractions that make it easier to implement
-applications (e.g., you can read and write files instead of directly
-accessing disk drives), a NOS makes it easier to implement network
-control functionality, otherwise known as *Control Apps*. A good NOS
-abstracts the details of the network switches and provides a *Network
-Map* abstraction to the application developer. The NOS detects changes
-in the underlying network (e.g., switches, ports, and links going
-up-and-down) and the control application simply implements the behavior
-it wants on this abstract graph. This means the NOS takes on the burden
-of collecting network state (the hard part of distributed algorithms
-like Link-State and Distance-Vector algorithms) and the app is free to
-simply implement the shortest path algorithm and load the forwarding
-rules into the underlying switches. By centralizing this logic, the goal
-is to come up with a globally optimized solution. The published evidence
-from cloud providers that have embraced this approach confirms this
-advantage.
+One of other key enablers for SDN’s success, as depicted in
+:numref:`Figure %s <fig-sdn>`, is the Network Operating System
+(NOS). Like a server operating system (e.g., Linux, iOS, Android,
+Windows) that provides a set of high-level abstractions that make it
+easier to implement applications (e.g., you can read and write files
+instead of directly accessing disk drives), a NOS makes it easier to
+implement network control functionality, otherwise known as *Control
+Apps*. A good NOS abstracts the details of the network switches and
+provides a *Network Map* abstraction to the application developer. The
+NOS detects changes in the underlying network (e.g., switches, ports,
+and links going up-and-down) and the control application simply
+implements the behavior it wants on this abstract graph. This means
+the NOS takes on the burden of collecting network state (the hard part
+of distributed algorithms like Link-State and Distance-Vector
+algorithms) and the app is free to simply implement the shortest path
+algorithm and load the forwarding rules into the underlying
+switches. By centralizing this logic, the goal is to come up with a
+globally optimized solution. The published evidence from cloud
+providers that have embraced this approach confirms this advantage.
 
 As much of an advantage as the cloud providers have been able to get out
 of SDN, its adoption in enterprises and Telcos has been much slower.

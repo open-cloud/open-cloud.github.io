@@ -203,21 +203,22 @@ section, avoiding the tedium of saying “switch or router” all the time.
 We’ll call out the differences between the two when appropriate.</p>
 <div class="section" id="software-switch">
 <h2>Software Switch<a class="headerlink" href="#software-switch" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference internal" href="#fig-softswitch"><span class="std std-ref">Figure 1</span></a> shows a software switch built using a
-general-purpose processor with four network interface cards (NICs). The
-path for a typical packet that arrives on, say, NIC 1 and is forwarded
-out on NIC 2 is straightforward: as NIC 1 receives the packet it copies
-its bytes directly into the main memory over the I/O bus (PCIe in this
-example) using a technique called <em>direct memory access</em> (DMA). Once the
-packet is in memory, the CPU examines its header to determine which
-interface the packet should be sent out on, and instructs NIC 2 to
-transmit the packet, again directly out of main memory using DMA. The
-important take-away is that the packet is buffered in main memory (this
-is the “store” half of store-and-forward), with the CPU reading only the
-necessary header fields into its internal registers for processing.</p>
+<p><a class="reference internal" href="#fig-softswitch"><span class="std std-numref">Figure 93</span></a> shows a software switch built
+using a general-purpose processor with four network interface cards
+(NICs). The path for a typical packet that arrives on, say, NIC 1 and
+is forwarded out on NIC 2 is straightforward: as NIC 1 receives the
+packet it copies its bytes directly into the main memory over the I/O
+bus (PCIe in this example) using a technique called <em>direct memory
+access</em> (DMA). Once the packet is in memory, the CPU examines its
+header to determine which interface the packet should be sent out on,
+and instructs NIC 2 to transmit the packet, again directly out of main
+memory using DMA. The important take-away is that the packet is
+buffered in main memory (this is the “store” half of
+store-and-forward), with the CPU reading only the necessary header
+fields into its internal registers for processing.</p>
 <div class="figure align-center" id="id1">
 <span id="fig-softswitch"></span><a class="reference internal image-reference" href="../_images/Slide13.png"><img alt="../_images/Slide13.png" src="../_images/Slide13.png" style="width: 300px;" /></a>
-<p class="caption"><span class="caption-number">Figure 93: </span><span class="caption-text">A general-purpose processor used as a software
+<p class="caption"><span class="caption-number">Figure 93. </span><span class="caption-text">A general-purpose processor used as a software
 switch.</span></p>
 </div>
 <p>There are two potential bottlenecks with this approach, one or both of
@@ -281,8 +282,8 @@ historical reasons, this distinction is called <em>control plane</em> and
 and in fact, the 3GPP standard defines CUPS (Control/User Plane
 Separation) as an architectural principle.</p>
 <p class="last">These two kinds of processing are easy to conflate when both run on
-the same CPU, as is the case in software switch depicted in <a class="reference internal" href="#fig-softswitch"><span class="std std-ref">Figure
-1</span></a>, but performance can be dramatically improved by
+the same CPU, as is the case in software switch depicted in <a class="reference internal" href="#fig-softswitch"><span class="std std-numref">Figure
+93</span></a>, but performance can be dramatically improved by
 optimizing how the data plane is implemented, and correspondingly,
 specifying a well-defined interface between the control and data
 planes.</p>
@@ -317,21 +318,21 @@ called to contrast them with closed “black-box” devices that have
 historically dominated the industry.</p>
 <div class="figure align-center" id="id2">
 <span id="fig-whitebox"></span><a class="reference internal image-reference" href="../_images/Slide22.png"><img alt="../_images/Slide22.png" src="../_images/Slide22.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-number">Figure 94: </span><span class="caption-text">White-box switch using a Network Processing
+<p class="caption"><span class="caption-number">Figure 94. </span><span class="caption-text">White-box switch using a Network Processing
 Unit.</span></p>
 </div>
-<p><a class="reference internal" href="#fig-whitebox"><span class="std std-ref">Figure 2</span></a> is a simplified depiction of a white-box
-switch. The key difference from the earlier implementation on a
-general-purpose processor is the addition of a Network Processor Unit
-(NPU), a domain-specific processor with an architecture and instruction
-set that has been optimized for processing packet headers (i.e., for
-implementing the data plane). NPUs are similar in spirit to GPUs that
-have an architecture optimized for rendering computer graphics, but in
-this case, the NPU is optimized for parsing packet headers and making a
-forwarding decision. NPUs are able to process packets (input, make a
-forwarding decision, and output) at rates measured in
-Terabits-per-second (Tbps), easily fast enough to keep up with
-32x100-Gbps ports, or the 48x40-Gbps ports shown in the diagram.</p>
+<p><a class="reference internal" href="#fig-whitebox"><span class="std std-numref">Figure 94</span></a> is a simplified depiction of a
+white-box switch. The key difference from the earlier implementation
+on a general-purpose processor is the addition of a Network Processor
+Unit (NPU), a domain-specific processor with an architecture and
+instruction set that has been optimized for processing packet headers
+(i.e., for implementing the data plane). NPUs are similar in spirit to
+GPUs that have an architecture optimized for rendering computer
+graphics, but in this case, the NPU is optimized for parsing packet
+headers and making a forwarding decision. NPUs are able to process
+packets (input, make a forwarding decision, and output) at rates
+measured in Terabits-per-second (Tbps), easily fast enough to keep up
+with 32x100-Gbps ports, or the 48x40-Gbps ports shown in the diagram.</p>
 <blockquote>
 <div>Our use of the term NPU is a bit non-standard. Historically, NPU was
 the name given more narrowly-defined network processing chips used,
@@ -385,15 +386,16 @@ processed at the same time. For example, Stage 2 can be making a second
 lookup on packet A while Stage 1 is doing an initial lookup on packet B,
 and so on. This means the NPU as a whole is able to keep up with line
 speeds. As of this writing, the state-of-the-art is 12.8 Tbps.</p>
-<p>Finally, <a class="reference internal" href="#fig-whitebox"><span class="std std-ref">Figure 2</span></a> includes other commodity components
-that make this all practical. In particular, it is now possible to buy
-pluggable <em>transceiver</em> modules that take care of all the media access
-details—be it Gigabit Ethernet, 10-Gigabit Ethernet, or SONET—as well as
-the optics. These transceivers all conform to standardized form factors,
-such as SFP+, that can in turn be connected to other components over a
-standardized bus (e.g., SFI). Again, the key takeaway is that the
-networking industry is just now entering into the same commoditized
-world that the computing industry has enjoyed for the last two decades.</p>
+<p>Finally, <a class="reference internal" href="#fig-whitebox"><span class="std std-numref">Figure 94</span></a> includes other commodity
+components that make this all practical. In particular, it is now
+possible to buy pluggable <em>transceiver</em> modules that take care of all
+the media access details—be it Gigabit Ethernet, 10-Gigabit Ethernet,
+or SONET—as well as the optics. These transceivers all conform to
+standardized form factors, such as SFP+, that can in turn be connected
+to other components over a standardized bus (e.g., SFI). Again, the
+key takeaway is that the networking industry is just now entering into
+the same commoditized world that the computing industry has enjoyed
+for the last two decades.</p>
 </div>
 <div class="section" id="software-defined-networks">
 <h2>Software Defined Networks<a class="headerlink" href="#software-defined-networks" title="Permalink to this headline">¶</a></h2>
@@ -440,29 +442,29 @@ your network) then the number of virtual ports in the Internet rocketed
 past the number of physical ports in 2012.</p>
 <div class="figure align-center" id="id3">
 <span id="fig-sdn"></span><a class="reference internal image-reference" href="../_images/Slide32.png"><img alt="../_images/Slide32.png" src="../_images/Slide32.png" style="width: 500px;" /></a>
-<p class="caption"><span class="caption-number">Figure 95: </span><span class="caption-text">Network Operating System (NOS) hosting a set of
+<p class="caption"><span class="caption-number">Figure 95. </span><span class="caption-text">Network Operating System (NOS) hosting a set of
 control applications and providing a logically centralized point
 of control for an underlying network data plane.</span></p>
 </div>
-<p>One of other key enablers for SDN’s success, as depicted in <a class="reference internal" href="#fig-sdn"><span class="std std-ref">Figure
-3</span></a>, is the Network Operating System (NOS). Like a server
-operating system (e.g., Linux, iOS, Android, Windows) that provides a
-set of high-level abstractions that make it easier to implement
-applications (e.g., you can read and write files instead of directly
-accessing disk drives), a NOS makes it easier to implement network
-control functionality, otherwise known as <em>Control Apps</em>. A good NOS
-abstracts the details of the network switches and provides a <em>Network
-Map</em> abstraction to the application developer. The NOS detects changes
-in the underlying network (e.g., switches, ports, and links going
-up-and-down) and the control application simply implements the behavior
-it wants on this abstract graph. This means the NOS takes on the burden
-of collecting network state (the hard part of distributed algorithms
-like Link-State and Distance-Vector algorithms) and the app is free to
-simply implement the shortest path algorithm and load the forwarding
-rules into the underlying switches. By centralizing this logic, the goal
-is to come up with a globally optimized solution. The published evidence
-from cloud providers that have embraced this approach confirms this
-advantage.</p>
+<p>One of other key enablers for SDN’s success, as depicted in
+<a class="reference internal" href="#fig-sdn"><span class="std std-numref">Figure 95</span></a>, is the Network Operating System
+(NOS). Like a server operating system (e.g., Linux, iOS, Android,
+Windows) that provides a set of high-level abstractions that make it
+easier to implement applications (e.g., you can read and write files
+instead of directly accessing disk drives), a NOS makes it easier to
+implement network control functionality, otherwise known as <em>Control
+Apps</em>. A good NOS abstracts the details of the network switches and
+provides a <em>Network Map</em> abstraction to the application developer. The
+NOS detects changes in the underlying network (e.g., switches, ports,
+and links going up-and-down) and the control application simply
+implements the behavior it wants on this abstract graph. This means
+the NOS takes on the burden of collecting network state (the hard part
+of distributed algorithms like Link-State and Distance-Vector
+algorithms) and the app is free to simply implement the shortest path
+algorithm and load the forwarding rules into the underlying
+switches. By centralizing this logic, the goal is to come up with a
+globally optimized solution. The published evidence from cloud
+providers that have embraced this approach confirms this advantage.</p>
 <p>As much of an advantage as the cloud providers have been able to get out
 of SDN, its adoption in enterprises and Telcos has been much slower.
 This is partly about the ability of different markets to manage their

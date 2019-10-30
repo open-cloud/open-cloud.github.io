@@ -78,7 +78,7 @@ physical medium, such as a coaxial cable or an optical fiber. We call
 such a physical medium a *link*, and we often refer to the computers it
 connects as *nodes*. (Sometimes a node is a more specialized piece of
 hardware rather than a computer, but we overlook that distinction for
-the purposes of this discussion.) As illustrated in :ref:`Figure 1
+the purposes of this discussion.) As illustrated in :numref:`Figure %s
 <fig-direct>`, physical links are sometimes limited to a pair of nodes
 (such a link is said to be *point-to-point*), while in other cases more
 than two nodes may share a single physical link (such a link is said to
@@ -107,23 +107,24 @@ direct physical connection between them—indirect connectivity may be
 achieved among a set of cooperating nodes. Consider the following two
 examples of how a collection of computers can be indirectly connected.
 
-:ref:`Figure 2 <fig-psn>` shows a pair of shows a set of nodes, each of which
-is attached to one or more point-to-point links. Those nodes that are
-attached to at least two links run software that forwards data received
-on one link out on another. If organized in a systematic way, these
-forwarding nodes form a *switched network*. There are numerous types of
-switched networks, of which the two most common are *circuit switched*
-and *packet switched*. The former is most notably employed by the
-telephone system, while the latter is used for the overwhelming majority
-of computer networks and will be the focus of this book. (Circuit
-switching is, however, making a bit of a comeback in the optical
-networking realm, which turns out to be important as demand for network
-capacity constantly grows.) The important feature of packet-switched
-networks is that the nodes in such a network send discrete blocks of
-data to each other. Think of these blocks of data as corresponding to
-some piece of application data such as a file, a piece of email, or an
-image. We call each block of data either a *packet* or a *message*, and
-for now we use these terms interchangeably.
+:numref:`Figure %s <fig-psn>` shows a pair of shows a set of nodes,
+each of which is attached to one or more point-to-point links. Those
+nodes that are attached to at least two links run software that
+forwards data received on one link out on another. If organized in a
+systematic way, these forwarding nodes form a *switched
+network*. There are numerous types of switched networks, of which the
+two most common are *circuit switched* and *packet switched*. The
+former is most notably employed by the telephone system, while the
+latter is used for the overwhelming majority of computer networks and
+will be the focus of this book. (Circuit switching is, however, making
+a bit of a comeback in the optical networking realm, which turns out
+to be important as demand for network capacity constantly grows.) The
+important feature of packet-switched networks is that the nodes in
+such a network send discrete blocks of data to each other. Think of
+these blocks of data as corresponding to some piece of application
+data such as a file, a piece of email, or an image. We call each block
+of data either a *packet* or a *message*, and for now we use these
+terms interchangeably.
 
 .. _fig-psn:
 .. figure:: figures/f01-03-9780123850591.png
@@ -143,17 +144,18 @@ circuit to a destination node. The major reason for using packet
 switching rather than circuit switching in a computer network is
 efficiency, discussed in the next subsection.
 
-The cloud in :ref:`Figure 2 <fig-psn>` distinguishes between the nodes on the
-inside that *implement* the network (they are commonly called
-*switches*, and their primary function is to store and forward packets)
-and the nodes on the outside of the cloud that *use* the network (they
-are traditionally called *hosts*, and they support users and run
-application programs). Also note that the cloud is one of the most
-important icons of computer networking. In general, we use a cloud to
-denote any type of network, whether it is a single point-to-point link,
-a multiple-access link, or a switched network. Thus, whenever you see a
-cloud used in a figure, you can think of it as a placeholder for any of
-the networking technologies covered in this book.
+The cloud in :numref:`Figure %s <fig-psn>` distinguishes between the
+nodes on the inside that *implement* the network (they are commonly
+called *switches*, and their primary function is to store and forward
+packets) and the nodes on the outside of the cloud that *use* the
+network (they are traditionally called *hosts*, and they support users
+and run application programs). Also note that the cloud is one of the
+most important icons of computer networking. In general, we use a
+cloud to denote any type of network, whether it is a single
+point-to-point link, a multiple-access link, or a switched
+network. Thus, whenever you see a cloud used in a figure, you can
+think of it as a placeholder for any of the networking technologies
+covered in this book.
 
    Interestingly, the use of clouds in this way predates the term *cloud
    computing* by at least a couple of decades, but there is a connection
@@ -166,24 +168,24 @@ the networking technologies covered in this book.
    
    Interconnection of networks.
 
-A second way in which a set of computers can be indirectly connected is
-shown in :ref:`Figure 3 <fig-internet-cloud>`. In this situation, a set of
-independent networks (clouds) are interconnected to form an
-*internetwork*, or internet for short. We adopt the Internet’s
-convention of referring to a generic internetwork of networks as a
-lowercase *i* internet, and the currently operational TCP/IP Internet as
-the capital *I* Internet. A node that is connected to two or more
-networks is commonly called a *router* or *gateway*, and it plays much
-the same role as a switch—it forwards messages from one network to
-another. Note that an internet can itself be viewed as another kind of
-network, which means that an internet can be built from an of internets.
-Thus, we can recursively build arbitrarily large networks by
-interconnecting clouds to form larger clouds. It can reasonably be
-argued that this idea of interconnecting widely differing networks was
-the fundamental innovation of the Internet and that the successful
-growth of the Internet to global size and billions of nodes was the
-result of some very good design decisions by the early Internet
-architects, which we will discuss later.
+A second way in which a set of computers can be indirectly connected
+is shown in :numref:`Figure %s <fig-internet-cloud>`. In this
+situation, a set of independent networks (clouds) are interconnected
+to form an *internetwork*, or internet for short. We adopt the
+Internet’s convention of referring to a generic internetwork of
+networks as a lowercase *i* internet, and the currently operational
+TCP/IP Internet as the capital *I* Internet. A node that is connected
+to two or more networks is commonly called a *router* or *gateway*,
+and it plays much the same role as a switch—it forwards messages from
+one network to another. Note that an internet can itself be viewed as
+another kind of network, which means that an internet can be built
+from an of internets.  Thus, we can recursively build arbitrarily
+large networks by interconnecting clouds to form larger clouds. It can
+reasonably be argued that this idea of interconnecting widely
+differing networks was the fundamental innovation of the Internet and
+that the successful growth of the Internet to global size and billions
+of nodes was the result of some very good design decisions by the
+early Internet architects, which we will discuss later.
 
 Just because a set of hosts are directly or indirectly connected to each
 other does not mean that we have succeeded in providing host-to-host
@@ -251,17 +253,17 @@ sent by multiple users can be multiplexed over the physical links that
 make up a network.
 
 To see how this might work, consider the simple network illustrated in
-:ref:`Figure 4 <fig-mux>`, where the three hosts on the left side of the
-network (senders S1-S3) are sending data to the three hosts on the right
-(receivers R1-R3) by sharing a switched network that contains only one
-physical link. (For simplicity, assume that host S1 is sending data to
-host R1, and so on.) In this situation, three flows of
-data—corresponding to the three pairs of hosts—are multiplexed onto a
-single physical link by switch 1 and then *demultiplexed* back into
+:numref:`Figure %s <fig-mux>`, where the three hosts on the left side
+of the network (senders S1-S3) are sending data to the three hosts on
+the right (receivers R1-R3) by sharing a switched network that
+contains only one physical link. (For simplicity, assume that host S1
+is sending data to host R1, and so on.) In this situation, three flows
+of data—corresponding to the three pairs of hosts—are multiplexed onto
+a single physical link by switch 1 and then *demultiplexed* back into
 separate flows by switch 2. Note that we are being intentionally vague
-about exactly what a “flow of data” corresponds to. For the purposes of
-this discussion, assume that each host on the left has a large supply of
-data that it wants to send to its counterpart on the right.
+about exactly what a “flow of data” corresponds to. For the purposes
+of this discussion, assume that each host on the left has a large
+supply of data that it wants to send to its counterpart on the right.
 
 .. _fig-mux:
 .. figure:: figures/f01-05-9780123850591.png
@@ -335,18 +337,19 @@ reassembling the packets back into the original message.
    A switch multiplexing packets from multiple sources
    onto one shared link.
 
-In other words, each flow sends a sequence of packets over the physical
-link, with a decision made on a packet-by-packet basis as to which
-flow’s packet to send next. Notice that, if only one flow has data to
-send, then it can send a sequence of packets back-to-back; however,
-should more than one of the flows have data to send, then their packets
-are interleaved on the link. :ref:`Figure 5 <fig-statmux>` depicts a switch
-multiplexing packets from multiple sources onto a single shared link.
+In other words, each flow sends a sequence of packets over the
+physical link, with a decision made on a packet-by-packet basis as to
+which flow’s packet to send next. Notice that, if only one flow has
+data to send, then it can send a sequence of packets back-to-back;
+however, should more than one of the flows have data to send, then
+their packets are interleaved on the link. :numref:`Figure %s
+<fig-statmux>` depicts a switch multiplexing packets from multiple
+sources onto a single shared link.
 
 The decision as to which packet to send next on a shared link can be
 made in a number of different ways. For example, in a network consisting
-of switches interconnected by links such as the one in :ref:`Figure
-4 <fig-mux>`, the decision would be made by the switch that transmits
+of switches interconnected by links such as the one in :numref:`Figure
+%s <fig-mux>`, the decision would be made by the switch that transmits
 packets onto the shared link. (As we will see later, not all
 packet-switched networks actually involve switches, and they may use
 other mechanisms to determine whose packet goes onto the link next.)
@@ -363,15 +366,15 @@ certain length of time. A network that attempts to allocate bandwidth to
 particular flows is sometimes said to support *quality of service*
 (QoS).
 
-Also, notice in :ref:`Figure 5 <fig-statmux>` that since the switch has to
-multiplex three incoming packet streams onto one outgoing link, it is
-possible that the switch will receive packets faster than the shared
-link can accommodate. In this case, the switch is forced to buffer these
-packets in its memory. Should a switch receive packets faster than it
-can send them for an extended period of time, then the switch will
-eventually run out of buffer space, and some packets will have to be
-dropped. When a switch is operating in this state, it is said to be
-*congested*.
+Also, notice in :numref:`Figure %s <fig-statmux>` that since the
+switch has to multiplex three incoming packet streams onto one
+outgoing link, it is possible that the switch will receive packets
+faster than the shared link can accommodate. In this case, the switch
+is forced to buffer these packets in its memory. Should a switch
+receive packets faster than it can send them for an extended period of
+time, then the switch will eventually run out of buffer space, and
+some packets will have to be dropped. When a switch is operating in
+this state, it is said to be *congested*.
 
 .. admonition:: Key Takeaway
 
@@ -422,7 +425,7 @@ which application-level processes can communicate with each other; each
 channel provides the set of services required by that application. In
 other words, just as we use a cloud to abstractly represent connectivity
 among a set of computers, we now think of a channel as connecting one
-process to another. :ref:`Figure 5 <fig-channel>` shows a pair of
+process to another. :numref:`Figure %s <fig-channel>` shows a pair of
 application-level processes communicating over a logical channel that
 is, in turn, implemented on top of a cloud that connects a set of hosts.
 We can think of the channel as being like a pipe connecting two
