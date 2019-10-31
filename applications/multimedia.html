@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>{{ page.title }} &mdash; Computer Networks: A Systems Approach Version 6.1 documentation</title>
+  <title>9.2 Multimedia Applications &mdash; Computer Networks: A Systems Approach Version 6.1 documentation</title>
   
 
   
@@ -38,7 +38,9 @@
   <link rel="stylesheet" href="../static/pygments.css" type="text/css" />
   <link rel="stylesheet" href="../static/css/rtd_theme_mods.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="9.3 Infrastructure Applications" href="infrastructure.html" />
+    <link rel="prev" title="9.1 Traditional Applications" href="traditional.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -87,7 +89,7 @@
             
             
               <p class="caption"><span class="caption-text">Table of Contents</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../preface.html">Preface</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../foundation.html">Chapter 1:  Foundation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../direct.html">Chapter 2:  Direct Links</a></li>
@@ -96,6 +98,25 @@
 <li class="toctree-l1"><a class="reference internal" href="../e2e.html">Chapter 5:  End-to-End Protocols</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../congestion.html">Chapter 6:  Congestion Control</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../data.html">Chapter 7: End-to-End Data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../security.html">Chapter 8: Network Security</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../applications.html">Chapter 9: Applications</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="problem.html">Problem: Applications Need Their Own Protocols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="traditional.html">9.1 Traditional Applications</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">9.2 Multimedia Applications</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#session-control-and-call-control-sdp-sip-h-323">Session Control and Call Control (SDP, SIP, H.323)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#session-description-protocol-sdp">Session Description Protocol (SDP)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#sip">SIP</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#h-323">H.323</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#resource-allocation-for-multimedia-applications">Resource Allocation for Multimedia Applications</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="infrastructure.html">9.3 Infrastructure Applications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overlays.html">9.4 Overlay Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="trend.html">Perspective: The Cloud is the New Internet</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../README.html">About This Book</a></li>
 </ul>
 
@@ -142,13 +163,15 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>{{ page.title }}</li>
+          <li><a href="../applications.html">Chapter 9: Applications</a> &raquo;</li>
+        
+      <li>9.2 Multimedia Applications</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/applications/multimedia.md.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/applications/multimedia.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -161,10 +184,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="page-title">
-<h1>{{ page.title }}<a class="headerlink" href="#page-title" title="Permalink to this headline">¶</a></h1>
-<p>Just like the traditional applications described in the previous section,
-multimedia applications such as telephony and videoconferencing
+  <div class="section" id="multimedia-applications">
+<h1>9.2 Multimedia Applications<a class="headerlink" href="#multimedia-applications" title="Permalink to this headline">¶</a></h1>
+<p>Just like the traditional applications described in the previous
+section, multimedia applications such as telephony and videoconferencing
 need their own protocols. Much of the initial experience in designing
 protocols for multimedia applications came from the MBone
 tools—applications such as <code class="docutils literal notranslate"><span class="pre">vat</span></code> and <code class="docutils literal notranslate"><span class="pre">vic</span></code> that were developed for
@@ -248,7 +271,7 @@ to be used, the port numbers, the encoding scheme)</li>
 <p>SDP provides this information formatted in ASCII using a sequence of
 lines of text, each of the form “.” An example of an SDP message will
 illustrate the main points.</p>
-<div class="highlight-pseudo notranslate"><div class="highlight"><pre><span></span>v=0
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>v=0
 o=larry 2890844526 2890842807 IN IP4 128.112.136.10
 s=Networking 101
 i=A class on computer networking
@@ -277,34 +300,32 @@ computer. The number following <code class="docutils literal notranslate"><span 
 chosen to be unique to that machine. This is followed by a “version”
 number for the SDP announcement; if the session information was updated
 by a later message, the version number would be increased.</p>
-<p>The next three lines (<code class="docutils literal notranslate"><span class="pre">i</span></code>, <code class="docutils literal notranslate"><span class="pre">s</span></code> and <code class="docutils literal notranslate"><span class="pre">u</span></code>) provide the session name, a
-session description, and a session Uniform Resource Identifier (URI, as
-described earlier in this chapter)—information that would be helpful
+<p>The next three lines (<code class="docutils literal notranslate"><span class="pre">i</span></code>, <code class="docutils literal notranslate"><span class="pre">s</span></code> and <code class="docutils literal notranslate"><span class="pre">u</span></code>) provide the session name,
+a session description, and a session Uniform Resource Identifier (URI,
+as described earlier in this chapter)—information that would be helpful
 to a user in deciding whether to participate in this session. Such
 information could be displayed in the user interface of a session
 directory tool that shows current and upcoming events that have been
 advertised using SDP. The next line (<code class="docutils literal notranslate"><span class="pre">e=...</span></code>) contains an email
-address of a person to contact regarding the session. <a class="reference external" href="#sdr">Figure 1</a>
-shows a screen shot of a (somewhat archaic) session directory tool
-called <code class="docutils literal notranslate"><span class="pre">sdr</span></code> along with the descriptions of several sessions that had
-been announced at the time the picture was taken.</p>
-<figure>
-	<a id="sdr"></a>
-	<img src="figures/f09-07-9780123850591.png" width="500px"/>
-	<figcaption>A session directory tool displays information extracted from
-	SDP messages.</figcaption>
-</figure><p>Next we get to the technical details that would enable an application
+address of a person to contact regarding the session. <a class="reference internal" href="#fig-sdr"><span class="std std-numref">Figure 222</span></a> shows a screen shot of a (now archaic) session
+directory tool called <code class="docutils literal notranslate"><span class="pre">sdr</span></code> along with the descriptions of several
+sessions that had been announced at the time the picture was taken.</p>
+<div class="figure align-center" id="id1">
+<span id="fig-sdr"></span><a class="reference internal image-reference" href="../_images/f09-07-9780123850591.png"><img alt="../_images/f09-07-9780123850591.png" src="../_images/f09-07-9780123850591.png" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-number">Figure 222. </span><span class="caption-text">A session directory tool displays information extracted from SDP
+messages.</span></p>
+</div>
+<p>Next we get to the technical details that would enable an application
 program to participate in the session. The line beginning <code class="docutils literal notranslate"><span class="pre">c=...</span></code>
-provides the
-IP multicast address to which data for this session will be sent; a user
-would need to join this multicast group to receive the session. Next we
-see the start and end times for the session (encoded as integers
-according to the Network Time Protocol). Finally, we get to the
+provides the IP multicast address to which data for this session will be
+sent; a user would need to join this multicast group to receive the
+session. Next we see the start and end times for the session (encoded as
+integers according to the Network Time Protocol). Finally, we get to the
 information about the media for this session. This session has three
-media types available—audio, video, and a shared whiteboard
-application known as “<code class="docutils literal notranslate"><span class="pre">wb</span></code>.” For each media type there is one line of
-information formatted as follows:</p>
-<div class="highlight-pseudo notranslate"><div class="highlight"><pre><span></span>m=&lt;media&gt; &lt;port&gt; &lt;transport&gt; &lt;format&gt;
+media types available—audio, video, and a shared whiteboard application
+known as “<code class="docutils literal notranslate"><span class="pre">wb</span></code>.” For each media type there is one line of information
+formatted as follows:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">m</span><span class="o">=&lt;</span><span class="n">media</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">port</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">transport</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">format</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p>The media types are self-explanatory, and the port numbers in each case
@@ -327,9 +348,9 @@ MIME message.</p>
 <p>Now that we know how to describe sessions, we can look at how they can
 be initiated. One way in which SDP is used is to announce multimedia
 conferences, by sending SDP messages to a well-known multicast address.
-The session directory tool shown in <a class="reference external" href="#sdr">Figure 1</a> would function by
-joining that multicast group and displaying information that it gleans
-from received SDP messages. SDP is also used in the delivery of
+The session directory tool shown in <a class="reference internal" href="#fig-sdr"><span class="std std-numref">Figure 222</span></a> would function
+by joining that multicast group and displaying information that it
+gleans from received SDP messages. SDP is also used in the delivery of
 entertainment video of IP (often called IPTV) to provide information
 about the video content on each TV channel.</p>
 <p>SDP also plays an important role in conjunction with the Session
@@ -348,15 +369,15 @@ provided by SIP can be grouped into five categories:</p>
 <ul class="simple">
 <li>User location—Determining the correct device with which to
 communicate to reach a particular user</li>
-<li>User availability—Determining if the user is willing or able to
-take part in a particular communication session</li>
-<li>User capabilities—Determining such items as the choice of media
-and coding scheme to use</li>
-<li>Session setup—Establishing session parameters such as port numbers
-to be used by the communicating parties</li>
+<li>User availability—Determining if the user is willing or able to take
+part in a particular communication session</li>
+<li>User capabilities—Determining such items as the choice of media and
+coding scheme to use</li>
+<li>Session setup—Establishing session parameters such as port numbers to
+be used by the communicating parties</li>
 <li>Session management—A range of functions including transferring
-sessions (e.g., to implement “call forwarding”) and modifying
-session parameters</li>
+sessions (e.g., to implement “call forwarding”) and modifying session
+parameters</li>
 </ul>
 <p>Most of these functions are easy enough to understand, but the issue of
 location bears some further discussion. One important difference between
@@ -380,18 +401,18 @@ calls, SIP introduces the notion of a proxy. A SIP proxy can be thought
 of as a point of contact for a user to which initial requests for
 communication with him are sent. Proxies also perform functions on
 behalf of callers. We can see how proxies work best through an example.</p>
-<figure>
-	<a id="sipproxy"></a>
-	<img src="figures/f09-08-9780123850591.png" width="600px"/>
-	<figcaption>Establishing communication through SIP proxies.</figcaption>
-</figure><p>Consider the two users in <a class="reference external" href="#sipproxy">Figure 2</a>. The first thing to
-notice is that each user has a name in the format <code class="docutils literal notranslate"><span class="pre">user&#64;domain</span></code>, very
-much like an email address. When user Bruce wants to initiate a
-session with Larry, he sends his initial SIP message to the local
-proxy for his domain, <code class="docutils literal notranslate"><span class="pre">cisco.com</span></code>. Among other things, this initial
-message contains a <em>SIP URI</em>—these are a form of uniform resource
-identifier which look like this:</p>
-<div class="highlight-pseudo notranslate"><div class="highlight"><pre><span></span>SIP:larry@princeton.edu
+<div class="figure align-center" id="id2">
+<span id="fig-sipproxy"></span><a class="reference internal image-reference" href="../_images/f09-08-9780123850591.png"><img alt="../_images/f09-08-9780123850591.png" src="../_images/f09-08-9780123850591.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-number">Figure 223. </span><span class="caption-text">Establishing communication through SIP proxies.</span></p>
+</div>
+<p>Consider the two users in <a class="reference internal" href="#fig-sipproxy"><span class="std std-numref">Figure 223</span></a>. The
+first thing to notice is that each user has a name in the format
+<code class="docutils literal notranslate"><span class="pre">user&#64;domain</span></code>, very much like an email address. When user Bruce
+wants to initiate a session with Larry, he sends his initial SIP
+message to the local proxy for his domain, <code class="docutils literal notranslate"><span class="pre">cisco.com</span></code>. Among other
+things, this initial message contains a <em>SIP URI</em>—these are a form of
+uniform resource identifier which look like this:</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>SIP:larry@princeton.edu
 </pre></div>
 </div>
 <p>A SIP URI provides complete identification of a user, but (unlike a URL)
@@ -408,7 +429,7 @@ be done either in parallel or in series (e.g., send it to his mobile
 phone if he doesn’t answer the phone at his desk).</p>
 <p>The initial message from Bruce to Larry is likely to be a SIP <code class="docutils literal notranslate"><span class="pre">invite</span></code>
 message, which looks something like the following:</p>
-<div class="highlight-pseudo notranslate"><div class="highlight"><pre><span></span>INVITE sip:larry@princeton.edu SIP/2.0
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>INVITE sip:larry@princeton.edu SIP/2.0
 Via: SIP/2.0/UDP bsd-pc.cisco.com;branch=z9hG4bK433yte4
 To: Larry &lt;sip:larry@princeton.edu&gt;
 From: Bruce &lt;sip:bruce@cisco.com&gt;;tag=55123
@@ -422,47 +443,45 @@ Content-Length: 142
 <p>The first line identifies the type of function to be performed
 (<code class="docutils literal notranslate"><span class="pre">invite</span></code>); the resource on which to perform it, the called party
 (<code class="docutils literal notranslate"><span class="pre">sip:larry&#64;princeton.edu</span></code> ); and the protocol version (2.0). The
-subsequent header lines probably
-look somewhat familiar because of their resemblance to the header lines
-in an email message. SIP defines a large number of header fields, only
-some of which we describe here. Note that the header in this example
-identifies the device from which this message originated. The and
-headers describe the contents of the message following the header, just
-as in a MIME-encoded email message. In this case, the content is an SDP
-message. That message would describe such things as the type of media
-(audio, video, etc.) that Bruce would like to exchange with Larry and
-other properties of the session such as codec types that he supports.
-Note that the field in SIP provides the capability to use any protocol
-for this purpose, although SDP is the most common.</p>
+subsequent header lines probably look somewhat familiar because of their
+resemblance to the header lines in an email message. SIP defines a large
+number of header fields, only some of which we describe here. Note that
+the header in this example identifies the device from which this message
+originated. The and headers describe the contents of the message
+following the header, just as in a MIME-encoded email message. In this
+case, the content is an SDP message. That message would describe such
+things as the type of media (audio, video, etc.) that Bruce would like
+to exchange with Larry and other properties of the session such as codec
+types that he supports. Note that the field in SIP provides the
+capability to use any protocol for this purpose, although SDP is the
+most common.</p>
 <p>Returning to the example, when the <code class="docutils literal notranslate"><span class="pre">invite</span></code> message arrives at the
 proxy, not only does the proxy forward the message on toward
-<code class="docutils literal notranslate"><span class="pre">princeton.edu</span></code>, but it also responds to the sender of the
-<code class="docutils literal notranslate"><span class="pre">invite</span></code>. Just as in HTTP, all responses have a response code, and the
-organization of codes is similar to that for HTTP. In
-<a class="reference external" href="#sipeg">Figure 3</a> we can see a sequence of SIP messages and
-responses.</p>
-<figure>
-	<a id="sipeg"></a>
-	<img src="figures/f09-09-9780123850591.png" width="650px"/>
-	<figcaption>Message flow for a basic SIP session.</figcaption>
-</figure><p>The first response message in this figure is the provisional response
+<code class="docutils literal notranslate"><span class="pre">princeton.edu</span></code>, but it also responds to the sender of the <code class="docutils literal notranslate"><span class="pre">invite</span></code>.
+Just as in HTTP, all responses have a response code, and the
+organization of codes is similar to that for HTTP. In <a class="reference internal" href="#fig-sipeg"><span class="std std-numref">Figure 224</span></a> we can see a sequence of SIP messages and responses.</p>
+<div class="figure align-center" id="id3">
+<span id="fig-sipeg"></span><a class="reference internal image-reference" href="../_images/f09-09-9780123850591.png"><img alt="../_images/f09-09-9780123850591.png" src="../_images/f09-09-9780123850591.png" style="width: 650px;" /></a>
+<p class="caption"><span class="caption-number">Figure 224. </span><span class="caption-text">Message flow for a basic SIP session.</span></p>
+</div>
+<p>The first response message in this figure is the provisional response
 <code class="docutils literal notranslate"><span class="pre">100</span> <span class="pre">trying</span></code>, which indicates that the message was received without
 error by the caller’s proxy. Once the <code class="docutils literal notranslate"><span class="pre">invite</span></code> is delivered to Larry’s
 phone, it alerts Larry and responds with a <code class="docutils literal notranslate"><span class="pre">180</span> <span class="pre">ringing</span></code> message. The
 arrival of this message at Bruce’s computer is a sign that it can
-generate a “ringtone.” Assuming Larry is willing and able to
-communicate with Bruce, he could pick up his phone, causing the
-message <code class="docutils literal notranslate"><span class="pre">200</span> <span class="pre">OK</span></code> to be sent. Bruce’s computer responds with an <code class="docutils literal notranslate"><span class="pre">ACK</span></code>,
-and media (e.g., an RTP-encapsulated audio stream) can now begin to
-flow between the two parties. Note that at this point the parties know
-each others’ addresses, so the <code class="docutils literal notranslate"><span class="pre">ACK</span></code> can be sent directly, bypassing
-the proxies. The proxies are now no longer involved in the call. Note
-that the media will therefore typically take a different path through the
-network than the original signalling messages. Furthermore, even if
-one or both of the proxies were to crash at this point, the call could
-continue on normally. Finally, when one party wishes to end the
-session, it sends a <code class="docutils literal notranslate"><span class="pre">BYE</span></code> message, which elicits a <code class="docutils literal notranslate"><span class="pre">200</span> <span class="pre">OK</span></code> response
-under normal circumstances.</p>
+generate a “ringtone.” Assuming Larry is willing and able to communicate
+with Bruce, he could pick up his phone, causing the message <code class="docutils literal notranslate"><span class="pre">200</span> <span class="pre">OK</span></code>
+to be sent. Bruce’s computer responds with an <code class="docutils literal notranslate"><span class="pre">ACK</span></code>, and media (e.g.,
+an RTP-encapsulated audio stream) can now begin to flow between the two
+parties. Note that at this point the parties know each others’
+addresses, so the <code class="docutils literal notranslate"><span class="pre">ACK</span></code> can be sent directly, bypassing the proxies.
+The proxies are now no longer involved in the call. Note that the media
+will therefore typically take a different path through the network than
+the original signalling messages. Furthermore, even if one or both of
+the proxies were to crash at this point, the call could continue on
+normally. Finally, when one party wishes to end the session, it sends a
+<code class="docutils literal notranslate"><span class="pre">BYE</span></code> message, which elicits a <code class="docutils literal notranslate"><span class="pre">200</span> <span class="pre">OK</span></code> response under normal
+circumstances.</p>
 <p>There are a few details that we have glossed over. One is the
 negotiation of session characteristics. Perhaps Bruce would have liked
 to communicate using both audio and video but Larry’s phone only
@@ -474,16 +493,15 @@ parameters are agreed to before the media flow starts.</p>
 <p>The other big issue we have glossed over is that of locating the correct
 device for Larry. First, Bruce’s computer had to send its <code class="docutils literal notranslate"><span class="pre">invite</span></code> to
 the <code class="docutils literal notranslate"><span class="pre">cisco.com</span></code> proxy. This could have been a configured piece of
-information in the computer, or it could have been learned by
-DHCP. Then the <code class="docutils literal notranslate"><span class="pre">cisco.com</span></code> proxy had to find the <code class="docutils literal notranslate"><span class="pre">princeton.ed</span></code>
-proxy. This could be done using a special sort of DNS lookup that
-would return the IP address of the SIP proxy for the domain. (We’ll
-discuss how DNS can do this in the next section.) Finally, the
-<code class="docutils literal notranslate"><span class="pre">princeton.ed</span></code> proxy had to find a device on which Larry could be
-contacted. Typically, a proxy server has access to a location database
-that can be populated in several ways. Manual configuration is one
-option, but a more flexible option is to use the <em>registration</em>
-capabilities of SIP.</p>
+information in the computer, or it could have been learned by DHCP. Then
+the <code class="docutils literal notranslate"><span class="pre">cisco.com</span></code> proxy had to find the <code class="docutils literal notranslate"><span class="pre">princeton.ed</span></code> proxy. This
+could be done using a special sort of DNS lookup that would return the
+IP address of the SIP proxy for the domain. (We’ll discuss how DNS can
+do this in the next section.) Finally, the <code class="docutils literal notranslate"><span class="pre">princeton.ed</span></code> proxy had to
+find a device on which Larry could be contacted. Typically, a proxy
+server has access to a location database that can be populated in
+several ways. Manual configuration is one option, but a more flexible
+option is to use the <em>registration</em> capabilities of SIP.</p>
 <p>A user can register with a location service by sending a SIP
 <code class="docutils literal notranslate"><span class="pre">register</span></code> message to the “registrar” for his domain. This message
 creates a binding between an “address of record” and a “contact
@@ -533,23 +551,23 @@ to limit the bandwidth used by the H.323 applications. H.323 also
 includes the concept of a <em>gateway</em>, which connects the H.323 network to
 other types of networks. The most common use of a gateway is to connect
 an H.323 network to the public switched telephone network (PSTN) as
-illustrated in <a class="reference external" href="#h323">Figure 4</a>. This enables a user running an H.323
-application on a computer to talk to a person using a conventional phone
-on the public telephone network. One useful function performed by the
-gatekeeper is to help a terminal find a gateway, perhaps choosing among
-several options to find one that is relatively close to the ultimate
-destination of the call. This is clearly useful in a world where
-conventional phones greatly outnumber PC-based phones. When an H.323
-terminal makes a call to an endpoint that is a conventional phone, the
-gateway becomes the effective endpoint for the H.323 call and is
+illustrated in <a class="reference internal" href="#fig-h323"><span class="std std-numref">Figure 225</span></a>. This enables a user running an
+H.323 application on a computer to talk to a person using a conventional
+phone on the public telephone network. One useful function performed by
+the gatekeeper is to help a terminal find a gateway, perhaps choosing
+among several options to find one that is relatively close to the
+ultimate destination of the call. This is clearly useful in a world
+where conventional phones greatly outnumber PC-based phones. When an
+H.323 terminal makes a call to an endpoint that is a conventional phone,
+the gateway becomes the effective endpoint for the H.323 call and is
 responsible for performing the appropriate translation of both
 signalling information and the media stream that need to be carried over
 the telephone network.</p>
-<figure>
-	<a id="h323"></a>
-	<img src="figures/f09-10-9780123850591.png" width="500px"/>
-	<figcaption>Devices in an H.323 network.</figcaption>
-</figure><p>An important part of H.323 is the H.245 protocol, which is used to
+<div class="figure align-center" id="id4">
+<span id="fig-h323"></span><a class="reference internal image-reference" href="../_images/f09-10-9780123850591.png"><img alt="../_images/f09-10-9780123850591.png" src="../_images/f09-10-9780123850591.png" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-number">Figure 225. </span><span class="caption-text">Devices in an H.323 network.</span></p>
+</div>
+<p>An important part of H.323 is the H.245 protocol, which is used to
 negotiate the properties of the call, somewhat analogously to the use of
 SDP described above. H.245 messages might list a number of different
 audio codec standards that it can support; the far endpoint of the call
@@ -612,26 +630,26 @@ providing best-effort service to all packets. However, enterprise or
 corporate networks have the ability to use DiffServ for their internal
 multimedia traffic, and frequently do so. Also, even residential users
 of the Internet can often improve the quality of VOIP or other
-multimedia applications just by using DiffServ on the outbound direction
-of their Internet connections, as illustrated in <a class="reference external" href="#ds-bb">Figure 5</a>.
-This is effective because of the asymmetry of many broadband Internet
-connections: If the outbound link is substantially slower (i.e., more
-resource constrained) than the inbound, then resource allocation using
-DiffServ on that link may be enough to make all the difference in
-quality for latency- and loss-sensitive applications.</p>
-<figure>
-	<a id="ds-bb"></a>
-	<img src="figures/f09-11-9780123850591.png" width="500px"/>
-	<figcaption>Differentiated Services applied to a VOIP application.
-	DiffServ queueing is applied only on the upstream link from customer
-    router to ISP.</figcaption>
-</figure><p>While DiffServ is appealing for its simplicity, it is clear that it
+multimedia applications just by using DiffServ on the outbound
+direction of their Internet connections, as illustrated in
+<a class="reference internal" href="#fig-ds-bb"><span class="std std-numref">Figure 226</span></a>.  This is effective because of the
+asymmetry of many broadband Internet connections: If the outbound link
+is substantially slower (i.e., more resource constrained) than the
+inbound, then resource allocation using DiffServ on that link may be
+enough to make all the difference in quality for latency- and
+loss-sensitive applications.</p>
+<div class="figure align-center" id="id5">
+<span id="fig-ds-bb"></span><a class="reference internal image-reference" href="../_images/f09-11-9780123850591.png"><img alt="../_images/f09-11-9780123850591.png" src="../_images/f09-11-9780123850591.png" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-number">Figure 226. </span><span class="caption-text">Differentiated Services applied to a VOIP application. DiffServ queueing
+is applied only on the upstream link from customer router to ISP.</span></p>
+</div>
+<p>While DiffServ is appealing for its simplicity, it is clear that it
 cannot meet the needs of applications under all conditions. For example,
-suppose the upstream bandwidth in <a class="reference external" href="#ds-bb">Figure 5</a> is only 100&nbsp;kbps,
-and the customer attempts to place two VOIP calls, each with a 64-kbps
-codec. Clearly the upstream link is now more than 100% loaded, which
-will lead to large queueing delays and lost packets. No amount of clever
-queueing in the customer’s router can fix that.</p>
+suppose the upstream bandwidth in <a class="reference internal" href="#fig-ds-bb"><span class="std std-numref">Figure 226</span></a> is only
+100&nbsp;kbps, and the customer attempts to place two VOIP calls, each with a
+64-kbps codec. Clearly the upstream link is now more than 100% loaded,
+which will lead to large queueing delays and lost packets. No amount of
+clever queueing in the customer’s router can fix that.</p>
 <p>The characteristics of many multimedia applications are such that,
 rather than try to squeeze too many calls into a too-narrow pipe, it
 would be better to block one call while allowing another to proceed.
@@ -657,38 +675,36 @@ or H.323 often involve some sort of message exchange between an endpoint
 and another entity (SIP proxy or H.323 gatekeeper) at the beginning of a
 call or session. This can provide a handy means to say “no” to a new
 call for which sufficient resources are not available.</p>
-<p>As an example, consider the network in <a class="reference external" href="#cm-cac">Figure 6</a>. Suppose the
-wide area link from the branch office to the head office has enough
-bandwidth to accommodate three VOIP calls simultaneously using 64-kbps
-codecs. Each phone already needs to communicate with the local SIP proxy
-or H.323 gatekeeper when it begins to place a call, so it is easy enough
-for the proxy/gatekeeper to send back a message that tells the IP phone
-to play a busy signal if that link is already fully loaded. The proxy or
-gatekeeper can even deal with the possibility that a particular IP phone
-might be making multiple calls at the same time and that different codec
-speeds might be used. However, this scheme will work only if no other
-device can overload the link without first talking to the gatekeeper or
+<p>As an example, consider the network in <a class="reference internal" href="#fig-cm-cac"><span class="std std-numref">Figure 227</span></a>. Suppose the wide area link from the branch office to
+the head office has enough bandwidth to accommodate three VOIP calls
+simultaneously using 64-kbps codecs. Each phone already needs to
+communicate with the local SIP proxy or H.323 gatekeeper when it
+begins to place a call, so it is easy enough for the proxy/gatekeeper
+to send back a message that tells the IP phone to play a busy signal
+if that link is already fully loaded. The proxy or gatekeeper can even
+deal with the possibility that a particular IP phone might be making
+multiple calls at the same time and that different codec speeds might
+be used. However, this scheme will work only if no other device can
+overload the link without first talking to the gatekeeper or
 proxy. DiffServ queueing can be used to ensure that, for example, a PC
 engaged in a file transfer doesn’t interfere with the VOIP calls. But,
-suppose some VOIP application that doesn’t first talk to the gatekeeper
-or proxy is enabled in the remote office. Such an application, if it can
-get its packets marked appropriately and in the same queue as the
-existing VOIP traffic, can clearly drive the link to the point of
-overload with no feedback from the proxy or gatekeeper.</p>
-<figure>
-	<a id="cm-cac"></a>
-	<img src="figures/f09-12-9780123850591.png" width="500px"/>
-	<figcaption>Admission control using session control
-    protocol.</figcaption>
-</figure><p>Another problem with the approach just described is that it depends on
+suppose some VOIP application that doesn’t first talk to the
+gatekeeper or proxy is enabled in the remote office. Such an
+application, if it can get its packets marked appropriately and in the
+same queue as the existing VOIP traffic, can clearly drive the link to
+the point of overload with no feedback from the proxy or gatekeeper.</p>
+<div class="figure align-center" id="id6">
+<span id="fig-cm-cac"></span><a class="reference internal image-reference" href="../_images/f09-12-9780123850591.png"><img alt="../_images/f09-12-9780123850591.png" src="../_images/f09-12-9780123850591.png" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-number">Figure 227. </span><span class="caption-text">Admission control using session control protocol.</span></p>
+</div>
+<p>Another problem with the approach just described is that it depends on
 the gatekeeper or proxy having knowledge of the path that each
-application will use. In the simple topology of <a class="reference external" href="#cm-cac">Figure 6</a>
-this isn’t a big issue, but in more complex networks it can quickly
-become unmanageable. We only need to imagine the case where the remote
-office has two different connections to the outside world to see that we
-are asking the proxy or gatekeeper to understand not just SIP or H.323
-but also routing, link failures, and current network conditions. This
-can quickly become unmanageable.</p>
+application will use. In the simple topology of <a class="reference internal" href="#fig-cm-cac"><span class="std std-numref">Figure 227</span></a> this isn’t a big issue, but in more complex networks it
+can quickly become unmanageable. We only need to imagine the case
+where the remote office has two different connections to the outside
+world to see that we are asking the proxy or gatekeeper to understand
+not just SIP or H.323 but also routing, link failures, and current
+network conditions. This can quickly become unmanageable.</p>
 <p>We refer to the sort of admission control just described as <em>off-path</em>,
 in the sense that the device making admission control decisions does not
 sit on the data path where resources need to be allocated. The obvious
@@ -700,12 +716,11 @@ a path, and it is straightforward to use RSVP in applications like those
 described in this section. The one detail that still needs to be filled
 in is how the admission control protocol interacts with the session
 control protocol.</p>
-<figure>
-	<a id="sip-sync"></a>
-	<img src="figures/f09-13-9780123850591.png" width="500px"/>
-	<figcaption>Coordination of SIP signalling and resource
-	reservation.</figcaption>
-</figure><p>Coordinating the actions of an admission control (or resource
+<div class="figure align-center" id="id7">
+<span id="fig-sip-sync"></span><a class="reference internal image-reference" href="../_images/f09-13-9780123850591.png"><img alt="../_images/f09-13-9780123850591.png" src="../_images/f09-13-9780123850591.png" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-number">Figure 228. </span><span class="caption-text">Coordination of SIP signalling and resource reservation.</span></p>
+</div>
+<p>Coordinating the actions of an admission control (or resource
 reservation) protocol and a session control protocol is not rocket
 science, but it does require some attention to details. As an example,
 consider a simple telephone call between two parties. Before you can
@@ -715,10 +730,9 @@ That implies you need to do some of the session control first, to
 exchange information about the codecs supported by the two phones.
 However, you can’t do <em>all</em> the session control first, because you
 wouldn’t want the phone to ring before the admission control decision
-had been made, in case admission control failed. <a class="reference external" href="#sip-sync">Figure 7</a>
-illustrates this situation where SIP is used for session control and
-RSVP is used to make the admission control decision (successfully in
-this case).</p>
+had been made, in case admission control failed. <a class="reference internal" href="#fig-sip-sync"><span class="std std-numref">Figure 228</span></a> illustrates this situation where SIP is used for
+session control and RSVP is used to make the admission control decision
+(successfully in this case).</p>
 <p>The main thing to notice here is the interleaving of session control and
 resource allocation tasks. Solid lines represent SIP messages, dashed
 lines represent RSVP messages. Note that SIP messages are transmitted
@@ -740,7 +754,7 @@ message and the <code class="docutils literal notranslate"><span class="pre">RES
 tell the other phone that resources are now reserved in both directions
 (with the SDP message) and also notify the calling phone that it is
 ringing. From here on, normal SIP signalling and media flow, similar to
-that shown in <a class="reference external" href="#sipeg">Figure 3</a>, proceeds.</p>
+that shown in <a class="reference internal" href="#fig-sipeg"><span class="std std-numref">Figure 224</span></a>, proceeds.</p>
 <p>Again we see how building applications requires us to understand the
 interaction between different building blocks (SIP and RSVP, in this
 case). The designers of SIP actually made some changes to the protocol
@@ -756,6 +770,15 @@ isolation from the other parts of the system.</p>
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="infrastructure.html" class="btn btn-neutral float-right" title="9.3 Infrastructure Applications" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="traditional.html" class="btn btn-neutral float-left" title="9.1 Traditional Applications" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
