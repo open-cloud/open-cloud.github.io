@@ -708,8 +708,7 @@ a 64-kbps audio stream. The number of such flows is
 
 .. math::
 
-
-   2.5 × 10^{9} / 64 × 10^{3} = 39{,}000
+   2.5 \times 10^{9} / 64 \times 10^{3} = 39{,}000
 
 Each of those reservations needs some amount of state that needs to be
 stored in memory and refreshed periodically. The router needs to
@@ -987,7 +986,7 @@ this general form:
 
 .. math::
 
-   Rate \propto \left(1 \over {RTT \times \sqrt{\rho}}\right)
+   Rate \propto \left(\frac{1}{RTT \times \sqrt{\rho}}\right)
 
 which says that to be TCP-friendly, the transmission rate must be
 inversely proportional to the round-trip time (RTT) and the square

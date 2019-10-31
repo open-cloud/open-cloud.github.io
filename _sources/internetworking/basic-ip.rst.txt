@@ -1386,14 +1386,15 @@ forwarded out the default interface into the internetwork.
 
 Once the packet leaves R1, it looks to the rest of the world like a
 normal IP packet destined to R2, and it is forwarded accordingly. All
-the routers in the internetwork forward it using normal means, until it
-arrives at R2. When R2 receives the packet, it finds that it carries its
-own address, so it removes the IP header and looks at the payload of the
-packet. What it finds is an inner IP packet whose destination address is
-in network 2. R2 now processes this packet like any other IP packet it
-receives. Since R2 is directly connected to network 2, it forwards the
-packet on to that network. `Figur 14 <#tunnel>`__ shows the change in
-encapsulation of the packet as it moves across the network.
+the routers in the internetwork forward it using normal means, until
+it arrives at R2. When R2 receives the packet, it finds that it
+carries its own address, so it removes the IP header and looks at the
+payload of the packet. What it finds is an inner IP packet whose
+destination address is in network 2. R2 now processes this packet like
+any other IP packet it receives. Since R2 is directly connected to
+network 2, it forwards the packet on to that network. :numref:`Figur
+%s <fig-tunnel>` shows the change in encapsulation of the packet as it
+moves across the network.
 
 While R2 is acting as the endpoint of the tunnel, there is nothing to
 prevent it from performing the normal functions of a router. For

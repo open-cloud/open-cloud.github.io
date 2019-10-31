@@ -242,7 +242,7 @@ of arithmetic for our purposes (which we ask you to accept on faith):
   
 For example, the polynomial :math:`x^3 + 1` can be divided by :math:`x^3 + x^2 + 1` 
 (because they are both of degree 3) and the remainder would be 
-:math:`0 × x^3 + 1 × x^2 + 0 × x^1 + 0 × x^0 = x^2` 
+:math:`0 \times x^3 + 1 \times x^2 + 0 \times x^1 + 0 \times x^0 = x^2` 
 (obtained by XORing the coefficients of each term). In terms of
 messages, we could say that 1001 can be divided by 1101 and leaves a
 remainder of 0100. You should be able to see that the remainder is just

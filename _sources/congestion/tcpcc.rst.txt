@@ -516,13 +516,11 @@ Specifically, CUBIC computes the congestion window as a function of time
 
 .. math::
 
-
    \mathsf{CWND(t)} = \mathsf{C} \times \mathsf{(t-K)}^{3} + \mathsf{W}_{max}
 
 where
 
 .. math::
-
 
    \mathsf{K} =  \sqrt[3]{\mathsf{W}_{max} \times (1 - \beta{})/\mathsf{C}}
 

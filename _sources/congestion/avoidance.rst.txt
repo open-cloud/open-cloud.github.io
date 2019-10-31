@@ -603,7 +603,7 @@ control mechanisms: having accurate knowledge of the uncongested path
 RTT.
 
 BBR is actively being worked on and rapidly evolving. One major focus is
-fairness. For example, some experiments show CUBIC flows get 100x less
+fairness. For example, some experiments show CUBIC flows get 100× less
 bandwidth when competing with BBR flows, and other experiments show that
 unfairness among BBR flows is even possible. Another major focus is
 avoiding high retransmission rates, where in some cases as many as 10%
@@ -637,8 +637,7 @@ the switch sees the queue length (K) is above some threshold; e.g.,
 
 .. math::
 
-
-   \mathsf{K} > (\mathsf{RTT} × \mathsf{C})/7
+   \mathsf{K} > (\mathsf{RTT} \times \mathsf{C})/7
 
 where C is the link rate in packets per second, then the switch sets the
 CE bit in the IP header. The complexity of RED is not required.

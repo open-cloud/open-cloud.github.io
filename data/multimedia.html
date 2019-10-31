@@ -233,7 +233,7 @@ networked multimedia, consider the following example. A high-definition
 TV screen has something like 1080 × 1920 pixels, each of which has 24
 bits of color information, so each frame is</p>
 <div class="math notranslate nohighlight">
-\[1080 × 1920 × 24 = 50\ Mb\]</div>
+\[1080 \times 1920 \times 24 = 50\ Mb\]</div>
 <p>so if you want to send 24 frames per second, that would be over 1&nbsp;Gbps.
 That’s a lot more than most Internet users have access to, by a good
 margin. By contrast, modern compression techniques can get a reasonably
@@ -923,7 +923,7 @@ a sequence of groups of pictures (GOP) separated by a <code class="docutils lite
 sequence is terminated by a <code class="docutils literal notranslate"><span class="pre">SeqEndCode</span></code> (<code class="docutils literal notranslate"><span class="pre">0xb7</span></code>). The <code class="docutils literal notranslate"><span class="pre">SeqHdr</span></code>
 that precedes every GOP specifies—among other things—the size of each
 picture (frame) in the GOP (measured in both pixels and macroblocks),
-the interpicture period (measured in 𝜇s), and two quantization
+the interpicture period (measured in μs), and two quantization
 matrices for the macroblocks within this GOP: one for intracoded
 macroblocks (I&nbsp;blocks) and one for intercoded macroblocks (B and
 P&nbsp;blocks). Since this information is given for each GOP—rather than
@@ -1065,10 +1065,10 @@ example, an audio CD).</p>
 <p>To understand audio compression, we need to begin with the data.
 CD-quality audio, which is the <em>de facto</em> digital representation for
 high-quality audio, is sampled at a rate of 44.1&nbsp;KHz (i.e., a sample is
-collected approximately once every 23 𝜇s). Each sample is 16 bits, which
+collected approximately once every 23 μs). Each sample is 16 bits, which
 means that a stereo (2-channel) audio stream results in a bit rate&nbsp;of</p>
 <div class="math notranslate nohighlight">
-\[2 × 44.1 × 1000 × 16 = 1.41\ Mbps\]</div>
+\[2 \times 44.1 \times 1000 \times 16 = 1.41\ Mbps\]</div>
 <p>By comparison, telephone-quality voice is sampled at a rate of 8&nbsp;KHz,
 with 8-bit samples, resulting in a bit rate of 64&nbsp;kbps.</p>
 <p>Clearly, some amount of compression is going to be required to transmit
@@ -1077,7 +1077,7 @@ line pair. To make matters worse, synchronization and error correction
 overhead require that 49&nbsp;bits be used to encode each 16-bit sample,
 resulting in an actual bit rate of</p>
 <div class="math notranslate nohighlight">
-\[49/16 × 1.41\ Mbps = 4.32\ Mbps\]</div>
+\[49/16 \times 1.41\ Mbps = 4.32\ Mbps\]</div>
 <p>MPEG addresses this need by defining three levels of compression, as
 enumerated in <a class="reference internal" href="#tab-mp3"><span class="std std-numref">Table 25</span></a>. Of these, Layer III, which is more
 widely known as MP3, is the most commonly used.</p>

@@ -189,19 +189,18 @@ contributions that come back, but our plan is to share ownership of the
 project with others committed to its success.</p>
 <p>And if you make use of this work, the attribution should include the
 following information:</p>
-<blockquote>
-<div><em>Title: Computer Networks: A Systems Approach
-Authors: Larry Peterson and Bruce Davie
-Copyright: Elsevier, 2012
-Source: https://github.com/SystemsApproach
-License:</em><a class="reference external" href="https://creativecommons.org/licenses/by/4.0">CC BY
-4.0</a></div></blockquote>
+<div class="line-block">
+<div class="line">Title: <em>Computer Networks: A Systems Approach</em></div>
+<div class="line">Authors: Larry Peterson and Bruce Davie*</div>
+<div class="line">Copyright: Elsevier, 2012</div>
+<div class="line">Source: <a class="reference external" href="https://github.com/SystemsApproach">https://github.com/SystemsApproach</a></div>
+<div class="line">License: <a class="reference external" href="https://creativecommons.org/licenses/by/4.0">CC BY  4.0</a></div>
+</div>
 <div class="section" id="read-the-book">
 <h2>Read the Book<a class="headerlink" href="#read-the-book" title="Permalink to this headline">¶</a></h2>
 <p>An online version of the book is published at
-<a class="reference external" href="https://book.systemsapproach.org">https://book.systemsapproach.org</a>. You can also find PDF and eBook
-versions
-<a class="reference external" href="https://github.com/SystemsApproach/book/tree/master/published">here</a>.</p>
+<a class="reference external" href="https://book.systemsapproach.org">https://book.systemsapproach.org</a>. You can also find a PDF version
+<a class="reference external" href="https://github.com/SystemsApproach/5G/releases">here</a>.</p>
 <p>To track progress and receive notices about new versions, you can follow
 the project on
 <a class="reference external" href="https://www.facebook.com/Computer-Networks-A-Systems-Approach-110933578952503/">Facebook</a>
@@ -213,7 +212,7 @@ Blog</a>.</p>
 <h2>Releases and Editions<a class="headerlink" href="#releases-and-editions" title="Permalink to this headline">¶</a></h2>
 <p>We release ever-changing open source content rather than publish fixed
 books, although you can roughly equate v6.0 with a 6th Edition. Read the
-<a class="reference external" href="preface.md">Preface</a> to find out what’s new in this version. Note
+<a class="reference external" href="preface.html">Preface</a> to find out what’s new in this version. Note
 that Morgan Kaufmann (Elsevier) plans to publish a 6th edition of their
 textbook based on a fork of v6.0, but going forward, open source
 releases found here will not necessarily stay in sync with any future
@@ -237,15 +236,9 @@ are also generated with every minor release.</p>
 <p>The source content is organized as a git repository per chapter, each of
 which focuses on a major networking topic (e.g., <em>Internetworking</em>,
 <em>Congestion Control</em>). A “root” repo (<a class="reference external" href="https://github.com/SystemsApproach/book">this
-one</a>) contains the gitbook
-files that can be used to create a full book. To build a web-viewable
-version, you first need to install a couple packages:</p>
-<ul class="simple">
-<li><a class="reference external" href="https://github.com/GitbookIO/gitbook/blob/master/docs/setup.md">Gitbook
-Toolchain</a></li>
-<li><a class="reference external" href="https://www.npmjs.com/get-npm">Node.js Package Manager</a></li>
-</ul>
-<p>Then do the following to download the source:</p>
+one</a>) contains the
+top-level files needed to assemble a full book.</p>
+<p>To build a web-viewable version, you first need to download the source:</p>
 <div class="code shell highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="o">~/</span><span class="n">systemsapproach</span>
 <span class="n">cd</span> <span class="o">~/</span><span class="n">systemsapproach</span>
 <span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">systemsapproach</span><span class="o">/</span><span class="n">book</span><span class="o">.</span><span class="n">git</span>
@@ -254,16 +247,13 @@ Toolchain</a></li>
 <span class="n">git</span> <span class="n">submodule</span> <span class="n">update</span>
 </pre></div>
 </div>
-<p>To build a web version of the book, simply type:</p>
-<div class="code shell highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">make</span>
-</pre></div>
-</div>
-<p>If all goes well, you will be able to view the book in your browser at
-<code class="docutils literal notranslate"><span class="pre">localhost:4000</span></code>. (If all doesn’t go well, you might try typing
-<code class="docutils literal notranslate"><span class="pre">make</span></code> a second time.)</p>
-<p>You can also build other versions of the book (e.g., pdf, ebook), but
-doing so requires installing other packages, as documented on the
-<a class="reference external" href="https://toolchain.gitbook.com/ebook.html">GitBook Toolchain</a> site.</p>
+<p>The build process is stored in the <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> and requires Python be
+installed. The <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> will create a virtualenv (<code class="docutils literal notranslate"><span class="pre">doc_venv</span></code>) which
+installs the documentation generation toolset.</p>
+<p>To generate HTML in <code class="docutils literal notranslate"><span class="pre">_build/html</span></code>,  run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span></code>.</p>
+<p>To get a live reload in your browser (refreshes on file save), run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">reload</span></code>.</p>
+<p>To check the formatting of the book, run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">lint</span></code>.</p>
+<p>To see the other available output formats, run <code class="docutils literal notranslate"><span class="pre">make</span></code>.</p>
 </div>
 <div class="section" id="how-to-contribute">
 <h2>How to Contribute<a class="headerlink" href="#how-to-contribute" title="Permalink to this headline">¶</a></h2>
@@ -287,14 +277,8 @@ existing content. The CLA is a little unusual in that it explicitly
 calls out Elsevier’s rights (which are the same as everyone’s), but this
 does signal their intent to continue publishing textbooks based on the
 material.</p>
-<p>You should also familiarize yourself with the <a class="reference external" href="https://github.com/SystemsApproach/book/blob/master/CONTRIBUTING.md">guidelines for
-contributing</a>.
-As a first step, we recommend you check to see if any new text you’d
-like to submit passes our <code class="docutils literal notranslate"><span class="pre">MarkDownLint</span></code> test. To do this, run</p>
-<div class="code shell highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">systemsapproach</span>
-<span class="n">make</span> <span class="n">lint</span>
-</pre></div>
-</div>
+<p>You should also familiarize yourself with the <a class="reference external" href="https://github.com/SystemsApproach/book/blob/master/CONTRIBUTING.rst">guidelines for
+contributing</a>.</p>
 <p>If you’d like to contribute and are looking for something that needs
 attention, see the current <a class="reference external" href="https://github.com/orgs/SystemsApproach/projects/">Project
 Board</a>. We’d also
@@ -305,7 +289,7 @@ from you. Send email to <code class="docutils literal notranslate"><span class="
 forum</a>.</p>
 <p>Finally, in as much as this is an on-going effort, we will try to record
 and track our
-<a class="reference external" href="https://github.com/SystemsApproach/book/blob/master/status.md">progress</a>.
+<a class="reference external" href="https://github.com/SystemsApproach/book/blob/master/status.rst">progress</a>.
 For now, think of this as a poor-man’s release notes. Additional
 information about work-in-progress can be found in the
 <a class="reference external" href="https://github.com/SystemsApproach/book/wiki">wiki</a>.</p>
@@ -317,7 +301,7 @@ Approach</em> over the years, and we’re eager to have you join us in this
 new venture.</p>
 <div class="line-block">
 <div class="line">Larry Peterson &amp; Bruce Davie</div>
-<div class="line">August 2018</div>
+<div class="line">November 2019</div>
 </div>
 </div>
 </div>

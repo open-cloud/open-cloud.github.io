@@ -466,7 +466,7 @@ case is
 
 .. math::
 
-   \frac{n^2}{n × n} = 1
+   \frac{n^2}{n \times n} = 1
 
 Now, suppose one flow receives a throughput of :math:`1 + \Delta`. 
 Now the fairness index is

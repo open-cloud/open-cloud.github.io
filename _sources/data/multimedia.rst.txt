@@ -38,7 +38,7 @@ bits of color information, so each frame is
 
 .. math::
 
-   1080 × 1920 × 24 = 50\ Mb
+   1080 \times 1920 \times 24 = 50\ Mb
 
 so if you want to send 24 frames per second, that would be over 1 Gbps.
 That’s a lot more than most Internet users have access to, by a good
@@ -749,7 +749,7 @@ a sequence of groups of pictures (GOP) separated by a ``SeqHdr``. The
 sequence is terminated by a ``SeqEndCode`` (``0xb7``). The ``SeqHdr``
 that precedes every GOP specifies—among other things—the size of each
 picture (frame) in the GOP (measured in both pixels and macroblocks),
-the interpicture period (measured in 𝜇s), and two quantization
+the interpicture period (measured in μs), and two quantization
 matrices for the macroblocks within this GOP: one for intracoded
 macroblocks (I blocks) and one for intercoded macroblocks (B and
 P blocks). Since this information is given for each GOP—rather than
@@ -907,12 +907,12 @@ example, an audio CD).
 To understand audio compression, we need to begin with the data.
 CD-quality audio, which is the *de facto* digital representation for
 high-quality audio, is sampled at a rate of 44.1 KHz (i.e., a sample is
-collected approximately once every 23 𝜇s). Each sample is 16 bits, which
+collected approximately once every 23 μs). Each sample is 16 bits, which
 means that a stereo (2-channel) audio stream results in a bit rate of
 
 .. math::
 
-   2 × 44.1 × 1000 × 16 = 1.41\ Mbps
+   2 \times 44.1 \times 1000 \times 16 = 1.41\ Mbps
 
 By comparison, telephone-quality voice is sampled at a rate of 8 KHz,
 with 8-bit samples, resulting in a bit rate of 64 kbps.
@@ -925,7 +925,7 @@ resulting in an actual bit rate of
 
 .. math::
 
-   49/16 × 1.41\ Mbps = 4.32\ Mbps
+   49/16 \times 1.41\ Mbps = 4.32\ Mbps
 
 MPEG addresses this need by defining three levels of compression, as
 enumerated in :numref:`Table %s <tab-mp3>`. Of these, Layer III, which is more
