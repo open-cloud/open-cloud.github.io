@@ -77,7 +77,7 @@ is in our lives.
 .. admonition:: Broader Perspective
 
    To continue reading about the cloudification of the Internet, see
-   `Race to the Edge <../direct/trend.html>`__.
+   :ref:`Perspective: Race to the Edge`.
 
    To learn more about DevOps, we recommend: `Site Reliability
    Engineering: How Google Runs Production Systems

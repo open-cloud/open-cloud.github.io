@@ -1,16 +1,17 @@
 Perspective: The Cloud is the New Internet
 ==========================================
 
-As we saw at the end of `Section 9.1 <traditional.html>`__, there has been
-a migration of traditional Internet applications like email and web
-servers from machines running on-premises to VMs running in commodity
-clouds. This corresponds to a shift in terminology (from “Web Services”
-to “Cloud Services”) and in many of the underlying technologies being
-used (from Virtual Machines to Cloud Native micro-services). But the
-Cloud’s impact on how network applications are implemented today is even
-bigger than this migration suggests. It is the combination of commodity
-clouds and overlay networks (similar to those described in `Section
-9.4 <overlays.html>`) that may eventually have the most impact.
+As we saw at the end of :ref:`Section 9.1 <9.1 Traditional
+Applications>`, there has been a migration of traditional Internet
+applications like email and web servers from machines running
+on-premises to VMs running in commodity clouds. This corresponds to a
+shift in terminology (from “Web Services” to “Cloud Services”) and in
+many of the underlying technologies being used (from Virtual Machines
+to Cloud Native micro-services). But the Cloud’s impact on how network
+applications are implemented today is even bigger than this migration
+suggests. It is the combination of commodity clouds and overlay
+networks (similar to those described in :ref:`Section 9.4 <9.4 Overlay
+Networks>`) that may eventually have the most impact.
 
 The biggest thing an overlay-based application needs to be effective is
 a wide footprint, that is, many points-of-presence around the world. IP
@@ -30,12 +31,13 @@ services, but not any application you might hope to monetize.
 
 If only there were a way to pay someone for the right to load and run
 your software on servers spread all over the world. Of course, that’s
-exactly what commodity clouds like Amazon AWS, Microsoft Azure, and the
-Google Cloud Platform provide. To many, the cloud offers a seemingly
-unlimited number of servers, but it’s actually just as important—if not
-more important—where these servers are located. As we discussed at the
-end of `Chapter 4 <../scaling/trend.html>`__), they are widely distributed
-across 150+ well-connected sites.
+exactly what commodity clouds like Amazon AWS, Microsoft Azure, and
+the Google Cloud Platform provide. To many, the cloud offers a
+seemingly unlimited number of servers, but it’s actually just as
+important—if not more important—where these servers are located. As we
+discussed at the end of :ref:`Chapter 4 <Perspective: The Cloud is
+Eating the Internet>`, they are widely distributed across 150+
+well-connected sites.
 
 Suppose, for example, that you want to stream a collection of live video
 or audio channels to millions of users, or you want to support thousands
@@ -65,4 +67,4 @@ Internet/Cloud sites increasingly towards commonality.
 .. admonition:: Broader Perspective
 
    To remind yourself of why the cloudification of the Internet is
-   important, see `Feature Velocity <../foundation/trend.html>`__.
+   important, see :ref:`Perspective: Feature Velocity`.

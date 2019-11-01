@@ -90,7 +90,7 @@ it is signed by the name’s public key (Step 2).
 .. admonition:: Broader Perspective
 
    To continue reading about the cloudification of the Internet, see
-   `The Cloud is the New Internet <../applications/trend.html>`__.
+   :ref:`Perspective: The Cloud is the New Internet`.
 
    To learn more about Blockstack and decentralizing the Internet, we
    recommend: `Blockstack: A New Internet for Decentralized

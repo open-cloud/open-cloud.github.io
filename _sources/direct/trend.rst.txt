@@ -3,14 +3,15 @@ Perspective: Race to the Edge
 
 As we start to explore how softwarization is transforming the network,
 we should recognize that it is the access network that connects homes,
-businesses, and mobile users to the Internet that is undergoing the most
-radical change. The fiber-to-the-home and cellular networks described in
-`Section 2.8 <access.html>`__ are currently constructed from complex
-hardware appliances (e.g., OLTs, BNGs, BBUs, EPCs). Not only have these
-devices historically been closed and proprietary, but the vendors that
-sell them have typically bundled a broad and diverse collection of
-functionality in each. As a consequence, they have become expensive to
-build, complicated to operate, and slow to change.
+businesses, and mobile users to the Internet that is undergoing the
+most radical change. The fiber-to-the-home and cellular networks
+described in :ref:`Section 2.8 <2.8 Access Networks>` are currently
+constructed from complex hardware appliances (e.g., OLTs, BNGs, BBUs,
+EPCs). Not only have these devices historically been closed and
+proprietary, but the vendors that sell them have typically bundled a
+broad and diverse collection of functionality in each. As a
+consequence, they have become expensive to build, complicated to
+operate, and slow to change.
 
 In response, network operators are actively transitioning from these
 purpose-built appliances to open software running on commodity servers,
@@ -105,7 +106,7 @@ instinctively go where there are opportunities to innovate.
 .. admonition:: Broader Perspective
 		
   To continue reading about the cloudification of the Internet, see
-  `Virtual Networks All the Way Down <../internetworking/trend.html>`__. 
+  :ref:`Perspective: Virtual Networks All the Way Down`. 
 
   To learn more about the transformation taking place in access networks, we recommend: `CORD: Central Office Re-architected as a Datacenter, IEEE Communications, October 2016 <https://wiki.opencord.org/display/CORD/Documentation?preview=/1278027/1966399/PETERSON_CORD.pdf>`__ and `Democratizing the Network Edge SIGCOMM CCR, April 2019 <https://ccronline.sigcomm.org/2019/democratizing-the-network-edge/>`__.
 

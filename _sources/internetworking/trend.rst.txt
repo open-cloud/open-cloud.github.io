@@ -29,30 +29,32 @@ being virtualized. Virtualization also means that the different users
 (sometimes called *tenants*) cannot interfere with each other. So what
 happens when we try to virtualize a network?
 
-VPNs, as described in `Section 3.2 <basic-ip.html>`__, were one early
-success for virtual networking. They allowed carriers to present
-corporate customers with the illusion that they had their own private
-network, even though in reality they were sharing underlying links and
-switches with many other users. VPNs, however, only virtualize a few
-resources, notably addressing and routing tables. Network virtualization
-as commonly understood today goes further, virtualizing every aspect of
-networking. That means that a virtual network should support all the
-basic abstractions of a physical network. In this sense, they are
-analogous to the virtual machine, with its support of all the resources
-of a server: CPU, storage, I/O, and so on.
+VPNs, as described in :ref:`Section 3.2 <3.2 Basic Internetworking>`,
+were one early success for virtual networking. They allowed carriers
+to present corporate customers with the illusion that they had their
+own private network, even though in reality they were sharing
+underlying links and switches with many other users. VPNs, however,
+only virtualize a few resources, notably addressing and routing
+tables. Network virtualization as commonly understood today goes
+further, virtualizing every aspect of networking. That means that a
+virtual network should support all the basic abstractions of a
+physical network. In this sense, they are analogous to the virtual
+machine, with its support of all the resources of a server: CPU,
+storage, I/O, and so on.
 
-To this end, VLANS, as described in `Section 3.1 <switching.html>`__, 
-are how we typically virtualize an L2 network. VLANs proved to be
-quite useful to enterprises that wanted to isolate different internal
-groups (e.g., departments, labs), giving each of them the appearance
-of having their own private LAN. VLANs were also seen as a promising
-way to virtualize L2 networks in cloud datacenters, making it possible
-to give each tenant their own L2 network so as to isolate their
-traffic from the traffic of all other tenants. But there was a
-problem: the 4096 possible VLANs was not sufficient to account for all
-the tenants that a cloud might host, and to complicate matters, in a
-cloud the network needs to connect *virtual machines* rather than the
-physical machines that those VMs run on.
+To this end, VLANS, as described in :ref:`Section 3.1 <3.1 Switching
+and Bridging>`, are how we typically virtualize an L2 network. VLANs
+proved to be quite useful to enterprises that wanted to isolate
+different internal groups (e.g., departments, labs), giving each of
+them the appearance of having their own private LAN. VLANs were also
+seen as a promising way to virtualize L2 networks in cloud
+datacenters, making it possible to give each tenant their own L2
+network so as to isolate their traffic from the traffic of all other
+tenants. But there was a problem: the 4096 possible VLANs was not
+sufficient to account for all the tenants that a cloud might host, and
+to complicate matters, in a cloud the network needs to connect
+*virtual machines* rather than the physical machines that those VMs
+run on.
 
 To address this problem, another standard called *Virtual Extensible
 LAN* (VXLAN) was introduced. Unlike the original approach, which
@@ -87,10 +89,10 @@ Turtle: It’s virtual networks all the way down.
 The actual VXLAN header is simple, as shown in :numref:`Figure %s
 <fig-vxlan>`. It includes a 24-bit *Virtual Network Id* (VNI), plus
 some flag and reserved bits. It also implies a particular setting of
-the UDP source and destination port fields (see `Section 5.1
-<../e2e/udp.html>`__), with the destination port 4789 officially
-reserved for VXLANs. Figuring out how to uniquely identify virtual
-LANs (VLAN tags) and virtual networks (VXLAN VIDs) is the easy
+the UDP source and destination port fields (see :ref:`Section 5.1 <5.1
+Simple Demultiplexor (UDP)>`), with the destination port 4789
+officially reserved for VXLANs. Figuring out how to uniquely identify
+virtual LANs (VLAN tags) and virtual networks (VXLAN VIDs) is the easy
 part. This is because encapsulation is the fundamental cornerstone of
 virtualization; all you need to add is an identifier that tells you
 which of many possible users this encapsulated packet belongs to.
@@ -109,7 +111,7 @@ leading the way.
 .. admonition:: Broader Perspective
 
    To continue reading about the cloudification of the Internet, see
-   `The Cloud is Eating the Internet <../scaling/trend.html>`__.
+   :ref:`Perspective: The Cloud is Eating the Internet`.
 
    To learn more about the maturation of virtual networks, we recommend:
     * `Network Heresy <https://networkheresy.com/2012/05/31/network-virtualization/>`__,  2012.

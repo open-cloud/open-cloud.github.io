@@ -23,9 +23,9 @@ it would take a significant amount of time and money to change the
 network. In the worse case, it might involve laying cable across an
 ocean or launching a satellite into space.
 
-But with the advent of technologies like DWDM (`Section
-3.1 <../internetworking/switching.html>`__) and MPLS (`Section
-4.4 <../scaling/mpls.html>`__), we don’t always have to lay more fiber,
+But with the advent of technologies like DWDM (:ref:`Section 3.1
+<3.1 Switching and Bridging>`) and MPLS (:ref:`Section 4.4 <4.4
+Multiprotocol Lable Switchin>`), we don’t always have to lay more fiber,
 but can instead turn on additional wavelengths or establish new circuits
 between any pair of sites. (These sites need not be directly connected
 by fiber. For example, a wavelength between Boston and San Francisco
@@ -45,8 +45,8 @@ publicly described their private WAN, called B4, which is built entirely
 using white-box switches and SDN. B4 does not add/drop wavelengths to
 adjust inter-node bandwidth—it dynamically builds end-to-end tunnels
 using a technique called *Equal-Cost Multipath* (ECMP), an alternative
-to CSPF introduced in `Section 4.4 <../scaling/mpls.html>`__\ —but the
-flexibility it affords is similar.
+to CSPF introduced in :ref:`Section 4.4 <4.4 Multiprotocol Label
+Switching`\ —but the flexibility it affords is similar.
 
 A Traffic Engineering (TE) control program then provisions the network
 according to the needs of various classes of applications. B4 identifies
@@ -86,7 +86,7 @@ increasingly becoming the norm.
 .. admonition:: Broader Perspective
 
    To continue reading about the cloudification of the Internet, see
-   `Big Data and Analytics <../data/trend.html>`__.
+   :ref:`Perspective: Big Data and Analytics`.
 
    To learn more about the B4, we recommend: `B4: Experience with a
    Globally Deployed Software Defined

@@ -38,15 +38,16 @@ distributed datacenters, but they typically do this over a private
 backbone. This allows them to take advantage of whatever optimizations
 they want without needing to fully inter-operate with anyone else.
 
-In other words, while the figures in `Section 4.1 <global.html>`__ fairly
-represents the Internet’s overall shape, and BGP makes it *possible* to
-connect any pair of hosts, in practice most users interact with
-applications running in the Cloud, which looks more like :numref:`Figure
-%s <fig-cloud>`. (One important detail that the figure does not convey is
-that Cloud providers do not typically build a WAN by laying their own
-fiber, but they instead lease fiber from servicer providers, meaning
-that the private cloud backbone and the service provider backbones often
-share the same physical infrastructure.)
+In other words, while the figures in :ref:`Section 4.1 <4.1 Global
+Internet>` fairly represents the Internet’s overall shape, and BGP
+makes it *possible* to connect any pair of hosts, in practice most
+users interact with applications running in the Cloud, which looks
+more like :numref:`Figure %s <fig-cloud>`. (One important detail that
+the figure does not convey is that Cloud providers do not typically
+build a WAN by laying their own fiber, but they instead lease fiber
+from servicer providers, meaning that the private cloud backbone and
+the service provider backbones often share the same physical
+infrastructure.)
 
 .. _fig-cloud:
 .. figure:: figures/structure/Slide1.png
@@ -62,16 +63,16 @@ This means that when widely dispersed users want to talk with each
 other—for example, as part of a video conference call—it’s the multicast
 tree that gets distributed across the cloud. In other words, multicast
 isn’t typically running in the routers of the service provider backbones
-(as `Section 4.3 <multicast.html>`__ suggests), but it is instead running
+(as :ref:`Section 4.3 <4.3 Multicast>` suggests), but it is instead running
 in server processes distributed across some subset of the 150+ locations
 that serve as the Internet’s major interconnection points. A multicast
 tree constructed in this way is called an overlay, which is a topic that
-we return to in Section 9.4.
+we return to in :ref:`Section 9.4 <9.4 Overlay Networks>`.
 
 .. admonition:: Broader Perspective
 
    To continue reading about the cloudification of the Internet, see
-   `HTTP is the New Narrow Waist <../e2e/trend.html>`__.
+   :ref:`Perspective: HTTP is the New Narrow Waist`.
 
    To learn more about the Cloud’s distributed footprint, we recommend
    `How the Internet Travels Across the

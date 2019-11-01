@@ -22,11 +22,11 @@ not a sufficient foundation for all the applications people wanted to
 build.
 
 We’re yet to see some of these solutions—future chapters will describe
-how the Internet manages congestion (`Chapter
-6 <../congestion/problem.html>`__), provides security (`Chapter
-8 <../security/problem.html>`__), and supports real-time multimedia
-applications (`Chapters 7 <../data/problem.html>`__ and
-`9 <../applications/problem.html>`__)—but it is informative to take this
+how the Internet manages congestion (:ref:`Chapter 6 <Chapter 6:
+Congestion Control>`), provides security (:ref:`Chapter 8 <Chapter 8:
+Network Security>`), and supports real-time multimedia
+applications (:ref:`Chapters 7 <Chapter 7: End-to-End Data>` and
+:ref:`9 <Chapter 9: Applications>`)—but it is informative to take this
 opportunity to reconcile the value of a universal narrow waist with the
 evolution that inevitably happens in any long-lived system: the “fixed
 point” around which the rest of the architecture evolves has moved to a
@@ -68,21 +68,22 @@ not being blocked by enterprise firewalls), so again, it makes sense to
 reuse it rather than reinvent the wheel.
 
 Somewhat less obviously, HTTP also provides a good foundation for
-dealing with mobility. If the resource you want to access has moved, you
-can have HTTP return a *redirect response* that points the client to a
-new location. Similarly, HTTP enables injecting *caching proxies*
+dealing with mobility. If the resource you want to access has moved,
+you can have HTTP return a *redirect response* that points the client
+to a new location. Similarly, HTTP enables injecting *caching proxies*
 between the client and server, making it possible to replicate popular
 content in multiple locations and save clients the delay of going all
-the way across the Internet to retrieve some piece of information. (Both
-of these capabilities are discussed in `Section
-9.1 <../applications/traditional.html>`__.) Finally, HTTP has been used to
-deliver real-time multimedia, in an approach known as *adaptive
-streaming*. (See how in `Section 7.2 <../data/multimedia.html>`__.)
+the way across the Internet to retrieve some piece of
+information. (Both of these capabilities are discussed in
+:ref:`Section 9.1 <9.1 Traditional Applications`.) Finally, HTTP has
+been used to deliver real-time multimedia, in an approach known as
+*adaptive streaming*. (See how in :ref:`Section 7.2 <7.2 Multimedia
+Data>`.)
 
 .. admonition:: Broader Perspective
 
    To continue reading about the cloudification of the Internet, see
-   `Software Defined Traffic Engineering <../congestion/trend.html>`__.
+   :ref:`Perspective: Software-Defined Traffic Engineering`.
 
    To learn more about the centrality of HTTP, we recommend: `HTTP:
    An Evolvable Narrow Waist for the Future
