@@ -1139,12 +1139,15 @@ implementing a particular feature. To define a protocol with a certain
 set of features, just compose the corresponding components. Let’s look
 more closely at this aspect of SOAP.</p>
 <p>SOAP 1.2 introduced a <em>feature</em> abstraction, which the specification
-describes thus: <em>A SOAP feature is an extension of the SOAP messaging
-framework. Although SOAP poses no constraints on the potential scope of
-such features, example features may include “reliability,” “security,”
-“correlation,” “routing,” and message exchange patterns (MEPs) such as
-request/response, one-way, and peer-to-peer conversations.</em> A SOAP
-feature specification must include:</p>
+describes thus:</p>
+<blockquote>
+<div><em>A SOAP feature is an extension of the SOAP messaging
+framework. Although SOAP poses no constraints on the potential
+scope of such features, example features may include “reliability,”
+“security,” “correlation,” “routing,” and message exchange patterns
+(MEPs) such as request/response, one-way, and peer-to-peer
+conversations.</em></div></blockquote>
+<p>A SOAP feature specification must include:</p>
 <ul class="simple">
 <li>A URI that identifies the feature</li>
 <li>The state information and processing, abstractly described, that is

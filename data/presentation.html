@@ -353,17 +353,17 @@ kind of data is contained in the message it receives. There are two
 common approaches: <em>tagged</em> and <em>untagged</em> data. The tagged approach is
 more intuitive, so we describe it first.</p>
 <p>A tag is any additional information included in a message—beyond the
-concrete representation of the base types—that helps the receiver decode
-the message. There are several possible tags that might be included in a
-message. For example, each data item might be augmented with a <em>type</em>
-tag. A type tag indicates that the value that follows is an integer, a
-floating-point number, or whatever. Another example is a <em>length</em> tag.
-Such a tag is used to indicate the number of elements in an array or the
-size of an integer. A third example is an <em>architecture</em> tag, which
-might be used in conjunction with the receiver-makes-right strategy to
-specify the architecture on which the data contained in the message was
-generated. <a class="reference internal" href="#fig-tags"><span class="std std-ref">Figure 4</span></a> depicts how a simple 32-bit integer
-might be encoded in a tagged message.</p>
+concrete representation of the base types—that helps the receiver
+decode the message. There are several possible tags that might be
+included in a message. For example, each data item might be augmented
+with a <em>type</em> tag. A type tag indicates that the value that follows is
+an integer, a floating-point number, or whatever. Another example is a
+<em>length</em> tag.  Such a tag is used to indicate the number of elements
+in an array or the size of an integer. A third example is an
+<em>architecture</em> tag, which might be used in conjunction with the
+receiver-makes-right strategy to specify the architecture on which the
+data contained in the message was generated. <a class="reference internal" href="#fig-tags"><span class="std std-numref">Figure 182a</span></a> depicts how a simple 32-bit integer might be encoded in a
+tagged message.</p>
 <div class="figure align-center" id="id4">
 <span id="fig-tags"></span><a class="reference internal image-reference" href="../_images/f07-04-9780123850591.png"><img alt="../_images/f07-04-9780123850591.png" src="../_images/f07-04-9780123850591.png" style="width: 400px;" /></a>
 <p class="caption"><span class="caption-number">Figure 182. </span><span class="caption-text">A 32-bit integer encoded in a tagged message.</span></p>

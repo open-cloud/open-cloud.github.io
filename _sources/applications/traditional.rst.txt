@@ -1021,12 +1021,16 @@ set of features, just compose the corresponding components. Let’s look
 more closely at this aspect of SOAP.
 
 SOAP 1.2 introduced a *feature* abstraction, which the specification
-describes thus: *A SOAP feature is an extension of the SOAP messaging
-framework. Although SOAP poses no constraints on the potential scope of
-such features, example features may include “reliability,” “security,”
-“correlation,” “routing,” and message exchange patterns (MEPs) such as
-request/response, one-way, and peer-to-peer conversations.* A SOAP
-feature specification must include:
+describes thus:
+
+   *A SOAP feature is an extension of the SOAP messaging
+   framework. Although SOAP poses no constraints on the potential
+   scope of such features, example features may include “reliability,”
+   “security,” “correlation,” “routing,” and message exchange patterns
+   (MEPs) such as request/response, one-way, and peer-to-peer
+   conversations.*
+
+A SOAP feature specification must include:
 
 -  A URI that identifies the feature
 

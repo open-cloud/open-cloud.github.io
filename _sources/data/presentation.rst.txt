@@ -184,17 +184,18 @@ common approaches: *tagged* and *untagged* data. The tagged approach is
 more intuitive, so we describe it first.
 
 A tag is any additional information included in a message—beyond the
-concrete representation of the base types—that helps the receiver decode
-the message. There are several possible tags that might be included in a
-message. For example, each data item might be augmented with a *type*
-tag. A type tag indicates that the value that follows is an integer, a
-floating-point number, or whatever. Another example is a *length* tag.
-Such a tag is used to indicate the number of elements in an array or the
-size of an integer. A third example is an *architecture* tag, which
-might be used in conjunction with the receiver-makes-right strategy to
-specify the architecture on which the data contained in the message was
-generated. :ref:`Figure 4 <fig-tags>` depicts how a simple 32-bit integer
-might be encoded in a tagged message.
+concrete representation of the base types—that helps the receiver
+decode the message. There are several possible tags that might be
+included in a message. For example, each data item might be augmented
+with a *type* tag. A type tag indicates that the value that follows is
+an integer, a floating-point number, or whatever. Another example is a
+*length* tag.  Such a tag is used to indicate the number of elements
+in an array or the size of an integer. A third example is an
+*architecture* tag, which might be used in conjunction with the
+receiver-makes-right strategy to specify the architecture on which the
+data contained in the message was generated. :numref:`Figure %sa
+<fig-tags>` depicts how a simple 32-bit integer might be encoded in a
+tagged message.
 
 .. _fig-tags:
 .. figure:: figures/f07-04-9780123850591.png
