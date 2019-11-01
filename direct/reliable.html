@@ -325,7 +325,9 @@ frames that the sender can transmit; <code class="docutils literal notranslate">
 of the <em>last acknowledgment received</em>; and <code class="docutils literal notranslate"><span class="pre">LFS</span></code> denotes the sequence
 number of the <em>last frame sent</em>. The sender also maintains the following
 invariant:</p>
-<p><code class="docutils literal notranslate"><span class="pre">LFS</span> <span class="pre">-</span> <span class="pre">LAR</span> <span class="pre">&lt;=</span> <span class="pre">SWS</span></code></p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">LFS</span> <span class="o">-</span> <span class="n">LAR</span> <span class="o">&lt;=</span> <span class="n">SWS</span>
+</pre></div>
+</div>
 <p>This situation is illustrated in <a class="reference internal" href="#fig-sw-sender"><span class="std std-numref">Figure 37</span></a>.</p>
 <div class="figure align-center" id="id4">
 <span id="fig-sw-sender"></span><a class="reference internal image-reference" href="../_images/f02-20-9780123850591.png"><img alt="../_images/f02-20-9780123850591.png" src="../_images/f02-20-9780123850591.png" style="width: 400px;" /></a>

@@ -159,7 +159,9 @@ of the *last acknowledgment received*; and ``LFS`` denotes the sequence
 number of the *last frame sent*. The sender also maintains the following
 invariant:
 
-``LFS - LAR <= SWS``
+.. code-block:: c
+		
+   LFS - LAR <= SWS
 
 This situation is illustrated in :numref:`Figure %s <fig-sw-sender>`.
 
