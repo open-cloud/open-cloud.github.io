@@ -571,10 +571,10 @@ the missing fragments.
 the server has successfully received fragments up through number 20,
 plus fragments 23, 25, and 26. The server responds with a ``Fack``
 that identifies fragment 20 as the highest in-order fragment, plus a
-bit-vector (``SelAck``) with the third :math:`(23=20+3)`, fifth
-:math:`(25=20+5)`, and sixth :math:`(26=20+6)` bits turned on. So as
-to support an (almost) arbitrarily long bit vector, the size of the
-vector (measured in 32-bit words) is given in the ``SelAckLen`` field.
+bit-vector (``SelAck``) with the third (23=20+3), fifth (25=20+5), and
+sixth (26=20+6) bits turned on. So as to support an (almost)
+arbitrarily long bit vector, the size of the vector (measured in
+32-bit words) is given in the ``SelAckLen`` field.
 
 .. _fig-fack:
 .. figure:: figures/f05-20-9780123850591.png

@@ -693,10 +693,10 @@ the missing fragments.</p>
 the server has successfully received fragments up through number 20,
 plus fragments 23, 25, and 26. The server responds with a <code class="docutils literal notranslate"><span class="pre">Fack</span></code>
 that identifies fragment 20 as the highest in-order fragment, plus a
-bit-vector (<code class="docutils literal notranslate"><span class="pre">SelAck</span></code>) with the third <span class="math notranslate nohighlight">\((23=20+3)\)</span>, fifth
-<span class="math notranslate nohighlight">\((25=20+5)\)</span>, and sixth <span class="math notranslate nohighlight">\((26=20+6)\)</span>&nbsp;bits turned on. So as
-to support an (almost) arbitrarily long bit vector, the size of the
-vector (measured in 32-bit words) is given in the <code class="docutils literal notranslate"><span class="pre">SelAckLen</span></code> field.</p>
+bit-vector (<code class="docutils literal notranslate"><span class="pre">SelAck</span></code>) with the third (23=20+3), fifth (25=20+5), and
+sixth (26=20+6)&nbsp;bits turned on. So as to support an (almost)
+arbitrarily long bit vector, the size of the vector (measured in
+32-bit words) is given in the <code class="docutils literal notranslate"><span class="pre">SelAckLen</span></code> field.</p>
 <div class="figure align-center" id="id8">
 <span id="fig-fack"></span><a class="reference internal image-reference" href="../_images/f05-20-9780123850591.png"><img alt="../_images/f05-20-9780123850591.png" src="../_images/f05-20-9780123850591.png" style="width: 500px;" /></a>
 <p class="caption"><span class="caption-number">Figure 144. </span><span class="caption-text">Fragmentation with selective acknowledgments.</span></p>

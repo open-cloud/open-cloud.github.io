@@ -459,8 +459,8 @@ between each retransmission attempt is a general technique known as
 or 51.2&nbsp;μs, selected at random. If this effort fails, it then waits 0,
 51.2, 102.4, or 153.6&nbsp;μs (selected randomly) before trying again; this
 is k × 51.2 for k=0..3. After the third collision, it waits <em>k × 51.2</em>
-for <span class="math notranslate nohighlight">\(k=0.2^3 -1\)</span>, again selected at random. In general,
-the algorithm randomly selects a <em>k</em> between 0 and <span class="math notranslate nohighlight">\(2^n - 1\)</span>
+for k = 0.2:sup <cite>3</cite>-1, again selected at random. In general,
+the algorithm randomly selects a <em>k</em> between 0 and 2:sup <cite>n</cite>-1
 and waits k × 51.2 μs, where <em>n</em> is the number of collisions
 experienced so far. The adaptor gives up after a given number of tries
 and reports a transmit error to the host. Adaptors typically retry up to
