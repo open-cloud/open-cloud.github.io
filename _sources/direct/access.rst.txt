@@ -281,11 +281,11 @@ These different waveforms affect the scheduling and subcarrier intervals
 (i.e., the “size” of the Resource Elements just described).
 
 - For sub-1GHz bands, 5G allows maximum 50MHz bandwidths. In this
-   case, there are two waveforms: one with subcarrier spacing of 15kHz
-   and another of 30kHz. (We used 15kHz in the example shown in
-   :numref:`Figure %s <fig-ofdma>`. The corresponding scheduling
-   intervals are 0.5ms and 0.25ms, respectively. (We used 0.5ms in the
-   example shown in :numref:`Figure %s <fig-ofdma>`.)
+  case, there are two waveforms: one with subcarrier spacing of 15kHz
+  and another of 30kHz. (We used 15kHz in the example shown in
+  :numref:`Figure %s <fig-ofdma>`. The corresponding scheduling
+  intervals are 0.5ms and 0.25ms, respectively. (We used 0.5ms in the
+  example shown in :numref:`Figure %s <fig-ofdma>`.)
 
 -  For 1GHz-6GHz bands, maximum bandwidths go up to 100MHz.
    Correspondingly, there are three waveforms with subcarrier spacings
