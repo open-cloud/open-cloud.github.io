@@ -855,11 +855,10 @@ a number of such approaches.</p>
 ago, but one of its real contributions was in the area of QoS. It’s
 fair to say that ATM’s being designed with fairly rich QoS capability
 was one of the things that spurred interest in QoS for IP.</p>
-<p>In many respects, the QoS capabilities that are provided in ATM
-networks are similar to those provided in an IP network using
-Integrated Services. However, the ATM standards bodies came up with a
-total of five service classes compared to the IETF’s three. The five
-ATM service classes are</p>
+<p>The QoS capabilities provided in ATM are similar to those provided
+in an IP network using Integrated Services. However, the ATM
+standards bodies came up with a total of five service classes
+compared to the IETF’s three. The five ATM service classes are</p>
 <ul class="simple">
 <li>constant bit rate (CBR)</li>
 <li>variable bit rate—real-time (VBR-rt)</li>
@@ -905,22 +904,10 @@ available, the RM cell is passed on unmodified; otherwise, the
 requested rate is decreased before the cell is passed along. At the
 destination, the RM cell is turned around and sent back to the
 source, which thereby learns what rate it can send at.</p>
-<p>The intention of ABR is to allow a source to increase or decrease its
-allotted rate as conditions dictate. Hence, RM cells are sent
-periodically and may contain either higher or lower requested rates.
-Also, the rate at which a source is allowed to send decays with time
-if not used. In general, proprietary algorithms in the switches
-determine the rates that are placed in RM cells as they pass through
-the switches; the algorithms draw on a variety of information such as
-the current buffer occupancy and the measured arrival rates on
-currently active VCs. These algorithms, as is normal for
-congestion-control algorithms, seek to maximize throughput and to
-keep delay and loss low.</p>
 <p class="last">Given the relative decline of ATM in real networks today, the
-interesting point of ATM QoS is how many mechanisms are common across
-different technologies. Mechanisms that are found in both ATM and IP
-QoS include admission control, scheduling algorithms, token bucket
-policers, and explicit congestion feedback mechanisms.</p>
+interesting point is how many mechanisms are common across ATM and
+IP, including admission control, scheduling algorithms, token
+bucket policers, and explicit congestion feedback.</p>
 </div>
 </div>
 </div>
@@ -1172,7 +1159,7 @@ applications are quite adaptable.</p>
 dead. At that year’s ACM SIGCOMM conference, one of the most
 prestigious networking research conferences, a workshop with the
 provocative title “RIPQOS” was held—the official name of the workshop
-was “Revisiting IP QoS” but the implication that QOS might be ready
+was “Revisiting IP QoS” but the implication that QoS might be ready
 to rest in peace was clear in the workshop announcement. However,
 just as Mark Twain quipped that reports of his death were greatly
 exaggerated, it seems that the demise of IP QoS, and DiffServ in

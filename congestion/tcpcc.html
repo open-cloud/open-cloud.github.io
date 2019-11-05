@@ -604,19 +604,20 @@ can continue until the send window drops to a single packet. At this
 point, the throughput achieved by TCP will deteriorate to one packet
 per round trip time, which may be much less than the appropriate rate
 for a network that is not actually experiencing congestion.</p>
-<p>Given this situation, you may wonder how it is that TCP works at all
-over wireless networks. Fortunately, there are a number of ways to
-address the problem. Most commonly, some steps are taken at the link
-layer to reduce or hide packet losses due to bit errors. For example,
-802.11 networks apply forward error correction (FEC) to the
-transmitted packets so that some number of errors can be corrected by
-the receiver. Another approach is to do link layer retransmission, so
-that even if a packet is corrupted and dropped, it eventually gets
-sent successfully, and the initial loss never becomes apparent to
-TCP. Each of these approaches have their problems: FEC wastes some
-bandwidth and will sometimes still fail to correct errors, while
-retransmission increases both the RTT of the connection and its
-variance, leading to worse performance.</p>
+<p>Given this situation, you may wonder how it is that TCP works at
+all over wireless networks. Fortunately, there are a number of ways
+to address the problem. Most commonly, some steps are taken at the
+link layer to reduce or hide packet losses due to bit errors. For
+example, 802.11 networks apply forward error correction (FEC) to
+the transmitted packets so that some number of errors can be
+corrected by the receiver. Another approach is to do link layer
+retransmission, so that even if a packet is corrupted and dropped,
+it eventually gets sent successfully, and the initial loss never
+becomes apparent to the TCP end-points. Each of these approaches
+have their problems: FEC wastes some bandwidth and will sometimes
+still fail to correct errors, while retransmission increases both
+the RTT of the connection and its variance, leading to worse
+performance.</p>
 <p>Another approach used in some situations is to “split” the TCP
 connection into wireless and wired segments. There are many
 variations on this idea, but the basic approach is to treat losses on

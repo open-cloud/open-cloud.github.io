@@ -14,8 +14,8 @@ transport protocol that are not well met by the protocols discussed so
 far in this chapter.
 
 .. _fig-zoom:
-.. figure:: figures/Zoom.png
-   :width: 500px
+.. figure:: figures/rpc/Slide4.png
+   :width: 600px
    :align: center
 
    User interface of a videoconferencing tool.
