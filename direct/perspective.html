@@ -234,6 +234,54 @@ to encode bits for transmission on a physical medium, followed by the
 other issues mentioned above. By the end of this chapter, we’ll
 understand how to send complete packets over just about any sort of
 link, no matter what physical medium is involved.</p>
+<div class="sidebar">
+<p class="first sidebar-title">Shannon-Hartley Theorem</p>
+<p>There has been an enormous body of work done in the related areas of
+signal processing and information theory, studying everything from
+how signals degrade over distance to how much data a given signal can
+effectively carry. The most notable piece of work in this area is a
+formula known as the <em>Shannon-Hartley theorem</em>. Simply stated, this
+theorem gives an upper bound to the capacity of a link, in terms of
+bits per second (bps), as a function of the signal-to-noise ratio of
+the link, measured in decibels (dB), and the bandwidth of the
+channel, measured in Hertz (Hz). (As noted previously, “bandwidth” is
+a bit of an overloaded term in communications; here we use it to
+refer to the range of frequencies available for communication.)</p>
+<p>As an example, we can apply the Shannon-Hartley theorem to determine
+the rate at which we can expect to transmit data over a voice-grade
+phone line without suffering from too high an error rate. A standard
+voice-grade phone line typically supports a frequency range of 300 Hz
+to 3300 Hz, a channel bandwidth of 3 kHz.</p>
+<p>The theorem is typically given by the following formula:</p>
+<blockquote>
+<div>C = B log<sub>2</sub> (1 + S/N)</div></blockquote>
+<p>where <em>C</em> is the achievable channel capacity measured in bits
+per second, <em>B</em> is the bandwidth of the channel in Hz (3300
+Hz - 300 Hz = 3000 Hz), <em>S</em> is the average signal power, and
+<em>N</em> is the average noise power. The signal-to-noise ratio
+(<em>S/N</em>, or <em>SNR</em>) is usually expressed in decibels, related
+as follows:</p>
+<blockquote>
+<div>SNR = 10 x log<sub>10</sub>(S/N).</div></blockquote>
+<p>Thus, a typical signal-to-noise ratio of 30&nbsp;dB would imply that
+<em>S/N</em> = 1000. Thus, we have</p>
+<blockquote>
+<div>C = 3000 x log<sub>2</sub>(1001),</div></blockquote>
+<p>which equals approximately 30 Kbps, roughly what one could expect
+from a dial-up modem over a voice-grade telephone line in the
+1990s.</p>
+<p class="last">The Shannon-Hartley theorem is equally applicable to all sorts of
+links ranging from wireless to coaxial cable to optical fiber. It
+should be apparent that there are really only two ways to build a
+high capacity link: start with a high bandwidth channel, or achieve a
+high signal to noise ratio. But even those conditions won’t guarantee
+a high capacity link—it often takes quite a bit of ingenuity on the
+part of people who design channel coding schemes to achieve the
+theoretical limits of a channel. This ingenuity is particularly
+apparent today in wireless links, where there is a great incentive to
+get the most bits per second from a given amount of wireless spectrum
+(the channel bandwidth) and signal power level (and hence SNR).</p>
+</div>
 <p>One way to characterize links, then, is by the medium they
 use—typically, copper wire in some form, such as twisted pair (some
 Ethernets and landline phones) and coaxial (cable); optical fiber,

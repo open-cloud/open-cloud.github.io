@@ -59,7 +59,7 @@ hosts. Note that the Internet did not always use DNS. Early in its
 history, when there were only a few hundred hosts on the Internet, a
 central authority called the *Network Information Center* (NIC)
 maintained a flat table of name-to-address bindings; this table was
-called ``HOSTS.TXT``. Whenever a site wanted to add a new host to the
+called ``HOSTS.TXT``.\ [*]_ Whenever a site wanted to add a new host to the
 Internet, the site administrator sent email to the NIC giving the new
 host’s name/address pair. This information was manually entered into the
 table, the modified table was mailed out to the various sites every few
@@ -68,9 +68,10 @@ every host at the site. Name resolution was then simply implemented by a
 procedure that looked up a host’s name in the local copy of the table
 and returned the corresponding address.
 
-   Believe it or not, there was also a paper book (like a phone book)
-   published periodically that listed all the machines connected to the
-   Internet and all the people that had an Internet email account.
+.. [*] Believe it or not, there was also a paper book (like a phone
+       book) published periodically that listed all the machines
+       connected to the Internet and all the people that had an
+       Internet email account.
 
 It should come as no surprise that the approach to naming did not work
 well as the number of hosts in the Internet started to grow. Therefore,
@@ -125,11 +126,11 @@ tree, where each node in the tree corresponds to a domain, and the
 leaves in the tree correspond to the hosts being named. :numref:`Figure 
 %s <fig-domains>` gives an example of a domain hierarchy. Note that we
 should not assign any semantics to the term *domain* other than that it
-is simply a context in which additional names can be defined.
+is simply a context in which additional names can be defined.\ [*]_
 
-   Confusingly, the word *domain* is also used in Internet routing,
-   where it means something different than it does in DNS, being roughly
-   equivalent to the term *autonomous system*.
+.. [*] Confusingly, the word *domain* is also used in Internet
+       routing, where it means something different than it does in
+       DNS, being roughly equivalent to the term *autonomous system*.
 
 There was actually a substantial amount of discussion that took place
 when the domain name hierarchy was first being developed as to what
@@ -200,7 +201,7 @@ Each name server implements the zone information as a collection of
 binding or, more specifically, a 5-tuple that contains the following
 fields:
 
-.. code-block:: c
+::
 
    (Name, Value, Type, Class, TTL)
 
@@ -243,7 +244,7 @@ into the corresponding IP addresses. Taken together, these two records
 effectively implement a pointer from the root name server to one of the
 TLD servers.
 
-.. code-block:: c
+::
 
    (edu, a3.nstld.com, NS, IN)
    (a3.nstld.com, 192.5.6.32, A, IN)
@@ -254,7 +255,7 @@ TLD servers.
 Moving our way down the hierarchy by one level, the server has records
 for domains like this:
 
-.. code-block:: c
+::
 
    (princeton.edu, dns.princeton.edu, NS, IN)
    (dns.princeton.edu, 128.112.129.15, A, IN)
@@ -267,7 +268,7 @@ hierarchy. That server might be able to directly resolve some queries
 server at yet another layer in the hierarchy (e.g., for a query about
 ``penguins.cs.princeton.edu``).
 
-.. code-block:: c
+::
 
    (email.princeton.edu, 128.112.198.35, A, IN)
    (penguins.cs.princeton.edu, dns1.cs.princeton.edu, NS, IN)
@@ -288,7 +289,7 @@ purpose for the email application—they allow an administrator to change
 which host receives mail on behalf of the domain without having to
 change everyone’s email address.
 
-.. code-block:: c
+::
 
    (penguins.cs.princeton.edu, 128.112.155.166, A, IN)
    (www.cs.princeton.edu, coreweb.cs.princeton.edu, CNAME, IN)
@@ -310,6 +311,8 @@ eventually evolve into the Lightweight Directory Access Protocol (LDAP).
 LDAP is a subset of X.500 originally designed as a PC front end to
 X.500. Today, widely used, mostly at the enterprise level, as a system
 for learning information about users.
+
+.. include:: ../sidebars/naming.rst
 
 Name Resolution
 ~~~~~~~~~~~~~~~
@@ -354,7 +357,7 @@ the Department of Computer Science at Princeton know about the server on
 ``dns1.cs.princeton.edu``. This local name server, in turn, has resource
 records for one or more of the root servers, for example:
 
-.. code-block:: c
+::
 
    ('root', a.root-servers.net, NS, IN)
    (a.root-servers.net, 198.41.0.4, A, IN)
@@ -646,10 +649,10 @@ application that is trying to serve a need and support more features
 than the alternatives, there is still much room for innovation in tools
 for network management.
 
-   For completeness, we note that NETCONF is another of the post-SNMP
-   protocols for communicating configuration information to network
-   devices. OpenConfig works with NETCONF, but our reading of the tea
-   leaves points to gNMI as the future.
+For completeness, we note that NETCONF is another of the post-SNMP
+protocols for communicating configuration information to network
+devices. OpenConfig works with NETCONF, but our reading of the tea
+leaves points to gNMI as the future.
 
 We conclude by emphasizing that a seachange is underway. While listing
 SNMP and OpenConfig in the title to this section suggests they are

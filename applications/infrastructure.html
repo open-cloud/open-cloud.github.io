@@ -242,7 +242,7 @@ hosts. Note that the Internet did not always use DNS. Early in its
 history, when there were only a few hundred hosts on the Internet, a
 central authority called the <em>Network Information Center</em> (NIC)
 maintained a flat table of name-to-address bindings; this table was
-called <code class="docutils literal notranslate"><span class="pre">HOSTS.TXT</span></code>. Whenever a site wanted to add a new host to the
+called <code class="docutils literal notranslate"><span class="pre">HOSTS.TXT</span></code>.<a class="footnote-reference" href="#id2" id="id1">[*]</a> Whenever a site wanted to add a new host to the
 Internet, the site administrator sent email to the NIC giving the new
 host’s name/address pair. This information was manually entered into the
 table, the modified table was mailed out to the various sites every few
@@ -250,10 +250,15 @@ days, and the system administrator at each site installed the table on
 every host at the site. Name resolution was then simply implemented by a
 procedure that looked up a host’s name in the local copy of the table
 and returned the corresponding address.</p>
-<blockquote>
-<div>Believe it or not, there was also a paper book (like a phone book)
-published periodically that listed all the machines connected to the
-Internet and all the people that had an Internet email account.</div></blockquote>
+<table class="docutils footnote" frame="void" id="id2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[*]</a></td><td>Believe it or not, there was also a paper book (like a phone
+book) published periodically that listed all the machines
+connected to the Internet and all the people that had an
+Internet email account.</td></tr>
+</tbody>
+</table>
 <p>It should come as no surprise that the approach to naming did not work
 well as the number of hosts in the Internet started to grow. Therefore,
 in the mid-1980s, the Domain Naming System was put into place. DNS
@@ -270,7 +275,7 @@ TCP) with the host’s IP address. This situation is illustrated (in the
 case of sending email) in <a class="reference internal" href="#fig-names"><span class="std std-numref">Figure 229</span></a>. While this picture
 makes the name resolution task look simple enough, there is a bit more
 to it, as we shall see.</p>
-<div class="figure align-center" id="id1">
+<div class="figure align-center" id="id5">
 <span id="fig-names"></span><a class="reference internal image-reference" href="../_images/f09-14-9780123850591.png"><img alt="../_images/f09-14-9780123850591.png" src="../_images/f09-14-9780123850591.png" style="width: 400px;" /></a>
 <p class="caption"><span class="caption-number">Figure 229. </span><span class="caption-text">Names translated into addresses, where the numbers 1 to 5 show the
 sequence of steps in the process.</span></p>
@@ -288,7 +293,7 @@ mean by this is that DNS is not strictly used to map host names into
 host addresses. It is more accurate to say that DNS maps domain names
 into values. For the time being, we assume that these values are IP
 addresses; we will come back to this issue later in this section.</p>
-<div class="figure align-center" id="id2">
+<div class="figure align-center" id="id6">
 <span id="fig-domains"></span><a class="reference internal image-reference" href="../_images/f09-15-9780123850591.png"><img alt="../_images/f09-15-9780123850591.png" src="../_images/f09-15-9780123850591.png" style="width: 700px;" /></a>
 <p class="caption"><span class="caption-number">Figure 230. </span><span class="caption-text">Example of a domain hierarchy.</span></p>
 </div>
@@ -297,11 +302,15 @@ tree, where each node in the tree corresponds to a domain, and the
 leaves in the tree correspond to the hosts being named. <a class="reference internal" href="#fig-domains"><span class="std std-numref">Figure
 230</span></a> gives an example of a domain hierarchy. Note that we
 should not assign any semantics to the term <em>domain</em> other than that it
-is simply a context in which additional names can be defined.</p>
-<blockquote>
-<div>Confusingly, the word <em>domain</em> is also used in Internet routing,
-where it means something different than it does in DNS, being roughly
-equivalent to the term <em>autonomous system</em>.</div></blockquote>
+is simply a context in which additional names can be defined.<a class="footnote-reference" href="#id4" id="id3">[†]</a></p>
+<table class="docutils footnote" frame="void" id="id4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[†]</a></td><td>Confusingly, the word <em>domain</em> is also used in Internet
+routing, where it means something different than it does in
+DNS, being roughly equivalent to the term <em>autonomous system</em>.</td></tr>
+</tbody>
+</table>
 <p>There was actually a substantial amount of discussion that took place
 when the domain name hierarchy was first being developed as to what
 conventions would govern the names that were to be handed out near the
@@ -333,7 +342,7 @@ University. Within this zone, some departments do not want the
 responsibility of managing the hierarchy (and so they remain in the
 university-level zone), while others, like the Department of Computer
 Science, manage their own department-level zone.</p>
-<div class="figure align-center" id="id3">
+<div class="figure align-center" id="id7">
 <span id="fig-zones"></span><a class="reference internal image-reference" href="../_images/f09-16-9780123850591.png"><img alt="../_images/f09-16-9780123850591.png" src="../_images/f09-16-9780123850591.png" style="width: 700px;" /></a>
 <p class="caption"><span class="caption-number">Figure 231. </span><span class="caption-text">Domain hierarchy partitioned into zones.</span></p>
 </div>
@@ -348,7 +357,7 @@ a pointer to another server that the client should query next. Thus,
 from an implementation perspective, it is more accurate to think of DNS
 as being represented by a hierarchy of name servers rather than by a
 hierarchy of domains, as illustrated in <a class="reference internal" href="#fig-servers"><span class="std std-numref">Figure 232</span></a>.</p>
-<div class="figure align-center" id="id4">
+<div class="figure align-center" id="id8">
 <span id="fig-servers"></span><a class="reference internal image-reference" href="../_images/f09-17-9780123850591.png"><img alt="../_images/f09-17-9780123850591.png" src="../_images/f09-17-9780123850591.png" style="width: 500px;" /></a>
 <p class="caption"><span class="caption-number">Figure 232. </span><span class="caption-text">Hierarchy of name servers.</span></p>
 </div>
@@ -360,7 +369,7 @@ implement more than one zone.</p>
 <em>resource records</em>. In essence, a resource record is a name-to-value
 binding or, more specifically, a 5-tuple that contains the following
 fields:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">Name</span><span class="p">,</span> <span class="n">Value</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">Class</span><span class="p">,</span> <span class="n">TTL</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">Name</span><span class="p">,</span> <span class="n">Value</span><span class="p">,</span> <span class="n">Type</span><span class="p">,</span> <span class="n">Class</span><span class="p">,</span> <span class="n">TTL</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">Name</span></code> and <code class="docutils literal notranslate"><span class="pre">Value</span></code> fields are exactly what you would expect,
@@ -397,18 +406,18 @@ this example). It also has <code class="docutils literal notranslate"><span clas
 into the corresponding IP addresses. Taken together, these two records
 effectively implement a pointer from the root name server to one of the
 TLD servers.</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">edu</span><span class="p">,</span> <span class="n">a3</span><span class="p">.</span><span class="n">nstld</span><span class="p">.</span><span class="n">com</span><span class="p">,</span> <span class="n">NS</span><span class="p">,</span> <span class="n">IN</span><span class="p">)</span>
-<span class="p">(</span><span class="n">a3</span><span class="p">.</span><span class="n">nstld</span><span class="p">.</span><span class="n">com</span><span class="p">,</span> <span class="mf">192.5.6.32</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">IN</span><span class="p">)</span>
-<span class="p">(</span><span class="n">com</span><span class="p">,</span> <span class="n">a</span><span class="p">.</span><span class="n">gtld</span><span class="o">-</span><span class="n">servers</span><span class="p">.</span><span class="n">net</span><span class="p">,</span> <span class="n">NS</span><span class="p">,</span> <span class="n">IN</span><span class="p">)</span>
-<span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">gtld</span><span class="o">-</span><span class="n">servers</span><span class="p">.</span><span class="n">net</span><span class="p">,</span> <span class="mf">192.5.6.30</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">IN</span><span class="p">)</span>
-<span class="p">...</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">edu</span><span class="p">,</span> <span class="n">a3</span><span class="o">.</span><span class="n">nstld</span><span class="o">.</span><span class="n">com</span><span class="p">,</span> <span class="n">NS</span><span class="p">,</span> <span class="n">IN</span><span class="p">)</span>
+<span class="p">(</span><span class="n">a3</span><span class="o">.</span><span class="n">nstld</span><span class="o">.</span><span class="n">com</span><span class="p">,</span> <span class="mf">192.5</span><span class="o">.</span><span class="mf">6.32</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">IN</span><span class="p">)</span>
+<span class="p">(</span><span class="n">com</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">gtld</span><span class="o">-</span><span class="n">servers</span><span class="o">.</span><span class="n">net</span><span class="p">,</span> <span class="n">NS</span><span class="p">,</span> <span class="n">IN</span><span class="p">)</span>
+<span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">gtld</span><span class="o">-</span><span class="n">servers</span><span class="o">.</span><span class="n">net</span><span class="p">,</span> <span class="mf">192.5</span><span class="o">.</span><span class="mf">6.30</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">IN</span><span class="p">)</span>
+<span class="o">...</span>
 </pre></div>
 </div>
 <p>Moving our way down the hierarchy by one level, the server has records
 for domains like this:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">princeton</span><span class="p">.</span><span class="n">edu</span><span class="p">,</span> <span class="n">dns</span><span class="p">.</span><span class="n">princeton</span><span class="p">.</span><span class="n">edu</span><span class="p">,</span> <span class="n">NS</span><span class="p">,</span> <span class="n">IN</span><span class="p">)</span>
-<span class="p">(</span><span class="n">dns</span><span class="p">.</span><span class="n">princeton</span><span class="p">.</span><span class="n">edu</span><span class="p">,</span> <span class="mf">128.112.129.15</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">IN</span><span class="p">)</span>
-<span class="p">...</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">princeton</span><span class="o">.</span><span class="n">edu</span><span class="p">,</span> <span class="n">dns</span><span class="o">.</span><span class="n">princeton</span><span class="o">.</span><span class="n">edu</span><span class="p">,</span> <span class="n">NS</span><span class="p">,</span> <span class="n">IN</span><span class="p">)</span>
+<span class="p">(</span><span class="n">dns</span><span class="o">.</span><span class="n">princeton</span><span class="o">.</span><span class="n">edu</span><span class="p">,</span> <span class="mf">128.112</span><span class="o">.</span><span class="mf">129.15</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">IN</span><span class="p">)</span>
+<span class="o">...</span>
 </pre></div>
 </div>
 <p>In this case, we get an <code class="docutils literal notranslate"><span class="pre">NS</span></code> record and an <code class="docutils literal notranslate"><span class="pre">A</span></code> record for the name
@@ -417,10 +426,10 @@ hierarchy. That server might be able to directly resolve some queries
 (e.g., for<code class="docutils literal notranslate"><span class="pre">email.princeton.edu</span></code>) while it would redirect others to a
 server at yet another layer in the hierarchy (e.g., for a query about
 <code class="docutils literal notranslate"><span class="pre">penguins.cs.princeton.edu</span></code>).</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">email</span><span class="p">.</span><span class="n">princeton</span><span class="p">.</span><span class="n">edu</span><span class="p">,</span> <span class="mf">128.112.198.35</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">IN</span><span class="p">)</span>
-<span class="p">(</span><span class="n">penguins</span><span class="p">.</span><span class="n">cs</span><span class="p">.</span><span class="n">princeton</span><span class="p">.</span><span class="n">edu</span><span class="p">,</span> <span class="n">dns1</span><span class="p">.</span><span class="n">cs</span><span class="p">.</span><span class="n">princeton</span><span class="p">.</span><span class="n">edu</span><span class="p">,</span> <span class="n">NS</span><span class="p">,</span> <span class="n">IN</span><span class="p">)</span>
-<span class="p">(</span><span class="n">dns1</span><span class="p">.</span><span class="n">cs</span><span class="p">.</span><span class="n">princeton</span><span class="p">.</span><span class="n">edu</span><span class="p">,</span> <span class="mf">128.112.136.10</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">IN</span><span class="p">)</span>
-<span class="p">...</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">email</span><span class="o">.</span><span class="n">princeton</span><span class="o">.</span><span class="n">edu</span><span class="p">,</span> <span class="mf">128.112</span><span class="o">.</span><span class="mf">198.35</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">IN</span><span class="p">)</span>
+<span class="p">(</span><span class="n">penguins</span><span class="o">.</span><span class="n">cs</span><span class="o">.</span><span class="n">princeton</span><span class="o">.</span><span class="n">edu</span><span class="p">,</span> <span class="n">dns1</span><span class="o">.</span><span class="n">cs</span><span class="o">.</span><span class="n">princeton</span><span class="o">.</span><span class="n">edu</span><span class="p">,</span> <span class="n">NS</span><span class="p">,</span> <span class="n">IN</span><span class="p">)</span>
+<span class="p">(</span><span class="n">dns1</span><span class="o">.</span><span class="n">cs</span><span class="o">.</span><span class="n">princeton</span><span class="o">.</span><span class="n">edu</span><span class="p">,</span> <span class="mf">128.112</span><span class="o">.</span><span class="mf">136.10</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">IN</span><span class="p">)</span>
+<span class="o">...</span>
 </pre></div>
 </div>
 <p>Finally, a third-level name server, such as the one managed by domain
@@ -436,12 +445,12 @@ domain’s web server. The mail exchange (<code class="docutils literal notransl
 purpose for the email application—they allow an administrator to change
 which host receives mail on behalf of the domain without having to
 change everyone’s email address.</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">penguins</span><span class="p">.</span><span class="n">cs</span><span class="p">.</span><span class="n">princeton</span><span class="p">.</span><span class="n">edu</span><span class="p">,</span> <span class="mf">128.112.155.166</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">IN</span><span class="p">)</span>
-<span class="p">(</span><span class="n">www</span><span class="p">.</span><span class="n">cs</span><span class="p">.</span><span class="n">princeton</span><span class="p">.</span><span class="n">edu</span><span class="p">,</span> <span class="n">coreweb</span><span class="p">.</span><span class="n">cs</span><span class="p">.</span><span class="n">princeton</span><span class="p">.</span><span class="n">edu</span><span class="p">,</span> <span class="n">CNAME</span><span class="p">,</span> <span class="n">IN</span><span class="p">)</span>
-<span class="n">coreweb</span><span class="p">.</span><span class="n">cs</span><span class="p">.</span><span class="n">princeton</span><span class="p">.</span><span class="n">edu</span><span class="p">,</span> <span class="mf">128.112.136.35</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">IN</span><span class="p">)</span>
-<span class="p">(</span><span class="n">cs</span><span class="p">.</span><span class="n">princeton</span><span class="p">.</span><span class="n">edu</span><span class="p">,</span> <span class="n">mail</span><span class="p">.</span><span class="n">cs</span><span class="p">.</span><span class="n">princeton</span><span class="p">.</span><span class="n">edu</span><span class="p">,</span> <span class="n">MX</span><span class="p">,</span> <span class="n">IN</span><span class="p">)</span>
-<span class="p">(</span><span class="n">mail</span><span class="p">.</span><span class="n">cs</span><span class="p">.</span><span class="n">princeton</span><span class="p">.</span><span class="n">edu</span><span class="p">,</span> <span class="mf">128.112.136.72</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">IN</span><span class="p">)</span>
-<span class="p">...</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">penguins</span><span class="o">.</span><span class="n">cs</span><span class="o">.</span><span class="n">princeton</span><span class="o">.</span><span class="n">edu</span><span class="p">,</span> <span class="mf">128.112</span><span class="o">.</span><span class="mf">155.166</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">IN</span><span class="p">)</span>
+<span class="p">(</span><span class="n">www</span><span class="o">.</span><span class="n">cs</span><span class="o">.</span><span class="n">princeton</span><span class="o">.</span><span class="n">edu</span><span class="p">,</span> <span class="n">coreweb</span><span class="o">.</span><span class="n">cs</span><span class="o">.</span><span class="n">princeton</span><span class="o">.</span><span class="n">edu</span><span class="p">,</span> <span class="n">CNAME</span><span class="p">,</span> <span class="n">IN</span><span class="p">)</span>
+<span class="n">coreweb</span><span class="o">.</span><span class="n">cs</span><span class="o">.</span><span class="n">princeton</span><span class="o">.</span><span class="n">edu</span><span class="p">,</span> <span class="mf">128.112</span><span class="o">.</span><span class="mf">136.35</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">IN</span><span class="p">)</span>
+<span class="p">(</span><span class="n">cs</span><span class="o">.</span><span class="n">princeton</span><span class="o">.</span><span class="n">edu</span><span class="p">,</span> <span class="n">mail</span><span class="o">.</span><span class="n">cs</span><span class="o">.</span><span class="n">princeton</span><span class="o">.</span><span class="n">edu</span><span class="p">,</span> <span class="n">MX</span><span class="p">,</span> <span class="n">IN</span><span class="p">)</span>
+<span class="p">(</span><span class="n">mail</span><span class="o">.</span><span class="n">cs</span><span class="o">.</span><span class="n">princeton</span><span class="o">.</span><span class="n">edu</span><span class="p">,</span> <span class="mf">128.112</span><span class="o">.</span><span class="mf">136.72</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">IN</span><span class="p">)</span>
+<span class="o">...</span>
 </pre></div>
 </div>
 <p>Note that, although resource records can be defined for virtually any
@@ -457,6 +466,42 @@ eventually evolve into the Lightweight Directory Access Protocol (LDAP).
 LDAP is a subset of X.500 originally designed as a PC front end to
 X.500. Today, widely used, mostly at the enterprise level, as a system
 for learning information about users.</p>
+<div class="sidebar">
+<p class="first sidebar-title">Naming Conventionsa</p>
+<p>Our description of DNS focuses on the underlying <em>mechanisms</em>, that
+is, how the hierarchy is partitioned over multiple servers and how
+the resolution process works. There is an equally interesting, but
+much less technical, issue of the <em>conventions</em> that are used to
+decide the names to use in the mechanism. For example, it is by
+convention that all U.S. universities are under the <code class="docutils literal notranslate"><span class="pre">edu</span></code> domain,
+while English universities are under the <code class="docutils literal notranslate"><span class="pre">ac</span></code> (academic)
+subdomain of the <code class="docutils literal notranslate"><span class="pre">uk</span></code> (United Kingdom) domain. (In a trendy twist
+on convention, ultra-cool startups often register their names in
+the <code class="docutils literal notranslate"><span class="pre">.io</span></code> domain, which is actually the country domain for the
+British Indian Ocean Territory.)</p>
+<p>The thing to understand about conventions is that they are sometimes
+defined without anyone making an explicit decision. For example, by
+convention a site hides the exact host that serves as its mail
+exchange behind the MX record. An alternative would have been to
+adopt the convention of sending mail to
+<code class="docutils literal notranslate"><span class="pre">user&#64;mail.cs.princeton.edu</span></code>, much as we expect to find a site’s
+public FTP directory at <code class="docutils literal notranslate"><span class="pre">ftp.cs.princeton.edu</span></code> and its WWW server
+at <code class="docutils literal notranslate"><span class="pre">www.cs.princeton.edu</span></code>. This last one is so prevalent that many
+people do not even realize it is just a convention. It may be
+splitting hairs, but what makes this a convention is that nothing in
+the implementation of DNS enforces that names or record types be used
+as intended.</p>
+<p class="last">Conventions also exist at the local level, where an organization
+names its machines according to some consistent set of rules. Given
+that the host names <code class="docutils literal notranslate"><span class="pre">venus</span></code>, <code class="docutils literal notranslate"><span class="pre">saturn</span></code>, and <code class="docutils literal notranslate"><span class="pre">mars</span></code> are among
+the most popular in the Internet, it’s not too hard to figure out
+one common naming convention. Some host naming conventions are more
+imaginative, however. For example, one site named its machines
+<code class="docutils literal notranslate"><span class="pre">up</span></code>, <code class="docutils literal notranslate"><span class="pre">down</span></code>, <code class="docutils literal notranslate"><span class="pre">crashed</span></code>, <code class="docutils literal notranslate"><span class="pre">rebooting</span></code>, and so on, resulting
+in confusing statements like “rebooting has crashed” and “up is
+down.”  Of course, there are also less imaginative names, such as
+those who name their machines after the integers.</p>
+</div>
 </div>
 <div class="section" id="name-resolution">
 <h3>Name Resolution<a class="headerlink" href="#name-resolution" title="Permalink to this headline">¶</a></h3>
@@ -497,8 +542,8 @@ with the address of a <em>local</em> name server. For example, all the hosts in
 the Department of Computer Science at Princeton know about the server on
 <code class="docutils literal notranslate"><span class="pre">dns1.cs.princeton.edu</span></code>. This local name server, in turn, has resource
 records for one or more of the root servers, for example:</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>(&#39;root&#39;, a.root-servers.net, NS, IN)
-(a.root-servers.net, 198.41.0.4, A, IN)
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="s1">&#39;root&#39;</span><span class="p">,</span> <span class="n">a</span><span class="o">.</span><span class="n">root</span><span class="o">-</span><span class="n">servers</span><span class="o">.</span><span class="n">net</span><span class="p">,</span> <span class="n">NS</span><span class="p">,</span> <span class="n">IN</span><span class="p">)</span>
+<span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">root</span><span class="o">-</span><span class="n">servers</span><span class="o">.</span><span class="n">net</span><span class="p">,</span> <span class="mf">198.41</span><span class="o">.</span><span class="mf">0.4</span><span class="p">,</span> <span class="n">A</span><span class="p">,</span> <span class="n">IN</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Thus, resolving a name actually involves a client querying the local
@@ -522,7 +567,7 @@ partial name (e.g., <code class="docutils literal notranslate"><span class="pre"
 program is configured with the local domain in which the host resides
 (e.g., <code class="docutils literal notranslate"><span class="pre">cs.princeton.edu</span></code>), and it appends this string to any simple
 names before sending out a query.</p>
-<div class="figure align-center" id="id5">
+<div class="figure align-center" id="id9">
 <span id="fig-resolution"></span><a class="reference internal image-reference" href="../_images/f09-18-9780123850591.png"><img alt="../_images/f09-18-9780123850591.png" src="../_images/f09-18-9780123850591.png" style="width: 600px;" /></a>
 <p class="caption"><span class="caption-number">Figure 233. </span><span class="caption-text">Name resolution in practice, where the numbers 1 to 10 show the sequence
 of steps in the process.</span></p>
@@ -697,7 +742,7 @@ a consequence, zero-touch also implies that the operator should be able
 to declare their network-wide <em>intent</em>, with the management tool being
 smart enough to issue the necessary per-device configuration directives
 in a globally consistent way.</p>
-<div class="figure align-center" id="id6">
+<div class="figure align-center" id="id10">
 <span id="fig-mgmt"></span><a class="reference internal image-reference" href="../_images/Slide1.png"><img alt="../_images/Slide1.png" src="../_images/Slide1.png" style="width: 400px;" /></a>
 <p class="caption"><span class="caption-number">Figure 234. </span><span class="caption-text">Operator manages a network through a configuration and management tool,
 which in turn programmatically interacts with the underlying network
@@ -756,11 +801,10 @@ automate, or the exact form of the operator-facing interface. Like any
 application that is trying to serve a need and support more features
 than the alternatives, there is still much room for innovation in tools
 for network management.</p>
-<blockquote>
-<div>For completeness, we note that NETCONF is another of the post-SNMP
+<p>For completeness, we note that NETCONF is another of the post-SNMP
 protocols for communicating configuration information to network
 devices. OpenConfig works with NETCONF, but our reading of the tea
-leaves points to gNMI as the future.</div></blockquote>
+leaves points to gNMI as the future.</p>
 <p>We conclude by emphasizing that a seachange is underway. While listing
 SNMP and OpenConfig in the title to this section suggests they are
 equivalent, it is more accurate to say that each is “what we call” these

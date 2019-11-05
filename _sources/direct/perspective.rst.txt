@@ -62,6 +62,8 @@ other issues mentioned above. By the end of this chapter, we’ll
 understand how to send complete packets over just about any sort of
 link, no matter what physical medium is involved.
 
+.. include:: ../sidebars/shannon.rst
+	     
 One way to characterize links, then, is by the medium they
 use—typically, copper wire in some form, such as twisted pair (some
 Ethernets and landline phones) and coaxial (cable); optical fiber,

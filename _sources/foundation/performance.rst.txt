@@ -106,7 +106,7 @@ network, since packet switches generally need to store packets for some
 time before forwarding them on an outbound link. So, we could define the
 total latency as
 
-.. code-block:: c
+::
 
    Latency = Propagation + Transmit + Queue
    Propagation =  Distance/SpeedOfLight
@@ -132,6 +132,8 @@ with a 100-ms RTT than it will on an across-the-room channel with a
 insignificant, however, since the former implies that the time to
 transmit a byte (``Transimt``) is 8 μs and the latter implies
 ``Transmit`` = 0.08 μs.
+
+.. include:: ../sidebars/mega.rst
 
 In contrast, consider a digital library program that is being asked to
 fetch a 25-megabyte (MB) image—the more bandwidth that is available, the

@@ -412,6 +412,8 @@ The Internet’s application layer is considered to be at layer 7, its
 transport layer is layer 4, the IP (internetworking or just network)
 layer is layer 3, and the link or subnet layer below IP is layer 2.
 
+.. sidebar:: IETF and Standardization
+	     
    Although we call it the "Internet architecture" rather than the
    "IETF architecture," it's fair to say that the IETF is the primary
    standardization body responsible for its definition, as well as the
@@ -420,9 +422,10 @@ layer is layer 3, and the link or subnet layer below IP is layer 2.
    protocols defined by other organizations, including IEEE's
    802.11 ethernet and Wi-Fi standards, W3C's HTTP/HTML web
    specifications, 3GPP's 4G and 5G cellular networks standards,
-   and ITU-T's H.232 video encoding standards, to name a few. In
-   addition to defining architectures and specifying protocols, there
-   are still other organizations that support the larger goal of
+   and ITU-T's H.232 video encoding standards, to name a few.
+
+   In addition to defining architectures and specifying protocols,
+   there are still other organizations that support the larger goal of
    interoperability. One example is the IANA (Internet Assigned
    Numbers Authority), which as its name impies, is responsible for
    handing out the unique identifiers needed to make the protocols

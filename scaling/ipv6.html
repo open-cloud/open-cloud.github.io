@@ -254,6 +254,44 @@ a long transition period in which some hosts and routers would run
 IPv4 only, some will run IPv4 and IPv6, and some will run IPv6
 only. It is doubtful they anticipated that transition period would be
 approaching its 30th anniversary.</p>
+<div class="sidebar">
+<p class="first sidebar-title">Transition from IPv4 to IPv6</p>
+<p>The most important idea behind the transition from IPv4 to IPv6 is
+that the Internet is far too big and decentralized to have a “flag
+day”—one specified day on which every host and router is upgraded
+from IPv4 to IPv6. Thus, IPv6 needs to be deployed incrementally in
+such a way that hosts and routers that only understand IPv4 can
+continue to function for as long as possible. Ideally, IPv4 nodes
+should be able to talk to other IPv4 nodes and some set of other
+IPv6-capable nodes indefinitely. Also, IPv6 hosts should be capable
+of talking to other IPv6 nodes even when some of the infrastructure
+between them may only support IPv4. Two major mechanisms have been
+defined to help this transition: <em>dual-stack operation</em> and
+<em>tunneling</em>.</p>
+<p>The idea of dual stacks is fairly straightforward: IPv6 nodes run
+both IPv6 and IPv4 and use the <code class="docutils literal notranslate"><span class="pre">Version</span></code> field to decide which
+stack should process an arriving packet. In this case, the IPv6
+address could be unrelated to the IPv4 address, or it could be the
+“IPv4-mapped IPv6 address” described earlier in this section.</p>
+<p class="last">The basic tunneling technique sends an IP packet as the <em>payload</em> of
+another IP packet. For IPv6 transition, tunneling is used to send an
+IPv6 packet over a piece of the network that only understands IPv4.
+This means that the IPv6 packet is encapsulated within an IPv4 header
+that has the address of the tunnel endpoint in its header, is
+transmitted across the IPv4-only piece of network, and then is
+decapsulated at the endpoint. The endpoint could be either a router
+or a host; in either case, it must be IPv6-capable to be able to
+process the IPv6 packet after decapsulation. If the endpoint is a
+host with an IPv4-mapped IPv6 address, then tunneling can be done
+automatically, by extracting the IPv4 address from the IPv6 address
+and using it to form the IPv4 header. Otherwise, the tunnel must be
+configured manually. In this case, the encapsulating node needs to
+know the IPv4 address of the other end of the tunnel, since it cannot
+be extracted from the IPv6 header. From the perspective of IPv6, the
+other end of the tunnel looks like a regular IPv6 node that is just
+one hop away, even though there may be many hops of IPv4
+infrastructure between the tunnel endpoints.</p>
+</div>
 </div>
 <div class="section" id="addresses-and-routing">
 <h2>Addresses and Routing<a class="headerlink" href="#addresses-and-routing" title="Permalink to this headline">¶</a></h2>
@@ -338,7 +376,7 @@ topic).</p>
 addresses. The standard representation is <code class="docutils literal notranslate"><span class="pre">x:x:x:x:x:x:x:x</span></code>, where
 each <code class="docutils literal notranslate"><span class="pre">x</span></code> is a hexadecimal representation of a 16-bit piece of the
 address. An example would be</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="mi">47</span><span class="nl">CD</span><span class="p">:</span><span class="mi">1234</span><span class="o">:</span><span class="mi">4422</span><span class="o">:</span><span class="nl">ACO2</span><span class="p">:</span><span class="mo">0022</span><span class="o">:</span><span class="mi">1234</span><span class="o">:</span><span class="nl">A456</span><span class="p">:</span><span class="mo">0124</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">47</span><span class="n">CD</span><span class="p">:</span><span class="mi">1234</span><span class="p">:</span><span class="mi">4422</span><span class="p">:</span><span class="n">ACO2</span><span class="p">:</span><span class="mi">0022</span><span class="p">:</span><span class="mi">1234</span><span class="p">:</span><span class="n">A456</span><span class="p">:</span><span class="mi">0124</span>
 </pre></div>
 </div>
 <p>Any IPv6 address can be written using this notation. Since there are a
@@ -346,11 +384,11 @@ few special types of IPv6 addresses, there are some special notations
 that may be helpful in certain circumstances. For example, an address
 with a large number of contiguous 0s can be written more compactly by
 omitting all the 0 fields. Thus,</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="mi">47</span><span class="nl">CD</span><span class="p">:</span><span class="mo">0000</span><span class="o">:</span><span class="mo">0000</span><span class="o">:</span><span class="mo">0000</span><span class="o">:</span><span class="mo">0000</span><span class="o">:</span><span class="mo">0000</span><span class="o">:</span><span class="nl">A456</span><span class="p">:</span><span class="mo">0124</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">47</span><span class="n">CD</span><span class="p">:</span><span class="mi">0000</span><span class="p">:</span><span class="mi">0000</span><span class="p">:</span><span class="mi">0000</span><span class="p">:</span><span class="mi">0000</span><span class="p">:</span><span class="mi">0000</span><span class="p">:</span><span class="n">A456</span><span class="p">:</span><span class="mi">0124</span>
 </pre></div>
 </div>
 <p>could be written</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="mi">47</span><span class="n">CD</span><span class="o">::</span><span class="nl">A456</span><span class="p">:</span><span class="mo">0124</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">47</span><span class="n">CD</span><span class="p">::</span><span class="n">A456</span><span class="p">:</span><span class="mi">0124</span>
 </pre></div>
 </div>
 <p>Clearly, this form of shorthand can only be used for one set of
@@ -359,7 +397,7 @@ contiguous 0s in an address to avoid ambiguity.</p>
 have their own special notation that makes extraction of the IPv4
 address easier. For example, the IPv4-mapped IPv6 address of a host
 whose IPv4 address was 128.96.33.81 could be written as</p>
-<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="o">::</span><span class="nl">FFFF</span><span class="p">:</span><span class="mf">128.96.33.81</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">::</span><span class="n">FFFF</span><span class="p">:</span><span class="mf">128.96</span><span class="o">.</span><span class="mf">33.81</span>
 </pre></div>
 </div>
 <p>That is, the last 32&nbsp;bits are written in IPv4 notation, rather than as a

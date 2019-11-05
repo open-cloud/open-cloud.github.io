@@ -52,7 +52,7 @@ ledged data allowed is now the minimum of the congestion window and the
 advertised window. Thus, using the variables defined in the previous
 chapter, TCP’s effective window is revised as follows:
 
-.. code-block:: c
+::
 
    MaxWindow = MIN(CongestionWindow, AdvertisedWindow)
    EffectiveWindow = MaxWindow -  (LastByteSent - LastByteAcked)
@@ -120,7 +120,7 @@ add 1 packet’s worth to the congestion window, but instead increments
 arrives. Specifically, the congestion window is incremented as follows
 each time an ACK arrives:
 
-.. code-block:: c
+::
 
    Increment = MSS x (MSS/CongestionWindow)
    CongestionWindow += Increment
@@ -454,7 +454,7 @@ blocks the sender until a timeout occurs. In practice, TCP’s fast
 retransmit mechanism can detect up to three dropped packets per
 window.
 
-Finally, there is one last improvement we can make. When the fast
+Finally, there is one last improvement we can make. When the fastx
 retransmit mechanism signals congestion, rather than drop the
 congestion window all the way back to one packet and run slow start,
 it is possible to use the ACKs that are still in the pipe to clock the
@@ -469,6 +469,8 @@ only used at the beginning of a connection and whenever a
 coarse-grained timeout occurs. At all other times, the congestion
 window is following a pure additive increase/multiplicative decrease
 pattern.
+
+.. include:: ../sidebars/tcp-wireless.rst
 
 TCP CUBIC
 ---------

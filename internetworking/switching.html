@@ -638,6 +638,41 @@ most common applications of virtual circuits for many years was the
 construction of <em>virtual private networks</em> (VPNs), a subject discussed
 in a later section. Even that application is now mostly supported using
 Internet-based technologies today.</p>
+<div class="sidebar">
+<p class="first sidebar-title">Optical Networking</p>
+<p>Our focus on packet-switched networks is obsuring the fact that,
+especially in wide-area settings, the underlying physical transport
+is all-optical: there are no packets. At this layer, commercially
+available DWDM (<em>Dense Wavelength Division Multiplexing</em>) equipment
+is able to transmit a large numbers of optical wavelengths (colors)
+down a single fiber. For example, one might send data on 100 or more
+different wavelengths, and each wavelength might carry as much as 100
+Gbps of data.</p>
+<p>Connecting these fibers is an optical device called a ROADM
+(<em>Reconfigurable Optical Add/Drop Multiplexers</em>). A collection of
+ROADMs (nodes) and fibers (links) form an optical transport network,
+where each ROADM is able to forward individual wavelengths along a
+multi-hop path, creating a logical end-to-end circuit. From the
+perspective of a packet-switched network that might be constructed on
+top of this optical transport, one wavelength, even it it crosses
+multiple ROADMs, appears to be a single point-to-point link between
+two switches, over which one might elect to run SONET or 100-Gbps
+Ethernet as the framing protocol. The “reconfigurability” feature of
+ROADMs means that it is possible to change these underlying
+end-to-end wavelengths, effectively creating a new topology at the
+packet-switching layer.</p>
+<p class="last">We don’t cover optical networking extensively in this book, in part
+because of space considerations. For many practical purposes, you can
+think of optical networks as a piece of the infrastructure that
+enables telephone companies to provide SONET links or other types of
+circuits where and when you need them. However, it is worth noting
+that many of the technologies that are discussed later in this book,
+such as routing protocols and multiprotocol label switching, do have
+application to the world of optical networking. It is also the case
+that the networking industry is experimenting with technologies to
+converge the optical and packet layers, creating a so-called
+<em>packet-optical</em> network.</p>
+</div>
 <div class="section" id="asynchronous-transfer-mode-atm">
 <h3>Asynchronous Transfer Mode (ATM)<a class="headerlink" href="#asynchronous-transfer-mode-atm" title="Permalink to this headline">¶</a></h3>
 <p>Asynchronous Transfer Mode (ATM) is probably the most well-known virtual
@@ -741,6 +776,39 @@ that some detractors called the <em>cell tax</em>.</p>
 compromise. There were good arguments for both larger and smaller cells,
 and 48 made almost no one happy—a power of two would certainly have been
 better for computers to process.</p>
+<div class="sidebar">
+<p class="first sidebar-title">What Happened to ATM?</p>
+<p>There was a period of time in the late 1980s and early 1990s when
+ATM seemed (to many people) poised to take over the world. The
+major telecommunication companies were supporting it, and the
+promise of high speed networks that could smoothly integrate voice,
+video and data onto a common network seemed compelling. Proponents
+of ATM referred to anything that used variable length
+packets—technologies such as Ethernet and IP—as “legacy”
+technologies. Today, however, it is Ethernet and IP that dominate,
+and ATM that is viewed as yesterday’s technology. You can still
+find pockets of ATM deployment, primarily as a way to get access to
+IP networks. Notably, a lot of DSL (digital subscriber line) access
+networks were built using ATM, so some amount of broadband Internet
+access today is actually over ATM links, although this fact is
+completely hidden by the DSL modems, which take Ethernet frames and
+chop them into cells which are subsequently reassembled inside the
+access network.</p>
+<p class="last">There is room for debate as to why ATM didn’t take over the world.
+One thing that seems fundamentally important in retrospect was that
+IP was well on its way to becoming completely entrenched by the
+time ATM appeared. Even though the Internet wasn’t on the radar of
+a lot of people in the 1980s, it was already achieving global reach
+and the number of hosts connected was doubling every year. And
+since the whole point of IP was to smoothly interconnect all sorts
+of different networks, when ATM appeared, rather than displace IP
+as its proponents imagined it might, ATM was quickly absorbed as
+just another network type over which IP could run. At that point,
+ATM was more directly in competition with Ethernet than with IP,
+and the arrival of inexpensive Ethernet switches and 100 Mbps
+Ethernet without expensive optics ensured the Ethernet remained
+entrenched as a local area technology.</p>
+</div>
 </div>
 </div>
 <div class="section" id="source-routing">

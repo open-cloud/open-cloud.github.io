@@ -162,6 +162,8 @@ last line of defense in an end-to-end protocol. The majority of errors
 are picked up by stronger error detection algorithms, such as CRCs, at
 the link level.
 
+.. include:: ../sidebars/probability.rst
+
 Cyclic Redundancy Check
 -----------------------
 
@@ -321,6 +323,8 @@ since we know that :math:`P(x)` can be evenly divided by :math:`C(x)`,
 this could only happen if :math:`E(x)` can be divided evenly by
 :math:`C(x)`. The trick is to pick :math:`C(x)` so that this is very
 unlikely for common types of errors.
+
+.. include:: ../sidebars/error-correction.rst
 
 One common type of error is a single-bit error, which can be expressed
 as :math:`E(x) = x^i` when it affects bit position *i*. If we select 

@@ -329,6 +329,38 @@ adequate, but one reason it is adequate is that this checksum is the
 last line of defense in an end-to-end protocol. The majority of errors
 are picked up by stronger error detection algorithms, such as CRCs, at
 the link level.</p>
+<div class="sidebar">
+<p class="first sidebar-title">Simple Probability Calculations</p>
+<p>When dealing with network errors and other unlikely (we hope) events,
+we often have use for simple back-of-the-envelope probability
+estimates. A useful approximation is that if two independent
+events have <em>small</em> probabilities <em>p</em> and <em>q</em>, then the probability
+of either event is <em>p+q</em>. The exact answer is
+<em>1-(1-p)(1-q) = p+q-pq</em> but for small probabilities like <em>p=q=</em>.01,
+our estimate gives us .02, while the exact value is .0199. Close enough.</p>
+<p>For a simple application of this, suppose that the per-bit error
+rate on a link is 1 in 10<sup>7</sup>.  Now suppose we are interested
+in estimating the probability of at least one bit in a 10,000 bit
+packet being errored. Using the above approximation repeatedly over
+all the bits, we can say that we are interested in the probability
+of either the first bit being errored, or the second bit, or the
+third, etc. Assuming bit errors are all independent (which they
+aren’t), we can therefore estimate that the probability of at least
+one error in a 10,000-bit (10<sup>4</sup> bit) packet is 10<sup>4</sup>
+× 10<sup>-7</sup> = 10<sup>-3</sup>. The exact answer, computed as
+1 - <em>P(no errors)</em>, would be 1 - (1 - 10<sup>-7</sup>)<sup>10,000</sup>
+= .00099950.</p>
+<p class="last">For a slightly more complex application, we compute the probability
+of exactly two errors in such a packet; this is the probability of
+an error that would sneak past a 1-parity-bit checksum. If we
+consider two particular bits in the packet, say bits <em>i</em> and <em>j</em>,
+the probability of those exact bits being errored is 10<sup>-7</sup>
+× 10<sup>-7</sup>. The total number of possible bit pairs in the
+packet is roughly 5 × 10<sup>7</sup>, so again using the
+approximation of repeatedly adding the probabilities of many rare
+events (in this case, of any possible bit pair being errored), our
+total probability of at least two errored bits is 5 × 10<sup>7</sup> × 10<sup>-14</sup> = 5 × 10<sup>-7</sup>.</p>
+</div>
 </div>
 <div class="section" id="cyclic-redundancy-check">
 <h2>Cyclic Redundancy Check<a class="headerlink" href="#cyclic-redundancy-check" title="Permalink to this headline">¶</a></h2>
@@ -466,6 +498,36 @@ since we know that <span class="math notranslate nohighlight">\(P(x)\)</span> ca
 this could only happen if <span class="math notranslate nohighlight">\(E(x)\)</span> can be divided evenly by
 <span class="math notranslate nohighlight">\(C(x)\)</span>. The trick is to pick <span class="math notranslate nohighlight">\(C(x)\)</span> so that this is very
 unlikely for common types of errors.</p>
+<div class="sidebar">
+<p class="first sidebar-title">Error Detection or Correction</p>
+<p>We have mentioned that it is possible to use codes that not only
+detect the presence of errors but also enable errors to be
+corrected.  Since the details of such codes require yet more
+complex mathematics than that required to understand CRCs, we will
+not dwell on them here. However, it is worth considering the merits
+of correction versus detection.</p>
+<p>At first glance, it would seem that correction is always better,
+since with detection we are forced to throw away the message and,
+in general, ask for another copy to be transmitted. This uses up
+bandwidth and may introduce latency while waiting for the
+retransmission. However, there is a downside to correction: it
+generally requires a greater number of redundant bits to send an
+error-correcting code that is as strong (that is, able to cope with
+the same range of errors) as a code that only detects errors. Thus,
+while error detection requires more bits to be sent when errors
+occur, error correction requires more bits to be sent <em>all the
+time</em>.  As a result, error correction tends to be most useful when
+(1)&nbsp;errors are quite probable, as they may be, for example, in a
+wireless environment, or (2)&nbsp;the cost of retransmission is too
+high, for example, because of the latency involved retransmitting a
+packet over a satellite link.</p>
+<p class="last">The use of error-correcting codes in networking is sometimes referred
+to as <em>forward error correction</em> (FEC) because the correction of
+errors is handled “in advance” by sending extra information, rather
+than waiting for errors to happen and dealing with them later by
+retransmission. FEC is commonly used in wireless networks such as
+802.11.</p>
+</div>
 <p>One common type of error is a single-bit error, which can be expressed
 as <span class="math notranslate nohighlight">\(E(x) = x^i\)</span> when it affects bit position <em>i</em>. If we select
 <span class="math notranslate nohighlight">\(C(x)\)</span> such that thefirst and the last term (that is, the <span class="math notranslate nohighlight">\(x^k\)</span>

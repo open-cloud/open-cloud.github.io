@@ -334,6 +334,8 @@ illusion that its IP address is fixed. Using an extension header rather
 than a tunnel is more efficient from the perspective of both bandwidth
 consumption and processing.
 
+.. include:: ../sidebars/mobile-ip.rst
+
 Finally, we note that many open issues remain in mobile networking.
 Managing the power consumption of mobile devices is increasingly
 important, so that smaller devices with limited battery power can be

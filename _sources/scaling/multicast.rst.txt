@@ -608,3 +608,5 @@ which criteria you want to optimize (bandwidth usage, router state, path
 length, etc.) and what sort of application you are trying to support
 (one-to-many, many-to-many, etc.) before you can make a choice of the
 “best” multicast mode for the task.
+
+.. include:: ../sidebars/mcast.rst
